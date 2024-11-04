@@ -1,0 +1,56 @@
+[gd_scene load_steps=7 format=3 uid="uid://basldbgw4wbxr"]
+
+[ext_resource type="PackedScene" uid="uid://c36y2lpwywjyt" path="res://Camera/WorldSpaceCam.tscn" id="1_faiwu"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j70th"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_tncc1"]
+sky_material = SubResource("ProceduralSkyMaterial_j70th")
+
+[sub_resource type="Environment" id="Environment_y7d3b"]
+background_mode = 2
+sky = SubResource("Sky_tncc1")
+tonemap_mode = 2
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_37yhe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e8mre"]
+size = Vector3(2.0293, 0.138428, 2.13965)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_y7d3b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Ev" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(4.44434, 0.0725098, 4.64941)
+
+[node name="Wall" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.11096, -2.16904)
+use_collision = true
+size = Vector3(4.41821, 2.10181, 0.178711)
+
+[node name="Desk" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0424045, 0.388831, -1.48705)
+use_collision = true
+size = Vector3(2.23132, 0.625122, 1)
+
+[node name="Monitor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, -0.476591, 0, 0.965926, 0.127702, 0, 1.19971, -1.80746)
+mesh = SubResource("PlaneMesh_37yhe")
+
+[node name="Monitor" type="StaticBody3D" parent="Monitor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Monitor/Monitor"]
+transform = Transform3D(1, 0, 0, 0, 0.999999, 1.41561e-07, 0, -6.55651e-07, 0.999999, 0, 0, 0)
+shape = SubResource("BoxShape3D_e8mre")
+
+[node name="Camera3D" parent="." instance=ExtResource("1_faiwu")]
+transform = Transform3D(1, 0, 0, 0, 0.972618, 0.23241, 0, -0.23241, 0.972618, 0, 1.35926, 0.391477)

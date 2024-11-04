@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c36y2lpwywjyt"]
+
+[ext_resource type="Script" path="res://Camera/Camera.gd" id="1_ks78m"]
+
+[node name="Camera3D" type="Camera3D" node_paths=PackedStringArray("navTarget")]
+transform = Transform3D(0.743472, 0.595542, -0.304269, 0, 0.45497, 0.890507, 0.668767, -0.662067, 0.338257, -1.55045, 6.19074, 2.2514)
+script = ExtResource("1_ks78m")
+navTarget = NodePath("")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -100)

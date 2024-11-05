@@ -7,10 +7,15 @@ const JUMP_VELOCITY = 4.5
 @export var cameraLerpSpeed : float = .1
 @export var cameraTurnSpeed : float = 2
 @export var cameraOffsetY : float = .5
+@export var mouseMoveMaxSpeed : float = 10
+@export var mouseSensitivity : float = .5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+func _ready():
+	# Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	pass
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -41,3 +46,19 @@ func _physics_process(delta):
 	cameraController.position = position
 	cameraController.position.y += cameraOffsetY
 	cameraController.rotation.y = rotation.y
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		var mouseMoveEvent : InputEventMouseMotion = event
+		var mouseMoveX = mouseMoveEvent.relative.x
+		if mouseMoveX > 0:
+			mouseMoveX = min(mouseMoveX, mouseMoveMaxSpeed)
+		elif mouseMoveX < 0:
+			mouseMoveX = max(mouseMoveX, -mouseMoveMaxSpeed)
+		var mouseMoveY = mouseMoveEvent.relative.y
+		if mouseMoveY > 0:
+			mouseMoveY = min(mouseMoveY, mouseMoveMaxSpeed)
+		elif mouseMoveX < 0:
+			mouseMoveY = max(mouseMoveY, -mouseMoveMaxSpeed)
+		rotate_y(deg_to_rad(-mouseMoveX * mouseSensitivity))
+		# cameraController.rotate_x(deg_to_rad(-mouseMoveY * mouseSensitivity))

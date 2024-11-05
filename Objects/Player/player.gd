@@ -3,13 +3,20 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
+@export_group("References")
 @export var cameraController : Node3D
 @export var cameraTarget : Node3D
-@export var cameraLerpSpeed : float = .1
+
+@export_category("Camera Controls")
+## Speed when using arrow keys to turn camera.
 @export var cameraTurnSpeed : float = 2
+## Offset the y position of camera to match player's perceived height.
 @export var cameraOffsetY : float = .5
+## Max difference allowed when reading in change in mouse x/y movement.
 @export var mouseMoveMaxSpeed : float = 10
+## Scaler for mouse sensitivity.
 @export var mouseSensitivity : float = .5
+## Control how far up/down a player can look.
 @export var cameraVertRotationLimit : float = 60
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -32,6 +39,7 @@ func _physics_process(delta):
 		rotate_y(deg_to_rad(cameraTurnSpeed))
 	elif Input.is_key_pressed(KEY_RIGHT):
 		rotate_y(deg_to_rad(-cameraTurnSpeed))
+
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("movement_left", "movement_right", "movement_forward", "movement_backward")
 	input_dir.rotated(rotation.y)
@@ -52,17 +60,21 @@ func _physics_process(delta):
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var mouseMoveEvent : InputEventMouseMotion = event
+
 		var mouseMoveX = mouseMoveEvent.relative.x
 		if mouseMoveX > 0:
 			mouseMoveX = min(mouseMoveX, mouseMoveMaxSpeed)
 		elif mouseMoveX < 0:
 			mouseMoveX = max(mouseMoveX, -mouseMoveMaxSpeed)
+
+		rotate_y(deg_to_rad(-mouseMoveX * mouseSensitivity))
+
 		var mouseMoveY = mouseMoveEvent.relative.y
 		if mouseMoveY > 0:
 			mouseMoveY = min(mouseMoveY, mouseMoveMaxSpeed)
 		elif mouseMoveX < 0:
 			mouseMoveY = max(mouseMoveY, -mouseMoveMaxSpeed)
-		rotate_y(deg_to_rad(-mouseMoveX * mouseSensitivity))
+			
 		cameraTarget.rotate_x(deg_to_rad(-mouseMoveY * mouseSensitivity))
 		var radCamVertLimit = deg_to_rad(cameraVertRotationLimit)
 		cameraTarget.rotation.x = clamp(cameraTarget.rotation.x, -radCamVertLimit, radCamVertLimit)

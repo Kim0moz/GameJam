@@ -77,3 +77,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		cameraTarget.rotate_x(deg_to_rad(-mouseMoveY * mouseSensitivity))
 		var radCamVertLimit = deg_to_rad(cameraVertRotationLimit)
 		cameraTarget.rotation.x = clamp(cameraTarget.rotation.x, -radCamVertLimit, radCamVertLimit)
+
+func _input(event):
+	if event.is_action_pressed("quit_game"):
+		get_tree().quit()

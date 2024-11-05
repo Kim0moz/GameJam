@@ -1,4 +1,5 @@
 extends Camera3D
+class_name NavigationCamera
 
 @onready var ray = $RayCast3D
 @export var mousePoint : Vector3
@@ -17,3 +18,6 @@ func _process(delta):
 func _input(event):
 	if event is InputEventMouseMotion:
 		mousePos = event.position
+	if event.is_action_released("Click") and ray.is_colliding():
+		if objectSelected is ToggleableItem:
+			objectSelected.activate()

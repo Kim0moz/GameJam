@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://basldbgw4wbxr"]
+[gd_scene load_steps=14 format=3 uid="uid://basldbgw4wbxr"]
 
 [ext_resource type="PackedScene" uid="uid://epo6t4l22emx" path="res://Objects/ToggleableItems/Lever.tscn" id="2_i7gbx"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="3_4y2od"]
+[ext_resource type="PackedScene" uid="uid://2oqcerfkd0a8" path="res://Models/Room.glb" id="3_br0us"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j70th"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -26,6 +27,19 @@ viewport_path = NodePath("SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1byjk"]
 albedo_color = Color(0.129412, 0.862745, 1, 1)
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_m0foc"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scjau"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_m0foc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnjcv"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_m0foc")
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -33,6 +47,7 @@ environment = SubResource("Environment_y7d3b")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+light_energy = 0.03
 shadow_enabled = true
 
 [node name="Ev" type="CSGBox3D" parent="."]
@@ -94,4 +109,14 @@ cameraOffsetY = 0.2
 [node name="MeshInstance3D" parent="Player" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_1byjk")
 
+[node name="Room" parent="." instance=ExtResource("3_br0us")]
+transform = Transform3D(0.517245, 0, 0, 0, 0.517245, 1.49012e-08, 0, 0, 0.517245, -4.77429, 3.57628e-07, 0.212632)
+
+[node name="Cube_004" parent="Room" index="11"]
+surface_material_override/1 = SubResource("StandardMaterial3D_scjau")
+
+[node name="Cube_005" parent="Room" index="12"]
+surface_material_override/1 = SubResource("StandardMaterial3D_pnjcv")
+
 [editable path="Player"]
+[editable path="Room"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://basldbgw4wbxr"]
+[gd_scene load_steps=8 format=3 uid="uid://basldbgw4wbxr"]
 
 [ext_resource type="PackedScene" uid="uid://c36y2lpwywjyt" path="res://Camera/WorldSpaceCam.tscn" id="1_faiwu"]
 
@@ -18,6 +18,9 @@ tonemap_mode = 2
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e8mre"]
 size = Vector3(2.0293, 0.138428, 2.13965)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_bo7mg"]
+viewport_path = NodePath("SubViewportContainer/SubViewport")
 
 [node name="Node3D" type="Node3D"]
 
@@ -52,5 +55,35 @@ mesh = SubResource("PlaneMesh_37yhe")
 transform = Transform3D(1, 0, 0, 0, 0.999999, 1.41561e-07, 0, -6.55651e-07, 0.999999, 0, 0, 0)
 shape = SubResource("BoxShape3D_e8mre")
 
+[node name="Sprite3D" type="Sprite3D" parent="Monitor/Monitor"]
+transform = Transform3D(0.19, 0, 0, 0, -1.5299e-08, 0.5, 0, -0.35, -2.18557e-08, 0, 0.00955701, 0.0051899)
+texture = SubResource("ViewportTexture_bo7mg")
+
 [node name="Camera3D" parent="." instance=ExtResource("1_faiwu")]
 transform = Transform3D(1, 0, 0, 0, 0.972618, 0.23241, 0, -0.23241, 0.972618, 0, 1.35926, 0.391477)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 512.0
+offset_bottom = 512.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(912, 512)
+render_target_update_mode = 4
+
+[node name="MonitorCamera" type="Camera3D" parent="SubViewportContainer/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.298233, 0.840457, 1.70012)
+fov = 79.8
+
+[node name="Panel" type="Panel" parent="SubViewportContainer/SubViewport"]
+offset_right = 180.0
+offset_bottom = 102.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="SubViewportContainer/SubViewport/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Items Delivered:"

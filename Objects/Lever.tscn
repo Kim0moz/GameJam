@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=4 uid="uid://epo6t4l22emx"]
 
-[ext_resource type="Script" path="res://ToggleableItem.gd" id="1_yy8ce"]
+[ext_resource type="Script" path="res://Objects/ToggleableItem.gd" id="1_yy8ce"]
 [ext_resource type="Animation" uid="uid://dbdwrtvpcwu3d" path="res://Models/HandleAnimations/Bottom.res" id="2_fckac"]
 [ext_resource type="Animation" uid="uid://06pdbbye1psk" path="res://Models/HandleAnimations/Top2.res" id="3_2bmp7"]
 

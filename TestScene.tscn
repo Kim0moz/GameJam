@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://basldbgw4wbxr"]
 
 [ext_resource type="PackedScene" uid="uid://c36y2lpwywjyt" path="res://Camera/WorldSpaceCam.tscn" id="1_faiwu"]
-[ext_resource type="PackedScene" uid="uid://epo6t4l22emx" path="res://Lever.tscn" id="2_i7gbx"]
+[ext_resource type="PackedScene" uid="uid://epo6t4l22emx" path="res://Objects/Lever.tscn" id="2_i7gbx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j70th"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

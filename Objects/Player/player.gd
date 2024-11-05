@@ -4,11 +4,13 @@ extends CharacterBody3D
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @export var cameraController : Node3D
+@export var cameraTarget : Node3D
 @export var cameraLerpSpeed : float = .1
 @export var cameraTurnSpeed : float = 2
 @export var cameraOffsetY : float = .5
 @export var mouseMoveMaxSpeed : float = 10
 @export var mouseSensitivity : float = .5
+@export var cameraVertRotationLimit : float = 60
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -61,4 +63,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		elif mouseMoveX < 0:
 			mouseMoveY = max(mouseMoveY, -mouseMoveMaxSpeed)
 		rotate_y(deg_to_rad(-mouseMoveX * mouseSensitivity))
-		# cameraController.rotate_x(deg_to_rad(-mouseMoveY * mouseSensitivity))
+		cameraTarget.rotate_x(deg_to_rad(-mouseMoveY * mouseSensitivity))
+		var radCamVertLimit = deg_to_rad(cameraVertRotationLimit)
+		cameraTarget.rotation.x = clamp(cameraTarget.rotation.x, -radCamVertLimit, radCamVertLimit)

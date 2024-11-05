@@ -7,9 +7,10 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6crp"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "cameraTarget")]
 script = ExtResource("1_1wn3t")
 cameraController = NodePath("CameraController")
+cameraTarget = NodePath("CameraController/CameraTarget")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_0me4c")

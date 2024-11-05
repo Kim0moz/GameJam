@@ -8,6 +8,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6crp"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "cameraTarget")]
+collision_layer = 2
 script = ExtResource("1_1wn3t")
 cameraController = NodePath("CameraController")
 cameraTarget = NodePath("CameraController/CameraTarget")

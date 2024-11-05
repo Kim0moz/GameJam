@@ -5,7 +5,8 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @export var cameraController : Node3D
 @export var cameraLerpSpeed : float = .1
-@export var camerTurnSpeed : float = 2
+@export var cameraTurnSpeed : float = 2
+@export var cameraOffsetY : float = .5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -21,9 +22,9 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 
 	if Input.is_key_pressed(KEY_LEFT):
-		rotate_y(deg_to_rad(camerTurnSpeed))
+		rotate_y(deg_to_rad(cameraTurnSpeed))
 	elif Input.is_key_pressed(KEY_RIGHT):
-		rotate_y(deg_to_rad(-camerTurnSpeed))
+		rotate_y(deg_to_rad(-cameraTurnSpeed))
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("movement_left", "movement_right", "movement_forward", "movement_backward")
 	input_dir.rotated(rotation.y)
@@ -38,4 +39,5 @@ func _physics_process(delta):
 	move_and_slide()
 
 	cameraController.position = position
+	cameraController.position.y += cameraOffsetY
 	cameraController.rotation.y = rotation.y

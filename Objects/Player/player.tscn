@@ -1,32 +1,27 @@
-[gd_scene load_steps=6 format=3 uid="uid://doeosjyp664sa"]
+[gd_scene load_steps=5 format=3 uid="uid://doeosjyp664sa"]
 
 [ext_resource type="Script" path="res://Objects/Player/player.gd" id="1_1wn3t"]
 [ext_resource type="PackedScene" uid="uid://c36y2lpwywjyt" path="res://Camera/WorldSpaceCam.tscn" id="2_fxkj6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wdb0i"]
-albedo_color = Color(0.4992, 0.96, 0.56064, 1)
-roughness = 0.48
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0me4c"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_0iqrs"]
-material = SubResource("StandardMaterial3D_wdb0i")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6k5a8"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6crp"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController")]
 script = ExtResource("1_1wn3t")
 cameraController = NodePath("CameraController")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_0iqrs")
+mesh = SubResource("CapsuleMesh_0me4c")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_6k5a8")
+shape = SubResource("CapsuleShape3D_g6crp")
 
 [node name="CameraController" type="Node3D" parent="."]
 top_level = true
 
 [node name="CameraTarget" type="Node3D" parent="CameraController"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="WorldSpaceCam" parent="CameraController/CameraTarget" instance=ExtResource("2_fxkj6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

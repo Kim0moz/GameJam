@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://basldbgw4wbxr"]
+[gd_scene load_steps=10 format=3 uid="uid://basldbgw4wbxr"]
 
 [ext_resource type="PackedScene" uid="uid://epo6t4l22emx" path="res://Objects/ToggleableItems/Lever.tscn" id="2_i7gbx"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="3_4y2od"]
@@ -22,6 +22,9 @@ size = Vector3(2.0293, 0.138428, 2.13965)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_xpw75"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1byjk"]
+albedo_color = Color(0.129412, 0.862745, 1, 1)
 
 [node name="Node3D" type="Node3D"]
 
@@ -85,4 +88,9 @@ text = "Items Delivered:"
 [node name="Handle" parent="." instance=ExtResource("2_i7gbx")]
 
 [node name="Player" parent="." instance=ExtResource("3_4y2od")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.539823, 1.40814)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.957332, 1.40814)
+
+[node name="MeshInstance3D" parent="Player" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_1byjk")
+
+[editable path="Player"]

@@ -8,8 +8,6 @@ const JUMP_VELOCITY = 4.5
 @export var cameraTarget : Node3D
 
 @export_category("Camera Controls")
-## Speed when using arrow keys to turn camera.
-@export var cameraTurnSpeed : float = 2
 ## Offset the y position of camera to match player's perceived height.
 @export var cameraOffsetY : float = .5
 ## Max difference allowed when reading in change in mouse x/y movement.
@@ -33,11 +31,6 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("movement_jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
-	if Input.is_key_pressed(KEY_LEFT):
-		rotate_y(deg_to_rad(cameraTurnSpeed))
-	elif Input.is_key_pressed(KEY_RIGHT):
-		rotate_y(deg_to_rad(-cameraTurnSpeed))
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("movement_left", "movement_right", "movement_forward", "movement_backward")

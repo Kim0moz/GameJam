@@ -115,6 +115,7 @@ text = "Items Delivered:"
 [node name="Player" parent="." instance=ExtResource("3_4y2od")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -6.00444, 0.957332, 0.401616)
 cameraOffsetY = 0.2
+cameraVertRotationLimit = 90.0
 
 [node name="MeshInstance3D" parent="Player" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_1byjk")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://basldbgw4wbxr"]
+[gd_scene load_steps=24 format=3 uid="uid://basldbgw4wbxr"]
 
 [ext_resource type="PackedScene" uid="uid://epo6t4l22emx" path="res://Objects/ToggleableItems/Lever.tscn" id="2_i7gbx"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="3_4y2od"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Objects/ToggleableItems/ToggleableItem.gd" id="4_751qy"]
 [ext_resource type="Animation" uid="uid://dlgaj0ly6maw1" path="res://Models/RoomAnimations/Close.res" id="5_0lje7"]
 [ext_resource type="Animation" uid="uid://dkh5i3lw20wka" path="res://Models/RoomAnimations/Open.res" id="6_d73yp"]
+[ext_resource type="PackedScene" uid="uid://cm3et4jlstfld" path="res://Objects/InteractableItems/joystick.tscn" id="9_c7p27"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_j70th"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -177,6 +178,8 @@ animations = Array[Animation]([ExtResource("5_0lje7"), ExtResource("6_d73yp")])
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeliveryDoor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63011, 1.49033, 3.42759)
 shape = SubResource("CylinderShape3D_kuir0")
+
+[node name="Joystick" parent="." instance=ExtResource("9_c7p27")]
 
 [editable path="Player"]
 [editable path="Room"]

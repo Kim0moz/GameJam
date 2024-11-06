@@ -13,7 +13,7 @@ func _process(delta):
 	if ray.is_colliding():
 		objectSelected = ray.get_collider()
 		mousePoint = ray.get_collision_point() + Vector3(0,.2,0)
-		print(objectSelected.name)
+		# print(objectSelected.name)
 
 func _input(event):
 	if event is InputEventMouseMotion:

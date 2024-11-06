@@ -1,7 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://basldbgw4wbxr"]
+[gd_scene load_steps=23 format=3 uid="uid://basldbgw4wbxr"]
 
 [ext_resource type="PackedScene" uid="uid://epo6t4l22emx" path="res://Objects/ToggleableItems/Lever.tscn" id="2_i7gbx"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="3_4y2od"]
+[ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="3_atby7"]
+[ext_resource type="Texture2D" uid="uid://m6gi6dpt2fuj" path="res://Sprites/CircleCrosshair.png" id="3_bcr25"]
 [ext_resource type="PackedScene" uid="uid://2oqcerfkd0a8" path="res://Models/Room.glb" id="3_br0us"]
 [ext_resource type="Script" path="res://Objects/ToggleableItems/ToggleableItem.gd" id="4_751qy"]
 [ext_resource type="Animation" uid="uid://dlgaj0ly6maw1" path="res://Models/RoomAnimations/Close.res" id="5_0lje7"]
@@ -29,6 +31,14 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1byjk"]
 albedo_color = Color(0.129412, 0.862745, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsgyv"]
+atlas = ExtResource("3_atby7")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fflej"]
+atlas = ExtResource("3_atby7")
+region = Rect2(112, 16, 16, 16)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_m0foc"]
 viewport_path = NodePath("SubViewport")
@@ -119,6 +129,24 @@ cameraVertRotationLimit = 90.0
 
 [node name="MeshInstance3D" parent="Player" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_1byjk")
+
+[node name="WorldSpaceCam" parent="Player/CameraController/CameraTarget" index="0" node_paths=PackedStringArray("Reticle")]
+Reticle = NodePath("TextureRect")
+Default = ExtResource("3_bcr25")
+SelectableItem = SubResource("AtlasTexture_lsgyv")
+SelectedItem = SubResource("AtlasTexture_fflej")
+
+[node name="TextureRect" parent="Player/CameraController/CameraTarget/WorldSpaceCam" index="1"]
+modulate = Color(1, 1, 1, 1)
+texture_filter = 1
+offset_left = -28.0
+offset_top = -24.0
+offset_right = 24.0
+offset_bottom = 28.0
+pivot_offset = Vector2(28, 24)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource("AtlasTexture_fflej")
 
 [node name="Room" parent="." instance=ExtResource("3_br0us")]
 transform = Transform3D(0.741066, 0, 0, 0, 0.741066, 2.13492e-08, 0, 0, 0.741066, -4.77429, 3.57628e-07, 0.212632)

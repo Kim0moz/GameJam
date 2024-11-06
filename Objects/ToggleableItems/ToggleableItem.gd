@@ -1,4 +1,4 @@
-extends Node3D
+extends InteractableItem
 class_name ToggleableItem
 
 @export var anim : AnimationPlayer

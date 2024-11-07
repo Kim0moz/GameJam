@@ -1,10 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://basldbgw4wbxr"]
+[gd_scene load_steps=21 format=3 uid="uid://basldbgw4wbxr"]
 
 [ext_resource type="PackedScene" uid="uid://epo6t4l22emx" path="res://Objects/ToggleableItems/Lever.tscn" id="2_i7gbx"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="3_4y2od"]
 [ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="3_atby7"]
 [ext_resource type="Texture2D" uid="uid://m6gi6dpt2fuj" path="res://Sprites/CircleCrosshair.png" id="3_bcr25"]
-[ext_resource type="PackedScene" uid="uid://2oqcerfkd0a8" path="res://Models/Room.glb" id="3_br0us"]
+[ext_resource type="PackedScene" uid="uid://cwoppep8x8xrg" path="res://Models/Room.glb" id="3_br0us"]
 [ext_resource type="Script" path="res://Objects/ToggleableItems/ToggleableItem.gd" id="4_751qy"]
 [ext_resource type="Animation" uid="uid://dlgaj0ly6maw1" path="res://Models/RoomAnimations/Close.res" id="5_0lje7"]
 [ext_resource type="Animation" uid="uid://dkh5i3lw20wka" path="res://Models/RoomAnimations/Open.res" id="6_d73yp"]
@@ -40,19 +40,6 @@ region = Rect2(96, 16, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fflej"]
 atlas = ExtResource("3_atby7")
 region = Rect2(112, 16, 16, 16)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_m0foc"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_scjau"]
-resource_local_to_scene = true
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_m0foc")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pnjcv"]
-resource_local_to_scene = true
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_m0foc")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_14vef"]
 size = Vector3(5.55418, 1, 7.48108)
@@ -152,16 +139,10 @@ texture = SubResource("AtlasTexture_fflej")
 [node name="Room" parent="." instance=ExtResource("3_br0us")]
 transform = Transform3D(0.741066, 0, 0, 0, 0.741066, 2.13492e-08, 0, 0, 0.741066, -4.77429, 3.57628e-07, 0.212632)
 
-[node name="Door" parent="Room" index="5"]
+[node name="Door" parent="Room" index="4"]
 transform = Transform3D(0.342915, 0, -0.939367, 0, 1, 0, 0.939367, 0, 0.342915, 0.187394, 1.31039, 4.31414)
 
-[node name="Cube_004" parent="Room" index="11"]
-surface_material_override/1 = SubResource("StandardMaterial3D_scjau")
-
-[node name="Cube_005" parent="Room" index="12"]
-surface_material_override/1 = SubResource("StandardMaterial3D_pnjcv")
-
-[node name="AnimationPlayer" parent="Room" index="14"]
+[node name="AnimationPlayer" parent="Room" index="18"]
 reset_on_save = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -180,7 +161,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63011, 1.49033, 3.42759)
 shape = SubResource("CylinderShape3D_kuir0")
 
 [node name="Joystick" parent="." instance=ExtResource("9_c7p27")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -5.92648, 1.54191, -2.02097)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6.34487, 0.836117, -2.56306)
 
 [editable path="Player"]
 [editable path="Room"]

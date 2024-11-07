@@ -10,7 +10,7 @@ func _ready() -> void:
 	anim.connect("animation_finished", Callable(self, "anim_finished"))
 	activate()
 
-func activate():
+func activate(mousePos = Vector2.ZERO):
 	if playing == true:
 		return
 	anim.play(animations[index].resource_name)

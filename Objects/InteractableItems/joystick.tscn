@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://cm3et4jlstfld"]
+[gd_scene load_steps=17 format=4 uid="uid://cm3et4jlstfld"]
 
 [ext_resource type="Animation" uid="uid://cvfxbkg3hfso8" path="res://Models/JoyStickAnimations/ForwardBack.res" id="1_k635p"]
 [ext_resource type="Animation" uid="uid://djydb3q4xdp3e" path="res://Models/JoyStickAnimations/LeftRight.res" id="2_2u20o"]
+[ext_resource type="Script" path="res://Objects/InteractableItems/joystick.gd" id="3_3w4u2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ea5so"]
 
@@ -61,8 +62,41 @@ _data = {
 "LeftRight": ExtResource("2_2u20o")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_6kvbt"]
+size = Vector3(0.358398, 0.397003, 0.388916)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k745r"]
+animation = &"ForwardBack"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e0lnm"]
+animation = &"LeftRight"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pioq1"]
+animation = &"LeftRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lqlrb"]
+animation = &"ForwardBack"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_lto4h"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_k745r")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_e0lnm")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_pioq1")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_lqlrb")
+blend_point_3/pos = Vector2(0, 1)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_o36m2"]
+graph_offset = Vector2(-218.996, -28.1339)
+nodes/Axes/node = SubResource("AnimationNodeBlendSpace2D_lto4h")
+nodes/Axes/position = Vector2(146.004, 10.8661)
+nodes/output/position = Vector2(640, 100)
+node_connections = [&"output", 0, &"Axes"]
+
 [node name="Joystick" type="Node3D"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.58277, 1.55564, -2.00757)
 
 [node name="Armature" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00379187, 0.021662, 0.0023025)
@@ -80,7 +114,7 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.108298, 0)
 bones/1/enabled = true
 bones/1/position = Vector3(0, 0.108298, 0)
-bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/1/rotation = Quaternion(-0.00383512, -0.000448981, -0.116276, 0.993209)
 bones/1/scale = Vector3(1, 1, 1)
 
 [node name="Cube" type="MeshInstance3D" parent="Armature/Skeleton3D"]
@@ -95,3 +129,16 @@ skin = SubResource("Skin_2kpwx")
 libraries = {
 "": SubResource("AnimationLibrary_3eijn")
 }
+
+[node name="Joystick" type="StaticBody3D" parent="." node_paths=PackedStringArray("animTree")]
+script = ExtResource("3_3w4u2")
+animTree = NodePath("../AnimationTree")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Joystick"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.203323, 0)
+shape = SubResource("BoxShape3D_6kvbt")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeBlendTree_o36m2")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Axes/blend_position = Vector2(-0.267091, -0.0088495)

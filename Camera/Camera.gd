@@ -25,6 +25,7 @@ func _process(delta):
 			Reticle.texture = SelectableItem
 		elif objectSelected is InteractableItem:
 			Reticle.texture = SelectedItem
+			objectSelected.activate(mousePos)
 		else:
 			Reticle.texture = Default
 		# print(objectSelected.name)
@@ -32,6 +33,4 @@ func _process(delta):
 func _input(event):
 	if event is InputEventMouseMotion:
 		mousePos = event.position
-	if event.is_action_released("Click") and ray.is_colliding():
-		if objectSelected is InteractableItem:
-			objectSelected.activate()
+		

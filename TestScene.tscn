@@ -139,10 +139,10 @@ texture = SubResource("AtlasTexture_fflej")
 [node name="Room" parent="." instance=ExtResource("3_br0us")]
 transform = Transform3D(0.741066, 0, 0, 0, 0.741066, 2.13492e-08, 0, 0, 0.741066, -4.77429, 3.57628e-07, 0.212632)
 
-[node name="Door" parent="Room" index="4"]
+[node name="Door" parent="Room" index="14"]
 transform = Transform3D(0.342915, 0, -0.939367, 0, 1, 0, 0.939367, 0, 0.342915, 0.187394, 1.31039, 4.31414)
 
-[node name="AnimationPlayer" parent="Room" index="18"]
+[node name="AnimationPlayer" parent="Room" index="23"]
 reset_on_save = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -161,7 +161,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.63011, 1.49033, 3.42759)
 shape = SubResource("CylinderShape3D_kuir0")
 
 [node name="Joystick" parent="." instance=ExtResource("9_c7p27")]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -6.34487, 0.836117, -2.56306)
+transform = Transform3D(-0.762713, 0, 0.646737, 0, 1, 0, -0.646737, 0, -0.762713, -4.43528, 0.836117, -1.65811)
 
 [editable path="Player"]
 [editable path="Room"]
+[editable path="Joystick"]

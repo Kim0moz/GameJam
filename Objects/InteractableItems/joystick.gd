@@ -1,17 +1,15 @@
-extends AnalogueItem
-
-@export var animTree : AnimationTree
-
+@tool
+extends Node3D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	InputVector = Vector2.ZERO
-	pass # Replace with function body.
+@onready var AnimTree : AnimationTree = $"AnimationTree"
 
+@export var CurrentDirection : Vector2 = Vector2(0.0,0.0) :
+	set(value):
+		CurrentDirection = Vector2(clampf(value.x,-1.0,1.0),clampf(value.y,-1.0,1.0))
+		if AnimTree:
+			AnimTree["parameters/Axes/blend_position"] = CurrentDirection
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func activate(mousePos = Vector2.ZERO):
-	InputVector = Input.get_last_mouse_velocity().normalized()
-	print(InputVector)
-	animTree["parameters/Axes/blend_position"] = InputVector
+func _process(delta: float) -> void:
+	pass

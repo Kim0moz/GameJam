@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://basldbgw4wbxr"]
+[gd_scene load_steps=29 format=3 uid="uid://basldbgw4wbxr"]
 
+[ext_resource type="Shader" uid="uid://uuxgfkbax2gj" path="res://TestScene.tres" id="2_ex0g8"]
 [ext_resource type="PackedScene" uid="uid://epo6t4l22emx" path="res://Objects/ToggleableItems/Lever.tscn" id="2_i7gbx"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="3_4y2od"]
 [ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="3_atby7"]
@@ -29,24 +30,6 @@ size = Vector3(2.0293, 0.138428, 2.13965)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_xpw75"]
 viewport_path = NodePath("SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1byjk"]
-albedo_color = Color(0.129412, 0.862745, 1, 1)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lsgyv"]
-atlas = ExtResource("3_atby7")
-region = Rect2(96, 16, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fflej"]
-atlas = ExtResource("3_atby7")
-region = Rect2(112, 16, 16, 16)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_14vef"]
-size = Vector3(5.55418, 1, 7.48108)
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_kuir0"]
-height = 0.671215
-radius = 0.277961
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a1tvk"]
 texture = ExtResource("3_atby7")
@@ -243,6 +226,45 @@ terrain_set_0/terrain_1/name = "Homes"
 terrain_set_0/terrain_1/color = Color(0.815686, 0.921569, 0.886275, 1)
 sources/0 = SubResource("TileSetAtlasSource_a1tvk")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qtpb3"]
+shader = ExtResource("2_ex0g8")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_le650"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1byjk"]
+albedo_color = Color(0.129412, 0.862745, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lsgyv"]
+atlas = ExtResource("3_atby7")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fflej"]
+atlas = ExtResource("3_atby7")
+region = Rect2(112, 16, 16, 16)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_yk7ud"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_4h5ds"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpjmu"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_yk7ud")
+metallic = 1.0
+roughness = 0.0
+emission_enabled = true
+emission_energy_multiplier = 0.67
+emission_texture = SubResource("ViewportTexture_4h5ds")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_14vef"]
+size = Vector3(5.55418, 1, 7.48108)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kuir0"]
+height = 0.671215
+radius = 0.277961
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -303,6 +325,15 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Items Delivered:"
 
+[node name="TileMapLayer" type="TileMapLayer" parent="SubViewport"]
+tile_set = SubResource("TileSet_fbsay")
+
+[node name="ScreenShader" type="TextureRect" parent="SubViewport"]
+material = SubResource("ShaderMaterial_qtpb3")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("ViewportTexture_le650")
+
 [node name="Handle" parent="." instance=ExtResource("2_i7gbx")]
 
 [node name="Player" parent="." instance=ExtResource("3_4y2od")]
@@ -337,6 +368,9 @@ transform = Transform3D(0.741066, 0, 0, 0, 0.741066, 2.13492e-08, 0, 0, 0.741066
 [node name="Door" parent="Room" index="14"]
 transform = Transform3D(0.342915, 0, -0.939367, 0, 1, 0, 0.939367, 0, 0.342915, 0.187394, 1.31039, 4.31414)
 
+[node name="Monitor" parent="Room" index="18"]
+surface_material_override/1 = SubResource("StandardMaterial3D_bpjmu")
+
 [node name="AnimationPlayer" parent="Room" index="23"]
 reset_on_save = false
 
@@ -361,8 +395,11 @@ transform = Transform3D(-0.762713, 0, 0.646737, 0, 1, 0, -0.646737, 0, -0.762713
 [node name="Skeleton3D" parent="Joystick/Armature" index="0"]
 bones/1/rotation = Quaternion(0.0366604, -0.00556074, -0.149864, 0.988011)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-tile_set = SubResource("TileSet_fbsay")
+[node name="Cube" parent="Joystick/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = null
+
+[node name="Cube_001" parent="Joystick/Armature/Skeleton3D" index="1"]
+surface_material_override/0 = null
 
 [editable path="Player"]
 [editable path="Room"]

@@ -38,3 +38,4 @@ tile_set = ExtResource("2_s271b")
 
 [node name="Drone" parent="." instance=ExtResource("4_lpyc7")]
 position = Vector2(-111, 0)
+particleAngleOffset = 90.0

@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+class_name Player
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -17,6 +17,9 @@ const JUMP_VELOCITY = 4.5
 ## Control how far up/down a player can look.
 @export var cameraVertRotationLimit : float = 60
 
+enum PlayerState {NORMAL, COMPUTER}
+var playerState : PlayerState = PlayerState.NORMAL
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
@@ -24,6 +27,11 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta):
+	match playerState:
+		PlayerState.NORMAL:
+			movement(delta)
+
+func movement(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
@@ -48,6 +56,7 @@ func _physics_process(delta):
 	cameraController.position = position
 	cameraController.position.y += cameraOffsetY
 	cameraController.rotation.y = rotation.y
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -74,3 +83,4 @@ func _unhandled_input(event: InputEvent) -> void:
 func _input(event):
 	if event.is_action_pressed("quit_game"):
 		get_tree().quit()
+

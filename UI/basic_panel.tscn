@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv8gf15agiob8"]
+
+[ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_spdl5"]
+
+[node name="BasicPanel" type="Panel"]
+offset_right = 40.0
+offset_bottom = 41.0
+theme = ExtResource("1_spdl5")

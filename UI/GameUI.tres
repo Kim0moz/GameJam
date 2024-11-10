@@ -1,0 +1,52 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://kuqwnqky71xb"]
+
+[ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="1_p86mw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bkrlv"]
+atlas = ExtResource("1_p86mw")
+region = Rect2(50, 130, 12, 13)
+filter_clip = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ouknj"]
+texture = SubResource("AtlasTexture_bkrlv")
+texture_margin_left = 9.0
+texture_margin_top = 10.0
+texture_margin_right = 9.0
+texture_margin_bottom = 10.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 12, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ika5y"]
+atlas = ExtResource("1_p86mw")
+region = Rect2(66, 130, 12, 13)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lnpa7"]
+texture = SubResource("AtlasTexture_ika5y")
+texture_margin_left = 1.0
+texture_margin_top = 2.0
+texture_margin_right = 1.0
+texture_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(0, 0, 12, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1g5q"]
+atlas = ExtResource("1_p86mw")
+region = Rect2(67, 148, 10, 9)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qjkvy"]
+texture = SubResource("AtlasTexture_k1g5q")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[resource]
+HBoxContainer/constants/separation = 0
+Panel/styles/panel = SubResource("StyleBoxTexture_ouknj")
+ProgressBar/styles/background = SubResource("StyleBoxTexture_lnpa7")
+ProgressBar/styles/fill = SubResource("StyleBoxTexture_qjkvy")
+VBoxContainer/constants/separation = 0

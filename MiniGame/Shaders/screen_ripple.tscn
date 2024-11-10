@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://bs1gsxf1jhg1k"]
+
+[ext_resource type="Shader" uid="uid://du4m0bwcsw16m" path="res://MiniGame/Shaders/Offset.tres" id="1_cqef2"]
+[ext_resource type="Script" path="res://MiniGame/Shaders/RippleScreen.gd" id="2_wu0x4"]
+[ext_resource type="Shader" uid="uid://b52d2iikaotyc" path="res://MiniGame/Shaders/RippleMask.tres" id="3_dff1f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngbit"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_q60kg"]
+Panel/styles/panel = SubResource("StyleBoxFlat_ngbit")
+
+[sub_resource type="Theme" id="Theme_3g30s"]
+Panel/styles/panel = SubResource("StyleBoxFlat_ngbit")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b2g3c"]
+resource_local_to_scene = true
+shader = ExtResource("3_dff1f")
+shader_parameter/Position = Vector2(640, 0)
+shader_parameter/Scale = 5.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_o6mr6"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohab2"]
+resource_local_to_scene = true
+shader = ExtResource("1_cqef2")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_o6mr6")
+
+[node name="ScreenRipple" type="Control" node_paths=PackedStringArray("mask")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = SubResource("Theme_q60kg")
+script = ExtResource("2_wu0x4")
+mask = NodePath("SubViewport/ChromaticMask")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1280, 720)
+
+[node name="Panel" type="Panel" parent="SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_3g30s")
+
+[node name="ChromaticMask" type="Panel" parent="SubViewport"]
+material = SubResource("ShaderMaterial_b2g3c")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = SubResource("Theme_3g30s")
+
+[node name="Ripple" type="Panel" parent="."]
+material = SubResource("ShaderMaterial_ohab2")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackBufferCopy" type="BackBufferCopy" parent="Ripple"]
+copy_mode = 2

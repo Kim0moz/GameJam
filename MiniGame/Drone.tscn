@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cdun6qmnrtxrq"]
+[gd_scene load_steps=11 format=3 uid="uid://d024ojmxc20yy"]
 
 [ext_resource type="Script" path="res://MiniGame/Drone.gd" id="1_0dcm7"]
 [ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="2_dru0f"]

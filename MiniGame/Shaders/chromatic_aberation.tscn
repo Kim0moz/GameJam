@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://qlojdtaadr5s"]
+
+[ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="1_xsphp"]
+
+[sub_resource type="Gradient" id="Gradient_4qrvm"]
+offsets = PackedFloat32Array(0.276398, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wxhre"]
+gradient = SubResource("Gradient_4qrvm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qj4y4"]
+resource_local_to_scene = true
+shader = ExtResource("1_xsphp")
+shader_parameter/Amount = 13.23
+shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_wxhre")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngbit"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_q60kg"]
+Panel/styles/panel = SubResource("StyleBoxFlat_ngbit")
+
+[node name="Chromatic Aberation" type="Panel"]
+material = SubResource("ShaderMaterial_qj4y4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme = SubResource("Theme_q60kg")
+
+[node name="BackBufferCopy2" type="BackBufferCopy" parent="."]
+copy_mode = 2

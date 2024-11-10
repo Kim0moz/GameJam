@@ -1,7 +1,8 @@
-extends Panel
+extends Control
 
 @export var mask : Panel
 @export var cam : Camera2D
+@export var source : Node2D
 
 
 func _input(event: InputEvent) -> void:
@@ -9,11 +10,9 @@ func _input(event: InputEvent) -> void:
 		if event.is_action_released("Click"):
 			animateWave(event.position)
 			
-
-func setShaderTime(val):
-	mask.material.set("shader_parameter/Time",val)
+func _process(delta: float) -> void:
+	if source:
+		animateWave(source.get_screen_transform().origin+Vector2(50,20))
 
 func animateWave(pos):
-	var tween = get_tree().create_tween()
 	mask.material.set("shader_parameter/Position",pos)
-	tween.tween_method(setShaderTime,0.0,10.0,2)

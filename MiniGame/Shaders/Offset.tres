@@ -17,6 +17,7 @@ source = 5
 input_name = "screen_uv"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_w1j34"]
+output_port_for_preview = 0
 source = 1
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_pgp1n"]
@@ -82,19 +83,20 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-863.266, -80.0247)
+graph_offset = Vector2(-1196.15, 99.847)
 mode = 1
 flags/light_only = false
+nodes/fragment/0/position = Vector2(-40, 340)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture2DParameter_oai4a")
-nodes/fragment/2/position = Vector2(-2160, 420)
+nodes/fragment/2/position = Vector2(-2080, 420)
 nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_bvd6b")
-nodes/fragment/3/position = Vector2(-1700, 520)
+nodes/fragment/3/position = Vector2(-1680, 520)
 nodes/fragment/5/node = SubResource("VisualShaderNodeInput_88fn6")
 nodes/fragment/5/position = Vector2(-1300, 240)
 nodes/fragment/6/node = SubResource("VisualShaderNodeTexture_w1j34")
-nodes/fragment/6/position = Vector2(-500, 220)
+nodes/fragment/6/position = Vector2(-480, 260)
 nodes/fragment/7/node = SubResource("VisualShaderNodeUVFunc_pgp1n")
-nodes/fragment/7/position = Vector2(-820, 280)
+nodes/fragment/7/position = Vector2(-800, 300)
 nodes/fragment/8/node = SubResource("VisualShaderNodeVectorOp_kk3qs")
 nodes/fragment/8/position = Vector2(-1360, 460)
 nodes/fragment/9/node = SubResource("VisualShaderNodeFloatConstant_acl31")
@@ -103,4 +105,4 @@ nodes/fragment/10/node = SubResource("VisualShaderNodeVectorOp_qjpdb")
 nodes/fragment/10/position = Vector2(-1040, 440)
 nodes/fragment/11/node = SubResource("VisualShaderNodeFloatConstant_62khj")
 nodes/fragment/11/position = Vector2(-1139.9, 665.883)
-nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 6, 0, 0, 0, 5, 0, 7, 0, 7, 0, 6, 0, 3, 0, 8, 0, 9, 0, 8, 1, 8, 0, 10, 0, 10, 0, 7, 1, 11, 0, 10, 1)
+nodes/fragment/connections = PackedInt32Array(2, 0, 3, 2, 5, 0, 7, 0, 7, 0, 6, 0, 9, 0, 8, 1, 8, 0, 10, 0, 10, 0, 7, 1, 11, 0, 10, 1, 3, 0, 8, 0, 6, 0, 0, 0)

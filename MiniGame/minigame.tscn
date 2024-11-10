@@ -1,8 +1,49 @@
-[gd_scene load_steps=4 format=4 uid="uid://bvlgg8n0vjyw0"]
+[gd_scene load_steps=17 format=4 uid="uid://bvlgg8n0vjyw0"]
 
 [ext_resource type="TileSet" uid="uid://dw5km62ab2x3i" path="res://MiniGame/MiniGameTileSet.tres" id="1_pwln6"]
 [ext_resource type="TileSet" uid="uid://bmn3fynq8ni83" path="res://Sprites/TileMaps/NewTileMap.tres" id="2_s271b"]
-[ext_resource type="PackedScene" uid="uid://cdun6qmnrtxrq" path="res://MiniGame/Drone.tscn" id="4_lpyc7"]
+[ext_resource type="PackedScene" uid="uid://bs1gsxf1jhg1k" path="res://MiniGame/Shaders/screen_ripple.tscn" id="4_jrj8k"]
+[ext_resource type="PackedScene" uid="uid://d024ojmxc20yy" path="res://MiniGame/Drone.tscn" id="4_lpyc7"]
+[ext_resource type="Shader" uid="uid://du4m0bwcsw16m" path="res://MiniGame/Shaders/Offset.tres" id="5_nu4ep"]
+[ext_resource type="Shader" uid="uid://b52d2iikaotyc" path="res://MiniGame/Shaders/RippleMask.tres" id="6_shpec"]
+[ext_resource type="PackedScene" uid="uid://qlojdtaadr5s" path="res://MiniGame/Shaders/chromatic_aberation.tscn" id="7_h6wv1"]
+[ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="8_ppbfk"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0aqlc"]
+viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7n5t"]
+resource_local_to_scene = true
+shader = ExtResource("5_nu4ep")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_0aqlc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
+resource_local_to_scene = true
+shader = ExtResource("6_shpec")
+shader_parameter/Position = Vector2(0, 0)
+shader_parameter/Scale = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mi4wj"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_njlfq"]
+resource_local_to_scene = true
+shader = ExtResource("5_nu4ep")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_mi4wj")
+
+[sub_resource type="Gradient" id="Gradient_4qrvm"]
+offsets = PackedFloat32Array(0.276398, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wxhre"]
+gradient = SubResource("Gradient_4qrvm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fta72"]
+resource_local_to_scene = true
+shader = ExtResource("8_ppbfk")
+shader_parameter/Amount = 13.23
+shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_wxhre")
 
 [node name="Minigame" type="Node2D"]
 
@@ -32,10 +73,32 @@ position = Vector2(-22, -72)
 tile_set = ExtResource("2_s271b")
 
 [node name="Buildings" type="TileMapLayer" parent="."]
-position = Vector2(-21, -72)
+position = Vector2(-22, -72)
 tile_map_data = PackedByteArray("AAAEAAgAAAACAAEAAAAEAAcAAAADAAAAAAAEAAYAAAABAAEAAAAEAAUAAAABAAEAAAAEAAQAAAABAAEAAAAEAAMAAAABAAEAAAAEAAIAAAABAAEAAAAEAAEAAAADAAUAAAAEAAAAAAACAAEAAAADAAgAAAABAAEAAAADAAcAAAABAAEAAAADAAYAAAABAAEAAAADAAUAAAABAAEAAAADAAQAAAABAAEAAAADAAMAAAABAAEAAAADAAIAAAABAAEAAAADAAEAAAABAAEAAAADAAAAAAABAAEAAAACAAgAAAAFAAAAAAACAAcAAAABAAEAAAACAAYAAAABAAEAAAACAAUAAAABAAEAAAACAAQAAAABAAEAAAACAAMAAAABAAEAAAACAAIAAAABAAEAAAACAAEAAAABAAEAAAACAAAAAAAFAAIAAAABAAgAAAAEAAAAAAABAAcAAAABAAEAAAABAAYAAAABAAEAAAABAAUAAAABAAEAAAABAAQAAAABAAEAAAABAAMAAAABAAEAAAABAAIAAAABAAEAAAABAAEAAAABAAEAAAABAAAAAAABAAAAAAAAAAgAAAADAAMAAAAAAAcAAAABAAEAAAAAAAYAAAABAAEAAAAAAAUAAAABAAEAAAAAAAQAAAABAAEAAAAAAAMAAAABAAEAAAAAAAIAAAABAAEAAAAAAAEAAAABAAEAAAAAAAAAAAADAAUAAAD//wgAAAABAAEAAAD//wcAAAABAAEAAAD//wYAAAABAAEAAAD//wUAAAABAAEAAAD//wQAAAABAAEAAAD//wMAAAABAAEAAAD//wIAAAABAAEAAAD//wEAAAABAAEAAAD//wAAAAABAAEAAAD+/wgAAAAAAAEAAAD+/wcAAAAFAAMAAAD+/wYAAAABAAEAAAD+/wUAAAABAAEAAAD+/wQAAAABAAEAAAD+/wMAAAABAAEAAAD+/wIAAAABAAEAAAD+/wEAAAAFAAIAAAD+/wAAAAAAAAEAAAAAAP//AAACAAMAAAD/////AAABAAAAAAADAP//AAAEAAIAAAACAP//AAAAAAMAAAAAAAkAAAACAAIAAAD//wkAAAABAAIAAAADAAkAAAABAAIAAAACAAkAAAAAAAIAAAD+////AAAAAAAAAAAEAP//AAACAAAAAAAEAAkAAAACAAIAAAD+/wkAAAAAAAIAAAD9/wcAAAAAAAUAAAD9/wYAAAAAAAEAAAD9/wUAAAAFAAEAAAD9/wQAAAAFAAEAAAD9/wMAAAAAAAEAAAD9/wIAAAAAAAEAAAD9/wEAAAAAAAMAAAAFAAcAAAACAAIAAAAFAAYAAAACAAQAAAAFAAUAAAACAAEAAAAFAAQAAAACAAEAAAAFAAMAAAACAAEAAAAFAAIAAAADAAQAAAAFAAEAAAACAAAAAAA=")
 tile_set = ExtResource("2_s271b")
 
 [node name="Drone" parent="." instance=ExtResource("4_lpyc7")]
-position = Vector2(-111, 0)
-particleAngleOffset = 90.0
+position = Vector2(-112, 1)
+
+[node name="Camera2D" parent="Drone" index="2"]
+zoom = Vector2(4, 4)
+position_smoothing_speed = 10.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
+material = SubResource("ShaderMaterial_v7n5t")
+cam = NodePath("../../Drone/Camera2D")
+source = NodePath("../../Drone")
+
+[node name="ChromaticMask" parent="CanvasLayer/ScreenRipple/SubViewport" index="1"]
+material = SubResource("ShaderMaterial_cmfte")
+
+[node name="Ripple" parent="CanvasLayer/ScreenRipple" index="1"]
+material = SubResource("ShaderMaterial_njlfq")
+
+[node name="Chromatic Aberation" parent="CanvasLayer" instance=ExtResource("7_h6wv1")]
+material = SubResource("ShaderMaterial_fta72")
+
+[editable path="Drone"]
+[editable path="CanvasLayer/ScreenRipple"]

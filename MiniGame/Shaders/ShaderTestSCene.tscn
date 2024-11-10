@@ -2,32 +2,32 @@
 
 [ext_resource type="TileSet" uid="uid://bmn3fynq8ni83" path="res://Sprites/TileMaps/NewTileMap.tres" id="1_6xd15"]
 [ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="2_865ml"]
+[ext_resource type="PackedScene" uid="uid://bs1gsxf1jhg1k" path="res://MiniGame/Shaders/screen_ripple.tscn" id="2_bwef3"]
 [ext_resource type="Shader" uid="uid://b52d2iikaotyc" path="res://MiniGame/Shaders/RippleMask.tres" id="2_vs133"]
-[ext_resource type="Script" path="res://MiniGame/Shaders/RippleScreen.gd" id="3_5868q"]
+[ext_resource type="PackedScene" uid="uid://qlojdtaadr5s" path="res://MiniGame/Shaders/chromatic_aberation.tscn" id="4_psvfh"]
 [ext_resource type="Shader" uid="uid://du4m0bwcsw16m" path="res://MiniGame/Shaders/Offset.tres" id="4_wg7by"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dsuop"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_05wan"]
+resource_local_to_scene = false
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ohab2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jj7ph"]
+shader = ExtResource("4_wg7by")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_05wan")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_26r5i"]
+resource_local_to_scene = true
+shader = ExtResource("2_vs133")
+shader_parameter/Position = Vector2(500, 500)
+shader_parameter/Scale = 1.0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_nuw1w"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0k5yq"]
 resource_local_to_scene = true
 shader = ExtResource("4_wg7by")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_dsuop")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngbit"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="Theme" id="Theme_q60kg"]
-Panel/styles/panel = SubResource("StyleBoxFlat_ngbit")
-
-[sub_resource type="Theme" id="Theme_3g30s"]
-Panel/styles/panel = SubResource("StyleBoxFlat_ngbit")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_b2g3c"]
-shader = ExtResource("2_vs133")
-shader_parameter/Position = Vector2(-104.75, 46.33)
-shader_parameter/Scale = 5.0
-shader_parameter/Time = 10.0
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_nuw1w")
 
 [sub_resource type="Gradient" id="Gradient_4qrvm"]
 offsets = PackedFloat32Array(0.276398, 1)
@@ -37,7 +37,7 @@ gradient = SubResource("Gradient_4qrvm")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_qj4y4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2x7ye"]
 resource_local_to_scene = true
 shader = ExtResource("2_865ml")
 shader_parameter/Amount = 13.23
@@ -71,57 +71,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ScreenRipple" type="Panel" parent="CanvasLayer/Control" node_paths=PackedStringArray("mask", "cam")]
-material = SubResource("ShaderMaterial_ohab2")
+[node name="ScreenRipple" parent="CanvasLayer/Control" node_paths=PackedStringArray("cam") instance=ExtResource("2_bwef3")]
+material = SubResource("ShaderMaterial_jj7ph")
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-theme = SubResource("Theme_q60kg")
-script = ExtResource("3_5868q")
-mask = NodePath("SubViewport/ChromaticMask")
 cam = NodePath("../../../Camera2D")
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="CanvasLayer/Control/ScreenRipple"]
-copy_mode = 2
+[node name="ChromaticMask" parent="CanvasLayer/Control/ScreenRipple/SubViewport" index="1"]
+material = SubResource("ShaderMaterial_26r5i")
 
-[node name="SubViewport" type="SubViewport" parent="CanvasLayer/Control/ScreenRipple"]
-size = Vector2i(1280, 720)
+[node name="Ripple" parent="CanvasLayer/Control/ScreenRipple" index="1"]
+material = SubResource("ShaderMaterial_0k5yq")
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Control/ScreenRipple/SubViewport"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = SubResource("Theme_3g30s")
+[node name="Chromatic Aberation" parent="CanvasLayer/Control" instance=ExtResource("4_psvfh")]
+material = SubResource("ShaderMaterial_2x7ye")
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="ChromaticMask" type="Panel" parent="CanvasLayer/Control/ScreenRipple/SubViewport"]
-material = SubResource("ShaderMaterial_b2g3c")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = SubResource("Theme_3g30s")
-
-[node name="Chromatic Aberation" type="Panel" parent="CanvasLayer/Control"]
-material = SubResource("ShaderMaterial_qj4y4")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 6
-size_flags_vertical = 6
-theme = SubResource("Theme_q60kg")
-
-[node name="BackBufferCopy2" type="BackBufferCopy" parent="CanvasLayer/Control/Chromatic Aberation"]
-copy_mode = 2
+[editable path="CanvasLayer/Control/ScreenRipple"]

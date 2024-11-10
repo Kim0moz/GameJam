@@ -23,6 +23,8 @@ const JUMP_VELOCITY = 4.5
 ## Player's viewing angle towards the computer monitor
 @export var computerAngleOffset : float = -2.5
 
+signal computer_exit
+
 enum PlayerState {NORMAL, COMPUTER}
 var playerState : PlayerState = PlayerState.NORMAL
 
@@ -94,6 +96,10 @@ func mouseCameraControl(mouseMoveEvent : InputEventMouseMotion):
 func _input(event):
 	if event.is_action_pressed("quit_game"):
 		get_tree().quit()
+	if event.is_action_pressed("exit_computer"):
+		playerState = PlayerState.NORMAL
+		camera.Reticle.show()
+		computer_exit.emit()
 
 func setComputerState(monitorPosition : Vector3):
 	playerState = PlayerState.COMPUTER

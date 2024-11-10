@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Controller2D
 
 
 const SPEED = 100.0

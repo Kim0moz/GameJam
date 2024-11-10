@@ -9,13 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://qlojdtaadr5s" path="res://MiniGame/Shaders/chromatic_aberation.tscn" id="7_h6wv1"]
 [ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="8_ppbfk"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0aqlc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_dtvoj"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7n5t"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_48kam"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_0aqlc")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_dtvoj")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -87,7 +87,7 @@ position_smoothing_speed = 10.0
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_v7n5t")
+material = SubResource("ShaderMaterial_48kam")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 

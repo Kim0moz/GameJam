@@ -4,6 +4,7 @@ class_name Player
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 @export_group("References")
+@export var camera : NavigationCamera
 @export var cameraController : Node3D
 @export var cameraTarget : Node3D
 
@@ -16,6 +17,11 @@ const JUMP_VELOCITY = 4.5
 @export var mouseSensitivity : float = .5
 ## Control how far up/down a player can look.
 @export var cameraVertRotationLimit : float = 60
+@export_category("Computer State")
+## Player's positional offset when in COMPUTER state
+@export var computerPosOffset : Vector3 = Vector3(0, -.5, .75)
+## Player's viewing angle towards the computer monitor
+@export var computerAngleOffset : float = -2.5
 
 enum PlayerState {NORMAL, COMPUTER}
 var playerState : PlayerState = PlayerState.NORMAL
@@ -61,7 +67,11 @@ func movement(delta):
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var mouseMoveEvent : InputEventMouseMotion = event
+		mouseCameraControl(mouseMoveEvent)
 
+func mouseCameraControl(mouseMoveEvent : InputEventMouseMotion):
+		if playerState != PlayerState.NORMAL:
+			return
 		var mouseMoveX = mouseMoveEvent.relative.x
 		if mouseMoveX > 0:
 			mouseMoveX = min(mouseMoveX, mouseMoveMaxSpeed)
@@ -79,11 +89,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		cameraTarget.rotate_x(deg_to_rad(-mouseMoveY * mouseSensitivity))
 		var radCamVertLimit = deg_to_rad(cameraVertRotationLimit)
 		cameraTarget.rotation.x = clamp(cameraTarget.rotation.x, -radCamVertLimit, radCamVertLimit)
+	
 
 func _input(event):
 	if event.is_action_pressed("quit_game"):
 		get_tree().quit()
 
-func setComputerState():
+func setComputerState(monitorPosition : Vector3):
 	playerState = PlayerState.COMPUTER
-	pass
+	global_position = monitorPosition + computerPosOffset
+	cameraController.position = position
+	rotation.y = 0
+	cameraController.rotation.y = rotation.y
+	cameraTarget.rotation.x = deg_to_rad(computerAngleOffset)
+	camera.Reticle.hide()
+	# set_physics_process(false)

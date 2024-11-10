@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://doeosjyp664sa"]
+[gd_scene load_steps=8 format=3 uid="uid://doeosjyp664sa"]
 
 [ext_resource type="Script" path="res://Objects/Player/player.gd" id="1_1wn3t"]
 [ext_resource type="PackedScene" uid="uid://c36y2lpwywjyt" path="res://Camera/WorldSpaceCam.tscn" id="2_fxkj6"]
@@ -8,9 +8,15 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g6crp"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("cameraController", "cameraTarget")]
+[sub_resource type="SphereMesh" id="SphereMesh_h5m30"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gab8g"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "cameraController", "cameraTarget")]
 collision_layer = 2
 script = ExtResource("1_1wn3t")
+camera = NodePath("CameraController/CameraTarget/WorldSpaceCam")
 cameraController = NodePath("CameraController")
 cameraTarget = NodePath("CameraController/CameraTarget")
 
@@ -45,3 +51,9 @@ grow_vertical = 2
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(16, 16)
 texture = ExtResource("3_rqlrh")
+
+[node name="Nose" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0.40887, -0.417625)
+visible = false
+mesh = SubResource("SphereMesh_h5m30")
+surface_material_override/0 = SubResource("StandardMaterial3D_gab8g")

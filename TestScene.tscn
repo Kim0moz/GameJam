@@ -125,6 +125,8 @@ render_target_update_mode = 4
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -6.00444, 0.957332, 0.401616)
 cameraOffsetY = 0.2
 cameraVertRotationLimit = 90.0
+computerPosOffset = Vector3(0, -0.5, 0.8)
+computerAngleOffset = -1.5
 
 [node name="MeshInstance3D" parent="Player" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_1byjk")

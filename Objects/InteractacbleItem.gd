@@ -9,4 +9,3 @@ func _enter_tree() -> void:
 func activate(mousePos  = Vector2.ZERO):
 	#Handle Activation Scripts here
 	print(name, " activated")
-	pass

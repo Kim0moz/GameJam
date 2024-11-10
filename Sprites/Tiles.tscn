@@ -1,21 +1,8 @@
-[gd_scene load_steps=10 format=4 uid="uid://b0ftcr44tmuca"]
+[gd_scene load_steps=4 format=4 uid="uid://b0ftcr44tmuca"]
 
 [ext_resource type="TileSet" uid="uid://bmn3fynq8ni83" path="res://Sprites/TileMaps/NewTileMap.tres" id="1_j3syf"]
 [ext_resource type="PackedScene" uid="uid://ddgfg47iyivqe" path="res://UI/basic_progress_bar.tscn" id="2_lxkrn"]
-[ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="2_skch3"]
-[ext_resource type="Script" path="res://Sprites/DeliveryInfo.gd" id="4_kea6g"]
-[ext_resource type="PackedScene" uid="uid://bv8gf15agiob8" path="res://UI/basic_panel.tscn" id="5_28g16"]
-[ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="6_lrnue"]
-[ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="7_kjram"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gkocb"]
-atlas = ExtResource("6_lrnue")
-region = Rect2(49, 145, 14, 14)
-
-[sub_resource type="LabelSettings" id="LabelSettings_uvctu"]
-font = ExtResource("7_kjram")
-font_size = 40
-shadow_color = Color(0.6, 0.898039, 0.313726, 1)
+[ext_resource type="PackedScene" uid="uid://cbxe8qvpobek2" path="res://UI/info_bar.tscn" id="3_vmioy"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -37,51 +24,5 @@ offset_top = 43.0
 offset_right = 200.0
 offset_bottom = 70.0
 
-[node name="InfoBar" type="HBoxContainer" parent="Control"]
+[node name="InfoBar" parent="Control" instance=ExtResource("3_vmioy")]
 layout_mode = 0
-offset_right = 200.0
-offset_bottom = 40.0
-theme = ExtResource("2_skch3")
-script = ExtResource("4_kea6g")
-
-[node name="Icon" parent="Control/InfoBar" instance=ExtResource("5_28g16")]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_stretch_ratio = 0.33
-
-[node name="TextureRect" type="TextureRect" parent="Control/InfoBar/Icon"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -18.0
-offset_top = -18.0
-offset_right = 18.0
-offset_bottom = 18.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_gkocb")
-
-[node name="Text" parent="Control/InfoBar" instance=ExtResource("5_28g16")]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Label" type="Label" parent="Control/InfoBar/Text"]
-texture_filter = 1
-texture_repeat = 1
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1.0
-offset_bottom = -9.0
-grow_horizontal = 2
-grow_vertical = 2
-text = "Delivery Info"
-label_settings = SubResource("LabelSettings_uvctu")
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true

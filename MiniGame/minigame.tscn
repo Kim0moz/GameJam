@@ -1,47 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://bvlgg8n0vjyw0"]
+[gd_scene load_steps=4 format=4 uid="uid://bvlgg8n0vjyw0"]
 
 [ext_resource type="TileSet" uid="uid://dw5km62ab2x3i" path="res://MiniGame/MiniGameTileSet.tres" id="1_pwln6"]
 [ext_resource type="TileSet" uid="uid://bmn3fynq8ni83" path="res://Sprites/TileMaps/NewTileMap.tres" id="2_s271b"]
-[ext_resource type="Script" path="res://MiniGame/Drone.gd" id="3_bclna"]
-[ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="3_nykyv"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xlrww"]
-atlas = ExtResource("3_nykyv")
-region = Rect2(64, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_g0niq"]
-atlas = ExtResource("3_nykyv")
-region = Rect2(80, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xvit1"]
-atlas = ExtResource("3_nykyv")
-region = Rect2(96, 32, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qlq6u"]
-atlas = ExtResource("3_nykyv")
-region = Rect2(112, 32, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_5lbyl"]
-animations = [{
-"frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_xlrww")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_g0niq")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_xvit1")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_qlq6u")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 5.0
-}]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_k0ry7"]
+[ext_resource type="PackedScene" uid="uid://cdun6qmnrtxrq" path="res://MiniGame/Drone.tscn" id="4_lpyc7"]
 
 [node name="Minigame" type="Node2D"]
 
@@ -75,21 +36,5 @@ position = Vector2(-22, -72)
 tile_map_data = PackedByteArray("AAAEAAgAAAACAAEAAAAEAAcAAAADAAAAAAAEAAYAAAABAAEAAAAEAAUAAAABAAEAAAAEAAQAAAABAAEAAAAEAAMAAAABAAEAAAAEAAIAAAABAAEAAAAEAAEAAAADAAUAAAAEAAAAAAACAAEAAAADAAgAAAABAAEAAAADAAcAAAABAAEAAAADAAYAAAABAAEAAAADAAUAAAABAAEAAAADAAQAAAABAAEAAAADAAMAAAABAAEAAAADAAIAAAABAAEAAAADAAEAAAABAAEAAAADAAAAAAABAAEAAAACAAgAAAAFAAAAAAACAAcAAAABAAEAAAACAAYAAAABAAEAAAACAAUAAAABAAEAAAACAAQAAAABAAEAAAACAAMAAAABAAEAAAACAAIAAAABAAEAAAACAAEAAAABAAEAAAACAAAAAAAFAAIAAAABAAgAAAAEAAAAAAABAAcAAAABAAEAAAABAAYAAAABAAEAAAABAAUAAAABAAEAAAABAAQAAAABAAEAAAABAAMAAAABAAEAAAABAAIAAAABAAEAAAABAAEAAAABAAEAAAABAAAAAAABAAAAAAAAAAgAAAADAAMAAAAAAAcAAAABAAEAAAAAAAYAAAABAAEAAAAAAAUAAAABAAEAAAAAAAQAAAABAAEAAAAAAAMAAAABAAEAAAAAAAIAAAABAAEAAAAAAAEAAAABAAEAAAAAAAAAAAADAAUAAAD//wgAAAABAAEAAAD//wcAAAABAAEAAAD//wYAAAABAAEAAAD//wUAAAABAAEAAAD//wQAAAABAAEAAAD//wMAAAABAAEAAAD//wIAAAABAAEAAAD//wEAAAABAAEAAAD//wAAAAABAAEAAAD+/wgAAAAAAAEAAAD+/wcAAAAFAAMAAAD+/wYAAAABAAEAAAD+/wUAAAABAAEAAAD+/wQAAAABAAEAAAD+/wMAAAABAAEAAAD+/wIAAAABAAEAAAD+/wEAAAAFAAIAAAD+/wAAAAAAAAEAAAAAAP//AAACAAMAAAD/////AAABAAAAAAADAP//AAAEAAIAAAACAP//AAAAAAMAAAAAAAkAAAACAAIAAAD//wkAAAABAAIAAAADAAkAAAABAAIAAAACAAkAAAAAAAIAAAD+////AAAAAAAAAAAEAP//AAACAAAAAAAEAAkAAAACAAIAAAD+/wkAAAAAAAIAAAD9/wcAAAAAAAUAAAD9/wYAAAAAAAEAAAD9/wUAAAAFAAEAAAD9/wQAAAAFAAEAAAD9/wMAAAAAAAEAAAD9/wIAAAAAAAEAAAD9/wEAAAAAAAMAAAAFAAcAAAACAAIAAAAFAAYAAAACAAQAAAAFAAUAAAACAAEAAAAFAAQAAAACAAEAAAAFAAMAAAACAAEAAAAFAAIAAAADAAQAAAAFAAEAAAACAAAAAAA=")
 tile_set = ExtResource("2_s271b")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Drone" parent="." instance=ExtResource("4_lpyc7")]
 position = Vector2(-111, 0)
-script = ExtResource("3_bclna")
-ActiveControls = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-sprite_frames = SubResource("SpriteFrames_5lbyl")
-animation = &"Idle"
-autoplay = "Idle"
-frame = 3
-frame_progress = 1.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("CircleShape2D_k0ry7")
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(2.2, 2.2)
-position_smoothing_enabled = true

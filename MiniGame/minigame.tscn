@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://bvlgg8n0vjyw0"]
+[gd_scene load_steps=19 format=4 uid="uid://bvlgg8n0vjyw0"]
 
 [ext_resource type="TileSet" uid="uid://dw5km62ab2x3i" path="res://MiniGame/MiniGameTileSet.tres" id="1_pwln6"]
 [ext_resource type="TileSet" uid="uid://bmn3fynq8ni83" path="res://Sprites/TileMaps/NewTileMap.tres" id="2_s271b"]
@@ -7,15 +7,16 @@
 [ext_resource type="Shader" uid="uid://du4m0bwcsw16m" path="res://MiniGame/Shaders/Offset.tres" id="5_nu4ep"]
 [ext_resource type="Shader" uid="uid://b52d2iikaotyc" path="res://MiniGame/Shaders/RippleMask.tres" id="6_shpec"]
 [ext_resource type="PackedScene" uid="uid://qlojdtaadr5s" path="res://MiniGame/Shaders/chromatic_aberation.tscn" id="7_h6wv1"]
+[ext_resource type="Shader" uid="uid://cibbwmx5esnsj" path="res://MiniGame/Shaders/FishEye.tres" id="8_7e2r7"]
 [ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="8_ppbfk"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_vnt51"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_vxfwr"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ajsl4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wosev"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_vnt51")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_vxfwr")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -31,19 +32,21 @@ resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
 shader_parameter/Texture2DParameter = SubResource("ViewportTexture_mi4wj")
 
-[sub_resource type="Gradient" id="Gradient_4qrvm"]
-offsets = PackedFloat32Array(0.276398, 1)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h0ru5"]
+resource_local_to_scene = true
+shader = ExtResource("8_ppbfk")
+shader_parameter/Amount = 1.95
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wxhre"]
-gradient = SubResource("Gradient_4qrvm")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngbit"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_q60kg"]
+Panel/styles/panel = SubResource("StyleBoxFlat_ngbit")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fta72"]
 resource_local_to_scene = true
-shader = ExtResource("8_ppbfk")
-shader_parameter/Amount = 13.23
-shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_wxhre")
+shader = ExtResource("8_7e2r7")
+shader_parameter/Amount = 0.85
 
 [node name="Minigame" type="Node2D"]
 
@@ -81,25 +84,27 @@ tile_set = ExtResource("2_s271b")
 position = Vector2(-112, 1)
 
 [node name="Camera2D" parent="Drone" index="2"]
-zoom = Vector2(4, 4)
+zoom = Vector2(3, 3)
 position_smoothing_speed = 10.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Drone/Camera2D" index="0"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = -137.0
-offset_top = 66.0
-offset_right = 9.0
-offset_bottom = 90.0
-grow_vertical = 0
-scale = Vector2(0.375, 0.375)
-text = "Press \"X\" to Exit"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -54.0
+offset_right = 673.0
+offset_bottom = 15.0
+grow_vertical = 0
+scale = Vector2(0.375, 0.375)
+bbcode_enabled = true
+text = "[font_size=50]Press \"X\" to Exit[/font_size]"
+fit_content = true
+
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_ajsl4")
+material = SubResource("ShaderMaterial_wosev")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 
@@ -110,7 +115,12 @@ material = SubResource("ShaderMaterial_cmfte")
 material = SubResource("ShaderMaterial_njlfq")
 
 [node name="Chromatic Aberation" parent="CanvasLayer" instance=ExtResource("7_h6wv1")]
+material = SubResource("ShaderMaterial_h0ru5")
+theme = SubResource("Theme_q60kg")
+
+[node name="FishEye" parent="CanvasLayer" instance=ExtResource("7_h6wv1")]
 material = SubResource("ShaderMaterial_fta72")
+theme = SubResource("Theme_q60kg")
 
 [editable path="Drone"]
 [editable path="CanvasLayer/ScreenRipple"]

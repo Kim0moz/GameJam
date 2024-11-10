@@ -33,5 +33,5 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 theme = SubResource("Theme_q60kg")
 
-[node name="BackBufferCopy2" type="BackBufferCopy" parent="."]
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
 copy_mode = 2

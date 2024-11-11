@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://bv8gf15agiob8" path="res://UI/basic_panel.tscn" id="4_ts03n"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="5_s4owj"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_erm1m"]
+load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c162.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_262bv"]
+atlas = SubResource("CompressedTexture2D_erm1m")
+region = Rect2(48, 144, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht6l3"]
 atlas = ExtResource("3_qsn4b")
 region = Rect2(80, 96, 16, 16)
@@ -31,13 +38,6 @@ load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c1
 atlas = SubResource("CompressedTexture2D_3cn7y")
 region = Rect2(80, 144, 16, 16)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_erm1m"]
-load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c162.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_262bv"]
-atlas = SubResource("CompressedTexture2D_erm1m")
-region = Rect2(48, 144, 16, 16)
-
 [sub_resource type="LabelSettings" id="LabelSettings_uvctu"]
 font = ExtResource("5_s4owj")
 font_size = 40
@@ -48,7 +48,7 @@ offset_right = 200.0
 offset_bottom = 40.0
 theme = ExtResource("1_a4oey")
 script = ExtResource("2_0oa3n")
-Tiles = Array[Texture2D]([SubResource("AtlasTexture_ht6l3"), SubResource("AtlasTexture_jmtbp"), SubResource("AtlasTexture_0crig"), SubResource("AtlasTexture_5tq60"), SubResource("AtlasTexture_262bv")])
+Tiles = Array[Texture2D]([SubResource("AtlasTexture_262bv"), SubResource("AtlasTexture_ht6l3"), SubResource("AtlasTexture_jmtbp"), SubResource("AtlasTexture_0crig"), SubResource("AtlasTexture_5tq60")])
 
 [node name="Icon" parent="." instance=ExtResource("4_ts03n")]
 custom_minimum_size = Vector2(40, 0)
@@ -69,7 +69,7 @@ offset_right = 18.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_ht6l3")
+texture = SubResource("AtlasTexture_262bv")
 
 [node name="Text" parent="." instance=ExtResource("4_ts03n")]
 layout_mode = 2

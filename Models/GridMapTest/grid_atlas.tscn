@@ -1,6 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://0kapynuc47kc"]
+[gd_scene load_steps=14 format=3 uid="uid://0kapynuc47kc"]
 
 [ext_resource type="PackedScene" uid="uid://dnnfyxk2ux58m" path="res://Models/GridMapTest/GridAtlas.glb" id="1_27oav"]
+[ext_resource type="Animation" uid="uid://mmalmw30rp56" path="res://Models/GridMapTest/GridItemAnimations/TubeClose.res" id="2_gqnn8"]
+[ext_resource type="Animation" uid="uid://13etpb00jxx" path="res://Models/GridMapTest/GridItemAnimations/TubeOpen.res" id="3_5kxta"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_pjr0n"]
 points = PackedVector3Array(1.06349, 4.03095, 0.856665, -1.03175, -0.0309505, 0.793154, -1.03175, -0.0309505, 1.0471, 1.06349, -0.0309505, 0.793154, 1.06349, -0.0309505, 1.0471, -1.03175, 4.03095, 1.0471, -1.03175, 4.03095, 0.856665, 1.06349, 4.03095, 1.0471, -1.03175, 0.286398, 0.793154, 1.06349, 0.286398, 0.793154)
@@ -22,6 +24,18 @@ points = PackedVector3Array(0.87296, 3.84086, 1.11058, -1.03175, -0.0309505, 0.7
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aw8n7"]
 points = PackedVector3Array(0.746337, 3.20586, 1.30107, -1.03175, -0.0324516, 0.793204, 1.00035, -0.0324516, 0.793204, -1.03175, 4.03175, 0.856751, -0.77754, -0.0324516, 1.36462, 1.00035, 4.03175, 0.856751, 0.746337, -0.0324516, 1.36462, -0.77754, 3.20586, 1.30107, -1.03175, 4.03175, 1.04722, 1.00035, 4.03175, 1.04722, -1.03175, -0.0324516, 1.04722, 1.00035, 0.285412, 0.793204, 0.9117, 0.144848, 1.04999, -1.03175, 0.285412, 0.793204, -0.77754, 0.094853, 1.36462, 0.746337, 0.094853, 1.36462)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_xfe6l"]
+points = PackedVector3Array(9.87596, 0.985028, -0.27565, 9.06838, 0.010035, -0.579403, 9.08548, 0.0121033, -0.640085, 9.92542, 0.0104886, -0.395879, 9.58859, 0.988246, -0.930123, 9.2531, 0.988141, -0.136902, 9.39047, 0.0121699, -0.0762223, 9.58859, 0.0117542, -0.930123, 9.14825, 0.985454, -0.760715, 9.86311, 0.988057, -0.746883, 9.20894, 0.46969, -0.897157, 9.65052, 0.991034, -0.0886424, 9.72444, 0.0149277, -0.124082, 9.10038, 0.98828, -0.319874, 9.13248, 0.0138117, -0.259867, 9.81492, 0.0155677, -0.80556, 9.92378, 0.98764, -0.609527, 9.06838, 0.989965, -0.579403, 9.42055, 0.0100433, -0.93162, 9.90979, 0.0108234, -0.655694, 9.42055, 0.989957, -0.93162, 9.39047, 0.98783, -0.0762223, 9.06986, 0.0117338, -0.411456, 9.74016, 0.986268, -0.867508, 9.60421, 0.0103264, -0.0746096, 9.23925, 0.0146007, -0.851725, 9.92542, 0.989511, -0.395879, 9.84482, 0.016108, -0.230846, 9.7692, 0.983839, -0.155212, 9.25313, 0.0119309, -0.136873, 9.6802, 0.0116767, -0.899578, 9.06986, 0.988266, -0.411456)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rj8qf"]
+_data = {
+"TubeClose": ExtResource("2_gqnn8"),
+"TubeOpen": ExtResource("3_5kxta")
+}
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_le1la"]
+points = PackedVector3Array(0.0885943, -0.488249, -0.430123, 0.104172, 0.489494, 0.425402, -0.109495, 0.48765, 0.423789, -0.079449, 0.48996, -0.43162, -0.430123, -0.488249, 0.0885943, 0.391944, -0.485982, 0.194478, 0.409798, 0.489186, -0.155667, -0.414528, 0.487907, -0.140057, -0.109495, -0.48765, 0.423789, -0.260755, -0.485409, -0.351721, 0.409798, -0.489186, -0.155667, -0.367528, 0.486196, 0.240122, 0.425426, 0.489521, 0.104094, 0.240163, 0.486278, -0.367506, 0.224438, -0.485074, 0.375917, -0.291068, -0.0303104, -0.397154, 0.344787, 0.483843, 0.269198, -0.414528, -0.487907, -0.140057, -0.305598, -0.484385, 0.31489, 0.314928, -0.484444, -0.305552, -0.430123, 0.488249, 0.0885943, -0.079449, -0.48996, -0.43162, -0.260755, 0.485409, -0.351721, 0.104094, -0.489521, 0.425426, -0.246869, 0.488072, 0.363126, 0.425426, -0.489521, 0.104094, 0.0885943, 0.488249, -0.430123, 0.363126, 0.488072, -0.246869, 0.224438, 0.485074, 0.375917, -0.43162, 0.48996, -0.079449, 0.423789, -0.48765, -0.109495, -0.39963, -0.488292, 0.180109)
 
 [node name="GridAtlas" instance=ExtResource("1_27oav")]
 
@@ -57,3 +71,23 @@ shape = SubResource("ConvexPolygonShape3D_opkio")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_001/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_aw8n7")
+
+[node name="Skeleton3D" parent="Tube_Door" index="0"]
+bones/1/rotation = Quaternion(-0.438645, -0.554608, -0.554608, 0.438645)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tube_Door/Skeleton3D/Tube_StraightDoor" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tube_Door/Skeleton3D/Tube_StraightDoor/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.5, -0.5, 0.5)
+shape = SubResource("ConvexPolygonShape3D_xfe6l")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Tube_Door" index="1"]
+root_node = NodePath("../..")
+libraries = {
+"Tube": SubResource("AnimationLibrary_rj8qf")
+}
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Tube_StraightDoorGridItem" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tube_StraightDoorGridItem/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_le1la")

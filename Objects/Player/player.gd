@@ -22,6 +22,8 @@ const JUMP_VELOCITY = 4.5
 @export var computerPosOffset : Vector3 = Vector3(0, -.5, .75)
 ## Player's viewing angle towards the computer monitor
 @export var computerAngleOffset : float = -2.5
+## Player's positional offset when exiting COMPUTER state
+@export var computerExitPosOffset : Vector3 = Vector3(0, .5, -1)
 @export var computerTransTweenLen = .5
 
 signal computer_exit
@@ -66,7 +68,6 @@ func movement(delta):
 	cameraController.position.y += cameraOffsetY
 	cameraController.rotation.y = rotation.y
 
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var mouseMoveEvent : InputEventMouseMotion = event
@@ -100,15 +101,13 @@ func _input(event):
 	if event.is_action_pressed("exit_computer"):
 		if playerState != PlayerState.COMPUTER:
 			return
-		playerState = PlayerState.NORMAL
-		camera.Reticle.show()
-		computer_exit.emit()
+		exitComputerTransition()
 
 func startComputerState(monitorPosition : Vector3):
 	playerState = PlayerState.TRANSITION
 	var posTween = create_tween()
 	posTween.tween_property(self, "global_position", monitorPosition + computerPosOffset, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
-	posTween.tween_callback(Callable(self, "setComputerState"))
+	posTween.tween_callback(Callable(self, "setPlayerState").bind(PlayerState.COMPUTER))
 	var posTween2 = create_tween()
 	posTween2.tween_property(cameraController, "global_position", monitorPosition + computerPosOffset, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
 	var rotationTween = create_tween()
@@ -119,5 +118,20 @@ func startComputerState(monitorPosition : Vector3):
 	rotationTween3.tween_property(cameraTarget, "rotation", Vector3(deg_to_rad(computerAngleOffset), 0, 0), computerTransTweenLen).set_trans(Tween.TRANS_SINE)
 	camera.Reticle.hide()
 
-func setComputerState():
-	playerState = PlayerState.COMPUTER
+func exitComputerTransition():
+	playerState = PlayerState.TRANSITION
+	var posTween = create_tween()
+	posTween.tween_property(self, "global_position", global_position + computerExitPosOffset, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
+	posTween.tween_callback(Callable(self, "computerExited"))
+	var cameraPos = global_position + computerExitPosOffset
+	cameraPos.y += cameraOffsetY
+	var posTween2 = create_tween()
+	posTween2.tween_property(cameraController, "global_position", cameraPos, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
+
+func computerExited():
+	playerState = PlayerState.NORMAL
+	camera.Reticle.show()
+	computer_exit.emit()
+	
+func setPlayerState(pState : PlayerState):
+	playerState = pState

@@ -12,7 +12,7 @@ func activate(mousePos = Vector2.ZERO):
 		return
 	super(mousePos)
 	activated = true
-	player.setComputerState(global_position)
+	player.startComputerState(global_position)
 
 func deactivate():
 	activated = false

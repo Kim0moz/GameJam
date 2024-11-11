@@ -22,10 +22,11 @@ const JUMP_VELOCITY = 4.5
 @export var computerPosOffset : Vector3 = Vector3(0, -.5, .75)
 ## Player's viewing angle towards the computer monitor
 @export var computerAngleOffset : float = -2.5
+@export var computerTransTweenLen = .5
 
 signal computer_exit
 
-enum PlayerState {NORMAL, COMPUTER}
+enum PlayerState {NORMAL, COMPUTER, TRANSITION}
 var playerState : PlayerState = PlayerState.NORMAL
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -103,12 +104,20 @@ func _input(event):
 		camera.Reticle.show()
 		computer_exit.emit()
 
-func setComputerState(monitorPosition : Vector3):
-	playerState = PlayerState.COMPUTER
-	global_position = monitorPosition + computerPosOffset
-	cameraController.position = position
-	rotation.y = 0
-	cameraController.rotation.y = rotation.y
-	cameraTarget.rotation.x = deg_to_rad(computerAngleOffset)
+func startComputerState(monitorPosition : Vector3):
+	playerState = PlayerState.TRANSITION
+	var posTween = create_tween()
+	posTween.tween_property(self, "global_position", monitorPosition + computerPosOffset, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
+	posTween.tween_callback(Callable(self, "setComputerState"))
+	var posTween2 = create_tween()
+	posTween2.tween_property(cameraController, "global_position", monitorPosition + computerPosOffset, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
+	var rotationTween = create_tween()
+	rotationTween.tween_property(self, "rotation", Vector3.ZERO, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
+	var rotationTween2 = create_tween()
+	rotationTween2.tween_property(cameraController, "rotation", Vector3.ZERO, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
+	var rotationTween3 = create_tween()
+	rotationTween3.tween_property(cameraTarget, "rotation", Vector3(deg_to_rad(computerAngleOffset), 0, 0), computerTransTweenLen).set_trans(Tween.TRANS_SINE)
 	camera.Reticle.hide()
-	# set_physics_process(false)
+
+func setComputerState():
+	playerState = PlayerState.COMPUTER

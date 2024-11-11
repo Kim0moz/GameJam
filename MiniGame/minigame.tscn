@@ -11,13 +11,13 @@
 [ext_resource type="Shader" uid="uid://cibbwmx5esnsj" path="res://MiniGame/Shaders/FishEye.tres" id="8_7e2r7"]
 [ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="8_ppbfk"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_7dilf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_d2bl0"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xi4ou"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u0hfu"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_7dilf")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_d2bl0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -77,12 +77,15 @@ position = Vector2(-22, -72)
 tile_set = ExtResource("2_s271b")
 
 [node name="Buildings" type="TileMapLayer" parent="."]
-position = Vector2(-22, -72)
+position = Vector2(-22, -71)
 tile_map_data = PackedByteArray("AAAFAAkAAAACAAIAAAAFAAgAAAACAAkAAQAFAAcAAAAFAAEAAAAFAAYAAAACAAAAAAAFAAAAAAACAAkAAQAFAP//AAAFAAEAAAAEAAkAAAABAAIAAAAEAAgAAAABAAkAAQAEAAcAAAAFAAUAAAAEAAYAAAADAAEAAAAEAAAAAAABAAkAAQAEAP//AAAFAAUAAAADAAkAAAABAAUAAAADAAgAAAABAAkAAQADAAcAAAAFAAUAAAADAAYAAAABAAQAAAADAAAAAAAEAAQAAAADAP//AAAFAAQAAAACAAkAAAABAAIAAAACAAgAAAABAAkAAQACAAcAAAAFAAUAAAACAAYAAAABAAQAAAACAAAAAAABAAQAAAACAP//AAABAAQAAAABAAkAAAAAAAUAAAABAAgAAAAEAAIAAAABAAcAAAADAAUAAAABAAYAAAAFAAMAAAABAAAAAAABAAQAAAABAP//AAABAAQAAAAAAAYAAAAFAAUAAAAAAAAAAAADAAQAAAAAAP//AAAFAAMAAAD//wYAAAAFAAQAAAD//wAAAAABAAkAAQD/////AAAFAAUAAAD+/wkAAAABAAIAAAD+/wgAAAABAAkAAQD+/wcAAAAFAAUAAAD+/wYAAAAEAAEAAAD+/wEAAAABAAkAAAD+/wAAAAABAAkAAAD+////AAAFAAUAAAD9/wkAAAAAAAUAAAD9/wgAAAAAAAkAAQD9/wcAAAAFAAIAAAD9/wYAAAAAAAAAAAD9/wEAAAAAAAkAAAD9/wAAAAAAAAkAAQD9////AAAFAAIAAAAFAP7/AAACAAAAAAAEAP7/AAABAAAAAAADAP7/AAABAAAAAAACAP7/AAABAAAAAAABAP7/AAABAAAAAAAAAP7/AAABAAAAAAD///7/AAABAAAAAAD+//7/AAABAAAAAAD9//7/AAAAAAAAAAAFAAEAAAACAAkAAAAEAAEAAAABAAkAAQADAAEAAAAEAAUAAAACAAEAAAAFAAQAAAABAAEAAAABAAQAAAAAAAEAAAADAAQAAAD//wEAAAABAAkAAAAFAAIAAAACAAIAAAAEAAIAAAABAAIAAAADAAIAAAADAAIAAAACAAIAAAAEAAQAAAABAAIAAAABAAQAAAAAAAIAAAAEAAAAAAD//wIAAAABAAIAAAD+/wIAAAABAAUAAAD9/wIAAAAAAAUAAAACAAUAAAABAAQAAAACAAQAAAADAAEAAAACAAMAAAAEAAQAAAABAAUAAAADAAQAAAABAAQAAAADAAQAAAABAAMAAAAFAAMAAAADAAUAAAABAAQAAAADAAQAAAABAAAAAAADAAMAAAACAAIAAAAAAAUAAAAAAAwAAAAAAAQAAAAAAAoAAAAAAAMAAAAFAAIAAAD//wQAAAABAAAAAAD//wUAAAABAAQAAAD+/wUAAAAAAAEAAAD+/wQAAAAAAAAAAAAEAAUAAAACAAEAAAAEAAQAAAACAAAAAAAAAAgAAAABAAIAAAAAAAcAAAABAAkAAAD//wgAAAADAAIAAAD//wcAAAAEAAUAAAD//wkAAAACAAUAAAA=")
 tile_set = ExtResource("2_s271b")
 
 [node name="Drone" parent="." instance=ExtResource("4_lpyc7")]
 position = Vector2(-112, 1)
+
+[node name="CollisionShape2D" parent="Drone" index="1"]
+scale = Vector2(0.75, 0.75)
 
 [node name="Camera2D" parent="Drone" index="2"]
 zoom = Vector2(3, 3)
@@ -116,7 +119,7 @@ text = "[center][font_size=50]Press \"X\" to Exit[/font_size]"
 fit_content = true
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_xi4ou")
+material = SubResource("ShaderMaterial_u0hfu")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 

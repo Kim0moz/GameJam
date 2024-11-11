@@ -1,12 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://bucgyb7tsx5nj"]
+[gd_scene load_steps=11 format=3 uid="uid://bucgyb7tsx5nj"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_norxd"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="3_d2ghj"]
 [ext_resource type="Texture2D" uid="uid://m6gi6dpt2fuj" path="res://Sprites/CircleCrosshair.png" id="4_ts02l"]
 [ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="5_m7gvu"]
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="5_suinc"]
-[ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithInteractive.gd" id="6_5rm6e"]
-[ext_resource type="PackedScene" uid="uid://cbe32hw6pc2o3" path="res://Models/GridMapTest/InteractableItems/tube_with_door.tscn" id="7_ed0su"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_08apb"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -64,14 +62,9 @@ SelectedItem = SubResource("AtlasTexture_xhhm0")
 mesh_library = ExtResource("5_suinc")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(262163, 65533, 1245192, 262162, 65533, 1245192, 262161, 65533, 1245192, 262160, 65533, 1245192, 262159, 65533, 1245192, 262158, 65533, 1245192, 262157, 65533, 1245192, 262156, 65533, 1245192, 262155, 65533, 1245192, 262154, 65533, 1245192, 262153, 65533, 1245192, 262152, 65533, 1245192, 262150, 65533, 1245192, 262151, 65534, 851976, 262151, 65535, 851976, 262151, 0, 851976, 262151, 1, 851976, 262151, 2, 851976, 262151, 3, 524297, 327687, 3, 524296, 393223, 3, 917513, 393223, 4, 917512, 393223, 5, 917512, 393223, 6, 917512, 393223, 7, 917512, 393223, 8, 917512, 262151, 65533, 720906, 262151, 65532, 917513, 196615, 65532, 131080, 131079, 65532, 131080, 65543, 65532, 1441807, 7, 65532, 131080)
+"cells": PackedInt32Array(262163, 65533, 1245192, 262162, 65533, 1245192, 262161, 65533, 1245192, 262160, 65533, 1245192, 262159, 65533, 1245192, 262158, 65533, 1245192, 262157, 65533, 1245192, 262156, 65533, 1245192, 262155, 65533, 1245192, 262154, 65533, 1245192, 262153, 65533, 1245192, 262152, 65533, 1245192, 262150, 65533, 1245192, 262151, 65534, 851976, 262151, 65535, 851976, 262151, 0, 851976, 262151, 1, 851976, 262151, 2, 851976, 262151, 3, 524297, 327687, 3, 524296, 393223, 3, 917513, 393223, 4, 917512, 393223, 5, 917512, 393223, 6, 917512, 393223, 7, 917512, 393223, 8, 917512, 262151, 65533, 720906, 262151, 65532, 917513, 196615, 65532, 131080, 131079, 65532, 131080, 65543, 65532, 131080, 7, 65532, 131080)
 }
-metadata/_editor_floor_ = Vector3(0, 1, -9)
-
-[node name="ReplacePipeDoor" type="Node3D" parent="Pipes"]
-script = ExtResource("6_5rm6e")
-itemToReplace = 15
-item = ExtResource("7_ed0su")
+metadata/_editor_floor_ = Vector3(0, 0, -9)
 
 [editable path="Player"]
 [editable path="Player/CameraController/CameraTarget/WorldSpaceCam"]

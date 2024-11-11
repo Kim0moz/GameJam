@@ -197,5 +197,6 @@ surface_material_override/0 = null
 surface_material_override/0 = null
 
 [editable path="Player"]
+[editable path="Player/CameraController/CameraTarget/WorldSpaceCam"]
 [editable path="Room"]
 [editable path="Joystick"]

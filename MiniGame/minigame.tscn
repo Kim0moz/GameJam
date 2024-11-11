@@ -11,13 +11,13 @@
 [ext_resource type="Shader" uid="uid://cibbwmx5esnsj" path="res://MiniGame/Shaders/FishEye.tres" id="8_7e2r7"]
 [ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="8_ppbfk"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_r2u5j"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_727lv"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xtj51"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_354ws"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_r2u5j")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_727lv")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -117,7 +117,7 @@ fit_content = true
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
 visible = false
-material = SubResource("ShaderMaterial_xtj51")
+material = SubResource("ShaderMaterial_354ws")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 

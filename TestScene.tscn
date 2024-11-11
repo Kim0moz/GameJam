@@ -153,10 +153,10 @@ texture = SubResource("AtlasTexture_fflej")
 [node name="Room" parent="." instance=ExtResource("3_br0us")]
 transform = Transform3D(0.741066, 0, 0, 0, 0.741066, 2.13492e-08, 0, 0, 0.741066, -4.77429, 3.57628e-07, 0.212632)
 
-[node name="Door" parent="Room" index="14"]
+[node name="Door" parent="Room" index="25"]
 transform = Transform3D(0.342915, 0, -0.939367, 0, 1, 0, 0.939367, 0, 0.342915, 0.187394, 1.31039, 4.31414)
 
-[node name="Monitor" parent="Room" index="18"]
+[node name="Monitor" parent="Room" index="30"]
 surface_material_override/1 = SubResource("StandardMaterial3D_bpjmu")
 
 [node name="MainMonitor" type="StaticBody3D" parent="Room/Monitor" index="0" node_paths=PackedStringArray("player")]
@@ -166,7 +166,7 @@ player = NodePath("../../../Player")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Room/Monitor/MainMonitor"]
 shape = SubResource("BoxShape3D_abjuc")
 
-[node name="AnimationPlayer" parent="Room" index="23"]
+[node name="AnimationPlayer" parent="Room" index="38"]
 reset_on_save = false
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]

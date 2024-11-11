@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bbxobp7ck1huy"]
+
+[ext_resource type="Texture2D" uid="uid://te2g3j2gvb50" path="res://Models/GridMapTest/PipeAtlas_GlassTexture.jpg" id="1_khqr0"]
+
+[resource]
+resource_name = "Glass"
+transparency = 4
+cull_mode = 2
+albedo_color = Color(1, 1, 1, 0.627273)
+albedo_texture = ExtResource("1_khqr0")
+metallic = 0.48

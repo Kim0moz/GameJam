@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c83s5wmakig38"]
+
+[ext_resource type="Texture2D" uid="uid://ivnyv1s5je8e" path="res://Models/GridMapTest/PipeAtlas_MetalTexture.jpg" id="1_ndfny"]
+
+[resource]
+resource_name = "Metal1"
+cull_mode = 2
+albedo_texture = ExtResource("1_ndfny")
+metallic = 0.552727
+roughness = 0.209091
+texture_repeat = false

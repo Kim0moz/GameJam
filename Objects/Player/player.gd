@@ -8,7 +8,7 @@ const JUMP_VELOCITY = 4.5
 @export var cameraController : Node3D
 @export var cameraTarget : Node3D
 
-@export_category("Camera Controls")
+@export_group("Camera Controls")
 ## Offset the y position of camera to match player's perceived height.
 @export var cameraOffsetY : float = .5
 ## Max difference allowed when reading in change in mouse x/y movement.
@@ -17,13 +17,14 @@ const JUMP_VELOCITY = 4.5
 @export var mouseSensitivity : float = .5
 ## Control how far up/down a player can look.
 @export var cameraVertRotationLimit : float = 60
-@export_category("Computer State")
+@export_group("Computer State")
 ## Player's positional offset when in COMPUTER state
 @export var computerPosOffset : Vector3 = Vector3(0, -.5, .75)
 ## Player's viewing angle towards the computer monitor
 @export var computerAngleOffset : float = -2.5
 ## Player's positional offset when exiting COMPUTER state
 @export var computerExitPosOffset : Vector3 = Vector3(0, .5, -1)
+## Length of computer tween animation
 @export var computerTransTweenLen = .5
 
 signal computer_exit

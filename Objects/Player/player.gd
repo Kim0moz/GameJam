@@ -97,6 +97,8 @@ func _input(event):
 	if event.is_action_pressed("quit_game"):
 		get_tree().quit()
 	if event.is_action_pressed("exit_computer"):
+		if playerState != PlayerState.COMPUTER:
+			return
 		playerState = PlayerState.NORMAL
 		camera.Reticle.show()
 		computer_exit.emit()

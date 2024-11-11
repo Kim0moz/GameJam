@@ -5,13 +5,10 @@ class_name ToggleableItem
 @export var index : int
 @export var animations : Array[Animation]
 var playing : bool = false
-var camera
 
 func _ready() -> void:
 	anim.connect("animation_finished", Callable(self, "anim_finished"))
 	activate()
-	camera = get_tree().get("Player")
-	print(camera)
 
 func activate(mousePos = Vector2.ZERO):
 	if playing == true:

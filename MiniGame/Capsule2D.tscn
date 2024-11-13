@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dphttbpadchiv"]
+
+[ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="1_tpqoe"]
+[ext_resource type="Script" path="res://MiniGame/Capsule2D.gd" id="1_ykber"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6i0d"]
+atlas = ExtResource("1_tpqoe")
+region = Rect2(48, 144, 16, 16)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crxfn"]
+radius = 9.0
+
+[node name="Capsule2D" type="Area2D"]
+script = ExtResource("1_ykber")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_k6i0d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.720001, 0.52)
+shape = SubResource("CapsuleShape2D_crxfn")
+
+[connection signal="body_entered" from="." to="." method="onBodyEntered"]

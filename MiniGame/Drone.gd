@@ -29,3 +29,6 @@ func _physics_process(delta):
 		ringParticles.angle_min = particleAngle
 	else:
 		ringParticles.emitting = false
+
+func onBodyEntered(body):
+	print(body.name)

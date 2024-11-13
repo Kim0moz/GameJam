@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="5_m7gvu"]
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="5_suinc"]
 [ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithInteractive.gd" id="6_6b2ra"]
-[ext_resource type="PackedScene" uid="uid://b2msttkt05ws4" path="res://Models/GridMapTest/tube_with_door.tscn" id="7_7bslx"]
+[ext_resource type="PackedScene" path="res://Models/GridMapTest/tube_with_door.tscn" id="7_7bslx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_08apb"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

@@ -179,7 +179,6 @@ environment = SubResource("Environment_otdjk")
 
 [node name="Floor" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.00615, 15)
-visible = false
 mesh_library = ExtResource("1_norxd")
 cell_size = Vector3(2, 4, 2)
 data = {

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=4 uid="uid://bwwx28cwdg4lr"]
+[gd_scene load_steps=7 format=4 uid="uid://bwwx28cwdg4lr"]
 
 [ext_resource type="Script" path="res://Models/ButtonBoard/MakeBoard.gd" id="1_qbdet"]
+[ext_resource type="PackedScene" uid="uid://3iksdjbb3rdb" path="res://Models/ButtonBoard/button.tscn" id="2_eip60"]
 [ext_resource type="Texture2D" uid="uid://b5ynry7aqklh7" path="res://Models/ButtonBoard/ButtonBoard_MetalTexture.jpg" id="2_huw4t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5owwn"]
@@ -42,8 +43,63 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_27dpl")
 
-[node name="ButtonBoard" type="Node3D"]
+[node name="ButtonBoard" type="Node3D" node_paths=PackedStringArray("buttons")]
 script = ExtResource("1_qbdet")
+button = ExtResource("2_eip60")
+buttons = NodePath("Buttons")
+buttonData = Array[Dictionary]([{
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3(0, 0, 0)
+}])
+yOffset = -0.535
+zOffset = -1.05
+zPadding = 1.425
+yPadding = 2.733
 
 [node name="Board" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_uq6xs")

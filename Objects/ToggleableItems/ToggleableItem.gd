@@ -6,6 +6,8 @@ class_name ToggleableItem
 @export var animations : Array[Animation]
 var playing : bool = false
 
+signal Activated
+
 func _ready() -> void:
 	anim.connect("animation_finished", Callable(self, "anim_finished"))
 	activate()
@@ -13,6 +15,7 @@ func _ready() -> void:
 func activate(mousePos = Vector2.ZERO):
 	if playing == true:
 		return
+	Activated.emit()
 	anim.play(animations[index].resource_name)
 	playing = true
 	index = (index+1)%animations.size()

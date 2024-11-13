@@ -49,20 +49,20 @@ region = Rect2(96, 16, 16, 16)
 atlas = ExtResource("3_atby7")
 region = Rect2(112, 16, 16, 16)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yk7ud"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_yxb2v"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4h5ds"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_twrba"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpjmu"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_yk7ud")
+albedo_texture = SubResource("ViewportTexture_yxb2v")
 metallic = 1.0
 roughness = 0.0
 emission_enabled = true
 emission_energy_multiplier = 0.67
-emission_texture = SubResource("ViewportTexture_4h5ds")
+emission_texture = SubResource("ViewportTexture_twrba")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_abjuc"]
 size = Vector3(2.25, 1.4, 0.175)

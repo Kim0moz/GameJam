@@ -96,13 +96,10 @@ buttonData = Array[Dictionary]([{
 "rotations": [11, 15, 3, 7],
 "transform": Vector3(0, 0, 0)
 }])
-yOffset = -0.535
-zOffset = -1.05
-zPadding = 1.425
-yPadding = 2.733
 
 [node name="Board" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_uq6xs")
 skeleton = NodePath("")
 
 [node name="Buttons" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)

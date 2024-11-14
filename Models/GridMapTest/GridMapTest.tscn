@@ -1,13 +1,17 @@
-[gd_scene load_steps=27 format=4 uid="uid://bucgyb7tsx5nj"]
+[gd_scene load_steps=31 format=4 uid="uid://bucgyb7tsx5nj"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_norxd"]
+[ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="2_s4wxm"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="3_d2ghj"]
+[ext_resource type="PackedScene" uid="uid://cf0yipunib2xa" path="res://Models/GridMapTest/vent_wall.tscn" id="3_ohutf"]
 [ext_resource type="Texture2D" uid="uid://m6gi6dpt2fuj" path="res://Sprites/CircleCrosshair.png" id="4_ts02l"]
 [ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="5_m7gvu"]
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="5_suinc"]
 [ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithInteractive.gd" id="6_6b2ra"]
 [ext_resource type="PackedScene" uid="uid://b2msttkt05ws4" path="res://Models/GridMapTest/tube_with_door.tscn" id="7_7bslx"]
+[ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithGridItem.gd" id="8_ed1wy"]
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="8_k5cbu"]
+[ext_resource type="Script" path="res://Objects/ToggleableItems/PipeLever.gd" id="10_1ipd0"]
 [ext_resource type="PackedScene" uid="uid://bwwx28cwdg4lr" path="res://Models/ButtonBoard/button_board.tscn" id="11_kbatf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_08apb"]
@@ -182,21 +186,38 @@ environment = SubResource("Environment_otdjk")
 
 [node name="Floor" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.00615, 15)
+visible = false
 mesh_library = ExtResource("1_norxd")
 cell_size = Vector3(2, 4, 2)
 data = {
-"cells": PackedInt32Array(8, 65527, 1441794, 7, 65527, 1441794, 6, 65527, 1441794, 6, 65528, 1441794, 5, 65528, 1441794, 4, 65528, 1441794, 3, 65528, 1441794, 3, 65529, 1441794, 3, 65530, 1441794, 4, 65530, 1441794, 5, 65530, 1441794, 6, 65529, 1441794, 7, 65529, 1441794, 7, 65528, 1441794, 8, 65528, 1441794, 7, 65530, 1441794, 6, 65530, 1441794, 5, 65529, 1441794, 4, 65529, 1441794, 3, 65527, 1441794, 4, 65527, 1441794, 5, 65527, 1441794, 9, 65528, 1441794, 9, 65529, 1441794, 9, 65530, 1441794, 8, 65530, 1441794, 8, 65529, 1441794, 9, 65527, 1441794, 3, 65526, 1441794, 4, 65526, 1441794, 5, 65526, 1441794, 6, 65526, 1441794, 7, 65526, 1441794, 8, 65526, 1441794, 9, 65526, 1441794, 65543, 65531, 1441794, 65542, 65531, 1441794, 65541, 65531, 1441794, 65540, 65531, 1441794, 65540, 65532, 1441794, 65541, 65532, 1441794, 65542, 65532, 1441794, 65543, 65532, 1441794, 131076, 65532, 655362, 131077, 65532, 1441794, 131077, 65531, 655362, 131078, 65531, 655362, 131078, 65532, 1441794, 131079, 65532, 1441794, 131079, 65531, 655362, 131076, 65531, 1441794, 131079, 65530, 1441794, 131080, 65530, 1441794, 131081, 65530, 1441794, 131081, 65529, 1441794, 131080, 65529, 1441794, 131079, 65529, 1441794, 131078, 65530, 1441794, 131077, 65530, 1441794, 131076, 65530, 1441794, 131075, 65530, 1441794, 131075, 65529, 1441794, 131075, 65528, 1441794, 131075, 65527, 1441794, 131075, 65526, 1441794, 131076, 65526, 1441794, 131077, 65527, 1441794, 131078, 65527, 1441794, 131077, 65528, 1441794, 131076, 65528, 1441794, 131076, 65529, 1441794, 131076, 65527, 1441794, 131078, 65528, 1441794, 131079, 65528, 1441794, 131080, 65528, 1441794, 131078, 65529, 1441794, 131077, 65529, 1441794, 131081, 65528, 1441794, 131081, 65527, 1441794, 131081, 65526, 1441794, 131080, 65526, 1441794, 131079, 65526, 1441794, 131077, 65526, 1441794, 131079, 65527, 1441794, 131080, 65527, 1441794, 131078, 65526, 1441794, 131075, 65531, 655362, 131075, 65532, 655362, 131080, 65531, 655362, 131080, 65532, 655362, 65539, 65532, 655362, 65539, 65531, 655362, 65544, 65531, 655362, 65544, 65532, 655362)
+"cells": PackedInt32Array(8, 65527, 1441794, 7, 65527, 1441794, 6, 65527, 1441794, 6, 65528, 1441794, 5, 65528, 1441794, 4, 65528, 1441794, 3, 65528, 1441794, 3, 65529, 1441794, 3, 65530, 1441794, 4, 65530, 1441794, 5, 65530, 1441794, 6, 65529, 1441794, 7, 65529, 1441794, 7, 65528, 1441794, 8, 65528, 1441794, 7, 65530, 1441794, 6, 65530, 1441794, 5, 65529, 1441794, 4, 65529, 1441794, 3, 65527, 1441794, 4, 65527, 1441794, 5, 65527, 1441794, 9, 65528, 1441794, 9, 65529, 1441794, 9, 65530, 1441794, 8, 65530, 1441794, 8, 65529, 1441794, 9, 65527, 1441794, 3, 65526, 1441794, 4, 65526, 1441794, 5, 65526, 1441794, 6, 65526, 1441794, 7, 65526, 1441794, 8, 65526, 1441794, 9, 65526, 1441794, 65543, 65531, 1441794, 65542, 65531, 1441794, 65541, 65531, 1441794, 65540, 65531, 1441794, 65540, 65532, 1441794, 65541, 65532, 1441794, 65542, 65532, 1441794, 65543, 65532, 1441794, 131076, 65532, 655362, 131077, 65532, 1441794, 131077, 65531, 655362, 131078, 65531, 655362, 131078, 65532, 1441794, 131079, 65532, 1441794, 131079, 65531, 655362, 131076, 65531, 1441794, 131079, 65530, 1441794, 131080, 65530, 1441794, 131081, 65530, 1441794, 131081, 65529, 1441794, 131080, 65529, 1441794, 131079, 65529, 1441794, 131078, 65530, 1441794, 131077, 65530, 1441794, 131076, 65530, 1441794, 131075, 65530, 1441794, 131075, 65529, 1441794, 131075, 65528, 1441794, 131075, 65527, 1441794, 131075, 65526, 1441794, 131076, 65526, 1441794, 131077, 65527, 1441794, 131078, 65527, 1441794, 131077, 65528, 1441794, 131076, 65528, 1441794, 131076, 65529, 1441794, 131076, 65527, 1441794, 131078, 65528, 1441794, 131079, 65528, 1441794, 131080, 65528, 1441794, 131078, 65529, 1441794, 131077, 65529, 1441794, 131081, 65528, 1441794, 131081, 65527, 1441794, 131081, 65526, 1441794, 131080, 65526, 1441794, 131079, 65526, 1441794, 131077, 65526, 1441794, 131079, 65527, 1441794, 131080, 65527, 1441794, 131078, 65526, 1441794, 131075, 65531, 655362, 131075, 65532, 655362, 131080, 65531, 655362, 131080, 65532, 655362, 65539, 65532, 655362, 65539, 65531, 655362, 65544, 65531, 655362, 65544, 65532, 655362, 65545, 65531, 655362, 65545, 65532, 655362, 131081, 65531, 655362, 131081, 65532, 655362)
 }
-metadata/_editor_floor_ = Vector3(0, 1, 0)
+metadata/_editor_floor_ = Vector3(0, 4, 0)
 
 [node name="Walls" type="GridMap" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.00615, 15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.98447, 15)
 mesh_library = ExtResource("1_norxd")
-cell_size = Vector3(2, 4, 2)
 data = {
-"cells": PackedInt32Array(9, 65527, 1048576, 9, 65526, 655361, 3, 65526, 1441793, 4, 65526, 655360, 5, 65526, 655364, 6, 65526, 655364, 7, 65526, 655364, 8, 65526, 655360, 3, 65527, 1441792, 9, 65528, 1048589, 9, 65529, 1048576, 9, 65530, 1048577, 8, 65530, 0, 7, 65530, 0, 6, 65530, 0, 5, 65530, 0, 4, 65530, 0, 3, 65530, 1, 3, 65529, 1441792, 3, 65528, 1441792, 131075, 65526, 524289, 131081, 65526, 1310721, 131081, 65530, 131073, 131081, 65527, 1310720, 131081, 65528, 1310720, 131081, 65529, 1310720, 131080, 65530, 131072, 131080, 65526, 524288, 131079, 65526, 524292, 131078, 65526, 524292, 131077, 65526, 524292, 131076, 65526, 524288, 131075, 65527, 1179648, 131077, 65532, 131072, 131078, 65532, 131072, 131080, 65531, 1310720, 131080, 65532, 131073, 131076, 65532, 131072, 131079, 65532, 131072, 131075, 65528, 1179648, 131075, 65529, 1179648, 131075, 65530, 1179649, 131075, 65532, 1179649, 131075, 65531, 1179648)
+"cells": PackedInt32Array(9, 65526, 655361, 3, 65526, 1441793, 3, 65530, 1, 9, 65530, 1048577, 8, 65526, 655364, 7, 65526, 655364, 6, 65526, 655364, 5, 65526, 655364, 4, 65526, 655364, 9, 65529, 1048576, 9, 65528, 1048581, 9, 65527, 1048576, 8, 65530, 9, 7, 65530, 0, 6, 65530, 0, 5, 65530, 0, 4, 65530, 0, 3, 65529, 1441792, 3, 65528, 1441792, 3, 65527, 1441792, 131081, 65526, 655367, 196617, 65526, 655367, 131075, 65526, 1441799, 196611, 65526, 1441799, 131075, 65530, 7, 196611, 65530, 7, 131081, 65530, 1048583, 196617, 65530, 1048583, 131081, 65529, 1048582, 131081, 65528, 1048582, 131081, 65527, 1048582, 196617, 65529, 1048582, 196617, 65528, 1048582, 196617, 65527, 1048582, 131080, 65525, 6, 131079, 65525, 6, 131078, 65525, 6, 131077, 65525, 6, 131076, 65525, 6, 131075, 65527, 1441798, 131075, 65528, 1441798, 131075, 65529, 1441798, 196611, 65529, 1441798, 196611, 65528, 1441798, 196611, 65527, 1441798, 131075, 65532, 1, 196612, 65526, 655368, 196613, 65526, 655368, 196614, 65526, 655368, 196615, 65526, 655368, 196616, 65526, 655368, 131076, 65532, 9, 131075, 65531, 1441792, 131077, 65532, 0, 131078, 65532, 0, 131079, 65532, 0, 131081, 65531, 1048581, 131081, 65532, 1048577, 131080, 65532, 0, 131076, 65531, 655364, 131077, 65531, 655364, 131078, 65531, 655364, 131079, 65531, 655364, 131080, 65531, 655364)
 }
-metadata/_editor_floor_ = Vector3(0, 2, 0)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Replace Vents" type="Node3D" parent="Walls" node_paths=PackedStringArray("player")]
+script = ExtResource("2_s4wxm")
+data = {
+"Exit": Vector3i(0, 0, 0),
+"transform": Vector3i(4, 2, -4)
+}
+interactive = Array[Dictionary]([{
+"Exit": Vector3i(4, 2, -4),
+"transform": Vector3i(8, 0, -6)
+}, {
+"Exit": Vector3i(8, 0, -6),
+"transform": Vector3i(4, 2, -4)
+}])
+player = NodePath("../../Player")
+itemToReplace = 9
+item = ExtResource("3_ohutf")
 
 [node name="Player" parent="." instance=ExtResource("3_d2ghj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5, 8)
@@ -212,14 +233,19 @@ visibility_parent = NodePath("../SubViewport/Pipe Camera/CameraLayer")
 mesh_library = ExtResource("5_suinc")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(262163, 65533, 1245192, 262162, 65533, 1245192, 262161, 65533, 262145, 262160, 65533, 1245192, 262159, 65533, 1245192, 262158, 65533, 1245192, 262155, 65533, 1245192, 262154, 65533, 1245192, 262153, 65533, 655361, 262150, 65533, 1245192, 262151, 65534, 851976, 262151, 65535, 851976, 262151, 0, 851976, 262151, 1, 851976, 262151, 2, 720896, 262151, 3, 524297, 327687, 3, 524296, 393223, 3, 917513, 393223, 4, 917512, 393223, 5, 917512, 393223, 6, 917512, 393223, 7, 917512, 393223, 8, 917512, 262151, 65533, 720906, 262151, 65532, 720896, 196615, 65532, 131080, 65543, 65532, 131080, 7, 65532, 131080, 262152, 65532, 720896, 196616, 65534, 720896, 327688, 0, 720896, 262152, 2, 720896, 327687, 0, 720896, 327686, 0, 720896, 262150, 2, 720896, 262150, 65532, 720896, 196615, 65534, 720896, 196614, 65534, 720896, 262156, 65532, 720896, 262158, 65532, 720896, 262162, 65532, 720896, 196626, 65534, 720896, 327698, 0, 720896, 262160, 65532, 720896, 196618, 65534, 720896, 196620, 65534, 720896, 196622, 65534, 720896, 196624, 65534, 720896, 327690, 0, 720896, 327692, 0, 720896, 327694, 0, 720896, 327696, 0, 720896, 262154, 2, 720896, 262156, 2, 720896, 262158, 2, 720896, 262160, 2, 720896, 262157, 65532, 65537, 262159, 65532, 720896, 262161, 65532, 983041, 196617, 65534, 458753, 196617, 65533, 131073, 196619, 65534, 1114112, 327697, 0, 1114112, 262161, 2, 1114112, 262162, 2, 1114112, 327689, 0, 589825, 327691, 0, 589825, 327693, 0, 589825, 327695, 0, 589825, 262155, 2, 589825, 262159, 2, 589825, 196621, 65534, 589825, 196623, 65534, 589825, 196625, 65534, 589825, 262153, 2, 589824, 262157, 2, 589824, 262155, 1, 131073, 327691, 1, 655361, 327695, 1, 655361, 262159, 1, 131073, 327695, 65535, 1, 327689, 65535, 1, 262153, 65535, 0, 196623, 65535, 393217, 196621, 65535, 393217, 196617, 65535, 393217, 196625, 65533, 786433, 196621, 65533, 786433, 262157, 65533, 262145, 262163, 65532, 1507328, 196627, 65534, 1507328, 327699, 0, 1507328, 262163, 2, 1507328, 262155, 65532, 720896, 262154, 65532, 720896, 262153, 65532, 196609, 262157, 65535, 0, 327693, 65535, 1, 262159, 65535, 0)
+"cells": PackedInt32Array(262163, 65533, 1245192, 262162, 65533, 1245192, 262161, 65533, 262145, 262160, 65533, 1245192, 262159, 65533, 1245192, 262158, 65533, 1245192, 262155, 65533, 1245192, 262154, 65533, 1245192, 262153, 65533, 655361, 262150, 65533, 1245192, 262151, 65534, 851976, 262151, 65535, 851976, 262151, 0, 851976, 262151, 1, 851976, 262151, 2, 720896, 262151, 3, 524297, 327687, 3, 524296, 393223, 3, 917513, 393223, 4, 917512, 393223, 5, 917512, 393223, 6, 917512, 393223, 7, 917512, 393223, 8, 917512, 262151, 65533, 720906, 262151, 65532, 720896, 196615, 65532, 131080, 65543, 65532, 131080, 7, 65532, 131080, 262152, 65532, 720896, 196616, 65534, 720896, 327688, 0, 720896, 262152, 2, 720896, 327687, 0, 720896, 327686, 0, 720896, 262150, 2, 720896, 262150, 65532, 720896, 196615, 65534, 720896, 196614, 65534, 720896, 262156, 65532, 720896, 262158, 65532, 720896, 262162, 65532, 720896, 196626, 65534, 720896, 327698, 0, 720896, 262160, 65532, 720896, 196618, 65534, 720896, 196620, 65534, 720896, 196622, 65534, 720896, 196624, 65534, 720896, 327690, 0, 720896, 327692, 0, 720896, 327694, 0, 720896, 327696, 0, 720896, 262154, 2, 720896, 262156, 2, 720896, 262158, 2, 720896, 262160, 2, 720896, 262157, 65532, 458758, 262159, 65532, 720896, 262161, 65532, 458758, 196617, 65534, 458758, 196617, 65533, 131073, 196619, 65534, 1114112, 327697, 0, 1114112, 262161, 2, 1114112, 262162, 2, 1114112, 327689, 0, 458758, 327691, 0, 458758, 327693, 0, 458758, 327695, 0, 458758, 262155, 2, 458758, 262159, 2, 458758, 196621, 65534, 458758, 196623, 65534, 458758, 196625, 65534, 458758, 262153, 2, 589824, 262157, 2, 589824, 262155, 1, 131073, 327691, 1, 655361, 327695, 1, 655361, 262159, 1, 131073, 327695, 65535, 1, 327689, 65535, 1, 262153, 65535, 0, 196623, 65535, 393217, 196621, 65535, 393217, 196617, 65535, 393217, 196625, 65533, 786433, 196621, 65533, 786433, 262157, 65533, 262145, 262163, 65532, 1507328, 196627, 65534, 1507328, 327699, 0, 1507328, 262163, 2, 1507328, 262155, 65532, 720896, 262154, 65532, 720896, 262153, 65532, 458758, 262157, 65535, 0, 327693, 65535, 1, 262159, 65535, 0)
 }
-metadata/_editor_floor_ = Vector3(0, 5, -9)
+metadata/_editor_floor_ = Vector3(0, 4, -9)
 
 [node name="ReplaceDoors" type="Node3D" parent="Pipes"]
 script = ExtResource("6_6b2ra")
 itemToReplace = 5
 item = ExtResource("7_7bslx")
+
+[node name="ReplacePipes" type="Node3D" parent="Pipes"]
+script = ExtResource("8_ed1wy")
+itemToReplace = 6
+item = 1
 
 [node name="Desk" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 7.04867, 4.13049, 7.30454)
@@ -227,7 +253,7 @@ mesh = SubResource("ArrayMesh_4n0m8")
 skeleton = NodePath("")
 
 [node name="Monitor" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, -0.0733268, 0.997308, 0, 0.997308, 0.0733268, -1, 3.20522e-09, -4.35937e-08, 6.31012, 6.05064, 7.44161)
+transform = Transform3D(-4.37114e-08, -0.0733268, 0.997308, 0, 0.997308, 0.0733268, -1, 3.20522e-09, -4.35937e-08, 6.31012, 6.17878, 7.44161)
 mesh = SubResource("ArrayMesh_iwiyt")
 skeleton = NodePath("")
 surface_material_override/1 = SubResource("StandardMaterial3D_gvxjw")
@@ -260,98 +286,172 @@ data = {
 script = SubResource("GDScript_n23l5")
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="ButtonBoard" parent="." node_paths=PackedStringArray("grid") instance=ExtResource("11_kbatf")]
-transform = Transform3D(0.0507843, -0.580466, 0, 0.580466, 0.0507843, 0, 0, 0, 0.582684, 7.09101, 5.11457, 7.37219)
+[node name="ButtonBoard2" parent="." node_paths=PackedStringArray("grid") instance=ExtResource("11_kbatf")]
+transform = Transform3D(0.248131, -0.52721, 0, 0.52721, 0.248131, 0, 0, 0, 0.582684, 7.0089, 5.28817, 7.42002)
 buttonData = Array[Dictionary]([{
 "rotations": [11, 15, 3, 7],
-"transform": Vector3(0, 0, 0)
-}, {
-"rotations": [7, 11],
-"transform": Vector3(15, 4, 2)
+"transform": Vector3i(13, 4, -4)
 }, {
 "rotations": [11, 15, 3, 7],
-"transform": Vector3(0, 0, 0)
-}, {
-"rotations": [11, 7],
-"transform": Vector3(11, 4, 2)
+"transform": Vector3i(17, 4, -4)
 }, {
 "rotations": [11, 15, 3, 7],
-"transform": Vector3(0, 0, 0)
+"transform": Vector3i(9, 3, -2)
 }, {
 "rotations": [11, 15, 3, 7],
-"transform": Vector3(0, 0, 0)
-}, {
-"rotations": [3, 15],
-"transform": Vector3(15, 5, 0)
-}, {
-"rotations": [7, 11],
-"transform": Vector3(13, 5, 0)
-}, {
-"rotations": [15, 3],
-"transform": Vector3(11, 5, 0)
-}, {
-"rotations": [7, 11],
-"transform": Vector3(9, 5, 0)
-}, {
-"rotations": [7, 11],
-"transform": Vector3(17, 3, -2)
-}, {
-"rotations": [3, 15],
-"transform": Vector3(15, 3, -2)
+"transform": Vector3i(9, 5, 0)
 }, {
 "rotations": [11, 15, 3, 7],
-"transform": Vector3(13, 3, -2)
+"transform": Vector3i(11, 5, 0)
 }, {
 "rotations": [11, 15, 3, 7],
-"transform": Vector3(0, 0, 0)
+"transform": Vector3i(13, 5, 0)
 }, {
 "rotations": [11, 15, 3, 7],
-"transform": Vector3(9, 3, -2)
-}, {
-"rotations": [15, 3],
-"transform": Vector3(17, 4, -4)
+"transform": Vector3i(15, 5, 0)
 }, {
 "rotations": [11, 15, 3, 7],
-"transform": Vector3(0, 0, 0)
-}, {
-"rotations": [15, 3],
-"transform": Vector3(13, 4, -4)
+"transform": Vector3i(11, 4, 2)
 }, {
 "rotations": [11, 15, 3, 7],
-"transform": Vector3(0, 0, 0)
+"transform": Vector3i(15, 4, 2)
 }, {
-"rotations": [3, 15],
-"transform": Vector3(9, 4, -4)
+"rotations": [11, 15, 3, 7],
+"transform": Vector3i(13, 3, -2)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3i(15, 3, -2)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3i(17, 3, -2)
+}, {
+"rotations": [11, 15, 3, 7],
+"transform": Vector3i(9, 4, -4)
 }])
 grid = NodePath("../Pipes")
-columns = 5
-zOffset = -1.26
-zPadding = 1.56
 correctAnswer = Array[Dictionary]([{
-"rotation": 7,
-"transform": Vector3(15, 4, 2)
-}, {
-"rotation": 7,
-"transform": Vector3(11, 4, 2)
-}, {
-"rotation": 3,
-"transform": Vector3(15, 5, 0)
-}, {
-"rotation": 7,
-"transform": Vector3(13, 5, 0)
-}, {
-"rotation": 3,
-"transform": Vector3(11, 5, 0)
-}, {
-"rotation": 7,
-"transform": Vector3(13, 3, -2)
-}, {
 "rotation": 15,
 "transform": Vector3(9, 3, -2)
 }, {
 "rotation": 3,
+"transform": Vector3(11, 5, 0)
+}, {
+"rotation": 11,
+"transform": Vector3(13, 5, 0)
+}, {
+"rotation": 3,
+"transform": Vector3(15, 5, 0)
+}, {
+"rotation": 15,
+"transform": Vector3(11, 4, 2)
+}, {
+"rotation": 11,
+"transform": Vector3(15, 4, 2)
+}, {
+"rotation": 7,
+"transform": Vector3(13, 3, -2)
+}, {
+"rotation": 7,
 "transform": Vector3(9, 4, -4)
 }])
+yMinMax = Vector2(-4, 2)
+xMinMax = Vector2(17, 9)
+yOffsetMinMax = Vector2(-0.6, 0.6)
+xOffsetMinMax = Vector2(-1.3, 1.3)
+
+[node name="1" parent="ButtonBoard2/Buttons" index="0" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, -0.6)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="2" parent="ButtonBoard2/Buttons" index="1" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -1.3, -0.6)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="3" parent="ButtonBoard2/Buttons" index="2" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.3, -0.2)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="4" parent="ButtonBoard2/Buttons" index="3" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.3, 0.2)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="5" parent="ButtonBoard2/Buttons" index="4" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.65, 0.2)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="6" parent="ButtonBoard2/Buttons" index="5" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0.2)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="7" parent="ButtonBoard2/Buttons" index="6" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.65, 0.2)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="8" parent="ButtonBoard2/Buttons" index="7" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.65, 0.6)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="9" parent="ButtonBoard2/Buttons" index="8" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.65, 0.6)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="10" parent="ButtonBoard2/Buttons" index="9" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, -0.2)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="11" parent="ButtonBoard2/Buttons" index="10" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.65, -0.2)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="12" parent="ButtonBoard2/Buttons" index="11" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -1.3, -0.2)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[node name="13" parent="ButtonBoard2/Buttons" index="12" node_paths=PackedStringArray("grid")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.3, -0.6)
+script = ExtResource("10_1ipd0")
+grid = NodePath("../../../Pipes")
+itemIndex = 1
+rots = [11, 15, 3, 7]
+
+[connection signal="buttonsMade" from="ButtonBoard2" to="Pipes/ReplacePipes" method="_on_button_board_2_buttons_made"]
 
 [editable path="Player"]
 [editable path="Player/CameraController/CameraTarget/WorldSpaceCam"]
+[editable path="ButtonBoard2"]

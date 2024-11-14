@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://0kapynuc47kc"]
+[gd_scene load_steps=14 format=3 uid="uid://0kapynuc47kc"]
 
 [ext_resource type="PackedScene" uid="uid://dnnfyxk2ux58m" path="res://Models/GridMapTest/GridAtlas.glb" id="1_27oav"]
 
@@ -22,6 +22,21 @@ points = PackedVector3Array(0.87296, 3.84086, 1.11058, -1.03175, -0.0309505, 0.7
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_aw8n7"]
 points = PackedVector3Array(0.746337, 3.20586, 1.30107, -1.03175, -0.0324516, 0.793204, 1.00035, -0.0324516, 0.793204, -1.03175, 4.03175, 0.856751, -0.77754, -0.0324516, 1.36462, 1.00035, 4.03175, 0.856751, 0.746337, -0.0324516, 1.36462, -0.77754, 3.20586, 1.30107, -1.03175, 4.03175, 1.04722, 1.00035, 4.03175, 1.04722, -1.03175, -0.0324516, 1.04722, 1.00035, 0.285412, 0.793204, 0.9117, 0.144848, 1.04999, -1.03175, 0.285412, 0.793204, -0.77754, 0.094853, 1.36462, 0.746337, 0.094853, 1.36462)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0vtwg"]
+points = PackedVector3Array(-1.01587, -0.0154753, 0.884127, 1.01587, 2.01548, 1.0111, 1.01587, -0.0154753, 1.0111, 1.01587, 2.01548, 0.884127, -1.01587, 2.01548, 1.0111, 1.01587, -0.0154753, 0.884127, -1.01587, -0.0154753, 1.0111, -1.01587, 2.01548, 0.884127)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cp844"]
+points = PackedVector3Array(-0.85871, 1.9957, 0.99609, -1.01586, -0.0154753, -1.01587, -1.01586, 2.01548, -1.01587, -1.01586, 2.01548, 1.01587, -1.01586, -0.0154753, 1.01587, -0.888904, -0.0154753, -1.01587, -0.858404, 0.000391586, 1, -0.888904, 2.01548, -1.01587, -0.857165, 2.01548, 0.888789, -0.857165, -0.0154753, 0.888789)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vo48w"]
+points = PackedVector3Array(1.01587, 2.01548, 1.01586, -0.857143, -0.0154753, 0.888889, -0.857143, -0.0154753, 1.01586, -0.857143, 2.01548, 0.888889, 1.01587, -0.0154753, 0.888889, 1.01587, -0.0154753, 1.01586, -0.857143, 2.01548, 1.01586, 1.01587, 2.01548, 0.888889)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4chcg"]
+points = PackedVector3Array(-0.856969, 0.301873, 0.834349, 1.01587, 2.01548, 1.02478, 0.805233, 1.65598, 1.0498, -1.01587, 2.01548, 1.02478, -1.01587, -0.0154753, 1.02478, 0.96959, 0.03079, 0.9, 0.856969, 1.69813, 0.834349, 1.01587, -0.0154753, 1.02478, -0.856969, 1.69813, 0.834349, 0.856969, 0.301873, 0.834349, -0.96959, 1.96921, 0.9, -0.805233, 0.34402, 1.0498, 0.96959, 1.96921, 0.9, -0.96959, 0.03079, 0.9, 0.805233, 0.34402, 1.0498, -0.805233, 1.65598, 1.0498)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4yx0q"]
+points = PackedVector3Array(0.746007, 0.921095, 0.704454, -1.03175, -0.0309505, 0.767971, -1.03175, -0.0309505, 1.02191, -1.03175, 4.03095, 1.02191, 1.06349, -0.0309505, 1.02191, 1.06349, 4.03095, 1.02191, -1.03175, 4.03095, 0.89488, 1.06349, 4.03095, 0.89488, 1.06349, -0.0309505, 0.767971, -0.714056, 0.921095, 0.704454, 0.682428, 0.0959092, 0.704454, -0.714056, 0.0959092, 0.704454, -1.03175, 0.286398, 0.767971, 1.06349, 0.286398, 0.767971, 0.746007, 0.15914, 0.704454)
 
 [node name="GridAtlas" instance=ExtResource("1_27oav")]
 
@@ -57,3 +72,26 @@ shape = SubResource("ConvexPolygonShape3D_opkio")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_001/StaticBody3D" index="0"]
 shape = SubResource("ConvexPolygonShape3D_aw8n7")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_002" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_002/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_0vtwg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall-Corner_001" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall-Corner_001/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_cp844")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Wall-Corner_001/StaticBody3D" index="1"]
+shape = SubResource("ConvexPolygonShape3D_vo48w")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall-WithWindow_001" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall-WithWindow_001/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_4chcg")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall_003" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall_003/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_4yx0q")

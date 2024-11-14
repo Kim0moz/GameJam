@@ -3,39 +3,35 @@ extends Node3D
 
 @export var button : PackedScene
 @export var buttons : Node3D
+@export var GenerateButtonData :bool :
+	set(val):
+		generateButtonData()
 @export var buttonData : Array[Dictionary] = [{"transform": Vector3(0,0,0), "rotations": [11,15,3,07]}]
 @export var grid : GridMap
-@export var columns : int = 4
-
-@export var yOffset : float = 0:
-	set(val):
-		yOffset = val
-		build_grid()
-@export var zOffset : float = 0:
-	set(val):
-		zOffset = val
-		build_grid()
-@export var zPadding : float = 0:
-	set(val):
-		zPadding = val
-		build_grid()
-@export var yPadding : float = 0:
-	set(val):
-		yPadding = val
-		build_grid()
-		
 @export var correctAnswer : Array[Dictionary]
 
-# Called when the node enters the scene tree for the first time.
+@export_category("Padding")
+@export_group("Start")
+@export var yMinMax : Vector2
+@export var xMinMax : Vector2
+@export_group("End")
+@export var yOffsetMinMax : Vector2
+@export var xOffsetMinMax : Vector2
+
+signal buttonsMade
+
 func _ready() -> void:
-	#_add_data(16)
+	generateButtonData()
+
+func generateButtonData():
+	var items = grid.get_used_cells_by_item(6)
+	buttonData.clear()
+	for item in items:
+		buttonData.append({
+			"transform": item,
+			"rotations": [11,15,3,07]})
 	build_grid()
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	
 
 func _add_data(amount: int):
 	buttonData.clear()
@@ -44,6 +40,7 @@ func _add_data(amount: int):
 		
 func setCorrectAnswer():
 	var i = 0
+	correctAnswer.clear()
 	for button in buttons.get_children():
 		correctAnswer.push_back({"transform": Vector3(0,0,0), "rotation": 0})
 		correctAnswer[i].transform = (button as pipeLever).PipeIndex
@@ -53,6 +50,7 @@ func setCorrectAnswer():
 func  _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if Input.is_action_just_pressed("movement_jump"):
+			#setCorrectAnswer()
 			print(checkAnswer())
 
 func build_grid():
@@ -61,7 +59,7 @@ func build_grid():
 		for butts in buttons.get_children():
 			butts.free()
 	for butt in buttonData:
-		if butt.transform != Vector3.ZERO:
+		if butt.transform != Vector3i.ZERO:
 			var tmp : pipeLever = button.instantiate()
 			buttons.add_child(tmp,true)
 			tmp.name = str(buttons.get_child_count())
@@ -69,8 +67,10 @@ func build_grid():
 			tmp.grid = grid
 			tmp.rots = butt.rotations 
 			tmp.PipeIndex = butt.transform
-			tmp.position = Vector3(.1,yOffset+floor(index/columns)/yPadding,zOffset+(index%columns)/zPadding)
-		index+=1
+			var tx = remap(butt.transform.z,yMinMax.x,yMinMax.y,yOffsetMinMax.x,yOffsetMinMax.y)
+			var tz = remap(butt.transform.x,xMinMax.x,xMinMax.y,xOffsetMinMax.x,xOffsetMinMax.y)
+			tmp.position = Vector3(.2,tz,tx)
+	buttonsMade.emit()
 		
 func checkAnswer():
 	var i = 0

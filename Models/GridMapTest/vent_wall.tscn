@@ -79,8 +79,9 @@ points = PackedVector3Array(0.746007, 0.921095, 0.704454, -1.03175, -0.0309505, 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d6cld"]
 size = Vector3(1.5, 1, 0.7)
 
-[node name="VentWall" type="Node3D"]
+[node name="VentWall" type="Node3D" node_paths=PackedStringArray("ExitPoint")]
 script = ExtResource("1_uyrl2")
+ExitPoint = NodePath("ExitPoint")
 
 [node name="Geomtry" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_ku7p3")
@@ -98,13 +99,15 @@ script = ExtResource("3_jnitl")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.65)
 shape = SubResource("BoxShape3D_d6cld")
 
-[node name="Exit Point" type="Node3D" parent="."]
+[node name="ExitPoint" type="Node3D" parent="."]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0.043666)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Exit Point"]
+[node name="CSGBox3D" type="CSGBox3D" parent="ExitPoint"]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -2.84124e-08, 0, 0.55)
 size = Vector3(0.2, 0.2, 1)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Exit Point"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="ExitPoint"]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -1.07093e-07, 0, 1)
 size = Vector3(0.6, 0.2, 0.5)
+
+[connection signal="activated" from="Vent" to="." method="move"]

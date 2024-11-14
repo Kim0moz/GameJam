@@ -12,13 +12,13 @@
 [ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="8_ppbfk"]
 [ext_resource type="PackedScene" uid="uid://dphttbpadchiv" path="res://MiniGame/Capsule2D.tscn" id="11_1omrb"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dracd"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_m3yiv"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1qhf8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gl8cx"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_dracd")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_m3yiv")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -91,7 +91,7 @@ text = "[center][font_size=50]Press \"X\" to Exit[/font_size]"
 fit_content = true
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_1qhf8")
+material = SubResource("ShaderMaterial_gl8cx")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 

@@ -23,6 +23,8 @@ extends Node3D
 	set(val):
 		yPadding = val
 		build_grid()
+		
+@export var correctAnswer : Array[Dictionary]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -39,6 +41,19 @@ func _add_data(amount: int):
 	buttonData.clear()
 	for i in range(amount):
 		buttonData.append({"transform": Vector3(0,0,0), "rotations": [11,15,3,07]})
+		
+func setCorrectAnswer():
+	var i = 0
+	for button in buttons.get_children():
+		correctAnswer.push_back({"transform": Vector3(0,0,0), "rotation": 0})
+		correctAnswer[i].transform = (button as pipeLever).PipeIndex
+		correctAnswer[i].rotation = (button as pipeLever).rots[(button as pipeLever).index]
+		i+=1
+
+func  _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if Input.is_action_just_pressed("movement_jump"):
+			print(checkAnswer())
 
 func build_grid():
 	var index = 0
@@ -57,3 +72,22 @@ func build_grid():
 			tmp.position = Vector3(.1,yOffset+floor(index/columns)/yPadding,zOffset+(index%columns)/zPadding)
 		index+=1
 		
+func checkAnswer():
+	var i = 0
+	for button in buttons.get_children():
+		var t = (button as pipeLever).PipeIndex
+		var r = (button as pipeLever).rots[(button as pipeLever).index]
+		var contained = checkTransform(t,r)
+		if contained == false:
+			return false
+		i+=1
+	return true
+
+func checkTransform(t,r):
+	for answer in correctAnswer:
+		if t == answer.transform:
+			if r == answer.rotation:
+				print("correct alignment ", t)
+			else:
+				return false
+	return true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://bucgyb7tsx5nj"]
+[gd_scene load_steps=27 format=4 uid="uid://bucgyb7tsx5nj"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_norxd"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="3_d2ghj"]
@@ -8,8 +8,6 @@
 [ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithInteractive.gd" id="6_6b2ra"]
 [ext_resource type="PackedScene" uid="uid://b2msttkt05ws4" path="res://Models/GridMapTest/tube_with_door.tscn" id="7_7bslx"]
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="8_k5cbu"]
-[ext_resource type="PackedScene" uid="uid://epo6t4l22emx" path="res://Objects/ToggleableItems/Lever.tscn" id="9_tpn0c"]
-[ext_resource type="Script" path="res://Objects/ToggleableItems/PipeLever.gd" id="10_x4nsx"]
 [ext_resource type="PackedScene" uid="uid://bwwx28cwdg4lr" path="res://Models/ButtonBoard/button_board.tscn" id="11_kbatf"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_08apb"]
@@ -23,6 +21,10 @@ sky_material = SubResource("ProceduralSkyMaterial_08apb")
 background_mode = 2
 sky = SubResource("Sky_yv20m")
 tonemap_mode = 2
+glow_intensity = 1.09
+glow_hdr_threshold = 0.0
+glow_hdr_scale = 3.94
+fog_enabled = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uvp68"]
 atlas = ExtResource("5_m7gvu")
@@ -249,99 +251,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.49012e-07, 3)
 layers = 524289
 mesh = SubResource("PlaceholderMesh_ngpfi")
 
-[node name="Levers" type="Node3D" parent="."]
-
-[node name="Handle" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8.83397, 7, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(17, 4, -4)
-
-[node name="Handle2" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.63397, 7, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(13, 4, -4)
-
-[node name="Handle3" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.434, 7, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(9, 4, -4)
-
-[node name="Handle4" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 8.83397, 6.6, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(17, 3, -2)
-
-[node name="Handle7" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.23397, 6.6, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(15, 3, -2)
-
-[node name="Handle5" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.63397, 6.6, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(13, 3, -2)
-
-[node name="Handle6" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.434, 6.6, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(9, 3, -2)
-
-[node name="Handle9" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.23397, 6.2, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(15, 5, 0)
-
-[node name="Handle10" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.63397, 6.2, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(13, 5, 0)
-
-[node name="Handle11" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.434, 6.2, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(9, 5, 0)
-
-[node name="Handle12" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.034, 6.2, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(11, 5, 0)
-
-[node name="Handle13" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 9.23397, 5.8, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(15, 4, 2)
-
-[node name="Handle14" parent="Levers" node_paths=PackedStringArray("grid") instance=ExtResource("9_tpn0c")]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10.034, 5.8, 8.833)
-script = ExtResource("10_x4nsx")
-grid = NodePath("../../Pipes")
-itemIndex = 1
-PipeIndex = Vector3(11, 4, 2)
-
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("5_suinc")
 cell_size = Vector3(1, 1, 1)
@@ -418,19 +327,31 @@ grid = NodePath("../Pipes")
 columns = 5
 zOffset = -1.26
 zPadding = 1.56
+correctAnswer = Array[Dictionary]([{
+"rotation": 7,
+"transform": Vector3(15, 4, 2)
+}, {
+"rotation": 7,
+"transform": Vector3(11, 4, 2)
+}, {
+"rotation": 3,
+"transform": Vector3(15, 5, 0)
+}, {
+"rotation": 7,
+"transform": Vector3(13, 5, 0)
+}, {
+"rotation": 3,
+"transform": Vector3(11, 5, 0)
+}, {
+"rotation": 7,
+"transform": Vector3(13, 3, -2)
+}, {
+"rotation": 15,
+"transform": Vector3(9, 3, -2)
+}, {
+"rotation": 3,
+"transform": Vector3(9, 4, -4)
+}])
 
 [editable path="Player"]
 [editable path="Player/CameraController/CameraTarget/WorldSpaceCam"]
-[editable path="Levers/Handle"]
-[editable path="Levers/Handle2"]
-[editable path="Levers/Handle3"]
-[editable path="Levers/Handle4"]
-[editable path="Levers/Handle7"]
-[editable path="Levers/Handle5"]
-[editable path="Levers/Handle6"]
-[editable path="Levers/Handle9"]
-[editable path="Levers/Handle10"]
-[editable path="Levers/Handle11"]
-[editable path="Levers/Handle12"]
-[editable path="Levers/Handle13"]
-[editable path="Levers/Handle14"]

@@ -79,9 +79,8 @@ points = PackedVector3Array(0.746007, 0.921095, 0.704454, -1.03175, -0.0309505, 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d6cld"]
 size = Vector3(1.5, 1, 0.7)
 
-[node name="VentWall" type="Node3D" node_paths=PackedStringArray("ExitPoint")]
+[node name="VentWall" type="Node3D"]
 script = ExtResource("1_uyrl2")
-ExitPoint = NodePath("ExitPoint")
 
 [node name="Geomtry" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_ku7p3")

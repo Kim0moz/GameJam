@@ -20,7 +20,7 @@ func _ready() -> void:
 			(replace as Node3D).global_position = gridMap.map_to_local(itm.transform) + gridMap.global_position
 			gridMap.set_cell_item(itm.transform,-1)
 		for itm in interactive:
-			get_node(itm.Self).Exit = get_node(getExitPoint(itm.Exit))
+			get_node(itm.Self).Data.Exit = getExitPoint(itm.Exit)
 		
 func getInteractive():
 	var itms = gridMap.get_used_cells_by_item(itemToReplace)

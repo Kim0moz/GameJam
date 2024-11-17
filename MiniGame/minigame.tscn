@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bvlgg8n0vjyw0"]
+[gd_scene load_steps=23 format=4 uid="uid://bvlgg8n0vjyw0"]
 
 [ext_resource type="TileSet" uid="uid://dw5km62ab2x3i" path="res://MiniGame/MiniGameTileSet.tres" id="1_pwln6"]
 [ext_resource type="TileSet" uid="uid://bmn3fynq8ni83" path="res://Sprites/TileMaps/NewTileMap.tres" id="2_s271b"]
@@ -12,14 +12,15 @@
 [ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="8_ppbfk"]
 [ext_resource type="PackedScene" uid="uid://dphttbpadchiv" path="res://MiniGame/Capsule2D.tscn" id="11_1omrb"]
 [ext_resource type="PackedScene" uid="uid://55qyg5046us5" path="res://MiniGame/CapsuleSpawnPoint.tscn" id="12_a2er8"]
+[ext_resource type="PackedScene" uid="uid://bm7ney5s23a8n" path="res://MiniGame/Pointer2D.tscn" id="13_2b0wo"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_707xx"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_k8ue4"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yc47j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h1eve"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_707xx")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_k8ue4")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -93,7 +94,7 @@ text = "[center][font_size=50]Press \"X\" to Exit[/font_size]"
 fit_content = true
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_yc47j")
+material = SubResource("ShaderMaterial_h1eve")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 
@@ -163,6 +164,9 @@ position = Vector2(-398, 0)
 
 [node name="CapsuleSpawnPoint_03" parent="CapsuleSpawnPoints" instance=ExtResource("12_a2er8")]
 position = Vector2(0, -432)
+
+[node name="Pointer2d" parent="." instance=ExtResource("13_2b0wo")]
+targetOffset = Vector2(0, 16)
 
 [editable path="Drone"]
 [editable path="CanvasLayer/ScreenRipple"]

@@ -26,6 +26,7 @@ folder_colors={
 [global_group]
 
 CapsuleSpawnPoints=""
+Pointer2D="Points to current minigame objective"
 
 [input]
 

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm7ney5s23a8n"]
+
+[ext_resource type="Texture2D" uid="uid://catpxj46sh23m" path="res://Sprites/Pointer.png" id="1_hrtwl"]
+[ext_resource type="Script" path="res://MiniGame/Pointer2D.gd" id="2_cwq71"]
+
+[node name="Pointer2d" type="Sprite2D" groups=["Pointer2D"]]
+texture = ExtResource("1_hrtwl")
+offset = Vector2(0, -4)
+script = ExtResource("2_cwq71")

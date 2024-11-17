@@ -18,3 +18,6 @@ shape = SubResource("RectangleShape2D_r2cox")
 texture = ExtResource("1_0wfxu")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="screenEntered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="screenExited"]

@@ -67,9 +67,14 @@ func movement():
 func onBodyEntered(body):
 	print(body.name)
 
-func setDeliveringState(package):
+func setStateDelivering(package):
 	if droneState == DroneState.DELIVERING:
 		return
 	droneState = DroneState.DELIVERING
 	self.package = package
 	pointer.packagePickedUp()
+
+func setStateNoDelivery():
+	droneState = DroneState.NO_PACKAGE
+	pointer.target = package
+	package = null

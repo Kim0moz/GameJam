@@ -6,6 +6,7 @@ var target : Node2D
 @export var drone : Drone
 @export var camera : Camera2D
 @export var cameraBorderPath : PathFollow2D
+@export var dropOffGen : DropOffGenerator
 
 enum PointerState {ON_SCREEN, OFF_SCREEN, INACTIVE}
 var pointerState : PointerState = PointerState.INACTIVE
@@ -32,10 +33,14 @@ func setState():
 		if capsuleTarget:
 			pointerState = PointerState.ON_SCREEN if capsuleTarget.onScreen else PointerState.OFF_SCREEN
 			modulate.a = 1
+		var deliveryTarget = (target as DeliveryTarget)
+		if deliveryTarget:
+			pointerState = PointerState.ON_SCREEN if deliveryTarget.onScreen else PointerState.OFF_SCREEN
+			modulate.a = 1
 			
 
 func pointOffScreen(delta):
-	var diffVec = target.position - drone.position
+	var diffVec = target.global_position - drone.global_position
 	diffVec.y *= -1
 	var viewportAngle = get_viewport_rect().size.angle()
 	var angle = rad_to_deg(diffVec.angle() + viewportAngle)
@@ -47,9 +52,9 @@ func pointOffScreen(delta):
 	position = cameraBorderPath.position
 
 func pointOnScreen():
-	position = target.position + targetOffset
+	position = target.global_position + targetOffset
 	rotation_degrees = 0
 	flip_v = false
 
 func packagePickedUp():
-	target = null
+	target = dropOffGen.generateDropOffPoint()

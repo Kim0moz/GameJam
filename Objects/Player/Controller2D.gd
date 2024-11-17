@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Controller2D
 
 
-const SPEED = 100.0
+@export var speed = 100.0
 var rotationGoal : float
 @export var ActiveControls : bool = false
 
@@ -17,9 +17,9 @@ func _physics_process(delta):
 	# print(rotation_degrees)
 	if direction:
 		direction.normalized()
-		velocity = direction * SPEED
+		velocity = direction * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.y = move_toward(velocity.y, 0, speed)
 
 	move_and_slide()

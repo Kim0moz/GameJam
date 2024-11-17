@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://55qyg5046us5"]
+
+[ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="1_a4sj4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4o0eq"]
+size = Vector2(24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neydc"]
+atlas = ExtResource("1_a4sj4")
+region = Rect2(102, 6, 36, 36)
+
+[node name="CapsuleSpawnPoint" type="Area2D" groups=["CapsuleSpawnPoints"]]
+position = Vector2(3, 417)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4o0eq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_neydc")

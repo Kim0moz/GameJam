@@ -1,15 +1,48 @@
 extends Controller2D
 class_name Drone
 
+@export_group("Particles")
 @export var ringParticles : CPUParticles2D
 ## Offset from the drone body from which particles emit
 @export var ringParticlesOffset : float = -4
 ## How much to offset the particle angles by -- CURRENTLY DOESN'T DO ANYTHING
 @export var particleAngleOffset : float = 270
+@export_group("Package Delivery")
+## How much the package is offset from the drone when being delivered
+@export var packageFollowOffset : Vector2 = Vector2(0, 6)
+## Lower value makes package move more slowly while following drone
+@export var packageFollowSmoothing : float = .5
+## Max distance package can drift from drone
+@export var maxPackageDist : float = 20
+@export var pointer : Pointer2D
+var package
+
+enum DroneState {NO_PACKAGE, DELIVERING}
+var droneState : DroneState = DroneState.NO_PACKAGE
 
 func _physics_process(delta):
 	super(delta)
+	movement()
+	match droneState:
+		DroneState.NO_PACKAGE:
+			pass
+		DroneState.DELIVERING:
+			updatePackagePosition()
 
+var prevVel
+func updatePackagePosition():
+	if velocity.length() != 0:
+		prevVel = velocity
+	var packagePos : Vector2
+	var packageOffset = packageFollowOffset.rotated(prevVel.angle())
+	packagePos.x = move_toward(package.position.x, position.x + packageOffset.x, packageFollowSmoothing)
+	packagePos.y = move_toward(package.position.y, position.y + packageOffset.y, packageFollowSmoothing)
+	if (position-packagePos).length() > maxPackageDist:
+		packagePos = position + (packagePos-position).normalized() * maxPackageDist
+	package.position = packagePos
+	
+
+func movement():
 	if velocity.length() != 0:
 		ringParticles.emitting = true
 		var normVel = velocity.normalized()
@@ -33,3 +66,10 @@ func _physics_process(delta):
 
 func onBodyEntered(body):
 	print(body.name)
+
+func setDeliveringState(package):
+	if droneState == DroneState.DELIVERING:
+		return
+	droneState = DroneState.DELIVERING
+	self.package = package
+	pointer.packagePickedUp()

@@ -5,5 +5,4 @@
 
 [node name="Pointer2d" type="Sprite2D" groups=["Pointer2D"]]
 texture = ExtResource("1_hrtwl")
-offset = Vector2(0, -4)
 script = ExtResource("2_cwq71")

@@ -15,13 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://55qyg5046us5" path="res://MiniGame/CapsuleSpawnPoint.tscn" id="12_a2er8"]
 [ext_resource type="PackedScene" uid="uid://bm7ney5s23a8n" path="res://MiniGame/Pointer2D.tscn" id="13_2b0wo"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_o4mwm"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_5dmci"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hrubx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8c5ac"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_o4mwm")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_5dmci")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -61,9 +61,12 @@ point_count = 5
 
 [node name="Minigame" type="Node2D"]
 
-[node name="Drone" parent="." instance=ExtResource("4_lpyc7")]
+[node name="Drone" parent="." node_paths=PackedStringArray("pointer") instance=ExtResource("4_lpyc7")]
 z_index = 2
 position = Vector2(-53, 417)
+packageFollowOffset = Vector2(-13, 0)
+packageFollowSmoothing = 1.6
+pointer = NodePath("../Pointer2d")
 
 [node name="CollisionShape2D" parent="Drone" index="1"]
 scale = Vector2(0.75, 0.75)
@@ -100,7 +103,7 @@ text = "[center][font_size=50]Press \"X\" to Exit[/font_size]"
 fit_content = true
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_hrubx")
+material = SubResource("ShaderMaterial_8c5ac")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 

@@ -13,7 +13,8 @@ func _process(delta):
 	pass
 
 func onBodyEntered(body):
-	print(body.name)
+	if body.name == "Drone":
+		(body as Drone).setDeliveringState(self)
 
 func spawnRandomly():
 	position = get_tree().get_nodes_in_group("CapsuleSpawnPoints").pick_random().position
@@ -22,8 +23,6 @@ func spawnRandomly():
 
 func screenEntered():
 	onScreen = true
-	print("Screen Entered")
 
 func screenExited():
 	onScreen = false
-	print("Screen Exited")

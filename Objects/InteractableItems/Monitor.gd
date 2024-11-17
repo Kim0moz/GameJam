@@ -2,17 +2,17 @@ extends InteractableItem
 class_name Monitor
 
 @export var player : Player
-var activated : bool = false
+var active : bool = false
 
 func _ready():
 	player.connect("computer_exit", Callable(self, "deactivate"))
 
 func activate(mousePos = Vector2.ZERO):
-	if activated:
+	if active:
 		return
 	super(mousePos)
-	activated = true
+	active = true
 	player.startComputerState(global_position)
 
 func deactivate():
-	activated = false
+	active = false

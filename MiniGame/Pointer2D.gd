@@ -1,8 +1,12 @@
-extends Node2D
+extends Sprite2D
 class_name Pointer2D
 
 var target : Node2D
 @export var targetOffset : Vector2 = Vector2(0, 4)
+@export var drone : Drone
+@export var camera : Camera2D
+@export var cameraBorderPath : PathFollow2D
+var timeElapsed = 0
 
 enum PointerState {ON_SCREEN, OFF_SCREEN, INACTIVE}
 var pointerState : PointerState = PointerState.INACTIVE
@@ -21,7 +25,7 @@ func _process(delta):
 		PointerState.ON_SCREEN:
 			pointOnScreen()
 		PointerState.OFF_SCREEN:
-			pointOffScreen()
+			pointOffScreen(delta)
 		PointerState.INACTIVE:
 			pass
 
@@ -36,8 +40,25 @@ func setState():
 			modulate.a = 1
 			
 
-func pointOffScreen():
-	position = target.position
+func pointOffScreen(delta):
+	var diffVec = target.position - drone.position
+	diffVec.y *= -1
+	var viewportAngle = atan2(get_viewport_rect().size.y, get_viewport_rect().size.x)
+	var angle = rad_to_deg((diffVec).angle() + viewportAngle)
+	if angle < 0:
+		angle += 360
+	rotation_degrees = floor((angle)/90) * 90 - 90
+	flip_v = rotation_degrees == 0 or rotation_degrees == 180
+	timeElapsed += delta
+	if timeElapsed >= 1:
+		print(angle)
+		print("cameraOffset: ", rad_to_deg(atan2(get_viewport_rect().size.y, get_viewport_rect().size.x)))
+		print(rotation_degrees)
+		timeElapsed = 0
+	cameraBorderPath.progress_ratio = angle / (360)
+	position = cameraBorderPath.position
 
 func pointOnScreen():
 	position = target.position + targetOffset
+	rotation_degrees = 0
+	flip_v = false

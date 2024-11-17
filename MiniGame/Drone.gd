@@ -1,4 +1,5 @@
 extends Controller2D
+class_name Drone
 
 @export var ringParticles : CPUParticles2D
 ## Offset from the drone body from which particles emit

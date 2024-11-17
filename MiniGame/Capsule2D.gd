@@ -17,6 +17,7 @@ func onBodyEntered(body):
 
 func spawnRandomly():
 	position = get_tree().get_nodes_in_group("CapsuleSpawnPoints").pick_random().position
+	(get_tree().get_nodes_in_group("Pointer2D")[0] as Pointer2D).target = self
 
 
 func screenEntered():

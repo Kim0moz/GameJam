@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwidc12i07fgu"]
+
+[ext_resource type="Texture2D" uid="uid://je2ak3pcwnpw" path="res://Sprites/TextAnim_Nice.png" id="1_fk4a7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm1y1"]
+atlas = ExtResource("1_fk4a7")
+region = Rect2(0, 0, 39, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p73e"]
+atlas = ExtResource("1_fk4a7")
+region = Rect2(39, 0, 39, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jm8al"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm1y1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0p73e")
+}],
+"loop": true,
+"name": &"Nice",
+"speed": 5.0
+}]
+
+[node name="SuccessText" type="AnimatedSprite2D"]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_jm8al")
+animation = &"Nice"
+frame_progress = 0.103113

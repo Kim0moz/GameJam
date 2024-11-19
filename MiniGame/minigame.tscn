@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://bvlgg8n0vjyw0"]
+[gd_scene load_steps=29 format=4 uid="uid://bvlgg8n0vjyw0"]
 
 [ext_resource type="TileSet" uid="uid://dw5km62ab2x3i" path="res://MiniGame/MiniGameTileSet.tres" id="1_pwln6"]
 [ext_resource type="TileSet" uid="uid://bmn3fynq8ni83" path="res://Sprites/TileMaps/NewTileMap.tres" id="2_s271b"]
@@ -11,19 +11,21 @@
 [ext_resource type="Shader" uid="uid://cibbwmx5esnsj" path="res://MiniGame/Shaders/FishEye.tres" id="8_7e2r7"]
 [ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="8_ppbfk"]
 [ext_resource type="Script" path="res://MiniGame/CameraFollowPath.gd" id="9_bhg7l"]
+[ext_resource type="PackedScene" uid="uid://cbxe8qvpobek2" path="res://UI/info_bar.tscn" id="9_r4ckn"]
 [ext_resource type="PackedScene" uid="uid://dphttbpadchiv" path="res://MiniGame/Capsule2D.tscn" id="11_1omrb"]
 [ext_resource type="PackedScene" uid="uid://55qyg5046us5" path="res://MiniGame/CapsuleSpawnPoint.tscn" id="12_a2er8"]
 [ext_resource type="Script" path="res://MiniGame/DropOffGenerator.gd" id="12_av8hu"]
 [ext_resource type="PackedScene" uid="uid://bm7ney5s23a8n" path="res://MiniGame/Pointer2D.tscn" id="13_2b0wo"]
 [ext_resource type="PackedScene" uid="uid://cr6gn3mgm7wav" path="res://MiniGame/DeliveryTarget.tscn" id="13_kv6sc"]
+[ext_resource type="PackedScene" uid="uid://2626a60bu8f" path="res://MiniGame/MinigameManager.tscn" id="18_70kqy"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ix40j"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_atwqh"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ao0m"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_spsb4"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_ix40j")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_atwqh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -104,8 +106,14 @@ bbcode_enabled = true
 text = "[center][font_size=50]Press \"X\" to Exit[/font_size]"
 fit_content = true
 
+[node name="InfoBar" parent="CanvasLayer" instance=ExtResource("9_r4ckn")]
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 220.0
+offset_bottom = 100.0
+
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_8ao0m")
+material = SubResource("ShaderMaterial_spsb4")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 
@@ -192,6 +200,8 @@ drone = NodePath("../Drone")
 camera = NodePath("../Drone/Camera2D")
 cameraBorderPath = NodePath("../Path2D/PathFollow2D")
 dropOffGen = NodePath("../Town1/Buildings")
+
+[node name="MinigameManager" parent="." instance=ExtResource("18_70kqy")]
 
 [editable path="Drone"]
 [editable path="CanvasLayer/ScreenRipple"]

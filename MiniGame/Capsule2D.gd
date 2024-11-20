@@ -17,7 +17,7 @@ func _process(delta):
 	pass
 
 func onBodyEntered(body):
-	if body.name == "Drone":
+	if body.name == "Drone" and capsuleState == CapsuleState.SPAWNED:
 		(body as Drone).setStateDelivering(self)
 		drone = body
 		

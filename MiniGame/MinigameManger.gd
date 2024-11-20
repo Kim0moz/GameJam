@@ -12,9 +12,9 @@ extends Node
 ## Capsule spawn time after a delivery in seconds
 @export var capsuleSpawnTime : float = 2
 ## Capsule delivery target time in minutes
-@export var capsuleDeliveryTargetTime : float = 2
+@export var capsuleDeliveryTargetTime : float = 1
 var capsuleSpawnDT : float = 0
-var capsuleCarryDT : float = 0
+var capsuleDeliveryDT : float = 0
 
 var computerState : ComputerState = ComputerState.MINIGAME
 var deliveryState : DeliveryState = DeliveryState.SPAWNING
@@ -43,18 +43,28 @@ func updateMinigame(delta):
 				spawnCapsule()
 		DeliveryState.PICKING_UP:
 			pass
+		DeliveryState.DELIVERING:
+			updateDeliveryStatus(delta)
+
+func updateDeliveryStatus(delta):
+	capsuleDeliveryDT += delta
+	var deliveryTargetTimeSeconds = capsuleDeliveryTargetTime * 60
+	var deliveryTargetTimeQuarter = deliveryTargetTimeSeconds / 4
+	if capsuleDeliveryDT / deliveryTargetTimeQuarter <= 4:
+		deliveryInfo.TileSelected = (DeliveryInfo.DeliveryStatus.GOOD + int(capsuleDeliveryDT/deliveryTargetTimeQuarter)) as DeliveryInfo.DeliveryStatus
 
 func spawnCapsule():
 	capsule.spawnRandomly()
 	pointer.target = capsule
 	drone.setStateNoPackage()
 	deliveryState = DeliveryState.PICKING_UP
-	deliveryInfo.TileSelected = DeliveryInfo.DeliveryState.CAPSULE_PICKUP
+	deliveryInfo.TileSelected = DeliveryInfo.DeliveryStatus.CAPSULE_PICKUP
 
 func capsulePickedUp():
 	deliveryState = DeliveryState.DELIVERING
 	pointer.target = dropOffGenerator.generateDropOffPoint()
-	deliveryInfo.TileSelected = DeliveryInfo.DeliveryState.GOOD
+	deliveryInfo.TileSelected = DeliveryInfo.DeliveryStatus.GOOD
+	capsuleDeliveryDT = 0
 
 func capsuleDelivered():
 	deliveryState = DeliveryState.SPAWNING

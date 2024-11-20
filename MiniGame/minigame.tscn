@@ -19,13 +19,13 @@
 [ext_resource type="PackedScene" uid="uid://bm7ney5s23a8n" path="res://MiniGame/Pointer2D.tscn" id="13_2b0wo"]
 [ext_resource type="PackedScene" uid="uid://cr6gn3mgm7wav" path="res://MiniGame/DeliveryTarget.tscn" id="13_kv6sc"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_npqkx"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_s46ff"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8dq0h"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l37ke"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_npqkx")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_s46ff")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -70,6 +70,7 @@ drone = NodePath("Drone")
 capsule = NodePath("Capsule2D")
 pointer = NodePath("Pointer2d")
 dropOffGenerator = NodePath("Town1/Buildings")
+capsuleDeliveryTargetTime = 0.5
 
 [node name="Drone" parent="." node_paths=PackedStringArray("pointer") instance=ExtResource("4_lpyc7")]
 z_index = 2
@@ -119,7 +120,7 @@ offset_right = 220.0
 offset_bottom = 100.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_8dq0h")
+material = SubResource("ShaderMaterial_l37ke")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 

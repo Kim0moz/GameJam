@@ -4,14 +4,14 @@ class_name DeliveryInfo
 
 @export var Tiles : Array[Texture2D]
 @onready var Icon : TextureRect = $Icon/TextureRect
-@export var TileSelected : DeliveryState :
+@export var TileSelected : DeliveryStatus :
 	set(val):
 		Icon.texture = Tiles[val]
 		TileSelected = val
 	get:
 		return TileSelected
 
-enum DeliveryState {CAPSULE_PICKUP, GOOD, OKAY, BAD, URGENT}
+enum DeliveryStatus {CAPSULE_PICKUP, GOOD, OKAY, BAD, URGENT}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

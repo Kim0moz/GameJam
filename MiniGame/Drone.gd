@@ -74,7 +74,6 @@ func setStateDelivering(package):
 	self.package = package
 	pointer.packagePickedUp()
 
-func setStateNoDelivery():
+func setStateNoPackage():
 	droneState = DroneState.NO_PACKAGE
-	pointer.target = package
 	package = null

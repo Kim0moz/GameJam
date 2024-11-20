@@ -6,7 +6,8 @@ var drone : Drone
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	spawnRandomly()
+	# spawnRandomly()
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,12 +22,11 @@ func onBodyEntered(body):
 func onAreaEntered(area):
 	if area.name.contains("DeliveryTarget"):
 		area.queue_free()
-		drone.setStateNoDelivery()
+		drone.setStateNoPackage()
 		spawnRandomly()
 
 func spawnRandomly():
 	position = get_tree().get_nodes_in_group("CapsuleSpawnPoints").pick_random().position
-	(get_tree().get_nodes_in_group("Pointer2D")[0] as Pointer2D).target = self
 
 
 func screenEntered():

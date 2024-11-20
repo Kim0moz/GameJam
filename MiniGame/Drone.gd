@@ -17,6 +17,9 @@ class_name Drone
 @export var pointer : Pointer2D
 var package
 
+signal package_acquired
+signal package_delivered
+
 enum DroneState {NO_PACKAGE, DELIVERING}
 var droneState : DroneState = DroneState.NO_PACKAGE
 
@@ -64,16 +67,17 @@ func movement():
 	else:
 		ringParticles.emitting = false
 
-func onBodyEntered(body):
-	print(body.name)
-
 func setStateDelivering(package):
 	if droneState == DroneState.DELIVERING:
 		return
 	droneState = DroneState.DELIVERING
+	package_acquired.emit()
 	self.package = package
-	pointer.packagePickedUp()
 
 func setStateNoPackage():
 	droneState = DroneState.NO_PACKAGE
 	package = null
+
+func packageDelivered():
+	setStateNoPackage()
+	package_delivered.emit()

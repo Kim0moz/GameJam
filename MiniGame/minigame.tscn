@@ -79,9 +79,9 @@ scale = Vector2(0.75, 0.75)
 zoom = Vector2(3, 3)
 position_smoothing_speed = 10.0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("infoBar", "drone", "capsule", "pointer", "dropOffGenerator")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("deliveryInfo", "drone", "capsule", "pointer", "dropOffGenerator")]
 script = ExtResource("2_0irbu")
-infoBar = NodePath("InfoBar")
+deliveryInfo = NodePath("InfoBar")
 drone = NodePath("../Drone")
 capsule = NodePath("../Capsule2D")
 pointer = NodePath("../Pointer2d")

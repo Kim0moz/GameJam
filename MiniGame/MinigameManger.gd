@@ -13,6 +13,7 @@ extends Node
 @export var capsuleSpawnTime : float = 2
 ## Capsule delivery target time in minutes
 @export var capsuleDeliveryTargetTime : float = 2
+var capsuleSpawnDT : float = 0
 var capsuleCarryDT : float = 0
 
 var computerState : ComputerState = ComputerState.MINIGAME
@@ -23,6 +24,8 @@ enum DeliveryState {SPAWNING, PICKING_UP, DELIVERING}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	capsuleSpawnPoints = get_tree().get_nodes_in_group("CapsuleSpawnPoints")
+	drone.connect("package_acquired", Callable(self, "capsulePickedUp"))
+	drone.connect("package_delivered", Callable(self, "capsuleDelivered"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -35,8 +38,8 @@ func _process(delta):
 func updateMinigame(delta):
 	match deliveryState:
 		DeliveryState.SPAWNING:
-			capsuleCarryDT += delta
-			if capsuleCarryDT >= capsuleSpawnTime:
+			capsuleSpawnDT += delta
+			if capsuleSpawnDT >= capsuleSpawnTime:
 				spawnCapsule()
 		DeliveryState.PICKING_UP:
 			pass
@@ -47,3 +50,13 @@ func spawnCapsule():
 	drone.setStateNoPackage()
 	deliveryState = DeliveryState.PICKING_UP
 	deliveryInfo.TileSelected = DeliveryInfo.DeliveryState.CAPSULE_PICKUP
+
+func capsulePickedUp():
+	deliveryState = DeliveryState.DELIVERING
+	pointer.target = dropOffGenerator.generateDropOffPoint()
+	deliveryInfo.TileSelected = DeliveryInfo.DeliveryState.GOOD
+
+func capsuleDelivered():
+	deliveryState = DeliveryState.SPAWNING
+	pointer.target.queue_free()
+	capsuleSpawnDT = 0

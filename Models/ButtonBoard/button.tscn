@@ -99,7 +99,6 @@ size = Vector3(0.113037, 0.233429, 0.220764)
 
 [node name="Button" type="Node3D"]
 script = ExtResource("1_o6oni")
-itemIndex = 1
 
 [node name="Button" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_kho3q")

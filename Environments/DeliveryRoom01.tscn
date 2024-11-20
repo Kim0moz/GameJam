@@ -1,33 +1,91 @@
-[gd_scene load_steps=5 format=3 uid="uid://d10uum1v7ynr8"]
+[gd_scene load_steps=12 format=3 uid="uid://d10uum1v7ynr8"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_rfq3g"]
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="2_q4f4x"]
 [ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithGridItem.gd" id="3_fq3oc"]
 [ext_resource type="Script" path="res://Environments/register_pipe_interaction.gd" id="4_85jp8"]
+[ext_resource type="PackedScene" uid="uid://3iksdjbb3rdb" path="res://Models/ButtonBoard/button.tscn" id="5_4jtll"]
+[ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="6_l1eus"]
+[ext_resource type="Script" path="res://Environments/pipe_item.gd" id="7_nxbw6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ob66a"]
+sky_top_color = Color(0.678189, 0.296291, 0.244299, 1)
+sky_horizon_color = Color(0.946926, 0.589168, 0.309614, 1)
+ground_bottom_color = Color(0.158571, 0.17444, 0.112885, 1)
+ground_horizon_color = Color(0, 0, 0, 1)
+sun_angle_max = 97.1
+
+[sub_resource type="Sky" id="Sky_exh6u"]
+sky_material = SubResource("ProceduralSkyMaterial_ob66a")
+
+[sub_resource type="Environment" id="Environment_10di7"]
+background_mode = 2
+sky = SubResource("Sky_exh6u")
+ambient_light_source = 3
+reflected_light_source = 2
+tonemap_mode = 2
+fog_enabled = true
+fog_light_color = Color(0.544536, 0.274199, 0.216561, 1)
+
+[sub_resource type="GDScript" id="GDScript_ooggp"]
+script/source = "@tool
+extends GridMap
+
+@export var outlets : Array = [[Vector3i(0,0,0),Vector3i(0,0,0)]]
+
+@export_range(0,23) var orientation : int = 0:
+	set(val):
+		orientation = val
+		pipes()
+@export var Test : bool:
+	set(val):
+		Test = val
+		printVals()
+		
+func printVals():
+	var cells = get_used_cells_by_item(1)
+	for cell in cells:
+		print(cell)
+		print(get_cell_item_orientation(cell))
+
+
+func pipes():
+	clear()
+	set_cell_item(Vector3i(-1,-1,4),0,orientation)
+	
+"
 
 [node name="DeliveryRoom01" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_10di7")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.783687, 0.118268, 0.609792, 0.40712, 0.839244, 0.360449, -0.469135, 0.530738, -0.705854, 0.712618, 1.16872, 5.62129)
+light_color = Color(0.835535, 0.347734, 0.185362, 1)
+shadow_enabled = true
 
 [node name="FloorsAndCeilings" type="GridMap" parent="."]
 mesh_library = ExtResource("1_rfq3g")
 data = {
-"cells": PackedInt32Array(-2, 65533, 655362, -2, 65534, 655362, -2, 65535, 655362, -65536, 65535, 655362, -65536, 65534, 655362, -1, 65534, 655362, -1, 65533, 655362, -1, 65535, 655362, -65536, 65533, 655362, -65535, 65533, 655362, -65534, 65533, 655362, -65534, 65534, 655362, -65535, 65534, 655362, -65535, 65535, 655362, -65534, 65535, 655362, -3, 65533, 655362, -3, 65534, 655362, -3, 65535, 655362)
+"cells": PackedInt32Array(-2, 65533, 655362, -2, 65534, 655362, -2, 65535, 655362, -65536, 65535, 655362, -65536, 65534, 655362, -1, 65534, 655362, -1, 65533, 655362, -1, 65535, 655362, -65536, 65533, 655362, -65535, 65533, 655362, -65534, 65533, 655362, -65534, 65534, 655362, -65535, 65534, 655362, -65535, 65535, 655362, -65534, 65535, 655362, -3, 65533, 655362, -3, 65534, 655362, -3, 65535, 655362, 196605, 65533, 1441794, 196606, 65533, 1441794, 196607, 65533, 1441794, 131072, 65533, 1441794, 131073, 65533, 1441794, 131074, 65533, 1441794, 131074, 65535, 1441794, 131073, 65535, 1441794, 131072, 65535, 1441794, 196607, 65535, 1441794, 196606, 65535, 1441794, 196605, 65534, 1441794, 196606, 65534, 1441794, 196607, 65534, 1441794, 131072, 65534, 1441794, 131073, 65534, 1441794, 131074, 65534, 1441794, 196605, 65535, 1441794)
 }
-metadata/_editor_floor_ = Vector3(0, -1, 0)
+metadata/_editor_floor_ = Vector3(0, 2, 0)
 
 [node name="WallsAndVents" type="GridMap" parent="."]
 mesh_library = ExtResource("1_rfq3g")
 data = {
-"cells": PackedInt32Array(-65535, 65533, 655369, -65534, 65533, 655361, -3, 65533, 1441793, -3, 65535, 1, -65534, 65535, 1048577, -65534, 65534, 1048581, -3, 65534, 1441797, -65535, 65535, 0, -65536, 65535, 0, -1, 65535, 0, -2, 65535, 0, -2, 65533, 655364, -1, 65533, 655364, -65536, 65533, 655364)
+"cells": PackedInt32Array(-65535, 65533, 655369, -65534, 65533, 655361, -3, 65533, 1441793, -3, 65535, 1, -65534, 65535, 1048577, -65534, 65534, 1048581, -3, 65534, 1441797, -65535, 65535, 0, -65536, 65535, 0, -1, 65535, 0, -2, 65535, 0, -2, 65533, 655369, -1, 65533, 655364, -65536, 65533, 655364, 131069, 65533, 1441799, 131070, 65533, 655366, 131071, 65533, 655366, 65536, 65533, 655366, 65537, 65533, 655366, 65538, 65533, 655367, 131069, 65535, 7, 131070, 65535, 6, 65536, 65535, 6, 65537, 65535, 6, 65538, 65535, 1048583, 131071, 65535, 6, 65538, 65534, 1048582, 131069, 65534, 1441798)
 }
-metadata/_editor_floor_ = Vector3(0, -1, 0)
+metadata/_editor_floor_ = Vector3(0, 1, 1)
 
 [node name="Pipes" type="GridMap" parent="."]
 mesh_library = ExtResource("2_q4f4x")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(-65531, 65535, 589824, -65532, 65535, 589824, -65533, 65535, 589824, -65534, 65535, 589824, -65535, 65535, 589824, -65536, 65535, 1179654, -1, 65535, 589824, -2, 65535, 1310726, -3, 65535, 589824, 131077, 65535, 589824, 131076, 65535, 589824, 131075, 65535, 589824, 131074, 65535, 589824, 196604, 65535, 65537, 131073, 65535, 65536, 131072, 65535, 1048582, 196607, 65535, 65536, 196606, 65535, 1441798, 196605, 65535, 65536, -6, 65535, 1310721, -4, 65535, 1376256, -5, 65535, 1376256, 65530, 65535, 131072, 131066, 65535, 131072, 196602, 65535, 1245185, 65536, 65535, 1441792, 131070, 65535, 1441792, 0, 65535, 1441792, 65534, 65535, 1441792)
+"cells": PackedInt32Array(-65531, 65535, 589824, -65533, 65535, 589824, -65534, 65535, 589824, -65535, 65535, 589824, -65536, 65535, 720902, -1, 65535, 589824, -2, 65535, 1114118, -3, 65535, 589824, 131077, 65535, 589824, 131076, 65535, 589824, 131075, 65535, 589824, 131074, 65535, 589824, 196604, 65535, 65537, 131073, 65535, 65536, 131072, 65535, 1048582, 196607, 65535, 65536, 196606, 65535, 458758, 196605, 65535, 65536, -6, 65535, 1310721, -4, 65535, 1376256, -5, 65535, 1376256, 65530, 65535, 131072, 131066, 65535, 131072, 196602, 65535, 1245185, 65536, 65535, 1441792, 131070, 65535, 1441792, 0, 65535, 1441792, 65534, 65535, 1441792, -65536, 65534, 196609, 196606, 65534, 983041, -1, 65534, 1310721, 196607, 65534, 1245185, 65535, 65534, 1441792, 131071, 65534, 1441792, -65532, 65535, 589824)
 }
-metadata/_editor_floor_ = Vector3(0, 1, -1)
+metadata/_editor_floor_ = Vector3(0, -1, -1)
 
 [node name="AdjustPlaceholder" type="Node3D" parent="Pipes"]
 script = ExtResource("3_fq3oc")
@@ -36,45 +94,101 @@ item = 1
 
 [node name="RegisterPipeInteraction" type="Node3D" parent="Pipes"]
 script = ExtResource("4_85jp8")
-EditMode = true
-DefaultValues = Array[Dictionary]([{
-Vector3i(0, -1, -1): 17
-}, {
-Vector3i(-2, -1, -1): 21
-}, {
-Vector3i(0, 2, -1): 16
-}, {
-Vector3i(-2, 2, -1): 22
-}, {
-Vector3i(0, 1, 1): 19
-}])
-CurrentInterface = 3
+CurrentInterface = 4
 Interfaces = {
 0: Array[Dictionary]([{
-Vector3i(0, -1, -1): 17
+"Orientation": 20,
+"Position": Vector3i(0, -1, -1)
 }, {
-Vector3i(-2, -1, -1): 21
+"Orientation": 18,
+"Position": Vector3i(-2, -1, -1)
 }, {
-Vector3i(0, 2, -1): 16
+"Orientation": 16,
+"Position": Vector3i(0, 2, -1)
 }, {
-Vector3i(-2, 2, -1): 22
+"Orientation": 22,
+"Position": Vector3i(-2, 2, -1)
 }]),
 1: Array[Dictionary]([{
-Vector3i(0, -1, -1): 17
+"Orientation": 20,
+"Position": Vector3i(0, -1, -1)
 }, {
-Vector3i(-2, -1, -1): 21
+"Orientation": 18,
+"Position": Vector3i(-2, -1, -1)
 }, {
-Vector3i(0, 2, -1): 22
+"Orientation": 19,
+"Position": Vector3i(0, 2, -1)
 }, {
-Vector3i(-2, 2, -1): 16
+"Orientation": 16,
+"Position": Vector3i(-2, 2, -1)
 }]),
 2: Array[Dictionary]([{
-Vector3i(0, -1, -1): 18
+"Orientation": 18,
+"Position": Vector3i(0, -1, -1)
 }, {
-Vector3i(-2, -1, -1): 20
+"Orientation": 17,
+"Position": Vector3i(-2, -1, -1)
 }, {
-Vector3i(0, 2, -1): 16
+"Orientation": 16,
+"Position": Vector3i(0, 2, -1)
 }, {
-Vector3i(-2, 2, -1): 22
+"Orientation": 19,
+"Position": Vector3i(-2, 2, -1)
+}]),
+3: Array[Dictionary]([{
+"Orientation": 11,
+"Position": Vector3i(0, -1, -1)
+}, {
+"Orientation": 17,
+"Position": Vector3i(-2, -1, -1)
+}, {
+"Orientation": 16,
+"Position": Vector3i(0, 2, -1)
+}, {
+"Orientation": 7,
+"Position": Vector3i(-2, 2, -1)
+}]),
+4: Array[Dictionary]([{
+"Orientation": 11,
+"Position": Vector3i(0, -1, -1)
+}, {
+"Orientation": 17,
+"Position": Vector3i(-2, -1, -1)
+}, {
+"Orientation": 16,
+"Position": Vector3i(0, 2, -1)
+}, {
+"Orientation": 7,
+"Position": Vector3i(-2, 2, -1)
 }])
 }
+
+[node name="Button" parent="." node_paths=PackedStringArray("pI") instance=ExtResource("5_4jtll")]
+transform = Transform3D(-1.10084e-07, 0, 2.51843, 0, 2.51843, 0, -2.51843, 0, -1.10084e-07, 1.45431, 1.00452, -0.130319)
+pI = NodePath("../Pipes/RegisterPipeInteraction")
+
+[node name="Player" parent="." instance=ExtResource("6_l1eus")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.16851, -0.0522693, -2.94644)
+
+[node name="PipeItem" type="Node3D" parent="." node_paths=PackedStringArray("Grid")]
+transform = Transform3D(0, -1, 0, 0, 0, 1, -1, 0, 0, -2, -1, -1)
+script = ExtResource("7_nxbw6")
+Grid = NodePath("../Pipes")
+
+[node name="Item" type="CSGCylinder3D" parent="PipeItem"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 0.5)
+radius = 0.25
+height = 0.686332
+smooth_faces = false
+
+[node name="Pipes2" type="GridMap" parent="."]
+mesh_library = ExtResource("2_q4f4x")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(-1, 4, 524288)
+}
+script = SubResource("GDScript_ooggp")
+outlets = [[Vector3i(0, -1, 0), Vector3i(0, 1, 0)]]
+orientation = 8
+Test = true
+metadata/_editor_floor_ = Vector3(0, -1, -1)

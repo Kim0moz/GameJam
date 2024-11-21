@@ -8,7 +8,7 @@ class_name PipeSupport
 func activeDirections(pipe : int, cellRotation):
 	var list = []
 	for outlet in outlets[pipe]:
-		list.append(rotateToOrientation(outlet,cellRotation))
+		list.append(rotateToOrientation(outlet,cellRotation) as Vector3i)
 	return list
 
 func rotateToOrientation(pos : Vector3, cellRotation):
@@ -34,6 +34,8 @@ func rotateToOrientation(pos : Vector3, cellRotation):
 		FinalRot = FinalRot.rotated(Vector3(1,0,0),deg_to_rad(180))
 	else:
 		FinalRot = FirstRot.rotated(Vector3(1,0,0),deg_to_rad(firstRot))
-	return Vector3i(FinalRot)
+	return FinalRot as Vector3i
+
+
 	
 	

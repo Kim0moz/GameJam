@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://3iksdjbb3rdb" path="res://Models/ButtonBoard/button.tscn" id="5_4jtll"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="6_l1eus"]
 [ext_resource type="Script" path="res://Environments/pipe_item.gd" id="7_nxbw6"]
+[ext_resource type="Script" path="res://Environments/pipe_direction_support.gd" id="8_x46vl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ob66a"]
 sky_top_color = Color(0.678189, 0.296291, 0.244299, 1)
@@ -26,60 +27,6 @@ reflected_light_source = 2
 tonemap_mode = 2
 fog_enabled = true
 fog_light_color = Color(0.544536, 0.274199, 0.216561, 1)
-
-[sub_resource type="GDScript" id="GDScript_ooggp"]
-script/source = "@tool
-extends GridMap
-
-@export var outlets : Array = [[Vector3i(0,0,0),Vector3i(0,0,0)]]
-
-@export_range(0,23) var orientation : int = 0:
-	set(val):
-		orientation = val
-		pipes()
-@export var Test : bool:
-	set(val):
-		Test = val
-		printVals()
-		
-func printVals():
-	var cells = get_used_cells_by_item(1)
-	for cell in cells:
-		print(cell)
-		print(get_cell_item_orientation(cell))
-
-
-func pipes():
-	clear()
-	var vec = Vector3i(-1,-1,4)
-	set_cell_item(vec,1,orientation)
-	for outlet in outlets[1]:
-		set_cell_item(vec+rotateToOrientation(outlet,orientation),0,orientation)
-	
-	
-func rotateToOrientation(pos : Vector3, cellRotation):
-	cellRotation = cellRotation%20
-	var oris = [
-		Vector3(0,0,1),
-		Vector3(0,1,0),
-		Vector3(0,0,1),
-		Vector3(0,1,0),
-		Vector3(0,0,1),
-		Vector3(1,0,0)
-		]
-	var flooredVal : float = floor(cellRotation/4)
-	var modVal : float = (cellRotation%4)
-	var firstRot = ((flooredVal)/4)*360
-	var secondRot = (modVal/4)*360
-
-	var xRotation = pos.rotated(oris[flooredVal],deg_to_rad(secondRot))
-	var FinalRot = xRotation.rotated(Vector3(1,0,0),deg_to_rad(firstRot))
-	
-	print(flooredVal)
-	return Vector3i(FinalRot)
-	
-	
-"
 
 [node name="DeliveryRoom01" type="Node3D"]
 
@@ -189,6 +136,11 @@ Interfaces = {
 }])
 }
 
+[node name="PipeDirectionSupport" type="Node3D" parent="Pipes"]
+script = ExtResource("8_x46vl")
+outlets = [[Vector3i(0, -1, 0), Vector3i(0, 1, 0)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1), Vector3(0, 0, -1), Vector3(0, 1, 0)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1), Vector3(0, 0, -1), Vector3(0, 1, 0), Vector3(1, 0, 0), Vector3(0, 0, 0)], [Vector3(0, 1, 0), Vector3(0, -1, 0), Vector3(0, 0, 1)], [Vector3(0, 1, 0), Vector3(0, -1, 0)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1)]]
+metadata/_edit_pinned_properties_ = [&"outlets"]
+
 [node name="Button" parent="." node_paths=PackedStringArray("pI") instance=ExtResource("5_4jtll")]
 transform = Transform3D(-1.10084e-07, 0, 2.51843, 0, 2.51843, 0, -2.51843, 0, -1.10084e-07, 1.45431, 1.00452, -0.130319)
 pI = NodePath("../Pipes/RegisterPipeInteraction")
@@ -196,25 +148,15 @@ pI = NodePath("../Pipes/RegisterPipeInteraction")
 [node name="Player" parent="." instance=ExtResource("6_l1eus")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.16851, -0.0522693, -2.94644)
 
-[node name="PipeItem" type="Node3D" parent="." node_paths=PackedStringArray("Grid")]
-transform = Transform3D(0, -1, 0, 0, 0, 1, -1, 0, 0, -2, -1, -1)
+[node name="PipeItem" type="Node3D" parent="." node_paths=PackedStringArray("Grid", "pipeDirection")]
+transform = Transform3D(0, 1, 0, 0, 0, 1, 1, 0, 0, -1, -1, -2)
 script = ExtResource("7_nxbw6")
 Grid = NodePath("../Pipes")
+CurrentPos = Vector3i(-1, -1, -2)
+pipeDirection = NodePath("../Pipes/PipeDirectionSupport")
 
 [node name="Item" type="CSGCylinder3D" parent="PipeItem"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 0.5)
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0.5, 0.5, 0.5)
 radius = 0.25
 height = 0.686332
 smooth_faces = false
-
-[node name="Pipes2" type="GridMap" parent="."]
-mesh_library = ExtResource("2_q4f4x")
-cell_size = Vector3(1, 1, 1)
-data = {
-"cells": PackedInt32Array(-1, 4, 655361, -65537, 4, 655360, -1, 3, 655360)
-}
-script = SubResource("GDScript_ooggp")
-outlets = [[Vector3i(0, -1, 0), Vector3i(0, 1, 0)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1)]]
-orientation = 10
-Test = true
-metadata/_editor_floor_ = Vector3(0, -1, -1)

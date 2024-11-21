@@ -40,7 +40,7 @@ region = Rect2(80, 144, 16, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uvctu"]
 font = ExtResource("5_s4owj")
-font_size = 40
+font_size = 38
 shadow_color = Color(0.6, 0.898039, 0.313726, 1)
 
 [node name="InfoBar" type="HBoxContainer"]
@@ -86,7 +86,7 @@ offset_top = 1.0
 offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
-text = "Delivery Info"
+text = "Delivery Status"
 label_settings = SubResource("LabelSettings_uvctu")
 horizontal_alignment = 1
 vertical_alignment = 1

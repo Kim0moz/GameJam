@@ -1,6 +1,7 @@
 [gd_scene load_steps=29 format=4 uid="uid://bvlgg8n0vjyw0"]
 
 [ext_resource type="TileSet" uid="uid://dw5km62ab2x3i" path="res://MiniGame/MiniGameTileSet.tres" id="1_pwln6"]
+[ext_resource type="Script" path="res://MiniGame/MinigameManger.gd" id="2_0irbu"]
 [ext_resource type="TileSet" uid="uid://bmn3fynq8ni83" path="res://Sprites/TileMaps/NewTileMap.tres" id="2_s271b"]
 [ext_resource type="PackedScene" uid="uid://bv8gf15agiob8" path="res://UI/basic_panel.tscn" id="4_a5dh6"]
 [ext_resource type="PackedScene" uid="uid://bs1gsxf1jhg1k" path="res://MiniGame/Shaders/screen_ripple.tscn" id="4_jrj8k"]
@@ -17,15 +18,14 @@
 [ext_resource type="Script" path="res://MiniGame/DropOffGenerator.gd" id="12_av8hu"]
 [ext_resource type="PackedScene" uid="uid://bm7ney5s23a8n" path="res://MiniGame/Pointer2D.tscn" id="13_2b0wo"]
 [ext_resource type="PackedScene" uid="uid://cr6gn3mgm7wav" path="res://MiniGame/DeliveryTarget.tscn" id="13_kv6sc"]
-[ext_resource type="PackedScene" uid="uid://2626a60bu8f" path="res://MiniGame/MinigameManager.tscn" id="18_70kqy"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_13ucl"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_s3nw1"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jarcc"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dwyse"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_13ucl")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_s3nw1")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -63,7 +63,14 @@ _data = {
 }
 point_count = 5
 
-[node name="Minigame" type="Node2D"]
+[node name="Minigame" type="Node2D" node_paths=PackedStringArray("deliveryInfo", "drone", "capsule", "pointer", "dropOffGenerator")]
+script = ExtResource("2_0irbu")
+deliveryInfo = NodePath("CanvasLayer/InfoBar")
+drone = NodePath("Drone")
+capsule = NodePath("Capsule2D")
+pointer = NodePath("Pointer2d")
+dropOffGenerator = NodePath("Town1/Buildings")
+capsuleDeliveryTargetTime = 0.5
 
 [node name="Drone" parent="." node_paths=PackedStringArray("pointer") instance=ExtResource("4_lpyc7")]
 z_index = 2
@@ -113,7 +120,7 @@ offset_right = 220.0
 offset_bottom = 100.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_jarcc")
+material = SubResource("ShaderMaterial_dwyse")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 
@@ -200,8 +207,6 @@ drone = NodePath("../Drone")
 camera = NodePath("../Drone/Camera2D")
 cameraBorderPath = NodePath("../Path2D/PathFollow2D")
 dropOffGen = NodePath("../Town1/Buildings")
-
-[node name="MinigameManager" parent="." instance=ExtResource("18_70kqy")]
 
 [editable path="Drone"]
 [editable path="CanvasLayer/ScreenRipple"]

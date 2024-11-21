@@ -55,6 +55,3 @@ func pointOnScreen():
 	position = target.global_position + targetOffset
 	rotation_degrees = 0
 	flip_v = false
-
-func packagePickedUp():
-	target = dropOffGen.generateDropOffPoint()

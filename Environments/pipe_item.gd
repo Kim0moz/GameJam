@@ -36,8 +36,10 @@ func prePos():
 func updatePipeDetails():
 	var currentCell = Grid.get_cell_item(CurrentPos)
 	ActiveDirections = pipeDirection.activeDirections(currentCell,Grid.get_cell_item_orientation(CurrentPos))
+	calculateNextDirection()
 
 func calculateNextDirection():
+	(ActiveDirections as Array).has(lastDirection)
 	pass
 
 func moveToGridLocation(location : Vector3i):

@@ -1,12 +1,10 @@
 @tool
-extends Node3D
+extends GridMap
 class_name PipeDestinations
 
 
-@onready var Grid : GridMap = self.get_parent()
 @export var Ends : Array
 
-@export var clear : bool = false
 @export var run : bool :
 	set(val):
 		getEnds()
@@ -20,15 +18,17 @@ var DirectionsToCheck = [
 	Vector3i(0,0,-1),
 ]
 
+func _ready() -> void:
+	getEnds()
+	updateSelection()
+
 
 func getEnds():
-	var usedCells = Grid.get_used_cells()
-	if clear:
-		Ends.clear()
-	for cell in usedCells:
-		var usedDirections = 0
-		for dir in DirectionsToCheck:
-			if Grid.get_cell_item(cell+dir) != -1:
-				usedDirections += 1
-		if usedDirections < 2:
-			Ends.append(cell)
+	Ends = self.get_used_cells()
+
+
+func updateSelection():
+	self.clear()
+	if Engine.is_editor_hint():
+		for item in Ends:
+			self.set_cell_item(item.Position,0)

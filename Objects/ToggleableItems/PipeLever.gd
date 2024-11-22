@@ -8,4 +8,5 @@ func _ready() -> void:
 	lever.Activated.connect(Toggle)
 
 func Toggle():
-	pI.CurrentInterface = (pI.CurrentInterface + 1)%(pI.Interfaces.size()-1)
+	print(pI.Interfaces.size())
+	pI.CurrentInterface = (pI.CurrentInterface + 1)%(pI.Interfaces.size())

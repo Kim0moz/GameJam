@@ -11,16 +11,18 @@ extends "res://Models/GridMapTest/ReplaceWithInteractive.gd"
 func _ready() -> void:
 	if Engine.is_editor_hint() == false:
 		for itm in interactive:
-			var replace = item.instantiate()
-			replace.player = player
-			replace.name = str(itm.transform)
-			add_child(replace)
-			itm.Self = replace.get_path()
-			(replace as Node3D).global_basis = gridMap.get_cell_item_basis(itm.transform)
-			(replace as Node3D).global_position = gridMap.map_to_local(itm.transform) + gridMap.global_position
-			gridMap.set_cell_item(itm.transform,-1)
+			if itm.Exit != Vector3i.ZERO:
+				var replace = item.instantiate()
+				replace.player = player
+				replace.name = str(itm.transform)
+				add_child(replace)
+				itm.Self = replace.get_path()
+				(replace as Node3D).global_basis = gridMap.get_cell_item_basis(itm.transform)
+				(replace as Node3D).global_position = gridMap.map_to_local(itm.transform) + gridMap.global_position
+				gridMap.set_cell_item(itm.transform,-1)
 		for itm in interactive:
-			get_node(itm.Self).Data.Exit = getExitPoint(itm.Exit)
+			if itm.Exit != Vector3i.ZERO:
+				get_node(itm.Self).Data.Exit = getExitPoint(itm.Exit)
 		
 func getInteractive():
 	var itms = gridMap.get_used_cells_by_item(itemToReplace)

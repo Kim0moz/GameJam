@@ -1,10 +1,9 @@
-[gd_scene load_steps=31 format=4 uid="uid://bucgyb7tsx5nj"]
+[gd_scene load_steps=30 format=4 uid="uid://bucgyb7tsx5nj"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_norxd"]
 [ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="2_s4wxm"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="3_d2ghj"]
 [ext_resource type="PackedScene" uid="uid://cf0yipunib2xa" path="res://Models/GridMapTest/vent_wall.tscn" id="3_ohutf"]
-[ext_resource type="Texture2D" uid="uid://m6gi6dpt2fuj" path="res://Sprites/CircleCrosshair.png" id="4_ts02l"]
 [ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="5_m7gvu"]
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="5_suinc"]
 [ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithInteractive.gd" id="6_6b2ra"]
@@ -227,9 +226,7 @@ item = ExtResource("3_ohutf")
 [node name="Player" parent="." instance=ExtResource("3_d2ghj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 5, 8)
 
-[node name="WorldSpaceCam" parent="Player/CameraController/CameraTarget" index="0" node_paths=PackedStringArray("Reticle")]
-Reticle = NodePath("TextureRect")
-Default = ExtResource("4_ts02l")
+[node name="WorldSpaceCam" parent="Player/CameraController/CameraTarget" index="0"]
 SelectableItem = SubResource("AtlasTexture_uvp68")
 SelectedItem = SubResource("AtlasTexture_xhhm0")
 
@@ -364,96 +361,8 @@ xMinMax = Vector2(17, 9)
 yOffsetMinMax = Vector2(-0.6, 0.6)
 xOffsetMinMax = Vector2(-1.3, 1.3)
 
-[node name="1" parent="ButtonBoard2/Buttons" index="0" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, -0.6)
+[node name="1" parent="ButtonBoard2/Buttons" index="0"]
 script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="2" parent="ButtonBoard2/Buttons" index="1" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -1.3, -0.6)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="3" parent="ButtonBoard2/Buttons" index="2" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.3, -0.2)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="4" parent="ButtonBoard2/Buttons" index="3" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.3, 0.2)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="5" parent="ButtonBoard2/Buttons" index="4" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.65, 0.2)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="6" parent="ButtonBoard2/Buttons" index="5" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, 0.2)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="7" parent="ButtonBoard2/Buttons" index="6" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.65, 0.2)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="8" parent="ButtonBoard2/Buttons" index="7" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.65, 0.6)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="9" parent="ButtonBoard2/Buttons" index="8" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.65, 0.6)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="10" parent="ButtonBoard2/Buttons" index="9" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0, -0.2)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="11" parent="ButtonBoard2/Buttons" index="10" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.65, -0.2)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="12" parent="ButtonBoard2/Buttons" index="11" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -1.3, -0.2)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
-
-[node name="13" parent="ButtonBoard2/Buttons" index="12" node_paths=PackedStringArray("grid")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 1.3, -0.6)
-script = ExtResource("10_1ipd0")
-grid = NodePath("../../../Pipes")
-itemIndex = 1
-rots = [11, 15, 3, 7]
 
 [connection signal="buttonsMade" from="ButtonBoard2" to="Pipes/ReplacePipes" method="_on_button_board_2_buttons_made"]
 

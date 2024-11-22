@@ -1,8 +1,8 @@
 @tool
-extends Node3D
+extends GridMap
 class_name PipeRegistration
 
-@onready var grid : GridMap = get_parent()
+@export var grid : GridMap 
 
 @export var CurrentInterface : int :
 	set(val):
@@ -10,29 +10,48 @@ class_name PipeRegistration
 		updatePipes()
 
 @export_category("Edit Mode")
+
 @export var Register : bool :
 	set(val):
 		RegisterValues()
 @export var Interfaces : Dictionary
+@export_category("Erase")
+@export var clearInterface : bool:
+	set(val):
+		Interfaces.erase(CurrentInterface)
+@export var clearAll : bool:
+	set(val):
+		Interfaces.clear()
 
 func _ready() -> void:
 	updatePipes()
+	if Engine.is_editor_hint() == false:
+		self.clear()
 
 func RegisterValues():
-	var tmp = grid.get_used_cells_by_item(6)
+	var registration = self.get_used_cells()
 	var tmpArray : Array[Dictionary]
-	for item in tmp:
+	Interfaces.erase(CurrentInterface)
+	for item in registration:
 		tmpArray.append({
 			"Orientation" : grid.get_cell_item_orientation(item),
-			"Position" : item
+			"Position" : item,
+			"Pipe" : grid.get_cell_item(item)
 			})
 	print(tmpArray)
 	Interfaces.get_or_add(CurrentInterface,tmpArray)
 
 func updatePipes():
-	var pipe = 1
 	if Engine.is_editor_hint():
-		pipe = 6
+		updateSelection()
+	print(CurrentInterface)
 	if Interfaces.has(CurrentInterface):
 		for item in Interfaces[CurrentInterface]:
-			grid.set_cell_item(item.Position,pipe,item.Orientation)
+			grid.set_cell_item(item.Position,item.Pipe,item.Orientation)
+			
+func updateSelection():
+	if Interfaces.has(CurrentInterface):
+		self.clear()
+		if Engine.is_editor_hint():
+			for item in Interfaces[CurrentInterface]:
+				self.set_cell_item(item.Position,0)

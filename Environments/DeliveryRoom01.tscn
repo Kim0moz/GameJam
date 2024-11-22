@@ -1,13 +1,15 @@
-[gd_scene load_steps=27 format=4 uid="uid://d10uum1v7ynr8"]
+[gd_scene load_steps=29 format=4 uid="uid://d10uum1v7ynr8"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_rfq3g"]
+[ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="2_b2l20"]
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="2_q4f4x"]
-[ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithGridItem.gd" id="3_fq3oc"]
+[ext_resource type="PackedScene" uid="uid://cf0yipunib2xa" path="res://Models/GridMapTest/vent_wall.tscn" id="3_c8si8"]
 [ext_resource type="Script" path="res://Environments/register_pipe_interaction.gd" id="4_85jp8"]
 [ext_resource type="PackedScene" uid="uid://3iksdjbb3rdb" path="res://Models/ButtonBoard/button.tscn" id="5_4jtll"]
 [ext_resource type="Script" path="res://Environments/pipe_destinations.gd" id="6_5xnhh"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="6_l1eus"]
 [ext_resource type="Script" path="res://Environments/pipe_item.gd" id="7_nxbw6"]
+[ext_resource type="MeshLibrary" uid="uid://do1cnjjq3ppjp" path="res://Models/GridMapTest/GridSelectionIcon.tres" id="7_x8w3i"]
 [ext_resource type="Texture2D" uid="uid://b5ynry7aqklh7" path="res://Models/ButtonBoard/ButtonBoard_MetalTexture.jpg" id="8_aqhv7"]
 [ext_resource type="Script" path="res://Environments/pipe_direction_support.gd" id="8_x46vl"]
 [ext_resource type="Animation" uid="uid://5d0gs6s2pv0a" path="res://Models/ButtonBoard/ButtonBoardAnimations/Press.res" id="9_6cn5j"]
@@ -160,86 +162,257 @@ shadow_enabled = true
 [node name="FloorsAndCeilings" type="GridMap" parent="."]
 mesh_library = ExtResource("1_rfq3g")
 data = {
-"cells": PackedInt32Array(-2, 65533, 655362, -2, 65534, 655362, -2, 65535, 655362, -65536, 65535, 655362, -65536, 65534, 655362, -1, 65534, 655362, -1, 65533, 655362, -1, 65535, 655362, -65536, 65533, 655362, -65535, 65533, 655362, -65534, 65533, 655362, -65534, 65534, 655362, -65535, 65534, 655362, -65535, 65535, 655362, -65534, 65535, 655362, -3, 65533, 655362, -3, 65534, 655362, -3, 65535, 655362, 196605, 65533, 1441794, 196606, 65533, 1441794, 196607, 65533, 1441794, 131072, 65533, 1441794, 131073, 65533, 1441794, 131074, 65533, 1441794, 131074, 65535, 1441794, 131073, 65535, 1441794, 131072, 65535, 1441794, 196607, 65535, 1441794, 196606, 65535, 1441794, 196605, 65534, 1441794, 196606, 65534, 1441794, 196607, 65534, 1441794, 131072, 65534, 1441794, 131073, 65534, 1441794, 131074, 65534, 1441794, 196605, 65535, 1441794)
+"cells": PackedInt32Array(-2, 65533, 655362, -2, 65534, 655362, -2, 65535, 655362, -65536, 65535, 655362, -65536, 65534, 655362, -1, 65534, 655362, -1, 65533, 655362, -1, 65535, 655362, -65536, 65533, 655362, -65535, 65533, 655362, -65534, 65533, 655362, -65534, 65534, 655362, -65535, 65534, 655362, -65535, 65535, 655362, -65534, 65535, 655362, -3, 65533, 655362, -3, 65534, 655362, -3, 65535, 655362, 196605, 65533, 1441794, 196606, 65533, 1441794, 196607, 65533, 1441794, 131072, 65533, 1441794, 131073, 65533, 1441794, 131074, 65533, 1441794, 131074, 65535, 1441794, 131073, 65535, 1441794, 131072, 65535, 1441794, 196607, 65535, 1441794, 196606, 65535, 1441794, 196605, 65534, 1441794, 196606, 65534, 1441794, 196607, 65534, 1441794, 131072, 65534, 1441794, 131073, 65534, 1441794, 131074, 65534, 1441794, 196605, 65535, 1441794, -4, 65533, 2, -4, 65534, 2, -4, 65535, 2, -5, 65535, 2, -6, 65535, 2, -6, 65534, 2, -5, 65534, 2, -5, 65533, 2, -4, 65532, 2, -5, 65532, 2, -6, 65532, 2, -6, 65531, 2, -5, 65531, 2, -4, 65531, 2, -4, 65530, 2, -5, 65530, 2, -6, 65530, 2, -6, 65529, 2, -5, 65529, 2, -4, 65529, 2, 196604, 65533, 655362, 196604, 65532, 655362, 196604, 65531, 655362, 196603, 65531, 655362, 196603, 65530, 655362, 196604, 65529, 655362, 196604, 65530, 655362, 196602, 65530, 655362, 196603, 65529, 655362, 196602, 65529, 655362, 196601, 65529, 655362, 196600, 65529, 655362, 196599, 65529, 655362, 196599, 65530, 655362, 196599, 65531, 655362, 196600, 65531, 655362, 196601, 65531, 655362, 196601, 65530, 655362, 196600, 65530, 655362, 196602, 65531, 655362, 196599, 65532, 655362, 196599, 65533, 655362, 196599, 65534, 655362, 196599, 65535, 655362, 196600, 65532, 655362, 196600, 65533, 655362, 196600, 65534, 655362, 196600, 65535, 655362, 196601, 65532, 655362, 196601, 65533, 655362, 196601, 65534, 655362, 196601, 65535, 655362, 196602, 65532, 655362, 196602, 65533, 655362, 196602, 65534, 655362, 196602, 65535, 655362, 196603, 65532, 655362, 196603, 65533, 655362, 196603, 65534, 655362, 196603, 65535, 655362, -6, 65533, 2, -65545, 65529, 2, -65544, 65529, 2, -65544, 65530, 2, -65545, 65530, 2, -65545, 65531, 2, -65544, 65531, 2, -65544, 65532, 2, -65544, 65533, 2, -65544, 65534, 2, -65544, 65535, 2, -65545, 65535, 2, -65545, 65534, 2, -65545, 65533, 2, -65545, 65532, 2, -65543, 65529, 655362, -65543, 65530, 655362, -65543, 65531, 655362, -65543, 65532, 655362, -65543, 65533, 655362, -65543, 65534, 655362, -65543, 65535, 655362)
 }
-metadata/_editor_floor_ = Vector3(0, 2, 0)
+metadata/_editor_floor_ = Vector3(0, -2, 0)
 
 [node name="WallsAndVents" type="GridMap" parent="."]
 mesh_library = ExtResource("1_rfq3g")
 data = {
-"cells": PackedInt32Array(-65535, 65533, 655369, -65534, 65533, 655361, -3, 65533, 1441793, -3, 65535, 1, -65534, 65535, 1048577, -65534, 65534, 1048581, -3, 65534, 1441797, -65535, 65535, 0, -65536, 65535, 0, -1, 65535, 0, -2, 65535, 0, -2, 65533, 655369, -1, 65533, 655364, -65536, 65533, 655364, 131069, 65533, 1441799, 131070, 65533, 655366, 131071, 65533, 655366, 65536, 65533, 655366, 65537, 65533, 655366, 65538, 65533, 655367, 131069, 65535, 7, 131070, 65535, 6, 65536, 65535, 6, 65537, 65535, 6, 65538, 65535, 1048583, 131071, 65535, 6, 65538, 65534, 1048582, 131069, 65534, 1441798)
+"cells": PackedInt32Array(-65535, 65533, 655369, -65534, 65533, 655361, -3, 65533, 1441793, -3, 65535, 1, -65534, 65535, 1048577, -65534, 65534, 1048581, -3, 65534, 1441797, -65535, 65535, 0, -65536, 65535, 0, -1, 65535, 0, -2, 65535, 0, -2, 65533, 655369, -1, 65533, 655364, -65536, 65533, 655364, 131069, 65533, 1441799, 131070, 65533, 655366, 131071, 65533, 655366, 65536, 65533, 655366, 65537, 65533, 655366, 65538, 65533, 655367, 131069, 65535, 7, 131070, 65535, 6, 65536, 65535, 6, 65537, 65535, 6, 65538, 65535, 1048583, 131071, 65535, 6, 65538, 65534, 1048582, 131069, 65534, 1441798, -5, 65534, 1048581, -4, 65533, 1048577, -5, 65535, 1048577, -9, 65535, 1, -4, 65529, 655361, -9, 65529, 1441793, -4, 65530, 1048580, -4, 65531, 1048580, -4, 65532, 1048585, -9, 65534, 1441792, -9, 65533, 1441792, -9, 65532, 1441792, -9, 65531, 1441792, -9, 65530, 1441792, -5, 65529, 655365, -6, 65529, 655369, -7, 65529, 655360, -8, 65529, 655360, -6, 65535, 0, -7, 65535, 0, -8, 65535, 0, 131068, 65533, 1048583, 131067, 65535, 1048583, 131063, 65535, 7, 131063, 65529, 1441799, 131068, 65529, 655367, 131068, 65530, 1048582, 131068, 65531, 1048582, 131068, 65532, 1048582, 131067, 65534, 1048582, 131066, 65535, 6, 131065, 65535, 6, 131064, 65535, 6, 131063, 65534, 1441798, 131063, 65533, 1441798, 131063, 65532, 1441798, 131063, 65531, 1441798, 131063, 65530, 1441798, 131067, 65529, 655366, 131066, 65529, 655366, 131065, 65529, 655366, 131064, 65529, 655366, -196612, 65529, 655361, -196617, 65529, 1441793, -196613, 65529, 655360, -196614, 65529, 655360, -196615, 65529, 655360, -196616, 65529, 655360, -196612, 65530, 1048580, -196612, 65531, 1048580, -196612, 65532, 1048576, -196611, 65533, 655360, -196610, 65533, 655360, -196609, 65533, 655364, -262144, 65533, 655364, -262143, 65533, 655360, -262142, 65533, 655361, -131070, 65533, 655367, -65540, 65529, 655367, -65545, 65529, 1441799, -65541, 65529, 655366, -65542, 65529, 655366, -65543, 65529, 655367, -65544, 65529, 655366, -131071, 65533, 655366, -131072, 65533, 655366, -65537, 65533, 655366, -65538, 65533, 655366, -65539, 65533, 655366, -65540, 65532, 1048582, -65540, 65531, 1048582, -65540, 65530, 1048582, -65543, 65530, 1048582, -65543, 65531, 1048582, -65543, 65532, 1048582, -65543, 65533, 1048582, -65543, 65534, 1048582, -65543, 65535, 1048583, -65545, 65535, 7, -65544, 65535, 6, -65545, 65533, 1441798, -65545, 65534, 1441798, -65545, 65532, 1441798, -65545, 65531, 1441798, -65545, 65530, 1441798)
 }
-metadata/_editor_floor_ = Vector3(0, 1, 1)
+metadata/_editor_floor_ = Vector3(0, 2, 1)
+
+[node name="Replace Vents" type="Node3D" parent="WallsAndVents" node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.98447, 15)
+top_level = true
+script = ExtResource("2_b2l20")
+data = {
+"Exit": Vector3i(0, 0, 0),
+"Self": NodePath(""),
+"transform": Vector3i(4, 2, -4)
+}
+interactive = Array[Dictionary]([{
+"Exit": Vector3i(0, 0, 0),
+"Self": NodePath(""),
+"transform": Vector3i(1, -1, -3)
+}, {
+"Exit": Vector3i(-4, -1, -4),
+"Self": NodePath(""),
+"transform": Vector3i(-2, -1, -3)
+}, {
+"Exit": Vector3i(-2, -1, -3),
+"Self": NodePath(""),
+"transform": Vector3i(-4, -1, -4)
+}])
+player = NodePath("../../Player")
+itemToReplace = 9
+item = ExtResource("3_c8si8")
 
 [node name="Pipes" type="GridMap" parent="."]
 mesh_library = ExtResource("2_q4f4x")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(-65531, 65535, 589824, -65533, 65535, 589824, -65534, 65535, 589824, -65535, 65535, 589824, -65536, 65535, 1310726, -1, 65535, 589824, -2, 65535, 1179654, -3, 65535, 589824, 131077, 65535, 589824, 131076, 65535, 589824, 131075, 65535, 589824, 131074, 65535, 589824, 196604, 65535, 65537, 131073, 65535, 65536, 131072, 65535, 1048582, 196607, 65535, 65536, 196606, 65535, 1441798, 196605, 65535, 65536, -6, 65535, 1310721, -4, 65535, 1376256, -5, 65535, 1376256, 65530, 65535, 131072, 131066, 65535, 131072, 196602, 65535, 1245185, 65536, 65535, 1441792, 131070, 65535, 1441792, 0, 65535, 1441792, 65534, 65535, 1441792, -65532, 65535, 589824, 196604, 0, 458752, 196601, 65535, 1507328, 131078, 65535, 1245184, -65530, 65535, 1245184)
+"cells": PackedInt32Array(-65531, 65535, 589824, -65533, 65535, 589824, -65534, 65535, 589824, -65535, 65535, 589824, -65536, 65535, 1376257, -1, 65535, 589824, -2, 65535, 1114113, -3, 65535, 589824, 131077, 65535, 589824, 131076, 65535, 589824, 131075, 65535, 589824, 131074, 65535, 589824, 196604, 65535, 65537, 131073, 65535, 65536, 131072, 65535, 1507329, 196607, 65535, 65536, 196606, 65535, 1245185, 196605, 65535, 65536, -6, 65535, 1310721, -4, 65535, 1376256, -5, 65535, 1376256, 65530, 65535, 131072, 131066, 65535, 131072, 196602, 65535, 1245185, 65536, 65535, 1441792, 131070, 65535, 1441792, 0, 65535, 1441792, 65534, 65535, 1441792, -65532, 65535, 589824, 196604, 0, 458752, 196601, 65535, 1507328, 131078, 65535, 1245184, -65530, 65535, 1245184, 196600, 65535, 1507328, 196599, 65535, 1507328, 196598, 65535, 1507328, 196597, 65535, 65536, 196596, 65535, 65536, 196595, 65535, 1048577, 196594, 65535, 65536, 196593, 65535, 65536, 196592, 65535, 65536, 196591, 65535, 65536, 196590, 65535, 327681, 196590, 65534, 262148, 196590, 65533, 327680, 196590, 65532, 327680, 196590, 65531, 327680, 196590, 65530, 327680, 196590, 65528, 327680, 196590, 65527, 327680, 196590, 65529, 327680, 196590, 65525, 327680, 196590, 65526, 327680, 327662, 65526, 786436, 327662, 65527, 458752, 327662, 65528, 458752, 327662, 65529, 458752, 327662, 65533, 458752, 327662, 65532, 458752, 327662, 65530, 458752, 327662, 65531, 458752, 65518, 65533, 458752, 65518, 65532, 458752, 65518, 65529, 458752, 65518, 65528, 458752, 65518, 65527, 458752, 65518, 65530, 458752, 65518, 65531, 458752, -18, 65526, 1048576, -65554, 65526, 1048576, 65518, 65526, 1, 393198, 65526, 131072, 458734, 65526, 131072, 65518, 65523, 131072, -18, 65523, 131072, -65554, 65523, 131072, 196590, 65523, 1, 196590, 65524, 983040, 131054, 65523, 655360, 196590, 65522, 983040, 131059, 65535, 524288, 65522, 65535, 1507328, 65521, 65535, 1507328, 65520, 65535, 1507328, 65519, 65535, 1507328, 65523, 65535, 1179649, 65518, 65535, 720897, 65518, 65534, 131073, 327662, 65534, 262145, 262126, 65534, 131072, 131054, 65534, 131072, 262131, 65535, 1245185, 262130, 65535, 1245184, 262129, 65535, 1245184, 262128, 65535, 1245184, 262127, 65535, 1310721, 327663, 65535, 1245185, 327662, 65535, 327681, 65507, 3, 1441796, 327662, 65525, 851968, 327662, 65523, 1, 327662, 65524, 851968, 262126, 65523, 524288, -131090, 65526, 0, -131090, 65523, 0)
 }
-metadata/_editor_floor_ = Vector3(0, 2, -1)
+metadata/_editor_floor_ = Vector3(-18, -4, -1)
 
-[node name="AdjustPlaceholder" type="Node3D" parent="Pipes"]
-script = ExtResource("3_fq3oc")
-itemToReplace = 6
-item = 1
-
-[node name="RegisterPipeInteraction" type="Node3D" parent="Pipes"]
+[node name="RegisterPipeInteraction" type="GridMap" parent="Pipes" node_paths=PackedStringArray("grid")]
+visible = false
+mesh_library = ExtResource("7_x8w3i")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(-65536, 65535, 0, -2, 65535, 0, 131072, 65535, 0, 196606, 65535, 0)
+}
 script = ExtResource("4_85jp8")
+grid = NodePath("..")
+CurrentInterface = 2
 Interfaces = {
 0: Array[Dictionary]([{
 "Orientation": 20,
+"Pipe": 1,
 "Position": Vector3i(0, -1, -1)
 }, {
 "Orientation": 18,
+"Pipe": 1,
 "Position": Vector3i(-2, -1, -1)
 }, {
 "Orientation": 16,
+"Pipe": 1,
 "Position": Vector3i(0, 2, -1)
 }, {
 "Orientation": 22,
+"Pipe": 1,
 "Position": Vector3i(-2, 2, -1)
 }]),
 1: Array[Dictionary]([{
-"Orientation": 21,
+"Orientation": 20,
+"Pipe": 1,
 "Position": Vector3i(0, -1, -1)
 }, {
-"Orientation": 20,
+"Orientation": 18,
+"Pipe": 1,
 "Position": Vector3i(-2, -1, -1)
 }, {
-"Orientation": 16,
+"Orientation": 22,
+"Pipe": 1,
 "Position": Vector3i(0, 2, -1)
 }, {
-"Orientation": 22,
+"Orientation": 16,
+"Pipe": 1,
 "Position": Vector3i(-2, 2, -1)
 }]),
 2: Array[Dictionary]([{
-"Orientation": 20,
+"Orientation": 21,
+"Pipe": 1,
 "Position": Vector3i(0, -1, -1)
 }, {
-"Orientation": 21,
+"Orientation": 17,
+"Pipe": 1,
 "Position": Vector3i(-2, -1, -1)
 }, {
-"Orientation": 22,
+"Orientation": 23,
+"Pipe": 1,
 "Position": Vector3i(0, 2, -1)
 }, {
-"Orientation": 23,
+"Orientation": 19,
+"Pipe": 1,
 "Position": Vector3i(-2, 2, -1)
 }])
 }
+metadata/_editor_floor_ = Vector3(0, 2, 1)
 
 [node name="PipeDirectionSupport" type="Node3D" parent="Pipes"]
 script = ExtResource("8_x46vl")
 outlets = [[Vector3i(0, -1, 0), Vector3i(0, 1, 0)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1), Vector3(0, 0, -1), Vector3(0, 1, 0)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1), Vector3(0, 0, -1), Vector3(0, 1, 0), Vector3(1, 0, 0), Vector3(0, 0, 0)], [Vector3(0, 1, 0), Vector3(0, -1, 0), Vector3(0, 0, 1)], [Vector3(0, 1, 0), Vector3(0, -1, 0)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1)]]
 metadata/_edit_pinned_properties_ = [&"outlets"]
 
-[node name="PipeDestinations" type="Node3D" parent="Pipes"]
+[node name="PipeDestinations" type="GridMap" parent="Pipes"]
+mesh_library = ExtResource("7_x8w3i")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(-65531, 65535, 327680, 196599, 65535, 327680, 196590, 65522, 65536)
+}
 script = ExtResource("6_5xnhh")
-Ends = [Vector3i(-4, 2, 0), Vector3i(-7, 2, -1), Vector3i(6, 2, -1), Vector3i(6, -1, -1)]
+Ends = Array[Vector3i]([Vector3i(5, -1, -1), Vector3i(-9, 2, -1), Vector3i(-18, 2, -14)])
+metadata/_editor_floor_ = Vector3(0, 3, 0)
+
+[node name="SecondRoomPipes" type="Node3D" parent="Pipes"]
+
+[node name="1" type="GridMap" parent="Pipes/SecondRoomPipes" node_paths=PackedStringArray("grid")]
+visible = false
+mesh_library = ExtResource("7_x8w3i")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(196595, 65535, 0, 196590, 65534, 0)
+}
+script = ExtResource("4_85jp8")
+grid = NodePath("../..")
+Interfaces = {
+0: Array[Dictionary]([{
+"Orientation": 16,
+"Pipe": 1,
+"Position": Vector3i(-13, 2, -1)
+}, {
+"Orientation": 4,
+"Pipe": 4,
+"Position": Vector3i(-18, 2, -2)
+}]),
+1: Array[Dictionary]([{
+"Orientation": 20,
+"Pipe": 1,
+"Position": Vector3i(-13, 2, -1)
+}, {
+"Orientation": 2,
+"Pipe": 4,
+"Position": Vector3i(-18, 2, -2)
+}])
+}
+metadata/_editor_floor_ = Vector3(2, 3, 0)
+
+[node name="2" type="GridMap" parent="Pipes/SecondRoomPipes" node_paths=PackedStringArray("grid")]
+visible = false
+mesh_library = ExtResource("7_x8w3i")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(327662, 65534, 0, 65518, 65534, 0, 196595, 65535, 0)
+}
+script = ExtResource("4_85jp8")
+grid = NodePath("../..")
+Interfaces = {
+0: Array[Dictionary]([{
+"Orientation": 4,
+"Pipe": 1,
+"Position": Vector3i(-18, 4, -2)
+}, {
+"Orientation": 2,
+"Pipe": 1,
+"Position": Vector3i(-18, 0, -2)
+}, {
+"Orientation": 16,
+"Pipe": 1,
+"Position": Vector3i(-13, 2, -1)
+}]),
+1: Array[Dictionary]([{
+"Orientation": 0,
+"Pipe": 1,
+"Position": Vector3i(-18, 4, -2)
+}, {
+"Orientation": 8,
+"Pipe": 1,
+"Position": Vector3i(-18, 0, -2)
+}, {
+"Orientation": 18,
+"Pipe": 1,
+"Position": Vector3i(-13, 2, -1)
+}])
+}
+metadata/_editor_floor_ = Vector3(2, 2, 0)
+
+[node name="3" type="GridMap" parent="Pipes/SecondRoomPipes" node_paths=PackedStringArray("grid")]
+visible = false
+mesh_library = ExtResource("7_x8w3i")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(196590, 65523, 0, 196590, 65534, 0, 196595, 65535, 0)
+}
+script = ExtResource("4_85jp8")
+grid = NodePath("../..")
+Interfaces = {
+0: Array[Dictionary]([{
+"Orientation": 0,
+"Pipe": 1,
+"Position": Vector3i(-18, 2, -13)
+}, {
+"Orientation": 4,
+"Pipe": 4,
+"Position": Vector3i(-18, 2, -2)
+}, {
+"Orientation": 16,
+"Pipe": 1,
+"Position": Vector3i(-13, 2, -1)
+}]),
+1: Array[Dictionary]([{
+"Orientation": 8,
+"Pipe": 1,
+"Position": Vector3i(-18, 2, -13)
+}, {
+"Orientation": 10,
+"Pipe": 4,
+"Position": Vector3i(-18, 2, -2)
+}, {
+"Orientation": 22,
+"Pipe": 1,
+"Position": Vector3i(-13, 2, -1)
+}])
+}
+metadata/_editor_floor_ = Vector3(2, 2, 0)
 
 [node name="Button" parent="." node_paths=PackedStringArray("pI") instance=ExtResource("5_4jtll")]
 transform = Transform3D(-1.10084e-07, 0, 2.51843, 0, 2.51843, 0, -2.51843, 0, -1.10084e-07, 1.45431, 1.00452, -0.130319)
 pI = NodePath("../Pipes/RegisterPipeInteraction")
+
+[node name="Room2_Button" parent="." node_paths=PackedStringArray("pI") instance=ExtResource("5_4jtll")]
+transform = Transform3D(-1.10084e-07, 0, 2.51843, 0, 2.51843, 0, -2.51843, 0, -1.10084e-07, -7.08631, 0.0528892, -4.12614)
+pI = NodePath("../Pipes/SecondRoomPipes/1")
+
+[node name="Room2_Button2" parent="." node_paths=PackedStringArray("pI") instance=ExtResource("5_4jtll")]
+transform = Transform3D(-1.10084e-07, 0, 2.51843, 0, 2.51843, 0, -2.51843, 0, -1.10084e-07, -7.08631, 1.04933, -4.12614)
+pI = NodePath("../Pipes/SecondRoomPipes/2")
+
+[node name="Room2_Button3" parent="." node_paths=PackedStringArray("pI") instance=ExtResource("5_4jtll")]
+transform = Transform3D(-1.10084e-07, 0, 2.51843, 0, 2.51843, 0, -2.51843, 0, -1.10084e-07, -7.08631, 1.99895, -4.12614)
+pI = NodePath("../Pipes/SecondRoomPipes/3")
 
 [node name="ButtonFire" type="Node3D" parent="." node_paths=PackedStringArray("item")]
 transform = Transform3D(-1.10084e-07, 0, 2.51843, 0, 2.51843, 0, -2.51843, 0, -1.10084e-07, 5.31823, 1.00452, -0.130319)
@@ -266,6 +439,34 @@ anim = NodePath("../AnimationPlayer")
 animations = Array[Animation]([ExtResource("9_6cn5j")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonFire/Lever"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00246228, 0.00302123)
+shape = SubResource("BoxShape3D_ulsnu")
+
+[node name="ButtonFire2" type="Node3D" parent="." node_paths=PackedStringArray("item")]
+transform = Transform3D(-1.10084e-07, 0, 2.51843, 0, 2.51843, 0, -2.51843, 0, -1.10084e-07, -8.55405, 1.00452, -0.130319)
+script = SubResource("GDScript_tm0m0")
+item = NodePath("../PipeItem")
+
+[node name="Button" type="MeshInstance3D" parent="ButtonFire2"]
+mesh = SubResource("ArrayMesh_kho3q")
+skeleton = NodePath("")
+
+[node name="Cube_002" type="MeshInstance3D" parent="ButtonFire2/Button"]
+mesh = SubResource("ArrayMesh_8dxet")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_27ojx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ButtonFire2"]
+libraries = {
+"": SubResource("AnimationLibrary_bgulk")
+}
+
+[node name="Lever" type="StaticBody3D" parent="ButtonFire2" node_paths=PackedStringArray("anim")]
+script = ExtResource("10_yjofx")
+anim = NodePath("../AnimationPlayer")
+animations = Array[Animation]([ExtResource("9_6cn5j")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonFire2/Lever"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00246228, 0.00302123)
 shape = SubResource("BoxShape3D_ulsnu")
 

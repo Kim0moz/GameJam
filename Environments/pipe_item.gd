@@ -14,7 +14,6 @@ var currentCell
 @export var CurrentPos : Vector3i = Vector3i(-2,-1,-1):
 	set(val):
 		moveToGridLocation(val)
-		CurrentDirection  =  ((val-CurrentPos)as Vector3i).clamp(Vector3i(-1,-1,-1),Vector3i(1,1,1))
 		CurrentPos = val
 		updatePipeDetails()
 @export var CurrentDirection = Vector3i(0,0,0)
@@ -82,7 +81,10 @@ func moveToGridLocation(location : Vector3i):
 	var tween = get_tree().create_tween()
 	tween.set_trans(tween.TRANS_LINEAR)
 	tween.tween_property(self,"global_position",Grid.local_to_map(location) as Vector3,.1)
-	if(pipeDestinations.Ends.has(location)==false):
+	var pipe = pipeDestinations.checkIfExists(location)
+	CurrentDirection  =  ((location-CurrentPos)as Vector3i).clamp(Vector3i(-1,-1,-1),Vector3i(1,1,1))
+	if(not pipe):
 		tween.finished.connect(nextPos)
-	#self.global_position = Grid.local_to_map(location)
+	else:
+		CurrentDirection = pipe
 	pipeMesh.global_basis =  Grid.get_cell_item_basis(location)

@@ -5,9 +5,13 @@ class_name PipeDestinations
 
 @export var Ends : Array
 
-@export var run : bool :
+@export var remake : bool :
 	set(val):
 		getEnds()
+
+@export var addNew : bool :
+	set(val):
+		addNewEnds()
 
 var DirectionsToCheck = [
 	Vector3i(1,0,0),
@@ -19,13 +23,27 @@ var DirectionsToCheck = [
 ]
 
 func _ready() -> void:
-	getEnds()
 	updateSelection()
 
 
 func getEnds():
-	Ends = self.get_used_cells()
-
+	Ends.clear()
+	var tmp = self.get_used_cells()
+	for itm in tmp:
+		Ends.append({"Position": itm, "Direction": Vector3i(0,0,0)})
+		
+func addNewEnds():
+	var tmp = self.get_used_cells()
+	for itm in tmp:
+		if checkIfExists(itm) == false:
+			Ends.append({"Position": itm, "Direction": Vector3i(0,0,0)})
+		
+func checkIfExists(pos):
+	for end in Ends:
+			if end.Position == pos:
+				print(end.Direction)
+				return end.Direction
+	return
 
 func updateSelection():
 	self.clear()

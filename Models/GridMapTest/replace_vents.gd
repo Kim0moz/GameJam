@@ -26,11 +26,17 @@ func _ready() -> void:
 		
 func getInteractive():
 	var itms = gridMap.get_used_cells_by_item(itemToReplace)
-	interactive.clear()
 	for itm in itms:
 		print(itm)
-		interactive.append(data.duplicate())
-		interactive[interactive.size()-1].transform = itm
+		if checkNodes(itm) == false:
+			interactive.append(data.duplicate())
+			interactive[interactive.size()-1].transform = itm
+
+func checkNodes(pos):
+	for item in interactive:
+		if item.transform == pos:
+			return true
+	return false
 
 func getExitPoint(t : Vector3i):
 	for itm in interactive:

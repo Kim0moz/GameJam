@@ -6,7 +6,8 @@ extends Node
 @export var capsule : Capsule2D 
 @export var pointer : Pointer2D
 @export var dropOffGenerator : DropOffGenerator
-@onready var capsuleSpawnPoints
+@export var deliveryConfirmationText : PackedScene
+var capsuleSpawnPoints
 
 @export_category("Delivery Settings")
 ## Capsule spawn time after a delivery in seconds
@@ -76,6 +77,12 @@ func capsulePickedUp():
 
 func capsuleDelivered():
 	deliveryState = DeliveryState.SPAWNING
+	var delivConfText = (deliveryConfirmationText.instantiate() as DeliveryConfirmationText)
+	delivConfText.setTextIndex(int(deliveryInfo.TileSelected)-1)
+	delivConfText.global_position = pointer.target.global_position + Vector2(-50, -50)
+	delivConfText.z_index = 100
+	add_child(delivConfText)
 	pointer.target.queue_free()
 	capsuleSpawnDT = 0
 	deliveryInfo.setTextState(DeliveryInfo.TextState.FLASHING)
+	

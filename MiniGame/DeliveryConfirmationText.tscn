@@ -5,23 +5,18 @@
 
 [sub_resource type="FontVariation" id="FontVariation_rchik"]
 base_font = ExtResource("1_2bh6u")
+spacing_glyph = 4
 
 [node name="DeliveryConfirmationText" type="RichTextLabel"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = -42.0
-offset_right = 72.0
-offset_bottom = 43.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(100, 42.5)
+offset_right = 100.0
+offset_bottom = 40.0
+pivot_offset = Vector2(50, 20)
 theme_override_fonts/normal_font = SubResource("FontVariation_rchik")
-theme_override_font_sizes/normal_font_size = 80
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
-text = "[center][color=green][outline_color=red][wave amp=50.0 freq=5.0 connected=1]Great[/wave][/outline_color][/color][/center]"
+text = "[center][color=white][outline_size=10
+][outline_color=red][wave amp=75.0 freq=2.5 connected=1]NICE![/wave][/outline_color][/outline_size][/color][/center]"
 fit_content = true
 script = ExtResource("1_vbkw2")
+deliveryMessages = ["NICE!", "GOOD!", "OK!", "PHEW!"]
+fadeDuration = 1.75

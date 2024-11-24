@@ -52,6 +52,12 @@ func updateDeliveryStatus(delta):
 	var deliveryTargetTimeQuarter = deliveryTargetTimeSeconds / 4
 	if capsuleDeliveryDT / deliveryTargetTimeQuarter <= 4:
 		deliveryInfo.TileSelected = (DeliveryInfo.DeliveryStatus.GOOD + int(capsuleDeliveryDT/deliveryTargetTimeQuarter)) as DeliveryInfo.DeliveryStatus
+	var timeRemaining = deliveryTargetTimeSeconds - capsuleDeliveryDT
+	var seconds = floor(timeRemaining)
+	var milliseconds = (timeRemaining - floor(timeRemaining)) * 100
+	var timeString = "%02d:%02d" % [seconds, milliseconds]
+	deliveryInfo.TimeLabel.text = timeString
+
 
 func spawnCapsule():
 	capsule.spawnRandomly()
@@ -59,6 +65,8 @@ func spawnCapsule():
 	drone.setStateNoPackage()
 	deliveryState = DeliveryState.PICKING_UP
 	deliveryInfo.TileSelected = DeliveryInfo.DeliveryStatus.CAPSULE_PICKUP
+	deliveryInfo.TimeLabel.text = "00:00"
+	deliveryInfo.setTextState(DeliveryInfo.TextState.STABLE)
 
 func capsulePickedUp():
 	deliveryState = DeliveryState.DELIVERING
@@ -70,3 +78,4 @@ func capsuleDelivered():
 	deliveryState = DeliveryState.SPAWNING
 	pointer.target.queue_free()
 	capsuleSpawnDT = 0
+	deliveryInfo.setTextState(DeliveryInfo.TextState.FLASHING)

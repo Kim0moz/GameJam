@@ -1,10 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://basldbgw4wbxr"]
+[gd_scene load_steps=26 format=3 uid="uid://basldbgw4wbxr"]
 
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="1_w2y8m"]
 [ext_resource type="PackedScene" uid="uid://epo6t4l22emx" path="res://Objects/ToggleableItems/Lever.tscn" id="2_i7gbx"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="3_4y2od"]
 [ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="3_atby7"]
-[ext_resource type="Texture2D" uid="uid://m6gi6dpt2fuj" path="res://Sprites/CircleCrosshair.png" id="3_bcr25"]
 [ext_resource type="PackedScene" uid="uid://cwoppep8x8xrg" path="res://Models/Room.glb" id="3_br0us"]
 [ext_resource type="Script" path="res://Objects/ToggleableItems/ToggleableItem.gd" id="4_751qy"]
 [ext_resource type="Animation" uid="uid://dlgaj0ly6maw1" path="res://Models/RoomAnimations/Close.res" id="5_0lje7"]
@@ -134,9 +133,7 @@ computerExitPosOffset = Vector3(0, 0.176, 0.5)
 [node name="MeshInstance3D" parent="Player" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_1byjk")
 
-[node name="WorldSpaceCam" parent="Player/CameraController/CameraTarget" index="0" node_paths=PackedStringArray("Reticle")]
-Reticle = NodePath("TextureRect")
-Default = ExtResource("3_bcr25")
+[node name="WorldSpaceCam" parent="Player/CameraController/CameraTarget" index="0"]
 SelectableItem = SubResource("AtlasTexture_lsgyv")
 SelectedItem = SubResource("AtlasTexture_fflej")
 
@@ -188,6 +185,9 @@ shape = SubResource("CylinderShape3D_kuir0")
 
 [node name="Joystick" parent="." instance=ExtResource("9_c7p27")]
 transform = Transform3D(-0.762713, 0, 0.646737, 0, 1, 0, -0.646737, 0, -0.762713, -4.43528, 0.836117, -1.65811)
+
+[node name="Skeleton3D" parent="Joystick/Armature" index="0"]
+bones/1/rotation = Quaternion(0.0366604, -0.00556074, -0.149864, 0.988011)
 
 [node name="Cube" parent="Joystick/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = null

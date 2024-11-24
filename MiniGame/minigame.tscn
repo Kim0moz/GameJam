@@ -19,13 +19,13 @@
 [ext_resource type="PackedScene" uid="uid://bm7ney5s23a8n" path="res://MiniGame/Pointer2D.tscn" id="13_2b0wo"]
 [ext_resource type="PackedScene" uid="uid://cr6gn3mgm7wav" path="res://MiniGame/DeliveryTarget.tscn" id="13_kv6sc"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_s3nw1"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_4gwg2"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dwyse"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50cxh"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_s3nw1")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_4gwg2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -65,7 +65,7 @@ point_count = 5
 
 [node name="Minigame" type="Node2D" node_paths=PackedStringArray("deliveryInfo", "drone", "capsule", "pointer", "dropOffGenerator")]
 script = ExtResource("2_0irbu")
-deliveryInfo = NodePath("CanvasLayer/InfoBar")
+deliveryInfo = NodePath("CanvasLayer/DeliveryStatus")
 drone = NodePath("Drone")
 capsule = NodePath("Capsule2D")
 pointer = NodePath("Pointer2d")
@@ -113,14 +113,18 @@ bbcode_enabled = true
 text = "[center][font_size=50]Press \"X\" to Exit[/font_size]"
 fit_content = true
 
-[node name="InfoBar" parent="CanvasLayer" instance=ExtResource("9_r4ckn")]
+[node name="DeliveryStatus" parent="CanvasLayer" instance=ExtResource("9_r4ckn")]
 offset_left = 20.0
 offset_top = 60.0
-offset_right = 220.0
 offset_bottom = 100.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Label" parent="CanvasLayer/DeliveryStatus/TimeText" index="0"]
+offset_left = 10.0
+offset_right = 10.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_dwyse")
+material = SubResource("ShaderMaterial_50cxh")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 
@@ -209,4 +213,5 @@ cameraBorderPath = NodePath("../Path2D/PathFollow2D")
 dropOffGen = NodePath("../Town1/Buildings")
 
 [editable path="Drone"]
+[editable path="CanvasLayer/DeliveryStatus"]
 [editable path="CanvasLayer/ScreenRipple"]

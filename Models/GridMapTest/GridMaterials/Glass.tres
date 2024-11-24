@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bmnjsindkk4sq"]
+
+[ext_resource type="Texture2D" uid="uid://dongh02jr5ahv" path="res://Models/GridMapTest/GridAtlas_GlassTexture.jpg" id="1_ryyws"]
+
+[resource]
+resource_name = "Glass"
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.627273)
+albedo_texture = ExtResource("1_ryyws")
+metallic = 0.48

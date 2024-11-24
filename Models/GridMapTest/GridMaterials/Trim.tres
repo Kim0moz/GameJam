@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://e5mbmx36mw7t"]
+
+[ext_resource type="Texture2D" uid="uid://h621xlfereva" path="res://Models/GridMapTest/GridAtlas_MetalTexture.jpg" id="1_5hab4"]
+
+[resource]
+resource_name = "Trim"
+cull_mode = 2
+albedo_texture = ExtResource("1_5hab4")
+metallic = 0.514286
+roughness = 0.223636

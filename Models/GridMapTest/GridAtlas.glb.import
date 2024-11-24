@@ -31,6 +31,29 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Glass": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/GridMapTest/GridMaterials/Glass.tres"
+},
+"Screen": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/GridMapTest/GridMaterials/Screen.tres"
+},
+"Tiles": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/GridMapTest/GridMaterials/Tiles.tres"
+},
+"Trim": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/GridMapTest/GridMaterials/Trim.tres"
+},
+"Wall": {
+"use_external/enabled": true,
+"use_external/path": "res://Models/GridMapTest/GridMaterials/Wall.tres"
+}
+}
+}
 gltf/naming_version=1
 gltf/embedded_image_handling=1

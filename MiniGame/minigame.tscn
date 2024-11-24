@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://bvlgg8n0vjyw0"]
+[gd_scene load_steps=32 format=4 uid="uid://bvlgg8n0vjyw0"]
 
 [ext_resource type="TileSet" uid="uid://dw5km62ab2x3i" path="res://MiniGame/MiniGameTileSet.tres" id="1_pwln6"]
 [ext_resource type="Script" path="res://MiniGame/MinigameManger.gd" id="2_0irbu"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bv8gf15agiob8" path="res://UI/basic_panel.tscn" id="4_a5dh6"]
 [ext_resource type="PackedScene" uid="uid://bs1gsxf1jhg1k" path="res://MiniGame/Shaders/screen_ripple.tscn" id="4_jrj8k"]
 [ext_resource type="PackedScene" uid="uid://d024ojmxc20yy" path="res://MiniGame/Drone.tscn" id="4_lpyc7"]
+[ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="5_gdjrj"]
 [ext_resource type="Shader" uid="uid://du4m0bwcsw16m" path="res://MiniGame/Shaders/Offset.tres" id="5_nu4ep"]
 [ext_resource type="Shader" uid="uid://b52d2iikaotyc" path="res://MiniGame/Shaders/RippleMask.tres" id="6_shpec"]
 [ext_resource type="PackedScene" uid="uid://qlojdtaadr5s" path="res://MiniGame/Shaders/chromatic_aberation.tscn" id="7_h6wv1"]
@@ -20,13 +21,16 @@
 [ext_resource type="PackedScene" uid="uid://bm7ney5s23a8n" path="res://MiniGame/Pointer2D.tscn" id="13_2b0wo"]
 [ext_resource type="PackedScene" uid="uid://cr6gn3mgm7wav" path="res://MiniGame/DeliveryTarget.tscn" id="13_kv6sc"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_u8hoy"]
+[sub_resource type="FontVariation" id="FontVariation_cdp16"]
+base_font = ExtResource("5_gdjrj")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_egu32"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_dna33"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yyg08"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_u8hoy")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_egu32")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -105,14 +109,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 10.0
-offset_right = 368.0
-offset_bottom = 69.0
+offset_top = 3.0
+offset_right = 381.0
+offset_bottom = 78.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.375, 0.375)
+theme_override_fonts/normal_font = SubResource("FontVariation_cdp16")
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "[center][font_size=50]Press \"X\" to Exit[/font_size]"
+text = "[center][outline_size=6][outline_color=#3d7499][font_size=120]Press \"X\" to Exit[/font_size][/outline_color][/outline_size]"
 fit_content = true
 
 [node name="DeliveryStatus" parent="CanvasLayer" instance=ExtResource("9_r4ckn")]
@@ -126,7 +132,7 @@ offset_left = 10.0
 offset_right = 10.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_dna33")
+material = SubResource("ShaderMaterial_yyg08")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 

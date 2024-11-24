@@ -10,6 +10,7 @@ var target : Node2D
 
 enum PointerState {ON_SCREEN, OFF_SCREEN, INACTIVE}
 var pointerState : PointerState = PointerState.INACTIVE
+var touchingDeliveryInfo = false
 
 func _ready():
 	setState()
@@ -49,9 +50,11 @@ func pointOffScreen(delta):
 	rotation_degrees = floor(angle/90) * 90 - 90
 	flip_v = rotation_degrees == 0 or rotation_degrees == 180
 	cameraBorderPath.progress_ratio = angle / (360)
+	touchingDeliveryInfo = cameraBorderPath.progress_ratio > .42 and cameraBorderPath.progress_ratio < .51
 	position = cameraBorderPath.position
 
 func pointOnScreen():
 	position = target.global_position + targetOffset
 	rotation_degrees = 0
 	flip_v = false
+	touchingDeliveryInfo = false

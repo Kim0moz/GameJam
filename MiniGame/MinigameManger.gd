@@ -43,7 +43,7 @@ func updateMinigame(delta):
 			if capsuleSpawnDT >= capsuleSpawnTime:
 				spawnCapsule()
 		DeliveryState.PICKING_UP:
-			pass
+			deliveryInfo.modulate.a = .5 if pointer.touchingDeliveryInfo else 1.0
 		DeliveryState.DELIVERING:
 			updateDeliveryStatus(delta)
 
@@ -58,7 +58,7 @@ func updateDeliveryStatus(delta):
 	var milliseconds = (timeRemaining - floor(timeRemaining)) * 100
 	var timeString = "%02d:%02d" % [seconds, milliseconds]
 	deliveryInfo.TimeLabel.text = timeString
-
+	deliveryInfo.modulate.a = .5 if pointer.touchingDeliveryInfo else 1.0
 
 func spawnCapsule():
 	capsule.spawnRandomly()

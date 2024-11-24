@@ -20,13 +20,13 @@
 [ext_resource type="PackedScene" uid="uid://bm7ney5s23a8n" path="res://MiniGame/Pointer2D.tscn" id="13_2b0wo"]
 [ext_resource type="PackedScene" uid="uid://cr6gn3mgm7wav" path="res://MiniGame/DeliveryTarget.tscn" id="13_kv6sc"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_kt0ok"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_u8hoy"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8s2xx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dna33"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_kt0ok")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_u8hoy")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -126,7 +126,7 @@ offset_left = 10.0
 offset_right = 10.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_8s2xx")
+material = SubResource("ShaderMaterial_dna33")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 

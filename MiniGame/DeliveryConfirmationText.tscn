@@ -19,4 +19,3 @@ text = "[center][color=white][outline_size=10
 fit_content = true
 script = ExtResource("1_vbkw2")
 deliveryMessages = ["NICE!", "GOOD!", "OK!", "PHEW!"]
-fadeDuration = 1.75

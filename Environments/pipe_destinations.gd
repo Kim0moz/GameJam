@@ -35,7 +35,7 @@ func getEnds():
 func addNewEnds():
 	var tmp = self.get_used_cells()
 	for itm in tmp:
-		if checkIfExists(itm) == false:
+		if not checkIfExists(itm):
 			Ends.append({"Position": itm, "Direction": Vector3i(0,0,0)})
 		
 func checkIfExists(pos):

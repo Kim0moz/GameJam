@@ -41,7 +41,7 @@ albedo_texture = ExtResource("8_aqhv7")
 metallic = 0.810909
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_k01fm"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_rj634"]
 _surfaces = [{
 "aabb": AABB(-0.0300666, -0.136913, -0.136914, 0.0601332, 0.273827, 0.273827),
 "format": 34896613377,
@@ -71,7 +71,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAAAP///78AAAAA////vwAAAAD//1TVAAD//////78AAP///////wAA/////1TVAAAAAAAA//8AAAAAAAD/vwAAAAAAAFTVAAD//wAA//8AAP//AAD//wAA//8AAFTV//9XFqfp/////1cWp+n/v///Vxan6VTV//+n6afp/////6fpp+n/v///p+mn6VTV//9XFlcW/n///1cWVxb/v///VxZXFlTV//+n6VcW/n///6fpVxb/v///p+lXFlTV/////wAA////////AAD///////8AAFTV//8AAAAA/////wAAAAD/v///AAAAAFTV//8AAP///7///wAA////v///AAD//1TV/////////7///////////////////1TVr9Kn6VcW/n+v0qfpVxb/v6/Sp+lXFlTVr9JXFlcW/n+v0lcWVxb/v6/SVxZXFlTVr9JXFqfp//+v0lcWp+n/v6/SVxan6VTVr9Kn6afp//+v0qfpp+n/v6/Sp+mn6VTV/////wAA/39U1VTV//////9//79U1VTV/7//vwAA/39U1VTV/7//v/9//79U1VTV////f////3+qKqoq////fwAA/3+qKqoq/3///////3+qKqoq/3///wAA/3+qKqoq/7//v/9//7+qKqoq/7//vwAA/3+qKqoq/////wAA/3+qKqoq//////9//7+qKqoq/3///wAA/3+qKqoq/3///////3+qKqoq////f////3+qKqoq////fwAA/3+qKqoq")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_k01fm")
+shadow_mesh = SubResource("ArrayMesh_rj634")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_heo4o"]
 resource_name = "Material.001"
@@ -81,7 +81,7 @@ roughness = 0.0
 emission_enabled = true
 emission = Color(0.905884, 0.101962, 0.188236, 1)
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_wdfhg"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_cmhjw"]
 _surfaces = [{
 "aabb": AABB(0.0194235, -0.113014, -0.113014, 0.0485026, 0.226028, 0.226028),
 "format": 34359742465,
@@ -111,7 +111,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("Fx6fPPtz5z0LdOe9Fx6fPPtz5z0LdOe9Fx6fPPtz5z0LdOe9Fx6fPAN0570LdOe9Fx6fPAN0570LdOe9Fx6fPAN0570LdOe9Fx6fPAN0573zc+c9Fx6fPAN0573zc+c9Fx6fPAN0573zc+c9Fx6fPPtz5z3zc+c9Fx6fPPtz5z3zc+c9Fx6fPPtz5z3zc+c91RyLPZX8wz2l/MO91RyLPZX8wz2l/MO91RyLPZX8wz2l/MO91RyLPZz8w72l/MO91RyLPZz8w72l/MO91RyLPZz8w72l/MO91RyLPZz8w72M/MM91RyLPZz8w72M/MM91RyLPZz8w72M/MM91RyLPZX8wz2M/MM91RyLPZX8wz2M/MM91RyLPZX8wz2M/MM9//9R3v///7+toVHe////vwAA/3//fwAA//9R3v///7+toa0h////vwAA/3//fwAAraH/f////z+toa0h////vwAA/3//fwAAraH/f////z+toVHe////vwAA/3//fwAA//9R3v///7+toVHe////v////3//f/////9R3v///7+toa0h////v////3//f///raH/f////z+toa0h////v////3//f///raH/f////z+toVHe////v////3//f///")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_wdfhg")
+shadow_mesh = SubResource("ArrayMesh_cmhjw")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27ojx"]
 albedo_color = Color(1, 0.113725, 0.223529, 1)

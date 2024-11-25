@@ -1,0 +1,558 @@
+[gd_scene load_steps=29 format=4 uid="uid://cqevxh2h77pty"]
+
+[ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_7a176"]
+[ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="2_i3dqh"]
+[ext_resource type="PackedScene" uid="uid://cf0yipunib2xa" path="res://Models/GridMapTest/vent_wall.tscn" id="3_v8xsq"]
+[ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="4_qiw78"]
+[ext_resource type="Script" path="res://Environments/pipe_direction_support.gd" id="5_ogs2b"]
+[ext_resource type="MeshLibrary" uid="uid://do1cnjjq3ppjp" path="res://Models/GridMapTest/GridSelectionIcon.tres" id="6_cxqj3"]
+[ext_resource type="Script" path="res://Environments/pipe_destinations.gd" id="7_vwveh"]
+[ext_resource type="Script" path="res://Environments/register_pipe_interaction.gd" id="8_ibuer"]
+[ext_resource type="MeshLibrary" uid="uid://1ho4b857233" path="res://Models/GridMapTest/RailingLibrary.tres" id="8_miuoj"]
+[ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="8_y1m6d"]
+[ext_resource type="MeshLibrary" uid="uid://ctr3ogqfj1ns5" path="res://Models/GridMapTest/LightLibrary.tres" id="10_yqcrj"]
+[ext_resource type="Texture2D" uid="uid://b5ynry7aqklh7" path="res://Models/ButtonBoard/ButtonBoard_MetalTexture.jpg" id="11_8iqs8"]
+[ext_resource type="Animation" uid="uid://5d0gs6s2pv0a" path="res://Models/ButtonBoard/ButtonBoardAnimations/Press.res" id="12_0d8kq"]
+[ext_resource type="Script" path="res://Objects/ToggleableItems/ToggleableItem.gd" id="13_2ysdo"]
+[ext_resource type="Script" path="res://Environments/pipe_item.gd" id="14_s7m22"]
+[ext_resource type="PackedScene" uid="uid://3iksdjbb3rdb" path="res://Models/ButtonBoard/button.tscn" id="15_sw8i7"]
+
+[sub_resource type="Environment" id="Environment_0p7a5"]
+background_mode = 1
+background_color = Color(0.566334, 0.516593, 0.590005, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.565093, 0.677072, 0.669991, 1)
+
+[sub_resource type="GDScript" id="GDScript_gp4jd"]
+script/source = "extends Node3D
+
+@onready var lever  = $'Lever'
+@export var item : PipeItem
+
+func _ready() -> void:
+	lever.Activated.connect(Toggle)
+
+func Toggle():
+	item.Fire = true
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5owwn"]
+resource_name = "Metal"
+cull_mode = 2
+albedo_texture = ExtResource("11_8iqs8")
+metallic = 0.810909
+roughness = 0.5
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_k01fm"]
+_surfaces = [{
+"aabb": AABB(-0.0300666, -0.136913, -0.136914, 0.0601332, 0.273827, 0.273827),
+"format": 34896613377,
+"index_count": 84,
+"index_data": PackedByteArray("AAADAAEAAAACAAMAAgAIAAMAAgAJAAgABQAOAAQABQAPAA4ACgABAAsACgAAAAEAAgAKAAkAAgAAAAoACAABAAMACAALAAEABwAJAAYABwAIAAkABgAKAAQABgAJAAoABQAIAAcABQALAAgABAALAAUABAAKAAsADQAPAAwADQAOAA8ABAANAAYABAAOAA0ABwAPAAUABwAMAA8ABgAMAAcABgANAAwA"),
+"name": "Metal",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("AAAAAP//AAAAAP////8AAAAAAAAAAAAAAAD//wAAAAD//1cWp+kAAP//p+mn6QAA//9XFlcWAAD//6fpVxYAAP////8AAAAA//8AAAAAAAD//wAA//8AAP///////wAAr9Kn6VcWAACv0lcWVxYAAK/SVxan6QAAr9Kn6afpAAA=")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fp86u"]
+resource_name = "ButtonBoard_Cube_002"
+_surfaces = [{
+"aabb": AABB(-0.0300666, -0.136913, -0.136914, 0.0601332, 0.273827, 0.273827),
+"attribute_data": PackedByteArray("/18AAP8f/z//X////58AAP/f/z//n////1//v/8f/3//X/+//5//v//f/3//n/+/lWWVRZVllUWVZZVFaZqVRWmalUVpmpVFlWVpepVlaXqVZWl6aZppemmaaXppmml6/5//f/+f/3//n/9//1//f/9f/3//X/9//1//P/9f/z//X/8//5//P/+f/z//n/8/aZppemmaaXppmml6lWVpepVlaXqVZWl6lWWVRZVllUWVZZVFaZqVRWmalUVpmpVF"),
+"format": 34896613399,
+"index_count": 84,
+"index_data": PackedByteArray("AgALAAUAAgAIAAsABgAYAAkABgAbABgADwAqAAwADwAtACoAHgADACEAHgAAAAMABwAfABwABwABAB8AGQAEAAoAGQAiAAQAFwAdABQAFwAaAB0AFAAgAA4AFAAdACAAEQAaABcAEQAjABoADgAjABEADgAgACMAKQAvACYAKQAsAC8ADQAoABMADQArACgAFgAuABAAFgAlAC4AEgAkABUAEgAnACQA"),
+"material": SubResource("StandardMaterial3D_5owwn"),
+"name": "Metal",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 48,
+"vertex_data": PackedByteArray("AAAAAP///78AAAAA////vwAAAAD//1TVAAD//////78AAP///////wAA/////1TVAAAAAAAA//8AAAAAAAD/vwAAAAAAAFTVAAD//wAA//8AAP//AAD//wAA//8AAFTV//9XFqfp/////1cWp+n/v///Vxan6VTV//+n6afp/////6fpp+n/v///p+mn6VTV//9XFlcW/n///1cWVxb/v///VxZXFlTV//+n6VcW/n///6fpVxb/v///p+lXFlTV/////wAA////////AAD///////8AAFTV//8AAAAA/////wAAAAD/v///AAAAAFTV//8AAP///7///wAA////v///AAD//1TV/////////7///////////////////1TVr9Kn6VcW/n+v0qfpVxb/v6/Sp+lXFlTVr9JXFlcW/n+v0lcWVxb/v6/SVxZXFlTVr9JXFqfp//+v0lcWp+n/v6/SVxan6VTVr9Kn6afp//+v0qfpp+n/v6/Sp+mn6VTV/////wAA/39U1VTV//////9//79U1VTV/7//vwAA/39U1VTV/7//v/9//79U1VTV////f////3+qKqoq////fwAA/3+qKqoq/3///////3+qKqoq/3///wAA/3+qKqoq/7//v/9//7+qKqoq/7//vwAA/3+qKqoq/////wAA/3+qKqoq//////9//7+qKqoq/3///wAA/3+qKqoq/3///////3+qKqoq////f////3+qKqoq////fwAA/3+qKqoq")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_k01fm")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_heo4o"]
+resource_name = "Material.001"
+cull_mode = 2
+albedo_color = Color(0.90643, 0.10267, 0.188548, 1)
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.905884, 0.101962, 0.188236, 1)
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_wdfhg"]
+_surfaces = [{
+"aabb": AABB(0.0194235, -0.113014, -0.113014, 0.0485026, 0.226028, 0.226028),
+"format": 34359742465,
+"index_count": 36,
+"index_data": PackedByteArray("AQADAAIAAQAAAAMABQAHAAQABQAGAAcAAwAGAAIAAwAHAAYAAgAFAAEAAgAGAAUAAAAHAAMAAAAEAAcAAQAEAAAAAQAFAAQA"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("Fx6fPPtz5z0LdOe9Fx6fPAN0570LdOe9Fx6fPAN0573zc+c9Fx6fPPtz5z3zc+c91RyLPZX8wz2l/MO91RyLPZz8w72l/MO91RyLPZz8w72M/MM91RyLPZX8wz2M/MM9")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_ntm10"]
+resource_name = "ButtonBoard_Cube_003"
+_surfaces = [{
+"aabb": AABB(0.0194235, -0.113014, -0.113014, 0.0485026, 0.226028, 0.226028),
+"attribute_data": PackedByteArray("CGoaPw7U9D4Iaho/DtT0PghqGj8O1PQ+8ivLPg7U9D7yK8s+DtT0PvIryz4O1PQ+8ivLPvIriz7yK8s+8iuLPvIryz7yK4s+B2oaP/Iriz4Haho/8iuLPgdqGj/yK4s+CGoaPw7U9D4Iaho/DtT0PghqGj8O1PQ+8ivLPg7U9D7yK8s+DtT0PvIryz4O1PQ+8ivLPvIriz7yK8s+8iuLPvIryz7yK4s+B2oaP/Iriz4Haho/8iuLPgdqGj/yK4s+"),
+"format": 34359742487,
+"index_count": 36,
+"index_data": PackedByteArray("BQALAAgABQACAAsAEQAXAA4AEQAUABcACQASAAYACQAVABIABwAQAAQABwATABAAAQAWAAoAAQANABYAAwAMAAAAAwAPAAwA"),
+"material": SubResource("StandardMaterial3D_heo4o"),
+"name": "Material.001",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("Fx6fPPtz5z0LdOe9Fx6fPPtz5z0LdOe9Fx6fPPtz5z0LdOe9Fx6fPAN0570LdOe9Fx6fPAN0570LdOe9Fx6fPAN0570LdOe9Fx6fPAN0573zc+c9Fx6fPAN0573zc+c9Fx6fPAN0573zc+c9Fx6fPPtz5z3zc+c9Fx6fPPtz5z3zc+c9Fx6fPPtz5z3zc+c91RyLPZX8wz2l/MO91RyLPZX8wz2l/MO91RyLPZX8wz2l/MO91RyLPZz8w72l/MO91RyLPZz8w72l/MO91RyLPZz8w72l/MO91RyLPZz8w72M/MM91RyLPZz8w72M/MM91RyLPZz8w72M/MM91RyLPZX8wz2M/MM91RyLPZX8wz2M/MM91RyLPZX8wz2M/MM9//9R3v///7+toVHe////vwAA/3//fwAA//9R3v///7+toa0h////vwAA/3//fwAAraH/f////z+toa0h////vwAA/3//fwAAraH/f////z+toVHe////vwAA/3//fwAA//9R3v///7+toVHe////v////3//f/////9R3v///7+toa0h////v////3//f///raH/f////z+toa0h////v////3//f///raH/f////z+toVHe////v////3//f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_wdfhg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jh8br"]
+albedo_color = Color(1, 0.113725, 0.223529, 1)
+emission_enabled = true
+emission = Color(1, 0.12549, 0.243137, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bgulk"]
+_data = {
+"Press": ExtResource("12_0d8kq")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tr51k"]
+size = Vector3(0.113037, 0.233429, 0.220764)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jw88j"]
+albedo_color = Color(0, 0.466667, 1, 1)
+emission_enabled = true
+emission = Color(0, 0.466667, 1, 1)
+emission_energy_multiplier = 3.6
+
+[node name="DeliveryRoom02" type="Node3D"]
+
+[node name="Floors and Ceilings" type="GridMap" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+mesh_library = ExtResource("1_7a176")
+data = {
+"cells": PackedInt32Array(2, 65535, 655362, 1, 65535, 655362, 0, 65535, 655362, 65535, 65535, 655362, 65534, 65535, 655362, 65533, 65535, 655362, 65532, 65535, 655362, 65532, 0, 655362, 65533, 0, 655362, 65534, 0, 655362, 65535, 0, 655362, 0, 0, 655362, 1, 0, 655362, 2, 0, 655362, 65532, 65534, 655362, 65533, 65534, 655362, 65534, 65534, 655362, 65535, 65534, 655362, 0, 65534, 655362, 1, 65534, 655362, 2, 65534, 655362, 2, 65533, 655362, 1, 65533, 655362, 0, 65533, 655362, 65535, 65533, 655362, 65534, 65533, 655362, 65533, 65533, 655362, 65532, 65533, 655362, 131074, 0, 2, 131073, 0, 2, 131072, 0, 2, 196607, 0, 2, 196606, 0, 2, 196605, 0, 2, 196610, 65535, 655362, 196610, 65534, 655362, 196610, 65533, 655362, 196609, 65533, 655362, 196608, 65533, 655362, 262143, 65533, 655362, 262142, 65533, 655362, 262141, 65533, 655362, 262140, 65533, 655362, 262140, 65534, 655362, 262140, 65535, 655362, 262141, 65535, 655362, 262142, 65535, 655362, 262143, 65535, 655362, 262143, 65534, 655362, 196608, 65534, 655362, 196609, 65534, 655362, 196609, 65535, 655362, 196608, 65535, 655362, 262141, 65534, 655362, 262142, 65534, 655362, 196604, 0, 655362, 65530, 65533, 2, 65530, 65534, 2, 65529, 65533, 2, 65529, 65534, 2, 65529, 65535, 2, 65529, 0, 2, 65528, 65533, 2, 65528, 65534, 2, 65528, 65535, 2, 65528, 0, 2, 65528, 1, 2, 65528, 2, 2, 65528, 3, 2, 65528, 4, 2, 65529, 4, 2, 65529, 3, 2, 65529, 2, 2, 65529, 1, 2, -5, 1, 1441794, -5, 2, 1441794, -5, 3, 1441794, -5, 4, 1441794, -6, 4, 1441794, -6, 3, 1441794, -6, 2, 1441794, -6, 1, 1441794, 65527, 65533, 1048578, 65527, 65534, 1048578, 65527, 65535, 1048578, 65527, 0, 1048578, 65527, 1, 1048578, 65527, 2, 1048578, 65527, 3, 1048578, 65527, 4, 1048578, 65530, 65535, 1441794, -6, 5, 655362, -5, 5, 655362, -5, 6, 655362, -5, 7, 655362, -6, 7, 655362, -6, 6, 655362, -5, 8, 655362, -6, 8, 655362, -7, 7, 655362, -8, 7, 655362, -9, 7, 655362, -9, 8, 655362, -8, 8, 655362, -7, 8, 655362, -10, 7, 2, -10, 8, 2, 65529, 5, 655362, 65529, 6, 655362, 65528, 6, 655362, 65528, 5, 655362, 65527, 5, 655362, 65527, 6, 655362, 196603, 1, 655362, 196603, 2, 655362, 196603, 3, 655362, 196603, 4, 655362, 196603, 5, 655362, 196602, 4, 655362, 196602, 3, 655362, 196602, 2, 655362, 196602, 1, 655362, 196602, 5, 655362, 196602, 6, 655362, 196603, 6, 655362, 196603, 7, 655362, 196603, 8, 655362, 196602, 8, 655362, 196602, 7, 655362, 196601, 8, 655362, 196601, 7, 655362, 196600, 7, 655362, 196599, 7, 655362, 196598, 7, 655362, 196598, 8, 655362, 196599, 8, 655362, 196600, 8, 655362, 262138, 65533, 1048578, 262137, 65533, 1048578, 262136, 65533, 1048578, 262136, 65534, 1048578, 262135, 65534, 1048578, 262135, 65533, 1048578, 262135, 65535, 1048578, 262136, 65535, 1048578, 262137, 65535, 1048578, 262137, 65534, 1048578, 262138, 65534, 1048578, 262138, 65535, 1048578, 262137, 0, 1048578, 262137, 1, 1048578, 262137, 2, 1048578, 262136, 1, 1048578, 262136, 0, 1048578, 262135, 0, 1048578, 262135, 1, 1048578, 262136, 2, 1048578, 262136, 3, 1048578, 262135, 2, 1048578, 262135, 3, 1048578, 262135, 4, 1048578, 262135, 5, 1048578, 262136, 6, 1048578, 262135, 6, 1048578, 262137, 6, 1048578, 262137, 5, 1048578, 262137, 4, 1048578, 262137, 3, 1048578, 262136, 4, 1048578, 262136, 5, 1048578)
+}
+metadata/_editor_floor_ = Vector3(0, 3, 0)
+
+[node name="WallsandVents" type="GridMap" parent="."]
+mesh_library = ExtResource("1_7a176")
+data = {
+"cells": PackedInt32Array(65532, 0, 1, 65535, 0, 0, 65534, 0, 0, 65533, 0, 0, 65532, 65535, 1441801, 2, 65535, 1048585, 0, 0, 0, 1, 0, 0, 2, 0, 1048577, 2, 65533, 655361, 65532, 65533, 1441793, 1, 65533, 655364, 0, 65533, 655360, 65535, 65533, 655364, 65534, 65533, 655360, 65533, 65533, 655364, 2, 65534, 1048581, 65532, 65534, 1441797, 196604, 65533, 1441799, 131074, 65533, 655367, 131074, 65535, 1048583, 196604, 65535, 7, 131073, 65535, 6, 131072, 65535, 6, 196607, 65535, 6, 196606, 65535, 6, 196605, 65535, 6, 131074, 65534, 1048582, 196604, 65534, 1441798, 196605, 65533, 655366, 196606, 65533, 655366, 196607, 65533, 655366, 131072, 65533, 655366, 131073, 65533, 655366, 65527, 65533, 1441793, 65530, 65533, 655361, 65530, 65534, 1048581, 65531, 65535, 655360, 65530, 65535, 1048585, 65530, 0, 1441793, -6, 1, 655360, -5, 1, 655361, 131067, 1, 655367, -7, 1, 1048582, 65527, 65534, 1441792, 65527, 65535, 1441792, 65527, 0, 1441792, -5, 2, 1048576, 131067, 2, 1048582, 131067, 3, 1048582, -5, 3, 1048576, -5, 8, 1048577, -10, 7, 1441793, -10, 8, 1, -9, 8, 0, -8, 8, 0, -7, 8, 0, -6, 8, 0, -5, 7, 1048576, -5, 6, 1048576, -5, 5, 1048576, -5, 4, 1048576, -7, 4, 1048582, -7, 3, 1048582, -7, 2, 1048582, -7, 6, 1048583, -8, 6, 6, -9, 6, 6, -7, 5, 1048582, 65527, 6, 1441792, 65527, 1, 1441792, 65527, 2, 1441792, 65527, 3, 1441792, 65527, 4, 1441797, 65527, 5, 1441801, 131062, 7, 1441799, 131062, 8, 7, 131063, 8, 6, 131064, 8, 6, 131065, 8, 6, 131066, 8, 6, 131067, 7, 1048582, 131067, 6, 1048582, 131067, 5, 1048582, 131067, 4, 1048582, 131067, 8, 1048583, 196599, 6, 1441798, 196599, 5, 1441798, 196599, 4, 1441798, 196599, 3, 1441798, 196599, 2, 1441798, 196599, 1, 1441798, 196599, 0, 1441798, 196599, 65535, 1441798, 196599, 65534, 1441798, 196600, 65533, 655366, 196601, 65533, 655366, 196602, 65534, 1048582, 196602, 65533, 655367, 196599, 65533, 1441799, 196602, 65535, 1048583, 196602, 0, 1441798, 196602, 1, 1441798, 196602, 2, 1441798, 196602, 3, 1441798, 196602, 4, 1441798, 196602, 5, 1441798, 196602, 6, 1441798, 196601, 7, 655366, 196600, 7, 655366, 196599, 7, 655366, 131066, 1, 655366, 65528, 65533, 655364, 65529, 65533, 655364)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 1)
+
+[node name="Replace Vents" type="Node3D" parent="WallsandVents" node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.98447, 15)
+top_level = true
+script = ExtResource("2_i3dqh")
+data = {
+"Exit": Vector3i(0, 0, 0),
+"Self": NodePath(""),
+"transform": Vector3i(4, 2, -4)
+}
+interactive = Array[Dictionary]([{
+"Exit": Vector3i(-6, 0, -1),
+"Self": NodePath(""),
+"transform": Vector3i(-4, 0, -1)
+}, {
+"Exit": Vector3i(0, 0, 0),
+"Self": NodePath(""),
+"transform": Vector3i(2, 0, -1)
+}, {
+"Exit": Vector3i(-4, 0, -1),
+"Self": NodePath(""),
+"transform": Vector3i(-6, 0, -1)
+}, {
+"Exit": Vector3i(0, 0, 0),
+"Self": NodePath(""),
+"transform": Vector3i(-9, 0, 5)
+}])
+player = NodePath("../../Player")
+itemToReplace = 9
+item = ExtResource("3_v8xsq")
+metadata/_edit_pinned_properties_ = [&"data"]
+
+[node name="Pipes" type="GridMap" parent="."]
+mesh_library = ExtResource("4_qiw78")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65539, 1, 589824, 65538, 1, 589824, 65537, 1, 589824, 65536, 1, 589824, 131071, 1, 1114113, 131070, 1, 1376257, 131069, 1, 589824, 131068, 1, 589824, 131067, 1, 589824, 131066, 1, 589824, 131065, 1, 589824, 131064, 1, 589824, 65540, 1, 589824, 65541, 1, 589824, 196613, 1, 589824, 196612, 1, 589824, 196611, 1, 589824, 196610, 1, 589824, 196609, 1, 589824, 196608, 1, 589824, 262143, 1, 1507329, 262142, 1, 1245185, 262141, 1, 589824, 262140, 1, 589824, 262139, 1, 589824, 262138, 1, 589824, 262137, 1, 589824, 262136, 1, 589824, 196607, 1, 1048576, 196606, 1, 1048576, 65537, 0, 131072, 131073, 0, 1048580, 196609, 0, 131072, 262145, 0, 131072, 65540, 0, 1048576, 131076, 0, 1441796, 196612, 0, 1048576, 262148, 0, 1048576, 131068, 0, 1048576, 196604, 0, 1048576, 262140, 0, 1048576, 327676, 0, 1441796, 131065, 0, 1048576, 196601, 0, 1048576, 262137, 0, 1048576, 327673, 0, 1048580, 131075, 0, 196608, 131074, 0, 196608, 327675, 0, 196608, 327674, 0, 196608, 262135, 1, 65536, 262134, 1, 65536, 262133, 1, 65537, 262133, 2, 851968, 262133, 3, 851968, 262133, 4, 851968, 262133, 5, 851968, 262133, 6, 851968, 262133, 7, 851968, 262133, 8, 851968, 262133, 10, 851968, 262133, 11, 851968, 262133, 12, 851968, 262133, 14, 851968, 262133, 15, 589825, 262132, 15, 1507332, 262130, 15, 1245185, 262127, 15, 196612, 262126, 15, 589824, 262125, 15, 589824, 262124, 15, 589824, 262123, 15, 589824, 327670, 2, 327680, 327670, 3, 327680, 327670, 4, 327680, 327670, 5, 327680, 327670, 6, 327680, 327670, 7, 327680, 327670, 8, 327680, 327670, 10, 327680, 327670, 11, 327680, 131056, 16, 720896, 131055, 16, 720896, 131054, 16, 720896, 131053, 16, 720896, 131052, 16, 720896, 131057, 16, 720896, 131058, 16, 720896, 131059, 16, 720896, 131060, 16, 720896, 131061, 16, 720896, 131062, 16, 720896, 131063, 16, 720896, 262133, 9, 1, 327669, 9, 1048577, 327670, 9, 458756, 327670, 13, 589825, 327670, 12, 327680, 262133, 13, 655364, 327669, 13, 1048577, 196597, 9, 131073, 196597, 10, 458752, 196597, 11, 458752, 196597, 12, 458752, 196597, 13, 393217, 262128, 15, 65536, 262131, 15, 1114113, 262131, 14, 917505, 327667, 15, 917505, 327667, 16, 589825, 327666, 16, 1507328, 196594, 14, 1507328, 196595, 14, 1376257, 262127, 14, 1, 196591, 14, 1310721, 262127, 16, 524289, 327663, 16, 1048577, 262129, 15, 196608, 196593, 14, 196608, 196592, 14, 196608, 327665, 16, 196608, 327664, 16, 196608, 196594, 15, 1179648, 131058, 15, 1310721, 131059, 15, 1507328, 131060, 15, 1376257, 196596, 15, 1441792)
+}
+metadata/_editor_floor_ = Vector3(0, 3, 1)
+
+[node name="PipeDirectionSupport" type="Node3D" parent="Pipes"]
+script = ExtResource("5_ogs2b")
+outlets = [[Vector3i(0, -1, 0), Vector3i(0, 1, 0)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1), Vector3(0, 0, -1), Vector3(0, 1, 0)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1), Vector3(0, 0, -1), Vector3(0, 1, 0), Vector3(1, 0, 0), Vector3(0, 0, 0)], [Vector3(0, 1, 0), Vector3(0, -1, 0), Vector3(0, 0, 1)], [Vector3(0, 1, 0), Vector3(0, -1, 0)], [Vector3i(0, -1, 0), Vector3i(0, 0, 1)]]
+metadata/_edit_pinned_properties_ = [&"outlets"]
+
+[node name="PipeDestinations" type="GridMap" parent="Pipes"]
+mesh_library = ExtResource("6_cxqj3")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(65541, 1, 0, 262133, 2, 458752)
+}
+script = ExtResource("7_vwveh")
+Ends = [{
+"Direction": Vector3i(-1, 0, 0),
+"Position": Vector3i(5, 1, 1)
+}, {
+"Direction": Vector3i(0, 0, 1),
+"Position": Vector3i(-11, 3, 2)
+}]
+metadata/_editor_floor_ = Vector3(0, 3, 0)
+
+[node name="Room1" type="GridMap" parent="Pipes" node_paths=PackedStringArray("grid")]
+mesh_library = ExtResource("6_cxqj3")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(131071, 1, 0, 262143, 1, 0, 262142, 1, 0, 131070, 1, 0)
+}
+script = ExtResource("8_ibuer")
+grid = NodePath("..")
+Interfaces = {
+0: Array[Dictionary]([{
+"Orientation": -1,
+"Pipe": -1,
+"Position": Vector3i(0, -1, -1)
+}, {
+"Orientation": -1,
+"Pipe": -1,
+"Position": Vector3i(-2, -1, -1)
+}, {
+"Orientation": 17,
+"Pipe": 1,
+"Position": Vector3i(-1, 1, 1)
+}, {
+"Orientation": 23,
+"Pipe": 1,
+"Position": Vector3i(-1, 3, 1)
+}, {
+"Orientation": 19,
+"Pipe": 1,
+"Position": Vector3i(-2, 3, 1)
+}, {
+"Orientation": 21,
+"Pipe": 1,
+"Position": Vector3i(-2, 1, 1)
+}]),
+1: Array[Dictionary]([{
+"Orientation": -1,
+"Pipe": -1,
+"Position": Vector3i(0, -1, -1)
+}, {
+"Orientation": -1,
+"Pipe": -1,
+"Position": Vector3i(-2, -1, -1)
+}, {
+"Orientation": 17,
+"Pipe": 1,
+"Position": Vector3i(-1, 1, 1)
+}, {
+"Orientation": 22,
+"Pipe": 1,
+"Position": Vector3i(-1, 3, 1)
+}, {
+"Orientation": 16,
+"Pipe": 1,
+"Position": Vector3i(-2, 3, 1)
+}, {
+"Orientation": 21,
+"Pipe": 1,
+"Position": Vector3i(-2, 1, 1)
+}]),
+2: Array[Dictionary]([{
+"Orientation": -1,
+"Pipe": -1,
+"Position": Vector3i(0, -1, -1)
+}, {
+"Orientation": -1,
+"Pipe": -1,
+"Position": Vector3i(-2, -1, -1)
+}, {
+"Orientation": 21,
+"Pipe": 1,
+"Position": Vector3i(-1, 1, 1)
+}, {
+"Orientation": 16,
+"Pipe": 1,
+"Position": Vector3i(-1, 3, 1)
+}, {
+"Orientation": 19,
+"Pipe": 1,
+"Position": Vector3i(-2, 3, 1)
+}, {
+"Orientation": 17,
+"Pipe": 1,
+"Position": Vector3i(-2, 1, 1)
+}])
+}
+metadata/_editor_floor_ = Vector3(0, -1, 1)
+
+[node name="Room2" type="Node" parent="Pipes"]
+
+[node name="1" type="GridMap" parent="Pipes/Room2" node_paths=PackedStringArray("grid")]
+mesh_library = ExtResource("6_cxqj3")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(262133, 9, 0, 262133, 13, 0)
+}
+script = ExtResource("8_ibuer")
+grid = NodePath("../..")
+CurrentInterface = 3
+Interfaces = {
+0: Array[Dictionary]([{
+"Orientation": 8,
+"Pipe": 1,
+"Position": Vector3i(-11, 3, 9)
+}, {
+"Orientation": 6,
+"Pipe": 4,
+"Position": Vector3i(-11, 3, 13)
+}]),
+1: Array[Dictionary]([{
+"Orientation": 10,
+"Pipe": 1,
+"Position": Vector3i(-11, 3, 9)
+}, {
+"Orientation": 4,
+"Pipe": 4,
+"Position": Vector3i(-11, 3, 13)
+}]),
+2: Array[Dictionary]([{
+"Orientation": 2,
+"Pipe": 1,
+"Position": Vector3i(-11, 3, 9)
+}, {
+"Orientation": 2,
+"Pipe": 4,
+"Position": Vector3i(-11, 3, 13)
+}]),
+3: Array[Dictionary]([{
+"Orientation": 0,
+"Pipe": 1,
+"Position": Vector3i(-11, 3, 9)
+}, {
+"Orientation": 10,
+"Pipe": 4,
+"Position": Vector3i(-11, 3, 13)
+}])
+}
+metadata/_editor_floor_ = Vector3(0, 3, 1)
+
+[node name="2" type="GridMap" parent="Pipes/Room2" node_paths=PackedStringArray("grid")]
+mesh_library = ExtResource("6_cxqj3")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(262131, 15, 0, 262127, 15, 0)
+}
+script = ExtResource("8_ibuer")
+grid = NodePath("../..")
+Interfaces = {
+0: Array[Dictionary]([{
+"Orientation": 17,
+"Pipe": 1,
+"Position": Vector3i(-13, 3, 15)
+}, {
+"Orientation": 3,
+"Pipe": 4,
+"Position": Vector3i(-17, 3, 15)
+}]),
+1: Array[Dictionary]([{
+"Orientation": 5,
+"Pipe": 1,
+"Position": Vector3i(-13, 3, 15)
+}, {
+"Orientation": 9,
+"Pipe": 4,
+"Position": Vector3i(-17, 3, 15)
+}]),
+2: Array[Dictionary]([{
+"Orientation": 6,
+"Pipe": 1,
+"Position": Vector3i(-13, 3, 15)
+}, {
+"Orientation": 5,
+"Pipe": 4,
+"Position": Vector3i(-17, 3, 15)
+}])
+}
+metadata/_editor_floor_ = Vector3(0, 3, 1)
+
+[node name="Railing" type="GridMap" parent="."]
+mesh_library = ExtResource("8_miuoj")
+data = {
+"cells": PackedInt32Array(2, 65535, 0, 1, 65535, 0, 65534, 65535, 0, 65533, 65535, 0, 65532, 65535, 0, 0, 65535, 0, 65535, 65535, 0, 131074, 65535, 131072, 131073, 65535, 131072, 131072, 65535, 131072, 196607, 65535, 131072, 196606, 65535, 131072, 196605, 65535, 131072, 196604, 65535, 131072, 65530, 1, 1441792, 65530, 2, 1441792, 65530, 3, 1441792, 65530, 4, 1441792, 65530, 5, 1441792, 65530, 6, 1441792, 65529, 7, 655360, 65528, 7, 655360, 65527, 7, 655360, 65530, 7, 655362)
+}
+metadata/_editor_floor_ = Vector3(0, 1, 0)
+
+[node name="Player" parent="." instance=ExtResource("8_y1m6d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.16851, 2.77133, -2.94644)
+
+[node name="Lights" type="GridMap" parent="."]
+mesh_library = ExtResource("10_yqcrj")
+data = {
+"cells": PackedInt32Array(196610, 65534, 524289, 262143, 65534, 524289, 262140, 65534, 524289, 196610, 65533, 524288, 196610, 65535, 131072, 262143, 65533, 524288, 262143, 65535, 131072, 262140, 65533, 524288, 262140, 65535, 131072, 262136, 1, 131073, 262136, 2, 131073, 262136, 3, 131073, 262136, 4, 131073, 262136, 5, 131072, 262136, 0, 524288, 262138, 65534, 524290)
+}
+metadata/_editor_floor_ = Vector3(0, 3, 0)
+
+[node name="Lights + Environment" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights + Environment"]
+environment = SubResource("Environment_0p7a5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights + Environment"]
+transform = Transform3D(-0.783687, 0.118268, 0.609793, 0.40712, 0.839244, 0.360449, -0.469135, 0.530738, -0.705854, 0.712618, 1.16872, 5.62129)
+light_color = Color(0.683078, 0.400972, 0.300582, 1)
+shadow_enabled = true
+
+[node name="R1" type="Node" parent="Lights + Environment"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights + Environment/R1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04512, 6.74234, -2.89886)
+light_color = Color(0.694995, 0.461889, 0.403783, 1)
+light_energy = 3.218
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 5.896
+omni_attenuation = 2.056
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights + Environment/R1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.986152, 6.70013, -2.89886)
+light_color = Color(0.694995, 0.461889, 0.403783, 1)
+light_energy = 3.218
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 5.896
+omni_attenuation = 2.056
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lights + Environment/R1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.99096, 6.73443, -2.89886)
+light_color = Color(0.694995, 0.461889, 0.403783, 1)
+light_energy = 3.218
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 5.896
+omni_attenuation = 2.056
+
+[node name="R2" type="Node" parent="Lights + Environment"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Lights + Environment/R2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.2117, 6.62122, -3.06454)
+light_color = Color(0.694995, 0.461889, 0.403783, 1)
+light_energy = 3.218
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 5.896
+omni_attenuation = 2.056
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Lights + Environment/R2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.064, 6.57698, 2.63893)
+light_color = Color(0.694995, 0.461889, 0.403783, 1)
+light_energy = 3.218
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 5.896
+omni_attenuation = 2.056
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Lights + Environment/R2"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.9391, 6.56941, 8.64374)
+light_color = Color(0.694995, 0.461889, 0.403783, 1)
+light_energy = 3.218
+light_specular = 0.0
+shadow_enabled = true
+omni_range = 5.896
+omni_attenuation = 2.056
+
+[node name="ButtonFire" type="Node3D" parent="." node_paths=PackedStringArray("item")]
+transform = Transform3D(-4.64579e-08, 0, 1.06283, 0, 1.06283, 0, -1.06283, 0, -4.64579e-08, 1.92275, 2.20037, -0.160158)
+script = SubResource("GDScript_gp4jd")
+item = NodePath("../PipeItem")
+
+[node name="Button" type="MeshInstance3D" parent="ButtonFire"]
+mesh = SubResource("ArrayMesh_fp86u")
+skeleton = NodePath("")
+
+[node name="Cube_002" type="MeshInstance3D" parent="ButtonFire/Button"]
+mesh = SubResource("ArrayMesh_ntm10")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_jh8br")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ButtonFire"]
+libraries = {
+"": SubResource("AnimationLibrary_bgulk")
+}
+
+[node name="Lever" type="StaticBody3D" parent="ButtonFire" node_paths=PackedStringArray("anim")]
+script = ExtResource("13_2ysdo")
+anim = NodePath("../AnimationPlayer")
+animations = Array[Animation]([ExtResource("12_0d8kq")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonFire/Lever"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00246228, 0.00302123)
+shape = SubResource("BoxShape3D_tr51k")
+
+[node name="ButtonFire2" type="Node3D" parent="." node_paths=PackedStringArray("item")]
+transform = Transform3D(-1.06283, 0, -9.29158e-08, 0, 1.06283, 0, 9.29158e-08, 0, -1.06283, -12.0233, 3.05833, 1.25277)
+script = SubResource("GDScript_gp4jd")
+item = NodePath("../PipeItem")
+
+[node name="Button" type="MeshInstance3D" parent="ButtonFire2"]
+mesh = SubResource("ArrayMesh_fp86u")
+skeleton = NodePath("")
+
+[node name="Cube_002" type="MeshInstance3D" parent="ButtonFire2/Button"]
+mesh = SubResource("ArrayMesh_ntm10")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_jh8br")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ButtonFire2"]
+libraries = {
+"": SubResource("AnimationLibrary_bgulk")
+}
+
+[node name="Lever" type="StaticBody3D" parent="ButtonFire2" node_paths=PackedStringArray("anim")]
+script = ExtResource("13_2ysdo")
+anim = NodePath("../AnimationPlayer")
+animations = Array[Animation]([ExtResource("12_0d8kq")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonFire2/Lever"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00246228, 0.00302123)
+shape = SubResource("BoxShape3D_tr51k")
+
+[node name="PipeItem" type="Node3D" parent="." node_paths=PackedStringArray("Grid", "pipeDirection", "pipeDestinations")]
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999998, 5, 1, 1)
+script = ExtResource("14_s7m22")
+ActiveDirections = [Vector3i(-1, 0, 0), Vector3i(1, 0, 0)]
+CurrentPos = Vector3i(5, 1, 1)
+CurrentDirection = Vector3i(-1, 0, 0)
+Grid = NodePath("../Pipes")
+pipeDirection = NodePath("../Pipes/PipeDirectionSupport")
+pipeDestinations = NodePath("../Pipes/PipeDestinations")
+
+[node name="Item" type="CSGCylinder3D" parent="PipeItem"]
+transform = Transform3D(0, 1, 0, 1, 0, 0, 0, 0, -1, 0.437744, 0.437398, 0.500057)
+radius = 0.25
+height = 0.686332
+material = SubResource("StandardMaterial3D_jw88j")
+
+[node name="R1" parent="." node_paths=PackedStringArray("pI") instance=ExtResource("15_sw8i7")]
+transform = Transform3D(-6.66393e-08, 0, 1.52453, 0, 1.52453, 0, -1.52453, 0, -6.66393e-08, 0.995743, 2.12186, -0.133855)
+pI = NodePath("../Pipes/Room1")
+
+[node name="R2_1" parent="." node_paths=PackedStringArray("pI") instance=ExtResource("15_sw8i7")]
+transform = Transform3D(-1.52453, 0, -1.33279e-07, 0, 1.52453, 0, 1.33279e-07, 0, -1.52453, -11.924, 2.12186, 9.02266)
+pI = NodePath("../Pipes/Room2/1")
+
+[node name="R2_2" parent="." node_paths=PackedStringArray("pI") instance=ExtResource("15_sw8i7")]
+transform = Transform3D(-6.66393e-08, 0, 1.52453, 0, 1.52453, 0, -1.52453, 0, -6.66393e-08, -13.5171, 2.12186, 14.0544)
+pI = NodePath("../Pipes/Room2/2")

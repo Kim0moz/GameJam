@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://5w5mhvom7xnv"]
+
+[ext_resource type="PackedScene" uid="uid://evfmc65rq66r" path="res://Models/GridMapTest/LightAtlas.glb" id="1_eetvj"]
+
+[node name="LightAtlas" instance=ExtResource("1_eetvj")]

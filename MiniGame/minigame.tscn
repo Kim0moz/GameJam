@@ -25,13 +25,13 @@
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_povc6"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8j1nr"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4kow"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_liew5"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_povc6")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_8j1nr")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -69,7 +69,7 @@ _data = {
 }
 point_count = 5
 
-[node name="Minigame" type="Node2D" node_paths=PackedStringArray("deliveryInfo", "drone", "capsule", "pointer", "dropOffGenerator")]
+[node name="Minigame" type="Node2D" node_paths=PackedStringArray("deliveryInfo", "drone", "capsule", "pointer", "dropOffGenerator", "startButton")]
 script = ExtResource("2_0irbu")
 deliveryInfo = NodePath("CanvasLayer/DeliveryStatus")
 drone = NodePath("Drone")
@@ -77,6 +77,7 @@ capsule = NodePath("Capsule2D")
 pointer = NodePath("Pointer2d")
 dropOffGenerator = NodePath("Town1/Buildings")
 deliveryConfirmationText = ExtResource("2_fgfl8")
+startButton = NodePath("CanvasLayer/MinigameMenu/StartButton")
 capsuleDeliveryTargetTime = 0.5
 
 [node name="Drone" parent="." node_paths=PackedStringArray("pointer") instance=ExtResource("4_lpyc7")]
@@ -133,25 +134,32 @@ offset_left = 10.0
 offset_right = 10.0
 
 [node name="MinigameMenu" parent="CanvasLayer" instance=ExtResource("13_2517h")]
-visible = false
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_d4kow")
+material = SubResource("ShaderMaterial_liew5")
+mouse_filter = 2
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 
+[node name="Panel" parent="CanvasLayer/ScreenRipple/SubViewport" index="0"]
+mouse_filter = 2
+
 [node name="ChromaticMask" parent="CanvasLayer/ScreenRipple/SubViewport" index="1"]
 material = SubResource("ShaderMaterial_cmfte")
+mouse_filter = 2
 
 [node name="Ripple" parent="CanvasLayer/ScreenRipple" index="1"]
 material = SubResource("ShaderMaterial_njlfq")
+mouse_filter = 2
 
 [node name="Chromatic Aberation" parent="CanvasLayer" instance=ExtResource("7_h6wv1")]
 material = SubResource("ShaderMaterial_h0ru5")
+mouse_filter = 2
 theme = SubResource("Theme_q60kg")
 
 [node name="FishEye" parent="CanvasLayer" instance=ExtResource("7_h6wv1")]
 material = SubResource("ShaderMaterial_fta72")
+mouse_filter = 2
 theme = SubResource("Theme_q60kg")
 
 [node name="Path2D" type="Path2D" parent="." node_paths=PackedStringArray("camera")]
@@ -226,4 +234,5 @@ position = Vector2(0, -432)
 
 [editable path="Drone"]
 [editable path="CanvasLayer/DeliveryStatus"]
+[editable path="CanvasLayer/MinigameMenu"]
 [editable path="CanvasLayer/ScreenRipple"]

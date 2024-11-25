@@ -7,6 +7,7 @@ extends Node
 @export var pointer : Pointer2D
 @export var dropOffGenerator : DropOffGenerator
 @export var deliveryConfirmationText : PackedScene
+@export var startButton : Button
 var capsuleSpawnPoints
 
 @export_category("Delivery Settings")
@@ -32,6 +33,7 @@ func _ready():
 	capsuleSpawnPoints = get_tree().get_nodes_in_group("CapsuleSpawnPoints")
 	drone.connect("package_acquired", Callable(self, "capsulePickedUp"))
 	drone.connect("package_delivered", Callable(self, "capsuleDelivered"))
+	startButton.connect("button_down", Callable(self, "startGame"))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -91,3 +93,5 @@ func capsuleDelivered():
 	capsuleSpawnDT = 0
 	deliveryInfo.setTextState(DeliveryInfo.TextState.FLASHING)
 	
+func startGame():
+	print("Start Minigame")

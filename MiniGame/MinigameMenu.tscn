@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c65j3fq4gl3md"]
+[gd_scene load_steps=17 format=3 uid="uid://c65j3fq4gl3md"]
 
 [ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_l7k3d"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="2_v7q6f"]
@@ -10,15 +10,6 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="FontVariation" id="FontVariation_rchik"]
 base_font = ExtResource("2_v7q6f")
 spacing_top = -11
-
-[sub_resource type="Theme" id="Theme_v834k"]
-
-[sub_resource type="FontVariation" id="FontVariation_mxnvj"]
-base_font = ExtResource("2_v7q6f")
-spacing_top = -20
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsdrg"]
-bg_color = Color(0.479048, 0.72476, 0.241247, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uvctu"]
 font = ExtResource("2_v7q6f")
@@ -47,6 +38,18 @@ region = Rect2(80, 128, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ap43e"]
 atlas = SubResource("CompressedTexture2D_erm1m")
 region = Rect2(80, 144, 16, 16)
+
+[sub_resource type="Theme" id="Theme_v834k"]
+
+[sub_resource type="FontVariation" id="FontVariation_mxnvj"]
+base_font = ExtResource("2_v7q6f")
+spacing_top = -20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5l066"]
+bg_color = Color(0.333355, 0.510285, 0.166685, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsdrg"]
+bg_color = Color(0.479048, 0.72476, 0.241247, 1)
 
 [node name="MinigameMenu" type="Control"]
 layout_mode = 3
@@ -92,19 +95,6 @@ theme_override_fonts/normal_font = SubResource("FontVariation_rchik")
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[center]ID #4904[/center]"
-
-[node name="StartButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 476.0
-offset_top = 400.0
-offset_right = 668.0
-offset_bottom = 456.0
-pivot_offset = Vector2(96, 28)
-theme = SubResource("Theme_v834k")
-theme_override_fonts/font = SubResource("FontVariation_mxnvj")
-theme_override_font_sizes/font_size = 80
-theme_override_styles/normal = SubResource("StyleBoxFlat_gsdrg")
-text = "START"
 
 [node name="DeliveryStats" type="Panel" parent="."]
 layout_mode = 0
@@ -417,3 +407,17 @@ label_settings = SubResource("LabelSettings_uvctu")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 400.0
+offset_right = 668.0
+offset_bottom = 456.0
+pivot_offset = Vector2(96, 28)
+theme = SubResource("Theme_v834k")
+theme_override_fonts/font = SubResource("FontVariation_mxnvj")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/hover = SubResource("StyleBoxFlat_5l066")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gsdrg")
+text = "START"

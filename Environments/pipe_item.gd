@@ -23,14 +23,7 @@ var currentCell
 @export var pipeDirection : PipeSupport
 @export var pipeDestinations : PipeDestinations
 
-var preferredDirections = [
-	Vector3i(0,1,0),
-	Vector3i(0,0,1),
-	Vector3i(1,0,0),
-	Vector3i(0,-1,0),
-	Vector3i(0,0,-1),
-	Vector3i(-1,0,0)
-]
+
 
 func _ready() -> void:
 	moveToGridLocation(CurrentPos)
@@ -56,13 +49,23 @@ func checkIfNextIsPossible(direction):
 		return false
 
 func calculateNextDirection():
-	print("Calculating From :", CurrentPos)
+	var preferredDirections = [
+	Vector3i(pipeMesh.basis.x),
+	Vector3i(-pipeMesh.basis.x),
+	Vector3i(pipeMesh.basis.z),
+	Vector3i(-pipeMesh.basis.z),
+	Vector3i(pipeMesh.basis.y),
+	Vector3i(-pipeMesh.basis.y),
+]
+	#print("Calculating From :", CurrentPos)
 	if (ActiveDirections as Array).has(CurrentDirection):
 		if checkIfNextIsPossible(CurrentDirection) == true:
 			#print("Continuing Same Path")
 			return
 	else:
 		for dir in preferredDirections:
+			print(dir)
+			print(CurrentDirection)
 			if (ActiveDirections as Array).has(dir) and dir != CurrentDirection*-1:
 				#print("Checking : ", dir)
 				if checkIfNextIsPossible(dir) == true:

@@ -35,7 +35,5 @@ func rotateToOrientation(pos : Vector3, cellRotation):
 	else:
 		FinalRot = FirstRot.rotated(Vector3(1,0,0),deg_to_rad(firstRot))
 	return FinalRot as Vector3i
-
-
 	
 	

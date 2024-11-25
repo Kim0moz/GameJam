@@ -17,6 +17,11 @@ var capsuleSpawnPoints
 var capsuleSpawnDT : float = 0
 var capsuleDeliveryDT : float = 0
 
+@export_category("Delivery Stats")
+@export var deliveryTotal := 0
+@export var deliveryPoints := 0
+@export var ranking := 1032
+
 var computerState : ComputerState = ComputerState.MINIGAME
 var deliveryState : DeliveryState = DeliveryState.SPAWNING
 enum ComputerState {MAIN_MENU, MINIGAME}
@@ -79,7 +84,7 @@ func capsuleDelivered():
 	deliveryState = DeliveryState.SPAWNING
 	var delivConfText = (deliveryConfirmationText.instantiate() as DeliveryConfirmationText)
 	delivConfText.setTextIndex(int(deliveryInfo.TileSelected)-1)
-	delivConfText.global_position = pointer.target.global_position + Vector2(-50, -50)
+	delivConfText.global_position = pointer.target.global_position + Vector2(-delivConfText.size.x/2, -(delivConfText.size.y + 10))
 	delivConfText.z_index = 100
 	add_child(delivConfText)
 	pointer.target.queue_free()

@@ -11,7 +11,7 @@ load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c1
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_262bv"]
 atlas = SubResource("CompressedTexture2D_erm1m")
-region = Rect2(48, 144, 16, 16)
+region = Rect2(82, 97, 12, 15)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ht6l3"]
 atlas = ExtResource("3_qsn4b")

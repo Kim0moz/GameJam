@@ -28,4 +28,4 @@ animations = [{
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_jm8al")
 animation = &"Nice"
-frame_progress = 0.103113
+frame_progress = 0.678303

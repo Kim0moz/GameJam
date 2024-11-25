@@ -1,0 +1,419 @@
+[gd_scene load_steps=16 format=3 uid="uid://c65j3fq4gl3md"]
+
+[ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_l7k3d"]
+[ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="2_v7q6f"]
+[ext_resource type="PackedScene" uid="uid://bv8gf15agiob8" path="res://UI/basic_panel.tscn" id="3_8o8li"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mques"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_rchik"]
+base_font = ExtResource("2_v7q6f")
+spacing_top = -11
+
+[sub_resource type="Theme" id="Theme_v834k"]
+
+[sub_resource type="FontVariation" id="FontVariation_mxnvj"]
+base_font = ExtResource("2_v7q6f")
+spacing_top = -20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gsdrg"]
+bg_color = Color(0.479048, 0.72476, 0.241247, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uvctu"]
+font = ExtResource("2_v7q6f")
+font_size = 38
+shadow_color = Color(0.6, 0.898039, 0.313726, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_erm1m"]
+load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c162.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfeie"]
+atlas = SubResource("CompressedTexture2D_erm1m")
+region = Rect2(48, 144, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbbnm"]
+atlas = SubResource("CompressedTexture2D_erm1m")
+region = Rect2(80, 96, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lkdx"]
+atlas = SubResource("CompressedTexture2D_erm1m")
+region = Rect2(80, 112, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5rt5l"]
+atlas = SubResource("CompressedTexture2D_erm1m")
+region = Rect2(80, 128, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ap43e"]
+atlas = SubResource("CompressedTexture2D_erm1m")
+region = Rect2(80, 144, 16, 16)
+
+[node name="MinigameMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mques")
+
+[node name="ScreenBorder" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 48.0
+offset_right = 340.0
+offset_bottom = 210.0
+scale = Vector2(3.65, 3.407)
+theme = ExtResource("1_l7k3d")
+
+[node name="DeliverySoftText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 90.0
+offset_right = 844.0
+offset_bottom = 190.0
+pivot_offset = Vector2(272, 50)
+theme_override_colors/font_shadow_color = Color(0.6, 0.898039, 0.313726, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_rchik")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center][wave amp=50.0 freq=4 connected=1]DeliverySoft v12.2[/wave][/center]"
+
+[node name="IDNumberText" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 942.0
+offset_top = 76.0
+offset_right = 1068.0
+offset_bottom = 130.0
+pivot_offset = Vector2(63, 27)
+theme_override_colors/font_shadow_color = Color(0.6, 0.898039, 0.313726, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_rchik")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]ID #4904[/center]"
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 400.0
+offset_right = 668.0
+offset_bottom = 456.0
+pivot_offset = Vector2(96, 28)
+theme = SubResource("Theme_v834k")
+theme_override_fonts/font = SubResource("FontVariation_mxnvj")
+theme_override_font_sizes/font_size = 80
+theme_override_styles/normal = SubResource("StyleBoxFlat_gsdrg")
+text = "START"
+
+[node name="DeliveryStats" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 397.0
+offset_top = 198.0
+offset_right = 747.0
+offset_bottom = 348.0
+pivot_offset = Vector2(175, 75)
+theme = ExtResource("1_l7k3d")
+
+[node name="DeliveryTotalText" type="Label" parent="DeliveryStats"]
+layout_mode = 0
+offset_top = 21.0
+offset_right = 350.0
+offset_bottom = 54.0
+theme_override_fonts/font = SubResource("FontVariation_rchik")
+theme_override_font_sizes/font_size = 45
+text = "Today's Delivery Total: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeliveryPointText" type="Label" parent="DeliveryStats"]
+layout_mode = 0
+offset_top = 58.0
+offset_right = 350.0
+offset_bottom = 91.0
+theme_override_fonts/font = SubResource("FontVariation_rchik")
+theme_override_font_sizes/font_size = 45
+text = "Today's Delivery Points: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RankingText" type="Label" parent="DeliveryStats"]
+layout_mode = 0
+offset_top = 95.0
+offset_right = 350.0
+offset_bottom = 128.0
+theme_override_fonts/font = SubResource("FontVariation_rchik")
+theme_override_font_sizes/font_size = 45
+text = "Your Rank: 1032"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeliveryStatusKey" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 870.0
+offset_top = 326.0
+offset_right = 1070.0
+offset_bottom = 576.0
+theme = ExtResource("1_l7k3d")
+
+[node name="DeliveryStatusKeyText" type="HBoxContainer" parent="DeliveryStatusKey"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.08
+theme = ExtResource("1_l7k3d")
+
+[node name="Text" parent="DeliveryStatusKey/DeliveryStatusKeyText" instance=ExtResource("3_8o8li")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="DeliveryStatusKey/DeliveryStatusKeyText/Text"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Delivery Status Key"
+label_settings = SubResource("LabelSettings_uvctu")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="CapsuleReady" type="HBoxContainer" parent="DeliveryStatusKey"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_l7k3d")
+
+[node name="Icon" parent="DeliveryStatusKey/CapsuleReady" instance=ExtResource("3_8o8li")]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.33
+
+[node name="TextureRect" type="TextureRect" parent="DeliveryStatusKey/CapsuleReady/Icon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_dfeie")
+
+[node name="Text" parent="DeliveryStatusKey/CapsuleReady" instance=ExtResource("3_8o8li")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="DeliveryStatusKey/CapsuleReady/Text"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "CAPSULE READY"
+label_settings = SubResource("LabelSettings_uvctu")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="GreatTime" type="HBoxContainer" parent="DeliveryStatusKey"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_l7k3d")
+
+[node name="Icon" parent="DeliveryStatusKey/GreatTime" instance=ExtResource("3_8o8li")]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.33
+
+[node name="TextureRect" type="TextureRect" parent="DeliveryStatusKey/GreatTime/Icon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_dbbnm")
+
+[node name="Text" parent="DeliveryStatusKey/GreatTime" instance=ExtResource("3_8o8li")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="DeliveryStatusKey/GreatTime/Text"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GREAT TIME"
+label_settings = SubResource("LabelSettings_uvctu")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="GoodTime" type="HBoxContainer" parent="DeliveryStatusKey"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_l7k3d")
+
+[node name="Icon" parent="DeliveryStatusKey/GoodTime" instance=ExtResource("3_8o8li")]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.33
+
+[node name="TextureRect" type="TextureRect" parent="DeliveryStatusKey/GoodTime/Icon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_7lkdx")
+
+[node name="Text" parent="DeliveryStatusKey/GoodTime" instance=ExtResource("3_8o8li")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="DeliveryStatusKey/GoodTime/Text"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "GOOD TIME"
+label_settings = SubResource("LabelSettings_uvctu")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="OkTime" type="HBoxContainer" parent="DeliveryStatusKey"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_l7k3d")
+
+[node name="Icon" parent="DeliveryStatusKey/OkTime" instance=ExtResource("3_8o8li")]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.33
+
+[node name="TextureRect" type="TextureRect" parent="DeliveryStatusKey/OkTime/Icon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_5rt5l")
+
+[node name="Text" parent="DeliveryStatusKey/OkTime" instance=ExtResource("3_8o8li")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="DeliveryStatusKey/OkTime/Text"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "OK TIME"
+label_settings = SubResource("LabelSettings_uvctu")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+
+[node name="BadTime" type="HBoxContainer" parent="DeliveryStatusKey"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_l7k3d")
+
+[node name="Icon" parent="DeliveryStatusKey/BadTime" instance=ExtResource("3_8o8li")]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.33
+
+[node name="TextureRect" type="TextureRect" parent="DeliveryStatusKey/BadTime/Icon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -18.0
+offset_top = -18.0
+offset_right = 18.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_ap43e")
+
+[node name="Text" parent="DeliveryStatusKey/BadTime" instance=ExtResource("3_8o8li")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="DeliveryStatusKey/BadTime/Text"]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "BAD TIME"
+label_settings = SubResource("LabelSettings_uvctu")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true

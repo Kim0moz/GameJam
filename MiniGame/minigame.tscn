@@ -1,8 +1,8 @@
-[gd_scene load_steps=32 format=4 uid="uid://bvlgg8n0vjyw0"]
+[gd_scene load_steps=33 format=4 uid="uid://bvlgg8n0vjyw0"]
 
 [ext_resource type="TileSet" uid="uid://dw5km62ab2x3i" path="res://MiniGame/MiniGameTileSet.tres" id="1_pwln6"]
 [ext_resource type="Script" path="res://MiniGame/MinigameManger.gd" id="2_0irbu"]
-[ext_resource type="PackedScene" uid="uid://ccffthclyl1hu" path="res://MiniGame/DeliveryConfirmationText.tscn" id="2_fgfl8"]
+[ext_resource type="PackedScene" uid="uid://ccffthclyl1hu" path="res://UI/DeliveryConfirmationText.tscn" id="2_fgfl8"]
 [ext_resource type="TileSet" uid="uid://bmn3fynq8ni83" path="res://Sprites/TileMaps/NewTileMap.tres" id="2_s271b"]
 [ext_resource type="PackedScene" uid="uid://bv8gf15agiob8" path="res://UI/basic_panel.tscn" id="4_a5dh6"]
 [ext_resource type="PackedScene" uid="uid://bs1gsxf1jhg1k" path="res://MiniGame/Shaders/screen_ripple.tscn" id="4_jrj8k"]
@@ -19,18 +19,19 @@
 [ext_resource type="PackedScene" uid="uid://55qyg5046us5" path="res://MiniGame/CapsuleSpawnPoint.tscn" id="12_a2er8"]
 [ext_resource type="Script" path="res://MiniGame/DropOffGenerator.gd" id="12_av8hu"]
 [ext_resource type="PackedScene" uid="uid://bm7ney5s23a8n" path="res://MiniGame/Pointer2D.tscn" id="13_2b0wo"]
+[ext_resource type="PackedScene" uid="uid://c65j3fq4gl3md" path="res://MiniGame/MinigameMenu.tscn" id="13_2517h"]
 [ext_resource type="PackedScene" uid="uid://cr6gn3mgm7wav" path="res://MiniGame/DeliveryTarget.tscn" id="13_kv6sc"]
 
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_egu32"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_povc6"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yyg08"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d4kow"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_egu32")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_povc6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -131,8 +132,11 @@ scale = Vector2(1.25, 1.25)
 offset_left = 10.0
 offset_right = 10.0
 
+[node name="MinigameMenu" parent="CanvasLayer" instance=ExtResource("13_2517h")]
+visible = false
+
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_yyg08")
+material = SubResource("ShaderMaterial_d4kow")
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
 

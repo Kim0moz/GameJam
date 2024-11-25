@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c65j3fq4gl3md"]
+[gd_scene load_steps=18 format=3 uid="uid://c65j3fq4gl3md"]
 
 [ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_l7k3d"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="2_v7q6f"]
@@ -10,6 +10,11 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="FontVariation" id="FontVariation_rchik"]
 base_font = ExtResource("2_v7q6f")
 spacing_top = -11
+
+[sub_resource type="LabelSettings" id="LabelSettings_6d4b1"]
+font = ExtResource("2_v7q6f")
+font_size = 45
+shadow_color = Color(0.6, 0.898039, 0.313726, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uvctu"]
 font = ExtResource("2_v7q6f")
@@ -110,9 +115,8 @@ layout_mode = 0
 offset_top = 21.0
 offset_right = 350.0
 offset_bottom = 54.0
-theme_override_fonts/font = SubResource("FontVariation_rchik")
-theme_override_font_sizes/font_size = 45
 text = "Today's Delivery Total: 0"
+label_settings = SubResource("LabelSettings_6d4b1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -121,9 +125,9 @@ layout_mode = 0
 offset_top = 58.0
 offset_right = 350.0
 offset_bottom = 91.0
-theme_override_fonts/font = SubResource("FontVariation_rchik")
 theme_override_font_sizes/font_size = 45
 text = "Today's Delivery Points: 0"
+label_settings = SubResource("LabelSettings_6d4b1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -132,9 +136,9 @@ layout_mode = 0
 offset_top = 95.0
 offset_right = 350.0
 offset_bottom = 128.0
-theme_override_fonts/font = SubResource("FontVariation_rchik")
 theme_override_font_sizes/font_size = 45
 text = "Your Rank: 1032"
+label_settings = SubResource("LabelSettings_6d4b1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -410,14 +414,16 @@ clip_text = true
 
 [node name="StartButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 476.0
-offset_top = 400.0
-offset_right = 668.0
-offset_bottom = 456.0
-pivot_offset = Vector2(96, 28)
+offset_left = 422.0
+offset_top = 402.0
+offset_right = 722.0
+offset_bottom = 502.0
+pivot_offset = Vector2(150, 50)
 theme = SubResource("Theme_v834k")
 theme_override_fonts/font = SubResource("FontVariation_mxnvj")
 theme_override_font_sizes/font_size = 80
 theme_override_styles/hover = SubResource("StyleBoxFlat_5l066")
 theme_override_styles/normal = SubResource("StyleBoxFlat_gsdrg")
-text = "START"
+button_mask = 0
+text = "Press \"enter\"
+to start"

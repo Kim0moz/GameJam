@@ -25,13 +25,13 @@
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8j1nr"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_d5m7s"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_liew5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_al80x"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_8j1nr")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_d5m7s")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -136,7 +136,7 @@ offset_right = 10.0
 [node name="MinigameMenu" parent="CanvasLayer" instance=ExtResource("13_2517h")]
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_liew5")
+material = SubResource("ShaderMaterial_al80x")
 mouse_filter = 2
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")

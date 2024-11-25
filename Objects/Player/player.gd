@@ -43,7 +43,8 @@ func _physics_process(delta):
 		PlayerState.NORMAL:
 			movement(delta)
 		PlayerState.COMPUTER:
-			camera.Reticle.global_position = camera.Reticle.get_global_mouse_position()
+			# camera.Reticle.global_position = camera.Reticle.get_global_mouse_position()
+			pass
 
 func movement(delta):
 	# Add the gravity.
@@ -119,8 +120,8 @@ func startComputerState(monitorPosition : Vector3):
 	rotationTween2.tween_property(cameraController, "rotation", Vector3.ZERO, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
 	var rotationTween3 = create_tween()
 	rotationTween3.tween_property(cameraTarget, "rotation", Vector3(deg_to_rad(computerAngleOffset), 0, 0), computerTransTweenLen).set_trans(Tween.TRANS_SINE)
-	# camera.Reticle.hide()
-	Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	camera.Reticle.hide()
+	# Input.mouse_mode = Input.MOUSE_MODE_CONFINED
 
 func exitComputerTransition():
 	playerState = PlayerState.TRANSITION
@@ -134,9 +135,9 @@ func exitComputerTransition():
 
 func computerExited():
 	playerState = PlayerState.NORMAL
-	# camera.Reticle.show()
-	camera.Reticle.position = Vector2(560, 308)
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	camera.Reticle.show()
+	# camera.Reticle.position = Vector2(560, 308)
+	# Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	computer_exit.emit()
 	
 func setPlayerState(pState : PlayerState):

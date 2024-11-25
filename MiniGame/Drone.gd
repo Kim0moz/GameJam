@@ -21,12 +21,12 @@ signal package_acquired
 signal package_delivered
 
 enum DroneState {NO_PACKAGE, DELIVERING, NO_CONTROLS}
-var droneState : DroneState = DroneState.NO_PACKAGE
+var droneState : DroneState = DroneState.NO_CONTROLS
 
 func _physics_process(delta):
-	super(delta)
 	if droneState == DroneState.NO_CONTROLS:
 		return
+	super(delta)
 	movement()
 	match droneState:
 		DroneState.NO_PACKAGE:

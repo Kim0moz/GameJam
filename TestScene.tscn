@@ -118,7 +118,8 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(1144, 648)
 render_target_update_mode = 4
 
-[node name="Minigame" parent="SubViewport" instance=ExtResource("1_w2y8m")]
+[node name="Minigame" parent="SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("1_w2y8m")]
+player = NodePath("../../Player")
 
 [node name="Handle" parent="." instance=ExtResource("2_i7gbx")]
 

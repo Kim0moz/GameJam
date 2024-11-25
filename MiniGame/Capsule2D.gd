@@ -11,11 +11,6 @@ enum CapsuleState {IDLE, SPAWNED}
 func _ready():
 	modulate.a = 0
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func onBodyEntered(body):
 	if body.name == "Drone" and capsuleState == CapsuleState.SPAWNED:
 		(body as Drone).setStateDelivering(self)

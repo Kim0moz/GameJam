@@ -7,6 +7,8 @@ extends Node
 @export var pointer : Pointer2D
 @export var dropOffGenerator : DropOffGenerator
 @export var deliveryConfirmationText : PackedScene
+@export var player : Player
+@export var mainMenuScreen : Control
 var capsuleSpawnPoints
 
 @export_category("Delivery Settings")
@@ -22,9 +24,9 @@ var capsuleDeliveryDT : float = 0
 @export var deliveryPoints := 0
 @export var ranking := 1032
 
-var computerState : ComputerState = ComputerState.MINIGAME
+var computerState : ComputerState = ComputerState.INACTIVE
 var deliveryState : DeliveryState = DeliveryState.SPAWNING
-enum ComputerState {MAIN_MENU, MINIGAME}
+enum ComputerState {INACTIVE, MAIN_MENU, MINIGAME}
 enum DeliveryState {SPAWNING, PICKING_UP, DELIVERING}
 
 # Called when the node enters the scene tree for the first time.
@@ -32,13 +34,18 @@ func _ready():
 	capsuleSpawnPoints = get_tree().get_nodes_in_group("CapsuleSpawnPoints")
 	drone.connect("package_acquired", Callable(self, "capsulePickedUp"))
 	drone.connect("package_delivered", Callable(self, "capsuleDelivered"))
-	
+	if player:
+		player.connect("computer_enter", Callable(self, "computerEntered"))
+		player.connect("computer_exit", Callable(self, "computerExited"))
+	else:
+		computerState = ComputerState.MAIN_MENU
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	match computerState:
 		ComputerState.MAIN_MENU:
-			pass
+			if Input.is_action_just_pressed("enter"):
+				startGame()
 		ComputerState.MINIGAME:
 			updateMinigame(delta)
 				
@@ -91,6 +98,31 @@ func capsuleDelivered():
 	pointer.target.queue_free()
 	capsuleSpawnDT = 0
 	deliveryInfo.setTextState(DeliveryInfo.TextState.FLASHING)
-	
+
+func computerEntered():
+	computerState = ComputerState.MAIN_MENU
+	mainMenuScreen.set_process(true)
+	mainMenuScreen.visible = true
+
+func computerExited():
+	computerState = ComputerState.INACTIVE
+	mainMenuScreen.set_process(true)
+	mainMenuScreen.visible = true
+	drone.droneState = Drone.DroneState.NO_CONTROLS
+	if pointer.target != null and pointer.target != capsule:
+		pointer.target.queue_free()
+	else:
+		pointer.target = null
+	deliveryInfo.TileSelected = DeliveryInfo.DeliveryStatus.CAPSULE_PICKUP
+	deliveryInfo.TimeLabel.text = "00:00"
+	deliveryInfo.setTextState(DeliveryInfo.TextState.STABLE)
+	capsule.capsuleState = Capsule2D.CapsuleState.IDLE
+	capsule.modulate.a = 0
+
 func startGame():
-	print("Start Minigame")
+	computerState = ComputerState.MINIGAME
+	mainMenuScreen.set_process(false)
+	mainMenuScreen.visible = false
+	drone.droneState = Drone.DroneState.NO_PACKAGE
+	capsuleSpawnDT = 0
+	deliveryState = DeliveryState.SPAWNING

@@ -25,13 +25,13 @@
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_d5m7s"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_cwrtd"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_al80x"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8r73f"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_d5m7s")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_cwrtd")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -69,7 +69,7 @@ _data = {
 }
 point_count = 5
 
-[node name="Minigame" type="Node2D" node_paths=PackedStringArray("deliveryInfo", "drone", "capsule", "pointer", "dropOffGenerator", "startButton")]
+[node name="Minigame" type="Node2D" node_paths=PackedStringArray("deliveryInfo", "drone", "capsule", "pointer", "dropOffGenerator", "mainMenuScreen")]
 script = ExtResource("2_0irbu")
 deliveryInfo = NodePath("CanvasLayer/DeliveryStatus")
 drone = NodePath("Drone")
@@ -77,7 +77,7 @@ capsule = NodePath("Capsule2D")
 pointer = NodePath("Pointer2d")
 dropOffGenerator = NodePath("Town1/Buildings")
 deliveryConfirmationText = ExtResource("2_fgfl8")
-startButton = NodePath("CanvasLayer/MinigameMenu/StartButton")
+mainMenuScreen = NodePath("CanvasLayer/MinigameMenu")
 capsuleDeliveryTargetTime = 0.5
 
 [node name="Drone" parent="." node_paths=PackedStringArray("pointer") instance=ExtResource("4_lpyc7")]
@@ -136,7 +136,7 @@ offset_right = 10.0
 [node name="MinigameMenu" parent="CanvasLayer" instance=ExtResource("13_2517h")]
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_al80x")
+material = SubResource("ShaderMaterial_8r73f")
 mouse_filter = 2
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")

@@ -57,6 +57,7 @@ bg_color = Color(0.333355, 0.510285, 0.166685, 1)
 bg_color = Color(0.479048, 0.72476, 0.241247, 1)
 
 [node name="MinigameMenu" type="Control"]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 0
 

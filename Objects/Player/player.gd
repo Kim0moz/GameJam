@@ -27,6 +27,7 @@ const JUMP_VELOCITY = 4.5
 ## Length of computer tween animation
 @export var computerTransTweenLen = .5
 
+signal computer_enter
 signal computer_exit
 
 enum PlayerState {NORMAL, COMPUTER, TRANSITION}
@@ -111,7 +112,7 @@ func startComputerState(monitorPosition : Vector3):
 	playerState = PlayerState.TRANSITION
 	var posTween = create_tween()
 	posTween.tween_property(self, "global_position", monitorPosition + computerPosOffset, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
-	posTween.tween_callback(Callable(self, "setPlayerState").bind(PlayerState.COMPUTER))
+	posTween.tween_callback(Callable(self, "computerStateStarted"))
 	var posTween2 = create_tween()
 	posTween2.tween_property(cameraController, "global_position", monitorPosition + computerPosOffset, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
 	var rotationTween = create_tween()
@@ -122,6 +123,10 @@ func startComputerState(monitorPosition : Vector3):
 	rotationTween3.tween_property(cameraTarget, "rotation", Vector3(deg_to_rad(computerAngleOffset), 0, 0), computerTransTweenLen).set_trans(Tween.TRANS_SINE)
 	camera.Reticle.hide()
 	# Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+
+func computerStateStarted():
+	setPlayerState(PlayerState.COMPUTER)
+	computer_enter.emit()
 
 func exitComputerTransition():
 	playerState = PlayerState.TRANSITION

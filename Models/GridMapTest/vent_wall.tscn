@@ -97,4 +97,4 @@ size = Vector3(0.6, 0.2, 0.5)
 mesh = SubResource("ArrayMesh_paeew")
 skeleton = NodePath("")
 
-[connection signal="activated" from="Vent" to="." method="move"]
+[connection signal="Activated" from="Vent" to="." method="move"]

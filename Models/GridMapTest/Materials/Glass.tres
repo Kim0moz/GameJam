@@ -5,6 +5,7 @@
 [resource]
 resource_name = "Glass"
 transparency = 4
+blend_mode = 1
 cull_mode = 2
 albedo_color = Color(1, 1, 1, 0.627273)
 albedo_texture = ExtResource("1_khqr0")

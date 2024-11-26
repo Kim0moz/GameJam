@@ -1,7 +1,9 @@
 extends Node3D
 class_name InteractableItem
 
-signal activated
+signal Activated
+signal Hovered
+signal Exit
 
 func _enter_tree() -> void:
 	add_to_group("InteractableItems")
@@ -9,5 +11,5 @@ func _enter_tree() -> void:
 
 func activate(mousePos  = Vector2.ZERO):
 	#Handle Activation Scripts here
-	activated.emit()
+	Activated.emit()
 	print(name, " activated")

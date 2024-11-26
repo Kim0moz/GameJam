@@ -23,24 +23,28 @@ func _process(delta):
 	var worldPos = self.project_position(mousePos,5)
 	ray.look_at(worldPos)
 	if ray.is_colliding():
-		objectSelected = ray.get_collider()
-		mousePoint = ray.get_collision_point() + Vector3(0,.01,0)
-		if objectSelected is InteractableItem:
-			if Input.is_action_just_pressed("Click"):
-				Reticle.texture = SelectedItem
-				objectSelected.activate(mousePos)
-				itemSelected = true
-				itemSelectedTime = Time.get_ticks_msec()
-			elif !itemSelected:
-				Reticle.texture = SelectableItem
+		if objectSelected != ray.get_collider():
+			if objectSelected is InteractableItem:
+				objectSelected.Exit.emit()
+			objectSelected = ray.get_collider()
+			mousePoint = ray.get_collision_point() + Vector3(0,.01,0)
 		else:
-			Reticle.texture = Default
+			if objectSelected is InteractableItem:
+				if Input.is_action_just_pressed("Click"):
+					Reticle.texture = SelectedItem
+					objectSelected.Activated.emit()
+					itemSelected = true
+					itemSelectedTime = Time.get_ticks_msec()
+				elif !itemSelected:
+					objectSelected.Hovered.emit()
+					Reticle.texture = SelectableItem
+			else:
+				Reticle.texture = Default
 	else:
 		Reticle.texture = Default
 
 	if itemSelected && Time.get_ticks_msec() - itemSelectedTime >= selectedItemDelay:
 		itemSelected = false
-		# print(objectSelected.name)
 
 func _input(event):
 	if event is InputEventMouseMotion:

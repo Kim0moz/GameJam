@@ -6,8 +6,6 @@ class_name ToggleableItem
 @export var animations : Array[Animation]
 var playing : bool = false
 
-signal Activated
-
 func _ready() -> void:
 	anim.connect("animation_finished", Callable(self, "anim_finished"))
 	activate()
@@ -21,5 +19,5 @@ func activate(mousePos = Vector2.ZERO):
 	index = (index+1)%animations.size()
 
 func anim_finished(anim_name):
-	print("anim finished: ", self.name, " - ", anim_name)
+	#print("anim finished: ", self.name, " - ", anim_name)
 	playing = false

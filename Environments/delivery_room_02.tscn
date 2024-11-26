@@ -438,7 +438,7 @@ omni_attenuation = 2.056
 [node name="R2" type="Node" parent="Lights + Environment"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights + Environment/R2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.2117, 6.62122, -3.06454)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.2117, 6.65429, -3.06454)
 light_color = Color(0.694995, 0.461889, 0.403783, 1)
 light_energy = 3.218
 light_specular = 0.0
@@ -447,7 +447,7 @@ omni_range = 5.896
 omni_attenuation = 2.056
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="Lights + Environment/R2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.064, 6.57698, 2.63893)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -15.064, 6.61005, 2.63893)
 light_color = Color(0.694995, 0.461889, 0.403783, 1)
 light_energy = 3.218
 light_specular = 0.0
@@ -456,7 +456,7 @@ omni_range = 5.896
 omni_attenuation = 2.056
 
 [node name="OmniLight3D3" type="OmniLight3D" parent="Lights + Environment/R2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.9391, 6.56941, 8.64374)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -14.9391, 6.60248, 8.64374)
 light_color = Color(0.694995, 0.461889, 0.403783, 1)
 light_energy = 3.218
 light_specular = 0.0

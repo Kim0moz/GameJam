@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c65j3fq4gl3md"]
+[gd_scene load_steps=22 format=3 uid="uid://c65j3fq4gl3md"]
 
 [ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_l7k3d"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="2_v7q6f"]
@@ -15,6 +15,20 @@ spacing_top = -11
 font = ExtResource("2_v7q6f")
 font_size = 45
 shadow_color = Color(0.6, 0.898039, 0.313726, 1)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fommn"]
+load_path = "res://.godot/imported/ArrowKey.png-3714b28f9b8d80900ea75e0c87dcf3fd.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppbkg"]
+atlas = SubResource("CompressedTexture2D_fommn")
+region = Rect2(0, 0, 17, 17)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nthid"]
+load_path = "res://.godot/imported/ArrowKey.png-3714b28f9b8d80900ea75e0c87dcf3fd.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ev47"]
+atlas = SubResource("CompressedTexture2D_nthid")
+region = Rect2(17, 0, 17, 17)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uvctu"]
 font = ExtResource("2_v7q6f")
@@ -142,6 +156,97 @@ text = "Your Rank: 1032"
 label_settings = SubResource("LabelSettings_6d4b1")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="KeyControls" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 374.0
+offset_right = 324.0
+offset_bottom = 534.0
+pivot_offset = Vector2(100, 100)
+theme = ExtResource("1_l7k3d")
+
+[node name="ControlsText" type="Label" parent="KeyControls"]
+layout_mode = 0
+offset_top = 12.0
+offset_right = 200.0
+offset_bottom = 45.0
+text = "Controls"
+label_settings = SubResource("LabelSettings_6d4b1")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonLeft" type="TextureRect" parent="KeyControls"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 93.0
+offset_right = 80.0
+offset_bottom = 133.0
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_ppbkg")
+
+[node name="ArrowLeft" type="TextureRect" parent="KeyControls/ButtonLeft"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = -4.0
+offset_right = 43.0
+offset_bottom = 36.0
+rotation = -1.5708
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_2ev47")
+
+[node name="ButtonRight" type="TextureRect" parent="KeyControls"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 93.0
+offset_right = 160.0
+offset_bottom = 133.0
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_ppbkg")
+
+[node name="ArrowRight" type="TextureRect" parent="KeyControls/ButtonRight"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -4.0
+offset_right = 37.0
+offset_bottom = 36.0
+rotation = 1.5708
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_2ev47")
+
+[node name="ButtonDown" type="TextureRect" parent="KeyControls"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 93.0
+offset_right = 120.0
+offset_bottom = 133.0
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_ppbkg")
+
+[node name="ArrowDown" type="TextureRect" parent="KeyControls/ButtonDown"]
+layout_mode = 0
+offset_top = -6.0
+offset_right = 40.0
+offset_bottom = 34.0
+rotation = 3.14159
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_2ev47")
+
+[node name="ButtonUp" type="TextureRect" parent="KeyControls"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 57.0
+offset_right = 120.0
+offset_bottom = 97.0
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_ppbkg")
+
+[node name="ArrowUp" type="TextureRect" parent="KeyControls/ButtonUp"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_2ev47")
 
 [node name="DeliveryStatusKey" type="VBoxContainer" parent="."]
 layout_mode = 0

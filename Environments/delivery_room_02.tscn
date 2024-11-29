@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cqevxh2h77pty"]
+[gd_scene load_steps=30 format=4 uid="uid://cqevxh2h77pty"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_7a176"]
 [ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="2_i3dqh"]
@@ -133,6 +133,26 @@ albedo_color = Color(0, 0.466667, 1, 1)
 emission_enabled = true
 emission = Color(0, 0.466667, 1, 1)
 emission_energy_multiplier = 3.6
+
+[sub_resource type="GDScript" id="GDScript_1xgg6"]
+script/source = "extends Node
+
+
+@export var button : InteractableItem
+signal flagUpdated(value)
+
+func _ready() -> void:
+	FlagManager.setFlag(\"TestFlag\",false,flagUpdated)
+	button.Activated.connect(toggleFlag);
+	flagUpdated.connect(updated)
+
+func toggleFlag():
+	var currentFlagValue = FlagManager.getFlagValue(\"TestFlag\")
+	FlagManager.setFlag(\"TestFlag\",(!currentFlagValue),flagUpdated)
+
+func updated(val):
+	print(val)
+"
 
 [node name="DeliveryRoom02" type="Node3D"]
 
@@ -379,7 +399,7 @@ Interfaces = {
 "Position": Vector3i(-17, 3, 15)
 }])
 }
-metadata/_editor_floor_ = Vector3(0, 4, 1)
+metadata/_editor_floor_ = Vector3(0, 3, 1)
 
 [node name="Railing" type="GridMap" parent="."]
 mesh_library = ExtResource("8_miuoj")
@@ -603,3 +623,33 @@ light_energy = 84.89
 light_specular = 16.0
 omni_range = 0.637764
 omni_attenuation = -0.325
+
+[node name="FlagTest" type="Node" parent="." node_paths=PackedStringArray("button")]
+script = SubResource("GDScript_1xgg6")
+button = NodePath("Flag Test/Lever")
+
+[node name="Flag Test" type="Node3D" parent="FlagTest"]
+transform = Transform3D(-1.06283, 0, -9.29158e-08, 0, 1.06283, 0, 9.29158e-08, 0, -1.06283, -12.0233, 2.13726, 1.25277)
+
+[node name="Button" type="MeshInstance3D" parent="FlagTest/Flag Test"]
+mesh = SubResource("ArrayMesh_fp86u")
+skeleton = NodePath("")
+
+[node name="Cube_002" type="MeshInstance3D" parent="FlagTest/Flag Test/Button"]
+mesh = SubResource("ArrayMesh_ntm10")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_jh8br")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="FlagTest/Flag Test"]
+libraries = {
+"": SubResource("AnimationLibrary_bgulk")
+}
+
+[node name="Lever" type="StaticBody3D" parent="FlagTest/Flag Test" node_paths=PackedStringArray("anim")]
+script = ExtResource("13_2ysdo")
+anim = NodePath("../AnimationPlayer")
+animations = Array[Animation]([ExtResource("12_0d8kq")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FlagTest/Flag Test/Lever"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00246228, 0.00302123)
+shape = SubResource("BoxShape3D_tr51k")

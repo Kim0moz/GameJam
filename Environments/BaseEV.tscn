@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://curvl1e5g1ooy"]
+
+[ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_l58tw"]
+[ext_resource type="MeshLibrary" uid="uid://ctr3ogqfj1ns5" path="res://Models/GridMapTest/LightLibrary.tres" id="2_dfri7"]
+[ext_resource type="MeshLibrary" uid="uid://1ho4b857233" path="res://Models/GridMapTest/RailingLibrary.tres" id="3_71cbt"]
+[ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="4_crnvb"]
+
+[sub_resource type="Environment" id="Environment_76kxn"]
+background_mode = 1
+background_color = Color(0.566334, 0.516593, 0.590005, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.565093, 0.677072, 0.669991, 1)
+
+[node name="BaseEV" type="Node3D"]
+
+[node name="Floors and Ceilings" type="GridMap" parent="."]
+mesh_library = ExtResource("1_l58tw")
+
+[node name="Walls and Vents" type="GridMap" parent="."]
+mesh_library = ExtResource("1_l58tw")
+
+[node name="LightFixtures" type="GridMap" parent="."]
+mesh_library = ExtResource("2_dfri7")
+cell_size = Vector3(1, 1, 1)
+
+[node name="Railing" type="GridMap" parent="."]
+mesh_library = ExtResource("3_71cbt")
+cell_size = Vector3(1, 1, 1)
+
+[node name="Pipes" type="GridMap" parent="."]
+mesh_library = ExtResource("4_crnvb")
+cell_size = Vector3(1, 1, 1)
+
+[node name="Lights + Environment" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights + Environment"]
+environment = SubResource("Environment_76kxn")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights + Environment"]
+transform = Transform3D(-0.783687, 0.118268, 0.609793, 0.40712, 0.839244, 0.360449, -0.469135, 0.530738, -0.705854, 0.712618, 1.16872, 5.62129)
+light_color = Color(0.683078, 0.400972, 0.300582, 1)
+shadow_enabled = true

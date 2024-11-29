@@ -24,6 +24,7 @@ albedo_color = Color(1, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("camera", "cameraController", "cameraTarget")]
 collision_layer = 2
+floor_max_angle = 1.0472
 script = ExtResource("1_1wn3t")
 camera = NodePath("CameraController/CameraTarget/WorldSpaceCam")
 cameraController = NodePath("CameraController")

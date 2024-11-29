@@ -2,11 +2,14 @@ extends Node
 
 @export var flags : Dictionary
 
+signal flagAdded(flag)
+
 func createFlag(flagName : String, flagState, flagSignal : Signal):
 	var flag = flags.get_or_add(flagName)
 	flag.State = flagState
 	flag.Signal = flagSignal
 	flags.get(flagName).Signal.emit(flag.State)
+	flagAdded.emit(flag)
 	
 func setFlag(flagName : String, flagState):
 	if flags.has(flagName):

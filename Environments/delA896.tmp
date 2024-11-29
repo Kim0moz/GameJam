@@ -164,12 +164,8 @@ func _ready() -> void:
 	FlagManager.getFlag(\"TestFlag\").Signal.connect(updateLights)
 
 func updateLights(val):
-	if val == false:
-		for lt in room1Lights.get_children():
-			(lt as OmniLight3D).light_color = Color(1, 0, 0, 1)
-	else:
-		for lt in room1Lights.get_children():
-			(lt as OmniLight3D).light_color = Color(1, 1, 1, 1)
+	for lt in room1Lights.get_children():
+		(lt as OmniLight3D).light_color = Color(1, 1, 1, 1)
 "
 
 [node name="DeliveryRoom02" type="Node3D"]
@@ -674,4 +670,4 @@ shape = SubResource("BoxShape3D_tr51k")
 
 [node name="ChangeLights" type="Node" parent="FlagTest" node_paths=PackedStringArray("room1Lights")]
 script = SubResource("GDScript_h08hd")
-room1Lights = NodePath("../../Lights + Environment/R2")
+room1Lights = NodePath("../../Lights + Environment/R1")

@@ -1,0 +1,56 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgkcniy1vnc7y"]
+
+[ext_resource type="Texture2D" uid="uid://058shgun1d1m" path="res://Sprites/AntiDroneVehicle.png" id="1_r31tk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukgnu"]
+atlas = ExtResource("1_r31tk")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n5alr"]
+atlas = ExtResource("1_r31tk")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0j3yu"]
+atlas = ExtResource("1_r31tk")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h2ghc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukgnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n5alr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0j3yu")
+}],
+"loop": true,
+"name": &"Moving",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r11o1"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1imio"]
+atlas = ExtResource("1_r31tk")
+region = Rect2(54, 2, 4, 12)
+
+[node name="AntiDroneBot" type="Area2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h2ghc")
+animation = &"Moving"
+frame_progress = 0.787055
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r11o1")
+
+[node name="Canon" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_1imio")
+offset = Vector2(0, -4)
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(0, -50)

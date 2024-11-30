@@ -25,7 +25,6 @@ var capsuleDeliveryDT : float = 0
 const RANKING_MAX = 1032
 var ranking := RANKING_MAX
 const MAX_DELIVERY_POINTS = 20
-var nextRankPoints := 5
 var ptsSinceLastRank = 0
 
 var computerState : ComputerState = ComputerState.INACTIVE
@@ -153,9 +152,9 @@ func checkNextRank():
 	while true:
 		var rankDiff = RANKING_MAX - ranking
 		var ptsForNextRank = pow(1.5, (1+(rankDiff/1000.0))) if rankDiff >= RANKING_MAX/2 else .125 * (5-int((500-rankDiff)/100))
-		print("ranking: ", ranking)
-		print("ptsForNextRank: ", ptsForNextRank)
-		print("ptsSinceLastRank: ", ptsSinceLastRank)
+		# print("ranking: ", ranking)
+		# print("ptsForNextRank: ", ptsForNextRank)
+		# print("ptsSinceLastRank: ", ptsSinceLastRank)
 		if ptsSinceLastRank >= ptsForNextRank:
 			ptsSinceLastRank -= ptsForNextRank
 			ranking -= 1

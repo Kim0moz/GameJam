@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://bvlgg8n0vjyw0"]
+[gd_scene load_steps=34 format=4 uid="uid://bvlgg8n0vjyw0"]
 
 [ext_resource type="TileSet" uid="uid://dw5km62ab2x3i" path="res://MiniGame/MiniGameTileSet.tres" id="1_pwln6"]
 [ext_resource type="Script" path="res://MiniGame/MinigameManger.gd" id="2_0irbu"]
@@ -21,17 +21,18 @@
 [ext_resource type="PackedScene" uid="uid://bm7ney5s23a8n" path="res://MiniGame/Pointer2D.tscn" id="13_2b0wo"]
 [ext_resource type="PackedScene" uid="uid://c65j3fq4gl3md" path="res://MiniGame/MinigameMenu.tscn" id="13_2517h"]
 [ext_resource type="PackedScene" uid="uid://cr6gn3mgm7wav" path="res://MiniGame/DeliveryTarget.tscn" id="13_kv6sc"]
+[ext_resource type="PackedScene" uid="uid://bgkcniy1vnc7y" path="res://MiniGame/AntiDroneBot.tscn" id="22_yy5lh"]
 
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_838p1"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_wnav2"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2meul"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qu44j"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_838p1")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_wnav2")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -140,7 +141,7 @@ offset_top = 0.0
 offset_bottom = 33.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_2meul")
+material = SubResource("ShaderMaterial_qu44j")
 mouse_filter = 2
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
@@ -235,6 +236,9 @@ position = Vector2(-398, 0)
 
 [node name="CapsuleSpawnPoint_03" parent="CapsuleSpawnPoints" instance=ExtResource("12_a2er8")]
 position = Vector2(0, -432)
+
+[node name="AntiDroneBot" parent="." instance=ExtResource("22_yy5lh")]
+position = Vector2(-331, 117)
 
 [editable path="Drone"]
 [editable path="CanvasLayer/DeliveryStatus"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbq0hkwik3ygu"]
+
+[ext_resource type="PackedScene" uid="uid://bv8gf15agiob8" path="res://UI/basic_panel.tscn" id="1_mibxr"]
+[ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="2_4pl8n"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BasicPanel" parent="." instance=ExtResource("1_mibxr")]
+texture_filter = 1
+layout_mode = 0
+offset_left = 464.0
+offset_top = 247.0
+offset_right = 680.0
+offset_bottom = 374.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 389.0
+offset_right = 626.0
+offset_bottom = 445.0
+theme = ExtResource("2_4pl8n")

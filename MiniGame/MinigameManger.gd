@@ -22,9 +22,11 @@ var capsuleDeliveryDT : float = 0
 @export_category("Delivery Stats")
 @export var deliveryTotal := 0
 @export var deliveryPoints := 0
-@export var ranking := 1032
+const RANKING_MAX = 1032
+var ranking := RANKING_MAX
 const MAX_DELIVERY_POINTS = 20
-
+var nextRankPoints := 5
+var ptsSinceLastRank := 0
 
 var computerState : ComputerState = ComputerState.INACTIVE
 var deliveryState : DeliveryState = DeliveryState.SPAWNING
@@ -107,6 +109,7 @@ func capsuleDelivered():
 	calculateDeliveryPoints()
 	mainMenuScreen.get_node("DeliveryStats/DeliveryTotalText").text = "Today's Delivery Total: %d" % deliveryTotal
 	mainMenuScreen.get_node("DeliveryStats/DeliveryPointText").text = "Today's Delivery Points: %d" % deliveryPoints
+	checkNextRank()
 
 func computerEntered():
 	computerState = ComputerState.MAIN_MENU
@@ -141,4 +144,20 @@ func calculateDeliveryPoints():
 	var deliveryTimePercentage = (deliveryTargetTimeSeconds-capsuleDeliveryDT)/deliveryTargetTimeSeconds
 	if deliveryTimePercentage < 0:
 		return
-	deliveryPoints += int((min(deliveryTimePercentage+.25, 1))/.25) * .25 * MAX_DELIVERY_POINTS
+	var points = int((min(deliveryTimePercentage+.25, 1))/.25) * .25 * MAX_DELIVERY_POINTS
+	deliveryPoints += points
+	ptsSinceLastRank += points
+
+func checkNextRank():
+	while true:
+		var rankDiff = RANKING_MAX - ranking
+		var ptsForNextRank = pow(1.5, (1+(rankDiff/1000.0)))
+		print("ranking: ", ranking)
+		print("ptsForNextRank: ", ptsForNextRank)
+		print("ptsSinceLastRank: ", ptsSinceLastRank)
+		if ptsSinceLastRank >= ptsForNextRank:
+			ptsSinceLastRank -= int(ptsForNextRank)
+			ranking -= 1
+			mainMenuScreen.get_node("DeliveryStats/RankingText").text = "Your Rank: %d" % ranking
+		else:
+			break

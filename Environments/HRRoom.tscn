@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://170qrjfvaifw"]
+[gd_scene load_steps=31 format=4 uid="uid://170qrjfvaifw"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_nptwq"]
 [ext_resource type="MeshLibrary" uid="uid://ctr3ogqfj1ns5" path="res://Models/GridMapTest/LightLibrary.tres" id="2_ecsgv"]
@@ -8,6 +8,7 @@
 [ext_resource type="MeshLibrary" uid="uid://ciqyom63o400x" path="res://Models/GridMapTest/Vents.tres" id="6_odimp"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="7_nfeep"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="8_r7kv1"]
+[ext_resource type="Script" path="res://Objects/InteractableItems/Monitor.gd" id="9_tjb8j"]
 [ext_resource type="PackedScene" uid="uid://bhn0nqv0mibyq" path="res://UI/high_scores.tscn" id="9_xj7nx"]
 
 [sub_resource type="Environment" id="Environment_76kxn"]
@@ -244,7 +245,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_a0hmo")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_c4vef"]
-viewport_path = NodePath("Desks/HighScores")
+viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfk8i"]
 resource_local_to_scene = true
@@ -436,7 +437,15 @@ mesh = SubResource("ArrayMesh_1w0ef")
 skeleton = NodePath("")
 surface_material_override/1 = SubResource("StandardMaterial3D_bfk8i")
 
+[node name="HighScores" type="SubViewport" parent="Desks/Desk3/Monitor"]
+handle_input_locally = false
+size = Vector2i(687, 332)
+render_target_update_mode = 3
+
+[node name="HighScores" parent="Desks/Desk3/Monitor/HighScores" instance=ExtResource("9_xj7nx")]
+
 [node name="MainMonitor" type="StaticBody3D" parent="Desks/Desk3/Monitor"]
+script = ExtResource("9_tjb8j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Desks/Desk3/Monitor/MainMonitor"]
 shape = SubResource("BoxShape3D_kfywj")
@@ -529,7 +538,4 @@ size = Vector2i(1184, 652)
 
 [node name="Minigame" parent="Desks/Lower Desks" instance=ExtResource("8_r7kv1")]
 
-[node name="HighScores" type="SubViewport" parent="Desks"]
-size = Vector2i(687, 332)
-
-[node name="HighScores" parent="Desks/HighScores" instance=ExtResource("9_xj7nx")]
+[connection signal="Activated" from="Desks/Desk3/Monitor/MainMonitor" to="Desks/Desk3/Monitor" method="active"]

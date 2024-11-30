@@ -1,0 +1,172 @@
+[gd_scene load_steps=14 format=3 uid="uid://bhn0nqv0mibyq"]
+
+[ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_pxlj1"]
+[ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="2_rw4sv"]
+[ext_resource type="PackedScene" uid="uid://qlojdtaadr5s" path="res://MiniGame/Shaders/chromatic_aberation.tscn" id="3_lfrxg"]
+[ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="4_7fg8i"]
+[ext_resource type="PackedScene" uid="uid://d4dtns0pfwt1p" path="res://MiniGame/Shaders/Fisheye_Shader.tscn" id="5_543o5"]
+[ext_resource type="Shader" uid="uid://cibbwmx5esnsj" path="res://MiniGame/Shaders/FishEye.tres" id="6_2iib6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpgbo"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_tqi3w"]
+base_font = ExtResource("2_rw4sv")
+spacing_top = -11
+
+[sub_resource type="LabelSettings" id="LabelSettings_afjgd"]
+font = ExtResource("2_rw4sv")
+font_size = 24
+shadow_color = Color(0.6, 0.898039, 0.313726, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jm1lw"]
+resource_local_to_scene = true
+shader = ExtResource("6_2iib6")
+shader_parameter/Amount = 0.9
+
+[sub_resource type="Gradient" id="Gradient_4qrvm"]
+offsets = PackedFloat32Array(0.276398, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wxhre"]
+gradient = SubResource("Gradient_4qrvm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5otmw"]
+resource_local_to_scene = true
+shader = ExtResource("4_7fg8i")
+shader_parameter/Amount = 3.56
+shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_wxhre")
+
+[node name="HighScores" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bpgbo")
+
+[node name="MainBorder" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScreenBorder" type="Panel" parent="MainBorder"]
+layout_mode = 2
+theme = ExtResource("1_pxlj1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Spacer" type="Panel" parent="MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(0, 7.135)
+layout_mode = 2
+
+[node name="DeliverySoftText" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(208.56, 27.245)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_shadow_color = Color(0.6, 0.898039, 0.313726, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_tqi3w")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[font_size=40pt][center][wave amp=50.0 freq=4 connected=1]DeliverySoft v12.2[/wave][/center]"
+scroll_active = false
+
+[node name="MainScreen" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_pxlj1")
+theme_override_constants/separation = -1
+alignment = 1
+
+[node name="Icon" type="Panel" parent="MarginContainer/VBoxContainer/MainScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+theme = ExtResource("1_pxlj1")
+
+[node name="EmployeeId" type="Label" parent="MarginContainer/VBoxContainer/MainScreen/Icon"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 33.0
+grow_horizontal = 2
+text = "Photo"
+label_settings = SubResource("LabelSettings_afjgd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Employee" type="Panel" parent="MarginContainer/VBoxContainer/MainScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_pxlj1")
+
+[node name="EmployeeId" type="Label" parent="MarginContainer/VBoxContainer/MainScreen/Employee"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 33.0
+grow_horizontal = 2
+text = "Employee ID
+"
+label_settings = SubResource("LabelSettings_afjgd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Score" type="Panel" parent="MarginContainer/VBoxContainer/MainScreen"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_pxlj1")
+
+[node name="Score" type="Label" parent="MarginContainer/VBoxContainer/MainScreen/Score"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 33.0
+grow_horizontal = 2
+text = "Performance
+"
+label_settings = SubResource("LabelSettings_afjgd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Fish Eye" parent="." instance=ExtResource("5_543o5")]
+material = SubResource("ShaderMaterial_jm1lw")
+layout_mode = 1
+
+[node name="Chromatic Aberation" parent="." instance=ExtResource("3_lfrxg")]
+material = SubResource("ShaderMaterial_5otmw")
+layout_mode = 1

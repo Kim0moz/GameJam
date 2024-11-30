@@ -23,6 +23,8 @@ var capsuleDeliveryDT : float = 0
 @export var deliveryTotal := 0
 @export var deliveryPoints := 0
 @export var ranking := 1032
+const MAX_DELIVERY_POINTS = 20
+
 
 var computerState : ComputerState = ComputerState.INACTIVE
 var deliveryState : DeliveryState = DeliveryState.SPAWNING
@@ -91,13 +93,20 @@ func capsulePickedUp():
 func capsuleDelivered():
 	deliveryState = DeliveryState.SPAWNING
 	var delivConfText = (deliveryConfirmationText.instantiate() as DeliveryConfirmationText)
-	delivConfText.setTextIndex(int(deliveryInfo.TileSelected)-1)
+	if capsuleDeliveryDT > capsuleDeliveryTargetTime * 60:
+		delivConfText.setTextIndex(delivConfText.deliveryMessages.size() - 1)
+	else:
+		delivConfText.setTextIndex(int(deliveryInfo.TileSelected)-1)
 	delivConfText.global_position = pointer.target.global_position + Vector2(-delivConfText.size.x/2, -(delivConfText.size.y + 10))
 	delivConfText.z_index = 100
 	add_child(delivConfText)
 	pointer.target.queue_free()
 	capsuleSpawnDT = 0
 	deliveryInfo.setTextState(DeliveryInfo.TextState.FLASHING)
+	deliveryTotal += 1
+	calculateDeliveryPoints()
+	mainMenuScreen.get_node("DeliveryStats/DeliveryTotalText").text = "Today's Delivery Total: %d" % deliveryTotal
+	mainMenuScreen.get_node("DeliveryStats/DeliveryPointText").text = "Today's Delivery Points: %d" % deliveryPoints
 
 func computerEntered():
 	computerState = ComputerState.MAIN_MENU
@@ -126,3 +135,10 @@ func startGame():
 	drone.droneState = Drone.DroneState.NO_PACKAGE
 	capsuleSpawnDT = 0
 	deliveryState = DeliveryState.SPAWNING
+	
+func calculateDeliveryPoints():
+	var deliveryTargetTimeSeconds = capsuleDeliveryTargetTime * 60
+	var deliveryTimePercentage = (deliveryTargetTimeSeconds-capsuleDeliveryDT)/deliveryTargetTimeSeconds
+	if deliveryTimePercentage < 0:
+		return
+	deliveryPoints += int((min(deliveryTimePercentage+.25, 1))/.25) * .25 * MAX_DELIVERY_POINTS

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ccffthclyl1hu"]
 
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="1_2bh6u"]
-[ext_resource type="Script" path="res://UI/DeliveryConfirmationText.gd" id="1_vbkw2"]
+[ext_resource type="Script" path="res://MiniGame/DeliveryConfirmationText.gd" id="1_vbkw2"]
 
 [sub_resource type="FontVariation" id="FontVariation_r7hfl"]
 base_font = ExtResource("1_2bh6u")
@@ -17,4 +17,4 @@ text = "[center][color=white][outline_size=10
 ][outline_color=red][wave amp=75.0 freq=2.5 connected=1]NICE![/wave][/outline_color][/outline_size][/color][/center]"
 fit_content = true
 script = ExtResource("1_vbkw2")
-deliveryMessages = ["NICE!", "GOOD!", "OK!", "PHEW!"]
+deliveryMessages = ["NICE!", "GOOD!", "OK!", "PHEW!", "BAD!"]

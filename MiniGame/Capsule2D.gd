@@ -23,6 +23,7 @@ func onAreaEntered(area):
 		drone.packageDelivered()
 
 func spawnRandomly():
+	# position = get_tree().get_nodes_in_group("CapsuleSpawnPoints")[0].position
 	position = get_tree().get_nodes_in_group("CapsuleSpawnPoints").pick_random().position
 	modulate.a = 1
 	capsuleState = CapsuleState.SPAWNED

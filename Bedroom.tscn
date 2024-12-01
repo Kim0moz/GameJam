@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://dyhdo0olx8k3j"]
+[gd_scene load_steps=61 format=4 uid="uid://dyhdo0olx8k3j"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_ejgwl"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="1_wqm3m"]
@@ -94,13 +94,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_8fc0e"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2ckfi"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m14t"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_8fc0e")
+albedo_texture = SubResource("ViewportTexture_2ckfi")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -170,6 +170,17 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_esoxy")
+
+[sub_resource type="GDScript" id="GDScript_4m78a"]
+script/source = "extends Node
+
+func _ready():
+	GlobalVariables.screwDriver.connect(send)
+
+func send(val):
+	if val == true:
+		get_parent().Fire = true
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2wus"]
 resource_name = "Metal1"
@@ -705,6 +716,9 @@ light_color = Color(0.449756, 0.720504, 1, 1)
 light_energy = 2.0
 omni_range = 0.422914
 omni_attenuation = 2.24
+
+[node name="SendWithSignal" type="Node" parent="PipeItem"]
+script = SubResource("GDScript_4m78a")
 
 [node name="Decorations" type="Node3D" parent="."]
 

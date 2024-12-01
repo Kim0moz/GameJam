@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bhn0nqv0mibyq"]
+[gd_scene load_steps=21 format=3 uid="uid://bhn0nqv0mibyq"]
 
 [ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_pxlj1"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="2_rw4sv"]
@@ -7,9 +7,10 @@
 [ext_resource type="Script" path="res://UI/ScrollingContainer.tres.gd" id="3_u66ey"]
 [ext_resource type="Script" path="res://UI/PopulateEmployees.gd" id="3_yepfe"]
 [ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="4_7fg8i"]
-[ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="5_8tskn"]
 [ext_resource type="PackedScene" uid="uid://d4dtns0pfwt1p" path="res://MiniGame/Shaders/Fisheye_Shader.tscn" id="5_543o5"]
 [ext_resource type="Shader" uid="uid://cibbwmx5esnsj" path="res://MiniGame/Shaders/FishEye.tres" id="6_2iib6"]
+[ext_resource type="Script" path="res://UI/emails.gd" id="6_v8gh6"]
+[ext_resource type="PackedScene" uid="uid://cnv6mkpnnt6eo" path="res://UI/email_template.tscn" id="7_605uc"]
 [ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="9_7uly0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpgbo"]
@@ -18,28 +19,6 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="FontVariation" id="FontVariation_tqi3w"]
 base_font = ExtResource("2_rw4sv")
 spacing_top = -11
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cr5tf"]
-blend_mode = 1
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_3i27l"]
-atlas = ExtResource("5_8tskn")
-region = Rect2(80, 112, 16, 16)
-
-[sub_resource type="LabelSettings" id="LabelSettings_40u6a"]
-font = ExtResource("2_rw4sv")
-font_size = 50
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6emlj"]
-blend_mode = 1
-
-[sub_resource type="GDScript" id="GDScript_xm834"]
-script/source = "extends PanelContainer
-
-func _on_email_template_toggled(toggled_on: bool) -> void:
-	self.visible = toggled_on
-	get_parent().release_focus()
-"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_efffw"]
 atlas = ExtResource("9_7uly0")
@@ -301,7 +280,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="MainScreen" type="MarginContainer" parent="CanvasLayer/Control"]
+[node name="Emails" type="MarginContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -314,10 +293,10 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 50
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Control/MainScreen"]
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/Emails"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MainScreen/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Emails/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -325,12 +304,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="Panel" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer"]
+[node name="PanelContainer" type="Panel" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(223.22, 0)
 layout_mode = 2
 theme = ExtResource("1_pxlj1")
 
-[node name="DeliverySoftText" type="RichTextLabel" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/PanelContainer"]
+[node name="DeliverySoftText" type="RichTextLabel" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer/PanelContainer"]
 clip_contents = false
 custom_minimum_size = Vector2(208.56, 27.245)
 layout_mode = 1
@@ -348,13 +327,44 @@ bbcode_enabled = true
 text = "[font_size=40pt][center][wave amp=50.0 freq=4 connected=1]DeliverySoft v12.2[/wave][/center]"
 scroll_active = false
 
-[node name="Emails" type="Panel" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer"]
+[node name="Emails" type="Panel" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(223.22, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_pxlj1")
+script = ExtResource("6_v8gh6")
+Emails = Array[Dictionary]([{
+"Body": "[p]Dear Alma,[/p][p] [/p][p]I hope you’re doing well. I wanted to touch base with you about something that’s been on my mind. Lately, I’ve been concerned that our team might not feel as entertained or engaged as they need to be. Given the pressures they’re under—both the demands of their roles and the unique challenges of our environment—I worry this could lead to complications if we don’t address it soon.[/p][p] [/p][p]As the assistant director of employee happiness, your role is pivotal in keeping our workforce motivated and satisfied. I’d love for us to explore new ways to enhance their experience, especially during downtime. Whether it’s interactive games, storytelling activities, or something entirely different, I think we need to ensure our employees feel valued and have opportunities to unwind and recharge.[/p][p] [/p][p]You’re incredibly insightful when it comes to understanding the team’s needs, and I’m confident you’ll have some great ideas. Let’s discuss this further and see how we can make a real impact on their day-to-day experience.[/p][p] [/p][p]Looking forward to hearing your thoughts.[/p][p] [/p][p]Best regards,[/p][p] [/p][p]Greta[/p][p]Director of Employee Happiness[/p]",
+"From": "Greta Buck",
+"Subject": "Subject: Enhancing Employee Engagement and Morale"
+}, {
+"Body": "[p]Hey Alma,[/p][p] [/p][p]I just had to say—have you noticed how gorgeous the weather has been lately? It’s like the universe is giving us a little break from all the chaos. The skies have been so clear, and there’s this perfect breeze in the air. It’s almost too good to be true![/p][p] [/p][p]Hope you’ve been able to sneak outside and soak it up, even if just for a moment. Sometimes a little sunshine is all we need to reset.[/p][p] [/p][p]Catch up soon![/p][p] [/p][p] [/p][p]Best,[/p][p]Chanel[/p]",
+"From": "Chanel Le",
+"Subject": "Subject: Enjoying the Weather"
+}, {
+"Body": "[p]Hey Alma,[/p][p] [/p][p] [/p][p] [/p][p] [/p][p]Your new security key’s in the delivery bay. Pick it up when you get a chance.[/p][p] [/p][p] [/p][p] [/p][p] [/p][p]– Frazer[/p]",
+"From": "Frazer Reese",
+"Subject": "Subject: Security Key"
+}, {
+"Body": "Body",
+"From": "Johnathan Lindsay",
+"Subject": "Subject"
+}, {
+"Body": "Body",
+"From": "Oliwia Ford",
+"Subject": "Subject"
+}, {
+"Body": "Body",
+"From": "Kenny Browning",
+"Subject": "Subject"
+}, {
+"Body": "Body",
+"From": "Barney Hickman",
+"Subject": "Subject"
+}])
+EmailTemplate = ExtResource("7_605uc")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer/Emails"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -362,131 +372,31 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer/Emails/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="EmailTemplate" type="Button" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 90.975)
+[node name="EmailTemplate" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer" instance=ExtResource("7_605uc")]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 2
-theme = ExtResource("1_pxlj1")
-theme_type_variation = &"ToggleButton"
-toggle_mode = true
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer/EmailTemplate"]
-material = SubResource("CanvasItemMaterial_cr5tf")
-layout_mode = 2
-offset_left = 11.0
-offset_top = 19.0
-offset_right = 868.0
-offset_bottom = 79.0
-mouse_filter = 2
-
-[node name="Notifcation" type="TextureRect" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer/EmailTemplate/HBoxContainer"]
-material = SubResource("CanvasItemMaterial_cr5tf")
-custom_minimum_size = Vector2(35, 35)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-mouse_filter = 2
-texture = SubResource("AtlasTexture_3i27l")
-
-[node name="From" type="PanelContainer" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer/EmailTemplate/HBoxContainer"]
-material = SubResource("CanvasItemMaterial_cr5tf")
-custom_minimum_size = Vector2(150, 35)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
-mouse_filter = 2
-theme = ExtResource("1_pxlj1")
-
-[node name="Ranking" type="Label" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer/EmailTemplate/HBoxContainer/From"]
-material = SubResource("CanvasItemMaterial_cr5tf")
-layout_mode = 2
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.25
-text = "Name"
-label_settings = SubResource("LabelSettings_40u6a")
-horizontal_alignment = 1
-
-[node name="Subject" type="PanelContainer" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer/EmailTemplate/HBoxContainer"]
-material = SubResource("CanvasItemMaterial_cr5tf")
-custom_minimum_size = Vector2(150, 35)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.75
-mouse_filter = 2
-theme = ExtResource("1_pxlj1")
-
-[node name="Ranking" type="Label" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer/EmailTemplate/HBoxContainer/Subject"]
-material = SubResource("CanvasItemMaterial_cr5tf")
-layout_mode = 2
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.25
-text = "Subject"
-label_settings = SubResource("LabelSettings_40u6a")
-horizontal_alignment = 1
-
-[node name="EmailBody" type="PanelContainer" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer/EmailTemplate"]
-visible = false
-material = SubResource("CanvasItemMaterial_6emlj")
-layout_mode = 2
-anchor_top = 0.978291
-anchor_right = 1.0
-anchor_bottom = 5.14196
-offset_bottom = 3.05176e-05
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 2
-mouse_filter = 2
-script = SubResource("GDScript_xm834")
-metadata/_edit_use_anchors_ = true
-
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer/EmailTemplate/EmailBody"]
-layout_mode = 2
-mouse_filter = 0
-script = ExtResource("3_u66ey")
-
-[node name="DeliverySoftText" type="RichTextLabel" parent="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer/EmailTemplate/EmailBody/ScrollContainer"]
-clip_contents = false
-custom_minimum_size = Vector2(208.56, 27.245)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_colors/font_shadow_color = Color(0.6, 0.898039, 0.313726, 1)
-theme_override_fonts/normal_font = SubResource("FontVariation_tqi3w")
-theme_override_font_sizes/normal_font_size = 100
-bbcode_enabled = true
-text = "[font_size=45pt][center]Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque imperdiet dignissim egestas. Nam fermentum ante sed laoreet rhoncus. Quisque eleifend condimentum egestas. Suspendisse et sollicitudin erat. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris nec libero blandit, fermentum mauris id, porta nisi. Mauris turpis nibh, euismod tincidunt mi sed, semper rutrum mi. Sed finibus gravida nisi sed tincidunt.
-
-Nam leo tellus, cursus vel aliquam et, facilisis sit amet urna. Sed sapien diam, lobortis id sagittis eget, convallis at lectus. Suspendisse sodales pharetra sapien, in scelerisque nisi faucibus quis. Ut consequat arcu vitae neque congue, in dapibus nisi ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas semper tortor id mollis volutpat. Duis ac diam vitae mi ultricies lacinia a vitae libero. In libero leo, pretium ac varius et, semper quis nunc.
-
-Proin egestas, nulla eget iaculis pretium, massa erat rhoncus ligula, et dictum ex lectus at purus. Quisque pulvinar felis vitae porttitor feugiat. Vivamus pharetra ipsum suscipit purus malesuada congue. Nulla porta nisi bibendum pretium blandit. Sed placerat congue nulla, vel eleifend libero euismod et. In sed enim vitae dui varius viverra vel pulvinar ligula. Sed orci risus, accumsan quis turpis a, viverra facilisis tellus.
-
-Duis fringilla, ante eu volutpat accumsan, libero elit ultrices lorem, eu congue nibh arcu quis dui. Nulla facilisi. Nunc vel dictum sem. In euismod pellentesque risus, vel gravida neque ultrices placerat. Nulla consectetur sodales purus, in rhoncus neque tristique sit amet. Nam porttitor neque augue, at sollicitudin mauris blandit sed. Duis dolor elit, vulputate a magna at, ornare vestibulum dolor. Morbi quis fermentum ipsum, non condimentum nisl. Nulla fringilla, orci ac pretium varius, enim odio tincidunt nisi, in viverra sem mauris et magna. Phasellus massa dui, viverra at diam ac, posuere feugiat leo. Pellentesque consequat, augue quis pretium dictum, ligula ante rhoncus eros, id tempor risus metus ut nibh.[/center]"
-fit_content = true
-scroll_active = false
 
 [node name="ComputerMonitorSprite" type="Sprite2D" parent="CanvasLayer/Control"]
+z_index = 2
 texture_filter = 1
 texture = SubResource("AtlasTexture_efffw")
 script = SubResource("GDScript_w3kqw")
 metadata/_edit_lock_ = true
 
 [node name="Fish Eye" parent="CanvasLayer/Control" instance=ExtResource("5_543o5")]
+z_index = 20
 material = SubResource("ShaderMaterial_jm1lw")
 layout_mode = 1
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
 [node name="Chromatic Aberation" parent="CanvasLayer/Control" instance=ExtResource("3_lfrxg")]
+z_index = 20
 material = SubResource("ShaderMaterial_5otmw")
 layout_mode = 1
 mouse_filter = 2
 metadata/_edit_lock_ = true
-
-[connection signal="toggled" from="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer/EmailTemplate" to="CanvasLayer/Control/MainScreen/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer/EmailTemplate/EmailBody" method="_on_email_template_toggled"]

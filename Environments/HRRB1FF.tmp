@@ -442,8 +442,7 @@ handle_input_locally = false
 size = Vector2i(687, 332)
 render_target_update_mode = 3
 
-[node name="HighScores" parent="Desks/Desk3/Monitor/HighScores" node_paths=PackedStringArray("monitor") instance=ExtResource("9_xj7nx")]
-monitor = NodePath("../../MainMonitor")
+[node name="HighScores" parent="Desks/Desk3/Monitor/HighScores" instance=ExtResource("9_xj7nx")]
 
 [node name="MainMonitor" type="StaticBody3D" parent="Desks/Desk3/Monitor"]
 script = ExtResource("9_tjb8j")

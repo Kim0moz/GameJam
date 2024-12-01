@@ -27,6 +27,9 @@ const JUMP_VELOCITY = 4.5
 ## Length of computer tween animation
 @export var computerTransTweenLen = .5
 
+var preComputerPosition : Vector3
+var preComputerCameraPosition : Vector3
+
 signal computer_enter
 signal computer_exit
 
@@ -37,6 +40,7 @@ var playerState : PlayerState = PlayerState.NORMAL
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
+	GlobalVariables.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _physics_process(delta):
@@ -109,6 +113,8 @@ func _input(event):
 		exitComputerTransition()
 
 func startComputerState(monitorPosition : Vector3):
+	preComputerPosition = global_position
+	preComputerCameraPosition = cameraController.global_position
 	playerState = PlayerState.TRANSITION
 	var posTween = create_tween()
 	posTween.tween_property(self, "global_position", monitorPosition + computerPosOffset, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
@@ -131,12 +137,10 @@ func computerStateStarted():
 func exitComputerTransition():
 	playerState = PlayerState.TRANSITION
 	var posTween = create_tween()
-	posTween.tween_property(self, "global_position", global_position + computerExitPosOffset, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
+	posTween.tween_property(self, "global_position", preComputerPosition, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
 	posTween.tween_callback(Callable(self, "computerExited"))
-	var cameraPos = global_position + computerExitPosOffset
-	cameraPos.y += cameraOffsetY
 	var posTween2 = create_tween()
-	posTween2.tween_property(cameraController, "global_position", cameraPos, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
+	posTween2.tween_property(cameraController, "global_position", preComputerCameraPosition, computerTransTweenLen).set_trans(Tween.TRANS_SINE)
 
 func computerExited():
 	playerState = PlayerState.NORMAL

@@ -6,8 +6,8 @@ class_name  AntiDroneBot
 @export var antiDroneShot : PackedScene
 @export var moveSpeed := 5.0
 @export var canonCooldownTime := 2.0
-@export var botLifeTime = 30
-@export var fadeOutTime = 2
+@export var botLifeTime = 40
+@export var fadeTime = 2
 var botLifeDT := 0.0
 var canonCooldownDT := 0.0
 var intersectionsGrid = []
@@ -19,15 +19,20 @@ var moveVector : Vector2
 var ignoreArea := true
 var drone : Drone
 var botState := BotState.SEARCHING
+var fadingIn := true
 
 enum BotState{SEARCHING, DRONE_FOUND, DEACTIVATING}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+
+func initialize(intersections : Node2D):
+	intersectionsNode = intersections
 	initializeGrid()
 	spawnAtRandomIntersection()
 	pickNextIntersection()
-
+	modulate.a = 0
 
 func initializeGrid():
 	for i in range(intersectionsNode.get_child_count() / 4):
@@ -67,6 +72,8 @@ func pickNextIntersection():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if fadingIn:
+		fadeIn(delta)
 	move(delta)
 	updateLife(delta)
 	match botState:
@@ -87,8 +94,14 @@ func updateLife(delta):
 	if botLifeDT >= botLifeTime:
 		botState = BotState.DEACTIVATING	
 
+func fadeIn(delta):
+	modulate.a += 1.0/fadeTime * delta
+	if modulate.a >= 1:
+		modulate.a = 1
+		fadingIn = false
+
 func fadeOut(delta):
-	modulate.a -= 1.0/fadeOutTime * delta
+	modulate.a -= 1.0/fadeTime * delta
 	if modulate.a <= 0:
 		queue_free()
 

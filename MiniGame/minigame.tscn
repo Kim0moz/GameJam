@@ -26,13 +26,13 @@
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_sh3ry"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_02b10"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mex0v"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2jy5"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_sh3ry")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_02b10")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -73,7 +73,7 @@ point_count = 5
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rgnm"]
 size = Vector2(8, 8)
 
-[node name="Minigame" type="Node2D" node_paths=PackedStringArray("deliveryInfo", "drone", "capsule", "pointer", "dropOffGenerator", "mainMenuScreen")]
+[node name="Minigame" type="Node2D" node_paths=PackedStringArray("deliveryInfo", "drone", "capsule", "pointer", "dropOffGenerator", "mainMenuScreen", "intersections")]
 script = ExtResource("2_0irbu")
 deliveryInfo = NodePath("CanvasLayer/DeliveryStatus")
 drone = NodePath("Drone")
@@ -82,6 +82,8 @@ pointer = NodePath("Pointer2d")
 dropOffGenerator = NodePath("Town1/Buildings")
 deliveryConfirmationText = ExtResource("2_fgfl8")
 mainMenuScreen = NodePath("CanvasLayer/MinigameMenu")
+antiDroneBotScene = ExtResource("22_yy5lh")
+intersections = NodePath("Intersections")
 capsuleDeliveryTargetTime = 0.5
 
 [node name="Drone" parent="." node_paths=PackedStringArray("pointer") instance=ExtResource("4_lpyc7")]
@@ -144,7 +146,7 @@ offset_top = 0.0
 offset_bottom = 33.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_mex0v")
+material = SubResource("ShaderMaterial_u2jy5")
 mouse_filter = 2
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
@@ -242,11 +244,8 @@ position = Vector2(-398, 0)
 [node name="CapsuleSpawnPoint_03" parent="CapsuleSpawnPoints" instance=ExtResource("12_a2er8")]
 position = Vector2(0, -432)
 
-[node name="AntiDroneBot" parent="." node_paths=PackedStringArray("intersectionsNode") instance=ExtResource("22_yy5lh")]
-position = Vector2(-331, 117)
-intersectionsNode = NodePath("../Intersections")
-
 [node name="Intersections" type="Node2D" parent="."]
+position = Vector2(0, 1)
 
 [node name="Intersection_00" type="Area2D" parent="Intersections"]
 position = Vector2(-336, -360)

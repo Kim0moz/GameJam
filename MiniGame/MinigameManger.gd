@@ -9,6 +9,8 @@ extends Node
 @export var deliveryConfirmationText : PackedScene
 @export var player : Player
 @export var mainMenuScreen : Control
+@export var antiDroneBotScene : PackedScene
+@export var intersections : Node2D
 var capsuleSpawnPoints
 
 @export_category("Delivery Settings")
@@ -27,6 +29,18 @@ var ranking := RANKING_MAX
 const MAX_DELIVERY_POINTS = 20
 var ptsSinceLastRank = 0
 
+@export_category("AntiDroneBot Spawning")
+## When bots start spawning
+var botSpawnRankThreshold := RANKING_MAX * .75
+## How often to spawn bots 
+@export var botSpawnTime := 40.0
+## How many ranks before changing 
+@export var botSpawnTimeChangeRank := 150
+## How much to subtract from time every change
+@export var botSpawnTimeChange := 3.0
+var botSpawnTimeDT := 0.0
+var lastBotSpawnRank : float
+
 var computerState : ComputerState = ComputerState.INACTIVE
 var deliveryState : DeliveryState = DeliveryState.SPAWNING
 enum ComputerState {INACTIVE, MAIN_MENU, MINIGAME}
@@ -42,6 +56,9 @@ func _ready():
 		player.connect("computer_exit", Callable(self, "computerExited"))
 	else:
 		computerState = ComputerState.MAIN_MENU
+	lastBotSpawnRank = botSpawnRankThreshold
+	print("botSpawnRankThreshold: ", botSpawnRankThreshold)
+	botSpawnTimeDT = botSpawnTime
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -62,6 +79,23 @@ func updateMinigame(delta):
 			deliveryInfo.modulate.a = .5 if pointer.touchingDeliveryInfo else 1.0
 		DeliveryState.DELIVERING:
 			updateDeliveryStatus(delta)
+	updateBotSpawn(delta)
+
+func updateBotSpawn(delta):
+	if ranking >= botSpawnRankThreshold:
+		return
+	
+	botSpawnTimeDT += delta
+	if botSpawnTimeDT >= botSpawnTime:
+		var antiDroneBot = antiDroneBotScene.instantiate() as AntiDroneBot
+		antiDroneBot.initialize(intersections)
+		get_node("../").add_child(antiDroneBot)
+		print("spawning antiDroneBot")
+		botSpawnTimeDT = 0
+
+		if lastBotSpawnRank - ranking >= botSpawnTimeChangeRank:
+			lastBotSpawnRank = ranking
+			botSpawnTime -= botSpawnTimeChange
 
 func updateDeliveryStatus(delta):
 	capsuleDeliveryDT += delta
@@ -149,15 +183,18 @@ func calculateDeliveryPoints():
 	
 @warning_ignore("integer_division")
 func checkNextRank():
+	if ranking == 1:
+		return
 	while true:
 		var rankDiff = RANKING_MAX - ranking
 		var ptsForNextRank = pow(1.5, (1+(rankDiff/1000.0))) if rankDiff >= RANKING_MAX/2 else .125 * (5-int((500-rankDiff)/100))
 		# print("ranking: ", ranking)
 		# print("ptsForNextRank: ", ptsForNextRank)
 		# print("ptsSinceLastRank: ", ptsSinceLastRank)
-		if ptsSinceLastRank >= ptsForNextRank:
+		if ptsSinceLastRank >= ptsForNextRank && ranking > 1:
 			ptsSinceLastRank -= ptsForNextRank
 			ranking -= 1
 			mainMenuScreen.get_node("DeliveryStats/RankingText").text = "Your Rank: %d" % ranking
 		else:
+			print("ranking: ", ranking)
 			break

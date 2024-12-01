@@ -311,7 +311,7 @@ mesh_library = ExtResource("3_iejps")
 data = {
 "cells": PackedInt32Array(-65536, 1, 3, -65536, 0, 1048576, -65536, 65535, 1048576, -65536, 65534, 1048576, -65536, 65533, 1048576, -65536, 65532, 1048576, -65535, 65531, 3, -65536, 65531, 1, -3, 2, 1441792, -3, 1, 1441792, 131069, 2, 1179648, 131069, 1, 1179648)
 }
-metadata/_editor_floor_ = Vector3(-5, -2, 0)
+metadata/_editor_floor_ = Vector3(-4, -2, 0)
 
 [node name="Pipes" type="GridMap" parent="."]
 mesh_library = ExtResource("4_gt0uy")

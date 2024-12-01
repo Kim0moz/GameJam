@@ -1,6 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://bhn0nqv0mibyq"]
+[gd_scene load_steps=22 format=3 uid="uid://bhn0nqv0mibyq"]
 
 [ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_pxlj1"]
+[ext_resource type="Script" path="res://UI/computer.gd" id="1_rigkm"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="2_rw4sv"]
 [ext_resource type="PackedScene" uid="uid://dbixfcdvh3vak" path="res://UI/employee.tscn" id="3_eeki1"]
 [ext_resource type="PackedScene" uid="uid://qlojdtaadr5s" path="res://MiniGame/Shaders/chromatic_aberation.tscn" id="3_lfrxg"]
@@ -69,15 +70,16 @@ mouse_filter = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Control" type="Control" parent="CanvasLayer"]
+[node name="Computer" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_rigkm")
 
-[node name="Panel2" type="Panel" parent="CanvasLayer/Control"]
+[node name="Panel2" type="Panel" parent="CanvasLayer/Computer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,7 +88,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bpgbo")
 
-[node name="MainBorder" type="MarginContainer" parent="CanvasLayer/Control"]
+[node name="MainBorder" type="MarginContainer" parent="CanvasLayer/Computer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,11 +100,11 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="ScreenBorder" type="Panel" parent="CanvasLayer/Control/MainBorder"]
+[node name="ScreenBorder" type="Panel" parent="CanvasLayer/Computer/MainBorder"]
 layout_mode = 2
 theme = ExtResource("1_pxlj1")
 
-[node name="Top performing Employees" type="MarginContainer" parent="CanvasLayer/Control"]
+[node name="Top performing Employees" type="MarginContainer" parent="CanvasLayer/Computer"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -115,16 +117,16 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Top performing Employees"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Computer/Top performing Employees"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Spacer" type="Panel" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer"]
+[node name="Spacer" type="Panel" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 7.135)
 layout_mode = 2
 
-[node name="DeliverySoftText" type="RichTextLabel" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer"]
+[node name="DeliverySoftText" type="RichTextLabel" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer"]
 clip_contents = false
 custom_minimum_size = Vector2(208.56, 27.245)
 layout_mode = 2
@@ -137,11 +139,11 @@ bbcode_enabled = true
 text = "[font_size=40pt][center][wave amp=50.0 freq=4 connected=1]DeliverySoft v12.2[/wave][/center]"
 scroll_active = false
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer"]
+[node name="Panel" type="Panel" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -152,7 +154,7 @@ mouse_filter = 0
 theme = ExtResource("1_pxlj1")
 script = ExtResource("3_u66ey")
 
-[node name="MainScreen" type="VBoxContainer" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer"]
+[node name="MainScreen" type="VBoxContainer" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 2
@@ -160,127 +162,127 @@ mouse_filter = 2
 theme = ExtResource("1_pxlj1")
 script = ExtResource("3_yepfe")
 
-[node name="0" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="0" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="1" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="1" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="2" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="2" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="3" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="3" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="4" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="4" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="5" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="5" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="6" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="6" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="7" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="7" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="8" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="8" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="9" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="9" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="10" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="10" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="11" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="11" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="12" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="12" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="13" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="13" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="14" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="14" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="15" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="15" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="16" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="16" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="17" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="17" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="18" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="18" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="19" parent="CanvasLayer/Control/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="19" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
 
-[node name="Emails" type="MarginContainer" parent="CanvasLayer/Control"]
+[node name="Emails" type="MarginContainer" parent="CanvasLayer/Computer"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -293,10 +295,10 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 50
 
-[node name="Panel" type="Panel" parent="CanvasLayer/Control/Emails"]
+[node name="Panel" type="Panel" parent="CanvasLayer/Computer/Emails"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Control/Emails/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Computer/Emails/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -304,12 +306,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="Panel" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer"]
+[node name="PanelContainer" type="Panel" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(223.22, 0)
 layout_mode = 2
 theme = ExtResource("1_pxlj1")
 
-[node name="DeliverySoftText" type="RichTextLabel" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer/PanelContainer"]
+[node name="DeliverySoftText" type="RichTextLabel" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer/PanelContainer"]
 clip_contents = false
 custom_minimum_size = Vector2(208.56, 27.245)
 layout_mode = 1
@@ -327,7 +329,22 @@ bbcode_enabled = true
 text = "[font_size=40pt][center][wave amp=50.0 freq=4 connected=1]DeliverySoft v12.2[/wave][/center]"
 scroll_active = false
 
-[node name="Emails" type="Panel" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer"]
+[node name="MainMenu" type="Button" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer/PanelContainer"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -105.61
+offset_top = 54.0
+offset_right = -36.61
+offset_bottom = 74.0
+grow_horizontal = 2
+scale = Vector2(2.95849, 2.99315)
+theme = ExtResource("1_pxlj1")
+text = "Main Menu"
+
+[node name="Emails" type="Panel" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer"]
 custom_minimum_size = Vector2(223.22, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -365,7 +382,7 @@ Emails = Array[Dictionary]([{
 EmailTemplate = ExtResource("7_605uc")
 metadata/_edit_pinned_properties_ = [&"Emails"]
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer/Emails"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer/Emails"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -374,31 +391,106 @@ grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer/Emails/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer/Emails/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="EmailTemplate" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer" instance=ExtResource("7_605uc")]
+[node name="EmailTemplate" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer" instance=ExtResource("7_605uc")]
 layout_mode = 2
 
-[node name="ComputerMonitorSprite" type="Sprite2D" parent="CanvasLayer/Control"]
+[node name="MainMenu" type="MarginContainer" parent="CanvasLayer/Computer"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pxlj1")
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 50
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Computer/MainMenu"]
+layout_mode = 2
+
+[node name="DeliverySoftText" type="RichTextLabel" parent="CanvasLayer/Computer/MainMenu/Panel"]
+clip_contents = false
+custom_minimum_size = Vector2(208.56, 27.245)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 20.0
+offset_bottom = 47.245
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_shadow_color = Color(0.6, 0.898039, 0.313726, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_tqi3w")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[font_size=80pt][center][wave amp=50.0 freq=4 connected=1]DeliverySoft v12.2[/wave][/center]"
+scroll_active = false
+
+[node name="Mail" type="Button" parent="CanvasLayer/Computer/MainMenu/Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -67.0
+offset_top = -112.0
+offset_right = -42.0
+offset_bottom = -92.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5.67215, 5.01179)
+theme = ExtResource("1_pxlj1")
+text = "Mail"
+
+[node name="Scores" type="Button" parent="CanvasLayer/Computer/MainMenu/Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -185.0
+offset_top = -7.0
+offset_right = -116.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(5.67215, 5.01179)
+theme = ExtResource("1_pxlj1")
+text = "Employee Review"
+
+[node name="ComputerMonitorSprite" type="Sprite2D" parent="CanvasLayer/Computer"]
 z_index = 2
 texture_filter = 1
 texture = SubResource("AtlasTexture_efffw")
 script = SubResource("GDScript_w3kqw")
 metadata/_edit_lock_ = true
 
-[node name="Fish Eye" parent="CanvasLayer/Control" instance=ExtResource("5_543o5")]
+[node name="Fish Eye" parent="CanvasLayer/Computer" instance=ExtResource("5_543o5")]
 z_index = 20
 material = SubResource("ShaderMaterial_jm1lw")
 layout_mode = 1
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="Chromatic Aberation" parent="CanvasLayer/Control" instance=ExtResource("3_lfrxg")]
+[node name="Chromatic Aberation" parent="CanvasLayer/Computer" instance=ExtResource("3_lfrxg")]
 z_index = 20
 material = SubResource("ShaderMaterial_5otmw")
 layout_mode = 1
 mouse_filter = 2
 metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="CanvasLayer/Computer/Emails/Panel/HBoxContainer/PanelContainer/MainMenu" to="CanvasLayer/Computer" method="OpenMainMenu"]
+[connection signal="pressed" from="CanvasLayer/Computer/MainMenu/Panel/Mail" to="CanvasLayer/Computer" method="OpenEmails"]
+[connection signal="pressed" from="CanvasLayer/Computer/MainMenu/Panel/Scores" to="CanvasLayer/Computer" method="OpenScores"]

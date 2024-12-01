@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cqevxh2h77pty"]
+[gd_scene load_steps=28 format=4 uid="uid://cqevxh2h77pty"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_7a176"]
 [ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="2_i3dqh"]
@@ -13,8 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://b5ynry7aqklh7" path="res://Models/ButtonBoard/ButtonBoard_MetalTexture.jpg" id="11_8iqs8"]
 [ext_resource type="Animation" uid="uid://5d0gs6s2pv0a" path="res://Models/ButtonBoard/ButtonBoardAnimations/Press.res" id="12_0d8kq"]
 [ext_resource type="Script" path="res://Objects/ToggleableItems/ToggleableItem.gd" id="13_2ysdo"]
-[ext_resource type="Script" path="res://Environments/pipe_item.gd" id="14_s7m22"]
 [ext_resource type="PackedScene" uid="uid://3iksdjbb3rdb" path="res://Models/ButtonBoard/button.tscn" id="15_sw8i7"]
+[ext_resource type="PackedScene" uid="uid://c5vxwcp4jb3tg" path="res://Objects/pipe_item.tscn" id="17_8tpoq"]
 
 [sub_resource type="GDScript" id="GDScript_gp4jd"]
 script/source = "extends Node3D
@@ -120,12 +120,6 @@ _data = {
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tr51k"]
 size = Vector3(0.113037, 0.233429, 0.220764)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jw88j"]
-albedo_color = Color(0, 0.466667, 1, 1)
-emission_enabled = true
-emission = Color(0, 0.466667, 1, 1)
-emission_energy_multiplier = 3.6
 
 [sub_resource type="GDScript" id="GDScript_1xgg6"]
 script/source = "extends Node
@@ -538,22 +532,6 @@ animations = Array[Animation]([ExtResource("12_0d8kq")])
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00246228, 0.00302123)
 shape = SubResource("BoxShape3D_tr51k")
 
-[node name="PipeItem" type="Node3D" parent="." node_paths=PackedStringArray("Grid", "pipeDirection", "pipeDestinations")]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999998, 5, 1, 1)
-script = ExtResource("14_s7m22")
-ActiveDirections = [Vector3i(-1, 0, 0), Vector3i(1, 0, 0)]
-CurrentPos = Vector3i(5, 1, 1)
-CurrentDirection = Vector3i(-1, 0, 0)
-Grid = NodePath("../Pipes")
-pipeDirection = NodePath("../Pipes/PipeDirectionSupport")
-pipeDestinations = NodePath("../Pipes/PipeDestinations")
-
-[node name="Item" type="CSGCylinder3D" parent="PipeItem"]
-transform = Transform3D(0, 1, 0, 1, 0, 0, 0, 0, -1, 0.437744, 0.437398, 0.500057)
-radius = 0.25
-height = 0.686332
-material = SubResource("StandardMaterial3D_jw88j")
-
 [node name="R1" parent="." node_paths=PackedStringArray("pI", "Lights") instance=ExtResource("15_sw8i7")]
 transform = Transform3D(-6.66393e-08, 0, 1.52453, 0, 1.52453, 0, -1.52453, 0, -6.66393e-08, 0.995743, 2.12186, -0.133855)
 pI = NodePath("../Pipes/Room1")
@@ -646,3 +624,17 @@ shape = SubResource("BoxShape3D_tr51k")
 
 [node name="ChangeLights" type="Node3D" parent="FlagTest"]
 script = SubResource("GDScript_h08hd")
+
+[node name="PipeItem" parent="." node_paths=PackedStringArray("Grid", "pipeDirection", "pipeDestinations") instance=ExtResource("17_8tpoq")]
+transform = Transform3D(0.999999, 0, 0, 0, -4.37113e-08, -0.999998, 0, 0.999999, -4.37113e-08, 5, 1, 1)
+ActiveDirections = [Vector3i(-1, 0, 0), Vector3i(1, 0, 0)]
+CurrentPos = Vector3i(5, 1, 1)
+CurrentDirection = Vector3i(-1, 0, 0)
+Grid = NodePath("../Pipes")
+pipeDirection = NodePath("../Pipes/PipeDirectionSupport")
+pipeDestinations = NodePath("../Pipes/PipeDestinations")
+
+[node name="Item" parent="PipeItem" index="0"]
+transform = Transform3D(0, 1, 0, -4.37114e-08, 0, -1, -1, 0, 4.37115e-08, 0.499999, 0.499998, -0.5)
+
+[editable path="PipeItem"]

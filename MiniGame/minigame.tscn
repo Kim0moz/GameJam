@@ -26,13 +26,13 @@
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jo2tq"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ws0me"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_s3862"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hw8us"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_jo2tq")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_ws0me")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -146,7 +146,7 @@ offset_top = 0.0
 offset_bottom = 33.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_s3862")
+material = SubResource("ShaderMaterial_hw8us")
 mouse_filter = 2
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
@@ -424,7 +424,7 @@ gravity_scale = 0.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Town1/Buildings/RigidBodies/Rigidbody_21"]
 position = Vector2(35.7147, 256.079)
 scale = Vector2(0.425, 1)
-polygon = PackedVector2Array(-72.9922, 252.936, 128.154, 253.148, 128.04, 277.148, 118.619, 282.005, -61.3711, 281.946, -73.116, 277.936)
+polygon = PackedVector2Array(-72.9922, 252.936, 128.154, 253.148, 128.04, 277.148, 118.619, 282.005, 92.1333, 282.084, 92.2026, 268.084, 0.43808, 268.002, 1.88968, 281.967, -61.3711, 281.946, -73.116, 277.936)
 
 [node name="Rigidbody_22" type="RigidBody2D" parent="Town1/Buildings/RigidBodies"]
 position = Vector2(-31.6535, -640.068)
@@ -442,7 +442,7 @@ gravity_scale = 0.0
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Town1/Buildings/RigidBodies/Rigidbody_23"]
 position = Vector2(35.7147, 256.079)
 scale = Vector2(0.425, 1)
-polygon = PackedVector2Array(-72.9922, 252.936, 128.154, 253.148, 128.04, 277.148, 118.619, 282.005, -61.3711, 281.946, -73.116, 277.936)
+polygon = PackedVector2Array(-72.9922, 252.936, 128.154, 253.148, 128.04, 277.148, 118.619, 282.005, 92.9395, 281.997, 91.6066, 268.079, -0.157932, 267.997, -0.227234, 281.997, -61.3711, 281.946, -73.116, 277.936)
 
 [node name="Rigidbody_25" type="RigidBody2D" parent="Town1/Buildings/RigidBodies"]
 position = Vector2(-31.4035, -640.067)

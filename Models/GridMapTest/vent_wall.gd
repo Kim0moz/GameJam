@@ -15,3 +15,12 @@ func move():
 		player.global_position = ExitPoint.global_position
 		print("Moving from, ", self, "Moving to, ", ExitPoint)
 		player.position.y += 1
+		
+func displayText():
+	if locked==true:
+		InfoPopUp.Text = "Locked"
+	else:
+		InfoPopUp.Text = ExitPoint.name
+
+func hidePopUp():
+	InfoPopUp.HideText()

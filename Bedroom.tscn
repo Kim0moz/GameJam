@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://dyhdo0olx8k3j"]
+[gd_scene load_steps=63 format=4 uid="uid://dyhdo0olx8k3j"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_ejgwl"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="1_wqm3m"]
@@ -21,6 +21,9 @@
 [ext_resource type="PackedScene" uid="uid://b2msttkt05ws4" path="res://Models/GridMapTest/tube_with_door.tscn" id="10_sref7"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="11_fmp3n"]
 [ext_resource type="Script" path="res://Environments/pipe_item.gd" id="14_q2ht7"]
+[ext_resource type="Script" path="res://Environments/MonitorHelperScript.gd" id="16_4v6xu"]
+[ext_resource type="PackedScene" uid="uid://fp3700wpddt4" path="res://UI/hover_info.tscn" id="18_8bhly"]
+[ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="21_65sdv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkccg"]
 resource_name = "Metal2"
@@ -62,7 +65,6 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4q3lb"]
-resource_name = "Room_Cube_013"
 _surfaces = [{
 "aabb": AABB(-1.02014, -1.06543, -0.259957, 2.04027, 1.69188, 0.32462),
 "attribute_data": PackedByteArray("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"),
@@ -93,20 +95,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_44ljc"]
-viewport_path = NodePath("SubViewport")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_nhm87"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2ckfi"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m14t"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_44ljc")
-metallic = 1.0
-roughness = 0.0
-emission_enabled = true
-emission_energy_multiplier = 0.67
-emission_texture = SubResource("ViewportTexture_nhm87")
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_2ckfi")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -176,6 +171,21 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_esoxy")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfrjn"]
+atlas = ExtResource("21_65sdv")
+region = Rect2(160, 192, 16, 16)
+
+[sub_resource type="GDScript" id="GDScript_4m78a"]
+script/source = "extends Node
+
+func _ready():
+	GlobalVariables.screwDriver.connect(send)
+
+func send(val):
+	if val == true:
+		get_parent().Fire = true
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2wus"]
 resource_name = "Metal1"
@@ -668,11 +678,13 @@ script = ExtResource("9_6hyn0")
 itemToReplace = 5
 item = ExtResource("10_sref7")
 
-[node name="Monitor" type="MeshInstance3D" parent="."]
+[node name="Monitor" type="MeshInstance3D" parent="." node_paths=PackedStringArray("VP")]
 transform = Transform3D(1, 0, 0, 0, 0.997308, 0.0733268, 0, -0.0733268, 0.997308, 1.71423, 3.04736, -5.42417)
 mesh = SubResource("ArrayMesh_4q3lb")
 skeleton = NodePath("")
 surface_material_override/1 = SubResource("StandardMaterial3D_3m14t")
+script = ExtResource("16_4v6xu")
+VP = NodePath("../SubViewport")
 
 [node name="MainMonitor" type="StaticBody3D" parent="Monitor" node_paths=PackedStringArray("subViewport")]
 script = ExtResource("7_vm1o0")
@@ -682,6 +694,9 @@ subViewport = NodePath("../../SubViewport")
 shape = SubResource("BoxShape3D_omqab")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Monitor"]
+
+[node name="HoverInfo" parent="Monitor" instance=ExtResource("18_8bhly")]
+HoverText = "Click : Go to work..."
 
 [node name="PipeItem" type="Node3D" parent="." node_paths=PackedStringArray("Grid", "pipeDirection", "pipeDestinations")]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999998, 3, 4, 6)
@@ -701,11 +716,21 @@ transform = Transform3D(-0.999999, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1,
 mesh = SubResource("ArrayMesh_705qp")
 skeleton = NodePath("")
 
+[node name="Sprite3D" type="Sprite3D" parent="PipeItem/Item/Delivery Box6"]
+transform = Transform3D(2.83908, 0, 0, 2.84217e-14, 2.83908, 0, 0, 0, 2.83908, 0, 0, 0)
+billboard = 1
+shaded = true
+texture_filter = 0
+texture = SubResource("AtlasTexture_hfrjn")
+
 [node name="OmniLight3D" type="OmniLight3D" parent="PipeItem/Item"]
 light_color = Color(0.449756, 0.720504, 1, 1)
 light_energy = 2.0
 omni_range = 0.422914
 omni_attenuation = 2.24
+
+[node name="SendWithSignal" type="Node" parent="PipeItem"]
+script = SubResource("GDScript_4m78a")
 
 [node name="Decorations" type="Node3D" parent="."]
 
@@ -791,6 +816,10 @@ skeleton = NodePath("")
 
 [node name="Player" parent="." instance=ExtResource("11_fmp3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.547, 1.90822, 0.617681)
+
+[connection signal="Activated" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="hide"]
+[connection signal="Exit" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="hide"]
+[connection signal="Hovered" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="display"]
 
 [editable path="Player"]
 [editable path="Player/CameraController/CameraTarget/WorldSpaceCam"]

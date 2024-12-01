@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cp46rue3qkb0o"]
+[gd_scene load_steps=7 format=3 uid="uid://cp46rue3qkb0o"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_oc26t"]
 [ext_resource type="MeshLibrary" uid="uid://ctr3ogqfj1ns5" path="res://Models/GridMapTest/LightLibrary.tres" id="2_1oqws"]
@@ -6,7 +6,6 @@
 [ext_resource type="MeshLibrary" uid="uid://1ho4b857233" path="res://Models/GridMapTest/RailingLibrary.tres" id="3_7q8n4"]
 [ext_resource type="PackedScene" uid="uid://cf0yipunib2xa" path="res://Models/GridMapTest/vent_wall.tscn" id="3_tmnig"]
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="4_gmj6r"]
-[ext_resource type="Script" path="res://Models/GridMapTest/vent_wall.gd" id="4_ki31i"]
 
 [node name="BaseEV" type="Node3D"]
 
@@ -31,13 +30,11 @@ interactive = Array[Vector3i]([Vector3i(-1, 0, 1), Vector3i(30, 0, -28)])
 itemToReplace = 9
 item = ExtResource("3_tmnig")
 
-[node name="Bedroom" type="Node3D" parent="Walls and Vents/Replace Vents" instance=ExtResource("3_tmnig")]
+[node name="Bedroom" parent="Walls and Vents/Replace Vents" instance=ExtResource("3_tmnig")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 1.98447, -12)
-script = ExtResource("4_ki31i")
 
-[node name="HRoom" type="Node3D" parent="Walls and Vents/Replace Vents" instance=ExtResource("3_tmnig")]
+[node name="HRoom" parent="Walls and Vents/Replace Vents" instance=ExtResource("3_tmnig")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1.98447, -70)
-script = ExtResource("4_ki31i")
 
 [node name="LightFixtures" type="GridMap" parent="."]
 mesh_library = ExtResource("2_1oqws")

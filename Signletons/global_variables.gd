@@ -7,7 +7,13 @@ var player : Player :
 
 var highScores : Array[Dictionary] = [{"Employee": "ID", "Score": 0, "Icon" : 0}]
 
+var sendScrewDriver : bool = false:
+	set(val):
+		sendScrewDriver = val
+		screwDriver.emit(val)
+
 signal playerReady
+signal screwDriver(val:bool)
 
 func _ready() -> void:
 	generateHighscores()

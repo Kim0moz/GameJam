@@ -2,7 +2,6 @@
 extends "res://Models/GridMapTest/ReplaceWithInteractive.gd"
 
 @export var interactive : Array[Vector3i]
-var player : Node3D
 @export var replaceVents : bool:
 	set(val):
 		updateVents()
@@ -11,8 +10,6 @@ var player : Node3D
 		getInteractive()
 
 func _ready() -> void:
-	await GlobalVariables.playerReady
-	player = GlobalVariables.player
 	pass
 		
 func getInteractive():
@@ -24,7 +21,6 @@ func getInteractive():
 func updateVents():
 	for itm in interactive:
 		var replace = item.instantiate()
-		replace.player = player
 		add_child(replace)
 		replace.owner = get_tree().edited_scene_root
 		replace.name = str(itm)

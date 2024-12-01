@@ -26,6 +26,7 @@ var currentCell
 
 
 func _ready() -> void:
+	await get_tree().root.ready
 	moveToGridLocation(CurrentPos)
 
 func nextPos():

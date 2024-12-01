@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dyhdo0olx8k3j" path="res://Bedroom.tscn" id="1_l74bv"]
 [ext_resource type="PackedScene" uid="uid://cqevxh2h77pty" path="res://Environments/delivery_room_02.tscn" id="2_0l34u"]
+[ext_resource type="Script" path="res://Environments/MonitorHelperScript.gd" id="3_ted0t"]
 [ext_resource type="PackedScene" uid="uid://170qrjfvaifw" path="res://Environments/HRRoom.tscn" id="3_ymr14"]
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="4_frok4"]
 [ext_resource type="PackedScene" uid="uid://cp46rue3qkb0o" path="res://Environments/Hallway.tscn" id="5_cn4p4"]
@@ -78,15 +79,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mbxlr"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ass5"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_mbxlr")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_843ex"]
 resource_name = "Metal2"
@@ -173,7 +170,6 @@ metallic = 0.552727
 roughness = 0.209091
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ablfp"]
-resource_local_to_scene = false
 viewport_path = NodePath("Desks/Lower Desks")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr8wr"]
@@ -244,7 +240,6 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qbcog")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_g8107"]
-resource_local_to_scene = false
 viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81wjt"]
@@ -277,9 +272,11 @@ adjustment_enabled = true
 
 [node name="Bedroom" parent="." instance=ExtResource("1_l74bv")]
 
-[node name="Monitor" parent="Bedroom" index="6"]
+[node name="Monitor" parent="Bedroom" index="6" node_paths=PackedStringArray("VP")]
 mesh = SubResource("ArrayMesh_leoao")
 surface_material_override/1 = SubResource("StandardMaterial3D_5ass5")
+script = ExtResource("3_ted0t")
+VP = NodePath("../SubViewport")
 
 [node name="DeliveryRoom" parent="." instance=ExtResource("2_0l34u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.808578, 1.71374, 79.2997)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://170qrjfvaifw"]
+[gd_scene load_steps=28 format=4 uid="uid://170qrjfvaifw"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_nptwq"]
 [ext_resource type="MeshLibrary" uid="uid://ctr3ogqfj1ns5" path="res://Models/GridMapTest/LightLibrary.tres" id="2_ecsgv"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="5_npu6q"]
 [ext_resource type="MeshLibrary" uid="uid://ciqyom63o400x" path="res://Models/GridMapTest/Vents.tres" id="6_odimp"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="8_r7kv1"]
+[ext_resource type="Script" path="res://Environments/MonitorHelperScript.gd" id="9_ckdy8"]
 [ext_resource type="PackedScene" uid="uid://c6tel0arkyu0s" path="res://Sprites/DeliveryRoomScreen.tscn" id="9_ejr3p"]
 [ext_resource type="Script" path="res://Objects/InteractableItems/Monitor.gd" id="9_tjb8j"]
 [ext_resource type="PackedScene" uid="uid://bhn0nqv0mibyq" path="res://UI/high_scores.tscn" id="9_xj7nx"]
@@ -20,15 +21,11 @@ albedo_texture = ExtResource("5_npu6q")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xmt65"]
-viewport_path = NodePath("Desks/Lower Desks")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cnj4"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_xmt65")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -225,15 +222,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_a0hmo")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_c4vef"]
-viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfk8i"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_c4vef")
 roughness = 0.5
 
 [node name="HRRoom" type="Node3D"]
@@ -349,11 +342,13 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(4, -1, 4)
 
-[node name="DeliveryScreen" type="MeshInstance3D" parent="."]
+[node name="DeliveryScreen" type="MeshInstance3D" parent="." node_paths=PackedStringArray("VP")]
 transform = Transform3D(-0.721284, -4.22969e-09, 5.75274e-08, 3.78653e-29, 0.719343, 0.0528895, -5.76827e-08, 0.0528895, -0.719343, -1.06232, 1.18401, 5.83831)
 mesh = SubResource("ArrayMesh_1w0ef")
 skeleton = NodePath("")
 surface_material_override/1 = SubResource("StandardMaterial3D_0cnj4")
+script = ExtResource("9_ckdy8")
+VP = NodePath("../Desks/Lower Desks")
 
 [node name="MainMonitor" type="StaticBody3D" parent="DeliveryScreen"]
 
@@ -374,11 +369,13 @@ transform = Transform3D(1, 0, 0, 0, 1, -6.78812e-30, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_00dcx")
 skeleton = NodePath("")
 
-[node name="Monitor" type="MeshInstance3D" parent="Desks/Desk2"]
+[node name="Monitor" type="MeshInstance3D" parent="Desks/Desk2" node_paths=PackedStringArray("VP")]
 transform = Transform3D(1, 3.33067e-15, 2.84217e-14, 0, 0.997308, 0.0733268, 0, -0.0733268, 0.997308, -0.13708, 1.92015, -0.738552)
 mesh = SubResource("ArrayMesh_1w0ef")
 skeleton = NodePath("")
 surface_material_override/1 = SubResource("StandardMaterial3D_0cnj4")
+script = ExtResource("9_ckdy8")
+VP = NodePath("../../Lower Desks")
 
 [node name="MainMonitor" type="StaticBody3D" parent="Desks/Desk2/Monitor"]
 
@@ -408,11 +405,13 @@ transform = Transform3D(1, 0, 0, 0, 1, -6.78812e-30, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_00dcx")
 skeleton = NodePath("")
 
-[node name="Monitor" type="MeshInstance3D" parent="Desks/Desk3"]
+[node name="Monitor" type="MeshInstance3D" parent="Desks/Desk3" node_paths=PackedStringArray("VP")]
 transform = Transform3D(-1, 3.55271e-15, 2.84217e-14, 0, 0.997308, 0.0733268, 0, -0.0733268, 0.997308, -0.13708, 1.92015, -0.738552)
 mesh = SubResource("ArrayMesh_1w0ef")
 skeleton = NodePath("")
 surface_material_override/1 = SubResource("StandardMaterial3D_bfk8i")
+script = ExtResource("9_ckdy8")
+VP = NodePath("HighScores")
 
 [node name="HighScores" type="SubViewport" parent="Desks/Desk3/Monitor"]
 handle_input_locally = false
@@ -451,11 +450,13 @@ transform = Transform3D(1, 0, 0, 0, 1, -6.78812e-30, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_00dcx")
 skeleton = NodePath("")
 
-[node name="Monitor" type="MeshInstance3D" parent="Desks/Desk4"]
+[node name="Monitor" type="MeshInstance3D" parent="Desks/Desk4" node_paths=PackedStringArray("VP")]
 transform = Transform3D(1, 3.33067e-15, 2.84217e-14, 0, 0.997308, 0.0733268, 0, -0.0733268, 0.997308, -0.13708, 1.92015, -0.738552)
 mesh = SubResource("ArrayMesh_1w0ef")
 skeleton = NodePath("")
 surface_material_override/1 = SubResource("StandardMaterial3D_0cnj4")
+script = ExtResource("9_ckdy8")
+VP = NodePath("../../Lower Desks")
 
 [node name="MainMonitor" type="StaticBody3D" parent="Desks/Desk4/Monitor"]
 
@@ -485,11 +486,13 @@ transform = Transform3D(1, 0, 0, 0, 1, -6.78812e-30, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_00dcx")
 skeleton = NodePath("")
 
-[node name="Monitor" type="MeshInstance3D" parent="Desks/Desk5"]
+[node name="Monitor" type="MeshInstance3D" parent="Desks/Desk5" node_paths=PackedStringArray("VP")]
 transform = Transform3D(-1, 3.55271e-15, 2.84217e-14, 0, 0.997308, 0.0733268, 0, -0.0733268, 0.997308, -0.13708, 1.92015, -0.738552)
 mesh = SubResource("ArrayMesh_1w0ef")
 skeleton = NodePath("")
 surface_material_override/1 = SubResource("StandardMaterial3D_0cnj4")
+script = ExtResource("9_ckdy8")
+VP = NodePath("../../Lower Desks")
 
 [node name="MainMonitor" type="StaticBody3D" parent="Desks/Desk5/Monitor"]
 

@@ -5,6 +5,7 @@ var active : bool = false
 @export var subViewport :  SubViewport
 
 func _ready():
+	await GlobalVariables.playerReady
 	GlobalVariables.player.connect("computer_exit", Callable(self, "deactivate"))
 	Activated.connect(activate)
 

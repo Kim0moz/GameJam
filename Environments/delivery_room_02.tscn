@@ -1,9 +1,8 @@
-[gd_scene load_steps=32 format=4 uid="uid://cqevxh2h77pty"]
+[gd_scene load_steps=31 format=4 uid="uid://cqevxh2h77pty"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_7a176"]
 [ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="2_i3dqh"]
 [ext_resource type="PackedScene" uid="uid://cf0yipunib2xa" path="res://Models/GridMapTest/vent_wall.tscn" id="3_v8xsq"]
-[ext_resource type="Script" path="res://Models/GridMapTest/vent_wall.gd" id="4_j52hk"]
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="4_qiw78"]
 [ext_resource type="Script" path="res://Environments/pipe_direction_support.gd" id="5_ogs2b"]
 [ext_resource type="MeshLibrary" uid="uid://do1cnjjq3ppjp" path="res://Models/GridMapTest/GridSelectionIcon.tres" id="6_cxqj3"]
@@ -198,26 +197,22 @@ player = NodePath("../../Player")
 itemToReplace = 9
 item = ExtResource("3_v8xsq")
 
-[node name="Entrance" type="Node3D" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player") instance=ExtResource("3_v8xsq")]
+[node name="Entrance" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player") instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 5, 1.98447, -16)
-script = ExtResource("4_j52hk")
 player = NodePath("../../../Player")
 
-[node name="r2-r1" type="Node3D" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player", "ExitPoint") instance=ExtResource("3_v8xsq")]
+[node name="r2-r1" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player", "ExitPoint") instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -11, 1.98447, -16)
-script = ExtResource("4_j52hk")
 player = NodePath("../../../Player")
 ExitPoint = NodePath("../r1-r2")
 
-[node name="r1-r2" type="Node3D" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player", "ExitPoint") instance=ExtResource("3_v8xsq")]
+[node name="r1-r2" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player", "ExitPoint") instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -7, 1.98447, -16)
-script = ExtResource("4_j52hk")
 player = NodePath("../../../Player")
 ExitPoint = NodePath("../r2-r1")
 
-[node name="(-9, 0, 5)" type="Node3D" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player") instance=ExtResource("3_v8xsq")]
+[node name="(-9, 0, 5)" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player") instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -17, 1.98447, -4)
-script = ExtResource("4_j52hk")
 player = NodePath("../../../Player")
 
 [node name="Pipes" type="GridMap" parent="."]

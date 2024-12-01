@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://170qrjfvaifw"]
+[gd_scene load_steps=30 format=4 uid="uid://170qrjfvaifw"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_nptwq"]
 [ext_resource type="MeshLibrary" uid="uid://ctr3ogqfj1ns5" path="res://Models/GridMapTest/LightLibrary.tres" id="2_ecsgv"]
@@ -21,11 +21,15 @@ albedo_texture = ExtResource("5_npu6q")
 metallic = 0.552727
 roughness = 0.209091
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_l1sbb"]
+viewport_path = NodePath("Desks/Lower Desks")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cnj4"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+albedo_texture = SubResource("ViewportTexture_l1sbb")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -222,11 +226,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_a0hmo")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_pxp8d"]
+viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfk8i"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+albedo_texture = SubResource("ViewportTexture_pxp8d")
 roughness = 0.5
 
 [node name="HRRoom" type="Node3D"]

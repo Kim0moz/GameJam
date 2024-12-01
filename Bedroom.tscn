@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://dyhdo0olx8k3j"]
+[gd_scene load_steps=60 format=4 uid="uid://dyhdo0olx8k3j"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_ejgwl"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="1_wqm3m"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="11_fmp3n"]
 [ext_resource type="Script" path="res://Environments/pipe_item.gd" id="14_q2ht7"]
 [ext_resource type="Script" path="res://Environments/MonitorHelperScript.gd" id="16_4v6xu"]
+[ext_resource type="PackedScene" uid="uid://fp3700wpddt4" path="res://UI/hover_info.tscn" id="18_8bhly"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkccg"]
 resource_name = "Metal2"
@@ -93,13 +94,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_y2ppi"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_8fc0e"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m14t"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_y2ppi")
+albedo_texture = SubResource("ViewportTexture_8fc0e")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -678,6 +679,9 @@ shape = SubResource("BoxShape3D_omqab")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Monitor"]
 
+[node name="HoverInfo" parent="Monitor" instance=ExtResource("18_8bhly")]
+HoverText = "Click : Go to work..."
+
 [node name="PipeItem" type="Node3D" parent="." node_paths=PackedStringArray("Grid", "pipeDirection", "pipeDestinations")]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999998, 3, 4, 6)
 script = ExtResource("14_q2ht7")
@@ -786,6 +790,10 @@ skeleton = NodePath("")
 
 [node name="Player" parent="." instance=ExtResource("11_fmp3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.547, 1.90822, 0.617681)
+
+[connection signal="Activated" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="hide"]
+[connection signal="Exit" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="hide"]
+[connection signal="Hovered" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="display"]
 
 [editable path="Player"]
 [editable path="Player/CameraController/CameraTarget/WorldSpaceCam"]

@@ -4,9 +4,9 @@
 [ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="2_2yt41"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="3_0j0hw"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_tx4em"]
-font = ExtResource("3_0j0hw")
-font_size = 48
+[sub_resource type="Theme" id="Theme_h7v3s"]
+default_font = ExtResource("3_0j0hw")
+default_font_size = 20
 
 [node name="InfoPopUp" type="Control"]
 layout_mode = 3
@@ -30,8 +30,8 @@ offset_bottom = 57.0
 grow_horizontal = 0
 theme = ExtResource("2_2yt41")
 
-[node name="Label" type="Label" parent="PanelContainer"]
+[node name="Label" type="RichTextLabel" parent="PanelContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+theme = SubResource("Theme_h7v3s")
+bbcode_enabled = true
 text = "Info Text"
-label_settings = SubResource("LabelSettings_tx4em")

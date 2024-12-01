@@ -1,8 +1,7 @@
-[gd_scene load_steps=25 format=4 uid="uid://cwn604esw1h06"]
+[gd_scene load_steps=24 format=4 uid="uid://cwn604esw1h06"]
 
 [ext_resource type="PackedScene" uid="uid://dyhdo0olx8k3j" path="res://Bedroom.tscn" id="1_l74bv"]
 [ext_resource type="PackedScene" uid="uid://cqevxh2h77pty" path="res://Environments/delivery_room_02.tscn" id="2_0l34u"]
-[ext_resource type="Script" path="res://Environments/MonitorHelperScript.gd" id="3_ted0t"]
 [ext_resource type="PackedScene" uid="uid://170qrjfvaifw" path="res://Environments/HRRoom.tscn" id="3_ymr14"]
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="4_frok4"]
 [ext_resource type="PackedScene" uid="uid://cp46rue3qkb0o" path="res://Environments/Hallway.tscn" id="5_cn4p4"]
@@ -79,11 +78,15 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_1fscj"]
+viewport_path = NodePath("SubViewport")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ass5"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_1fscj")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_843ex"]
 resource_name = "Metal2"
@@ -92,7 +95,7 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_n1cep"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_vp3lo"]
 viewport_path = NodePath("Desks/Lower Desks")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8c3u"]
@@ -100,7 +103,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_n1cep")
+albedo_texture = SubResource("ViewportTexture_vp3lo")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -169,16 +172,13 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ablfp"]
-viewport_path = NodePath("Desks/Lower Desks")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr8wr"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_ablfp")
+albedo_texture = SubResource("ViewportTexture_vp3lo")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qbcog"]
 _surfaces = [{
@@ -239,7 +239,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qbcog")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_g8107"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_epb6e"]
 viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81wjt"]
@@ -247,7 +247,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_g8107")
+albedo_texture = SubResource("ViewportTexture_epb6e")
 roughness = 0.5
 
 [sub_resource type="Environment" id="Environment_vx3dc"]
@@ -272,11 +272,9 @@ adjustment_enabled = true
 
 [node name="Bedroom" parent="." instance=ExtResource("1_l74bv")]
 
-[node name="Monitor" parent="Bedroom" index="6" node_paths=PackedStringArray("VP")]
+[node name="Monitor" parent="Bedroom" index="6"]
 mesh = SubResource("ArrayMesh_leoao")
 surface_material_override/1 = SubResource("StandardMaterial3D_5ass5")
-script = ExtResource("3_ted0t")
-VP = NodePath("../SubViewport")
 
 [node name="DeliveryRoom" parent="." instance=ExtResource("2_0l34u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.808578, 1.71374, 79.2997)
@@ -321,6 +319,9 @@ playsAudio = false
 
 [node name="Hallway" parent="." instance=ExtResource("5_cn4p4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.9886, 0, -12.6956)
+
+[node name="Bedroom" parent="Hallway/Walls and Vents/Replace Vents" index="0" node_paths=PackedStringArray("ExitPoint")]
+ExitPoint = NodePath("../../../../Bedroom/Walls and Vents/Replace Vents/Exit")
 
 [node name="HRoom" parent="Hallway/Walls and Vents/Replace Vents" index="1" node_paths=PackedStringArray("ExitPoint")]
 ExitPoint = NodePath("../../../../HR/Walls and Vents/Replace Vents/Entrance")

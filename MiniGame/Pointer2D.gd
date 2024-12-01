@@ -50,7 +50,7 @@ func pointOffScreen(delta):
 	rotation_degrees = floor(angle/90) * 90 - 90
 	flip_v = rotation_degrees == 0 or rotation_degrees == 180
 	cameraBorderPath.progress_ratio = angle / (360)
-	touchingDeliveryInfo = cameraBorderPath.progress_ratio > .42 and cameraBorderPath.progress_ratio < .51
+	touchingDeliveryInfo = cameraBorderPath.progress_ratio > .37 and cameraBorderPath.progress_ratio < .51
 	position = cameraBorderPath.position
 
 func pointOnScreen():

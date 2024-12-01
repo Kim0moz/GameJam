@@ -11,6 +11,7 @@ class_name DeliveryInfo
 	get:
 		return TileSelected
 @onready var TimeLabel : Label = $TimeText/Label
+@onready var RankingLabel : Label = $RankingText/Label
 enum DeliveryStatus {CAPSULE_PICKUP, GOOD, OKAY, BAD, URGENT}
 var textState := TextState.STABLE
 enum TextState {STABLE, FLASHING}
@@ -33,3 +34,5 @@ func _process(delta: float) -> void:
 
 func setTextState(tState : TextState):
 	textState = tState
+
+

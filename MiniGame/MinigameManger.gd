@@ -209,6 +209,7 @@ func checkNextRank():
 			ptsSinceLastRank -= ptsForNextRank
 			ranking -= 1
 			mainMenuScreen.get_node("DeliveryStats/RankingText").text = "Your Rank: %d" % ranking
+			deliveryInfo.RankingLabel.text = "Rank: %d" % ranking
 		else:
 			print("ranking: ", ranking)
 			break

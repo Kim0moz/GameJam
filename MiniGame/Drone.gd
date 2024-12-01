@@ -15,13 +15,21 @@ class_name Drone
 ## Max distance package can drift from drone
 @export var maxPackageDist : float = 20
 @export var pointer : Pointer2D
+@export var damageTime := 1.5
+var originalSpeed
+var damageDT = 0
 var package
 
 signal package_acquired
 signal package_delivered
+signal damage_taken
 
-enum DroneState {NO_PACKAGE, DELIVERING, NO_CONTROLS}
+enum DroneState {NO_PACKAGE, DELIVERING, NO_CONTROLS, DAMAGED}
 var droneState : DroneState = DroneState.NO_CONTROLS
+
+func _ready():
+	super()
+	originalSpeed = speed
 
 func _physics_process(delta):
 	if droneState == DroneState.NO_CONTROLS:
@@ -33,6 +41,8 @@ func _physics_process(delta):
 			pass
 		DroneState.DELIVERING:
 			updatePackagePosition()
+		DroneState.DAMAGED:
+			updateDamage(delta)
 
 var prevVel
 func updatePackagePosition():
@@ -83,3 +93,23 @@ func setStateNoPackage():
 func packageDelivered():
 	setStateNoPackage()
 	package_delivered.emit()
+
+func takeDamage():
+	if droneState == DroneState.DAMAGED or droneState == DroneState.NO_CONTROLS:
+		return
+	
+	droneState = DroneState.DAMAGED
+	damage_taken.emit()
+	speed = originalSpeed * .5
+	damageDT = 0
+
+func updateDamage(delta):
+	damageDT += delta
+	modulate.a = 0 if (int(damageDT * 10) % 6 < 3) else 1
+	if damageDT >= damageTime:
+		resetDrone()
+		droneState = DroneState.NO_PACKAGE
+
+func resetDrone():
+	modulate.a = 1
+	speed = originalSpeed

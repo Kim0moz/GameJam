@@ -33,4 +33,7 @@ func setTextIndex(textIndex : int):
 	else:
 		text = "[outline_color=red][center][color=white][outline_size=10
 ][wave amp=75.0 freq=2.0 connected=1]%s[/wave][/outline_size][/color][/center][/outline_color]" % [deliveryMessages[textIndex]]
-	
+
+func setCustomMessage(message : String):
+	text = "[outline_color=red][center][color=white][outline_size=10
+]%s[/outline_size][/color][/center][/outline_color]" % message

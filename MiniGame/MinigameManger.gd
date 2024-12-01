@@ -51,13 +51,13 @@ func _ready():
 	capsuleSpawnPoints = get_tree().get_nodes_in_group("CapsuleSpawnPoints")
 	drone.connect("package_acquired", Callable(self, "capsulePickedUp"))
 	drone.connect("package_delivered", Callable(self, "capsuleDelivered"))
+	drone.connect("damage_taken", Callable(self, "droneDamageTaken"))
 	if player:
 		player.connect("computer_enter", Callable(self, "computerEntered"))
 		player.connect("computer_exit", Callable(self, "computerExited"))
 	else:
 		computerState = ComputerState.MAIN_MENU
 	lastBotSpawnRank = botSpawnRankThreshold
-	print("botSpawnRankThreshold: ", botSpawnRankThreshold)
 	botSpawnTimeDT = botSpawnTime
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -144,6 +144,19 @@ func capsuleDelivered():
 	mainMenuScreen.get_node("DeliveryStats/DeliveryPointText").text = "Today's Delivery Points: %d" % deliveryPoints
 	checkNextRank()
 
+func droneDamageTaken():
+	if drone.package != null:
+		pointer.target.queue_free()
+		drone.package = null
+		capsule.setToIdle()
+		capsuleSpawnDT = 0
+		deliveryState = DeliveryState.SPAWNING
+	var delivConfText = (deliveryConfirmationText.instantiate() as DeliveryConfirmationText)
+	delivConfText.setCustomMessage("OUCH!")
+	delivConfText.global_position = drone.global_position + Vector2(-delivConfText.size.x/2, -(delivConfText.size.y + 10))
+	delivConfText.z_index = 100
+	add_child(delivConfText)
+
 func computerEntered():
 	computerState = ComputerState.MAIN_MENU
 	mainMenuScreen.set_process(true)
@@ -154,6 +167,7 @@ func computerExited():
 	mainMenuScreen.set_process(true)
 	mainMenuScreen.visible = true
 	drone.droneState = Drone.DroneState.NO_CONTROLS
+	drone.resetDrone()
 	if pointer.target != null and pointer.target != capsule:
 		pointer.target.queue_free()
 	else:

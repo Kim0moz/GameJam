@@ -20,5 +20,5 @@ func _process(delta):
 func onBodyEnter(body : Node2D):
 	var drone = body as Drone
 	if drone:
-		print("hit drone")
+		drone.takeDamage()
 	queue_free()

@@ -18,9 +18,12 @@ func onBodyEntered(body):
 		
 func onAreaEntered(area):
 	if area.name.contains("DeliveryTarget") and capsuleState == CapsuleState.SPAWNED:
-		modulate.a = 0
-		capsuleState = CapsuleState.IDLE
+		setToIdle()
 		drone.packageDelivered()
+
+func setToIdle():
+	modulate.a = 0
+	capsuleState = CapsuleState.IDLE
 
 func spawnRandomly():
 	# position = get_tree().get_nodes_in_group("CapsuleSpawnPoints")[0].position

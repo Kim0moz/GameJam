@@ -153,6 +153,7 @@ func capsuleDelivered():
 		delivConfText.z_index = 100
 		add_child(delivConfText)
 		delivConfText.setCustomMessage("ERROR")
+		GlobalVariables.sendScrewDriver = true
 	else:
 		delivConfText.global_position = pointer.target.global_position + Vector2(-delivConfText.size.x/2, -(delivConfText.size.y + 10))
 		delivConfText.z_index = 100
@@ -181,7 +182,7 @@ func glitchActivated():
 	deliveryInfo.setTextState(DeliveryInfo.TextState.FLASHING)
 	for i in range(30):
 		deliveryInfo.DeliverStatusLabel.text = randomString("Delivery Status".length())
-		deliveryInfo.RankingLabel.text = randomString(4, true)
+		deliveryInfo.RankingLabel.text = "rank: " + randomString(4, true)
 		deliveryInfo.TileSelected = (int(deliveryInfo.TileSelected) + 1) % deliveryInfo.Tiles.size()
 		pointer.target.queue_free()
 		pointer.target = dropOffGenerator.generateDropOffPoint()

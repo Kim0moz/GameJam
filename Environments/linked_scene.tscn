@@ -79,7 +79,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_cpyhp"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_g1xy5"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ass5"]
@@ -87,7 +87,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_cpyhp")
+albedo_texture = SubResource("ViewportTexture_g1xy5")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_843ex"]
 resource_name = "Metal2"
@@ -96,7 +96,7 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_fidwa"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_chjs6"]
 viewport_path = NodePath("Desks/Lower Desks")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8c3u"]
@@ -104,7 +104,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_fidwa")
+albedo_texture = SubResource("ViewportTexture_chjs6")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -179,7 +179,7 @@ resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_fidwa")
+albedo_texture = SubResource("ViewportTexture_chjs6")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qbcog"]
 _surfaces = [{
@@ -240,7 +240,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qbcog")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_twybx"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_c6td5"]
 viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81wjt"]
@@ -248,7 +248,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_twybx")
+albedo_texture = SubResource("ViewportTexture_c6td5")
 roughness = 0.5
 
 [sub_resource type="Environment" id="Environment_vx3dc"]
@@ -273,13 +273,17 @@ adjustment_enabled = true
 
 [node name="Bedroom" parent="." instance=ExtResource("1_l74bv")]
 
+[node name="Minigame" parent="Bedroom/SubViewport" index="0"]
+playsAudio = true
+
 [node name="Monitor" parent="Bedroom" index="7" node_paths=PackedStringArray("VP")]
 mesh = SubResource("ArrayMesh_leoao")
 surface_material_override/1 = SubResource("StandardMaterial3D_5ass5")
 script = ExtResource("3_aw8rt")
 VP = NodePath("../SubViewport")
 
-[node name="Player" parent="Bedroom" index="10"]
+[node name="Player" parent="Bedroom" index="10" node_paths=PackedStringArray("minigame")]
+minigame = NodePath("../SubViewport/Minigame")
 cameraOffsetY = null
 mouseMoveMaxSpeed = null
 mouseSensitivity = null

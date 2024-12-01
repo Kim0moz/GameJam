@@ -12,6 +12,7 @@ class_name DeliveryInfo
 		return TileSelected
 @onready var TimeLabel : Label = $TimeText/Label
 @onready var RankingLabel : Label = $RankingText/Label
+@onready var DeliverStatusLabel : Label = $Text/Label
 enum DeliveryStatus {CAPSULE_PICKUP, GOOD, OKAY, BAD, URGENT}
 var textState := TextState.STABLE
 enum TextState {STABLE, FLASHING}

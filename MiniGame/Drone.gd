@@ -46,6 +46,8 @@ func _physics_process(delta):
 
 var prevVel
 func updatePackagePosition():
+	if package == null:
+		return
 	if velocity.length() != 0:
 		prevVel = velocity
 	var packagePos : Vector2

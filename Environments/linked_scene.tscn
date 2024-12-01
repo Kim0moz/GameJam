@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="4_frok4"]
 [ext_resource type="PackedScene" uid="uid://cp46rue3qkb0o" path="res://Environments/Hallway.tscn" id="5_cn4p4"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_1okpb"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_to5ky"]
 viewport_path = NodePath("Bedroom/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grm3b"]
@@ -15,7 +15,7 @@ resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_1okpb")
+albedo_texture = SubResource("ViewportTexture_to5ky")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkccg"]
 resource_name = "Metal2"
@@ -129,6 +129,9 @@ adjustment_enabled = true
 
 [node name="Monitor" parent="Bedroom" index="6"]
 surface_material_override/1 = SubResource("StandardMaterial3D_grm3b")
+
+[node name="Player" parent="Bedroom" index="9" node_paths=PackedStringArray("minigame")]
+minigame = NodePath("../SubViewport/Minigame")
 
 [node name="DeliveryRoom" parent="." instance=ExtResource("2_0l34u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.808578, 1.71374, 79.2997)

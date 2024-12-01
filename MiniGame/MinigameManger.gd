@@ -1,4 +1,5 @@
 extends Node
+class_name MinigameManager
 
 @export_group("References")
 @export var deliveryInfo : DeliveryInfo
@@ -30,6 +31,12 @@ var ranking := RANKING_MAX
 const MAX_DELIVERY_POINTS = 20
 var ptsSinceLastRank = 0
 
+@export_category("Glitch Delivery")
+@export var glitchDeliveryAmount := 10
+var hasTakenDamage := false
+var hasGlitched := false
+@onready var rng = RandomNumberGenerator.new()
+
 @export_category("AntiDroneBot Spawning")
 ## When bots start spawning
 var botSpawnRankThreshold := RANKING_MAX * .8
@@ -50,7 +57,7 @@ var lastBotSpawnRank : float
 var computerState : ComputerState = ComputerState.INACTIVE
 var deliveryState : DeliveryState = DeliveryState.SPAWNING
 enum ComputerState {INACTIVE, MAIN_MENU, MINIGAME}
-enum DeliveryState {SPAWNING, PICKING_UP, DELIVERING}
+enum DeliveryState {SPAWNING, PICKING_UP, DELIVERING, GLITCH}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,6 +65,7 @@ func _ready():
 	drone.connect("package_acquired", Callable(self, "capsulePickedUp"))
 	drone.connect("package_delivered", Callable(self, "capsuleDelivered"))
 	drone.connect("damage_taken", Callable(self, "droneDamageTaken"))
+	capsule.connect("glitch_delivery", Callable(self, "glitchActivated"))
 	if player:
 		player.connect("computer_enter", Callable(self, "computerEntered"))
 		player.connect("computer_exit", Callable(self, "computerExited"))
@@ -86,7 +94,12 @@ func updateMinigame(delta):
 			deliveryInfo.modulate.a = .5 if pointer.touchingDeliveryInfo else 1.0
 		DeliveryState.DELIVERING:
 			updateDeliveryStatus(delta)
+		DeliveryState.GLITCH:
+			updateGlitch(delta)
 	updateBotSpawn(delta)
+
+func updateGlitch(delta):
+	pass
 
 func updateBotSpawn(delta):
 	if ranking >= botSpawnRankThreshold:
@@ -133,23 +146,60 @@ func capsulePickedUp():
 	capsuleDeliveryDT = 0
 
 func capsuleDelivered():
-	deliveryState = DeliveryState.SPAWNING
 	var delivConfText = (deliveryConfirmationText.instantiate() as DeliveryConfirmationText)
-	if capsuleDeliveryDT > capsuleDeliveryTargetTime * 60:
-		delivConfText.setTextIndex(delivConfText.deliveryMessages.size() - 1)
+	if deliveryState == DeliveryState.GLITCH:
+		hasGlitched = true
+		delivConfText.global_position = pointer.target.global_position + Vector2(-delivConfText.size.x/2, -(delivConfText.size.y + 10))
+		delivConfText.z_index = 100
+		add_child(delivConfText)
+		delivConfText.setCustomMessage("ERROR")
 	else:
-		delivConfText.setTextIndex(int(deliveryInfo.TileSelected)-1)
-	delivConfText.global_position = pointer.target.global_position + Vector2(-delivConfText.size.x/2, -(delivConfText.size.y + 10))
-	delivConfText.z_index = 100
-	add_child(delivConfText)
+		delivConfText.global_position = pointer.target.global_position + Vector2(-delivConfText.size.x/2, -(delivConfText.size.y + 10))
+		delivConfText.z_index = 100
+		add_child(delivConfText)
+		if capsuleDeliveryDT > capsuleDeliveryTargetTime * 60:
+			delivConfText.setTextIndex(delivConfText.deliveryMessages.size() - 1)
+		else:
+			delivConfText.setTextIndex(int(deliveryInfo.TileSelected)-1)
+		deliveryTotal += 1
+		calculateDeliveryPoints()
+		checkNextRank()
+
 	pointer.target.queue_free()
 	capsuleSpawnDT = 0
 	deliveryInfo.setTextState(DeliveryInfo.TextState.FLASHING)
-	deliveryTotal += 1
-	calculateDeliveryPoints()
+	deliveryState = DeliveryState.SPAWNING
 	mainMenuScreen.get_node("DeliveryStats/DeliveryTotalText").text = "Today's Delivery Total: %d" % deliveryTotal
 	mainMenuScreen.get_node("DeliveryStats/DeliveryPointText").text = "Today's Delivery Points: %d" % deliveryPoints
-	checkNextRank()
+	if (deliveryTotal >= glitchDeliveryAmount or hasTakenDamage) and !hasGlitched:
+		capsule.willGlitch = true
+
+func glitchActivated():
+	deliveryState = DeliveryState.GLITCH
+	capsule.capsuleState = capsule.CapsuleState.NO_DELIVERY
+	deliveryInfo.TimeLabel.text = "??:??"
+	deliveryInfo.setTextState(DeliveryInfo.TextState.FLASHING)
+	for i in range(30):
+		deliveryInfo.DeliverStatusLabel.text = randomString("Delivery Status".length())
+		deliveryInfo.RankingLabel.text = randomString(4, true)
+		deliveryInfo.TileSelected = (int(deliveryInfo.TileSelected) + 1) % deliveryInfo.Tiles.size()
+		pointer.target.queue_free()
+		pointer.target = dropOffGenerator.generateDropOffPoint()
+		await get_tree().create_timer(.08).timeout
+	pointer.target.queue_free()
+	pointer.target = dropOffGenerator.generateDropOffGlitch()
+	deliveryInfo.DeliverStatusLabel.text = "RETURN ITEM"
+	deliveryInfo.RankingLabel.text = "Rank: %d" % ranking
+	capsule.capsuleState = capsule.CapsuleState.SPAWNED
+
+func randomString(length : int, numbersOnly : bool = false) -> String:
+	var randString := ""
+	for i in range(length):
+		if numbersOnly:
+			randString += char(rng.randi_range(48, 57))
+		else:
+			randString += char(rng.randi_range(33, 126))
+	return randString
 
 func droneDamageTaken():
 	if drone.package != null:
@@ -162,6 +212,9 @@ func droneDamageTaken():
 	delivConfText.setCustomMessage("OUCH!")
 	delivConfText.global_position = drone.global_position + Vector2(-delivConfText.size.x/2, -(delivConfText.size.y + 10))
 	delivConfText.z_index = 100
+	hasTakenDamage = true
+	if !hasGlitched:
+		capsule.willGlitch = true
 	add_child(delivConfText)
 
 func computerEntered():

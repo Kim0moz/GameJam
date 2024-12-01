@@ -15,7 +15,7 @@ func _ready():
 func _process(delta):
 	pass
 
-func generateDropOffPoint():
+func generateDropOffPoint() -> DeliveryTarget:
 	var doorTilePositions = []
 	for tilePosition in get_used_cells():
 		if get_cell_atlas_coords(tilePosition) == doorTileAtlasCoords:
@@ -27,4 +27,9 @@ func generateDropOffPoint():
 	currentDropOff.position = dropOffPosition
 	add_child(currentDropOff)
 	return currentDropOff
-	
+
+func generateDropOffGlitch() -> DeliveryTarget:
+	currentDropOff = (dropOffPoint.instantiate() as DeliveryTarget)
+	add_child(currentDropOff)
+	currentDropOff.global_position = get_tree().get_nodes_in_group("CapsuleSpawnPoints").pick_random().global_position
+	return currentDropOff

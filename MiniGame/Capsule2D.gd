@@ -3,9 +3,12 @@ class_name Capsule2D
 
 var onScreen = false
 var drone : Drone
+var willGlitch = false
 
 var capsuleState : CapsuleState = CapsuleState.IDLE
-enum CapsuleState {IDLE, SPAWNED}
+enum CapsuleState {IDLE, SPAWNED, NO_DELIVERY}
+
+signal glitch_delivery
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,9 +20,14 @@ func onBodyEntered(body):
 		drone = body
 		
 func onAreaEntered(area):
-	if area.name.contains("DeliveryTarget") and capsuleState == CapsuleState.SPAWNED:
-		setToIdle()
-		drone.packageDelivered()
+	var deliveryTarget = area as DeliveryTarget
+	if deliveryTarget != null and capsuleState == CapsuleState.SPAWNED:
+		if willGlitch:
+			glitch_delivery.emit()
+			willGlitch = false
+		else:
+			setToIdle()
+			drone.packageDelivered()
 
 func setToIdle():
 	modulate.a = 0

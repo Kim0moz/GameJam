@@ -7,6 +7,7 @@ const JUMP_VELOCITY = 4.5
 @export var camera : NavigationCamera
 @export var cameraController : Node3D
 @export var cameraTarget : Node3D
+@export var minigame : MinigameManager
 
 @export_group("Camera Controls")
 ## Offset the y position of camera to match player's perceived height.
@@ -108,7 +109,7 @@ func _input(event):
 	if event.is_action_pressed("quit_game"):
 		get_tree().quit()
 	if event.is_action_pressed("exit_computer"):
-		if playerState != PlayerState.COMPUTER:
+		if playerState != PlayerState.COMPUTER or minigame.deliveryState == MinigameManager.DeliveryState.GLITCH:
 			return
 		exitComputerTransition()
 

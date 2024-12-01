@@ -1,7 +1,7 @@
 extends CharacterBody3D
 class_name Player
 
-const SPEED = 5.0
+const SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 @export_group("References")
 @export var camera : NavigationCamera
@@ -110,7 +110,10 @@ func _input(event):
 	if event.is_action_pressed("quit_game"):
 		get_tree().quit()
 	if event.is_action_pressed("exit_computer"):
-		if playerState != PlayerState.COMPUTER or minigame.deliveryState == MinigameManager.DeliveryState.GLITCH:
+		if minigame:
+			if minigame.deliveryState == MinigameManager.DeliveryState.GLITCH:
+				return
+		if playerState != PlayerState.COMPUTER:
 			return
 		exitComputerTransition()
 

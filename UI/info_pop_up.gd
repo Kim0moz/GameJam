@@ -10,9 +10,9 @@ func _ready() -> void:
 	HideText()
 
 func DisplayText():
-	self.visible = true
+	$PanelContainerself.visible = true
 	Display.text = Text
 
 
 func HideText():
-	self.visible = false
+	$PanelContainerself.visible = false

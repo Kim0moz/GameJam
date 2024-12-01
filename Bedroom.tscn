@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=4 uid="uid://dyhdo0olx8k3j"]
+[gd_scene load_steps=62 format=4 uid="uid://dyhdo0olx8k3j"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_ejgwl"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="1_wqm3m"]
@@ -19,7 +19,6 @@
 [ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithInteractive.gd" id="9_6hyn0"]
 [ext_resource type="Texture2D" uid="uid://bq4avvw4s6vtf" path="res://Models/Room_CarpetTexture_4.png" id="9_fa0ys"]
 [ext_resource type="PackedScene" uid="uid://b2msttkt05ws4" path="res://Models/GridMapTest/tube_with_door.tscn" id="10_sref7"]
-[ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="11_fmp3n"]
 [ext_resource type="Script" path="res://Environments/MonitorHelperScript.gd" id="16_4v6xu"]
 [ext_resource type="PackedScene" uid="uid://fp3700wpddt4" path="res://UI/hover_info.tscn" id="18_8bhly"]
 [ext_resource type="PackedScene" uid="uid://c5vxwcp4jb3tg" path="res://Objects/pipe_item.tscn" id="19_hs50p"]
@@ -95,13 +94,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_bivcc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_4jwq1"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m14t"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_bivcc")
+albedo_texture = SubResource("ViewportTexture_4jwq1")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -595,8 +594,7 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Minigame" parent="SubViewport" node_paths=PackedStringArray("player", "musicStream") instance=ExtResource("1_wqm3m")]
-player = NodePath("../../Player")
+[node name="Minigame" parent="SubViewport" node_paths=PackedStringArray("musicStream") instance=ExtResource("1_wqm3m")]
 musicStream = NodePath("../../Monitor/AudioStreamPlayer3D")
 botSpawnTime = 40.0
 botSpawnTimeChangeRank = 150
@@ -800,13 +798,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 3.55271e-15, 0, 0, 1, 1.66271, 1.12137, -
 mesh = SubResource("ArrayMesh_hkmps")
 skeleton = NodePath("")
 
-[node name="Player" parent="." instance=ExtResource("11_fmp3n")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.547, 1.90822, 0.617681)
-cameraOffsetY = null
-mouseMoveMaxSpeed = null
-mouseSensitivity = null
-cameraVertRotationLimit = null
-
 [connection signal="Activated" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="hide"]
 [connection signal="Exit" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="hide"]
 [connection signal="Hovered" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="display"]
@@ -815,5 +806,3 @@ cameraVertRotationLimit = null
 [connection signal="Hovered" from="PipeItem/Item/Delivery Box6/Item" to="PipeItem/Item/CollectItem" method="showtext"]
 
 [editable path="PipeItem"]
-[editable path="Player"]
-[editable path="Player/CameraController/CameraTarget/WorldSpaceCam"]

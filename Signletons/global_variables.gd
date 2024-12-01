@@ -29,7 +29,6 @@ signal endScene
 
 func _ready() -> void:
 	generateHighscores()
-	hasScrewDriver = true
 
 func generateHighscores():
 	highScores.clear()

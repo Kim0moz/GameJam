@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://cqevxh2h77pty"]
+[gd_scene load_steps=43 format=4 uid="uid://cqevxh2h77pty"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_7a176"]
 [ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="2_i3dqh"]
@@ -7,6 +7,8 @@
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="4_qiw78"]
 [ext_resource type="Script" path="res://Environments/pipe_direction_support.gd" id="5_ogs2b"]
 [ext_resource type="MeshLibrary" uid="uid://do1cnjjq3ppjp" path="res://Models/GridMapTest/GridSelectionIcon.tres" id="6_cxqj3"]
+[ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithInteractive.gd" id="6_w1awo"]
+[ext_resource type="PackedScene" uid="uid://b2msttkt05ws4" path="res://Models/GridMapTest/tube_with_door.tscn" id="7_r0ygu"]
 [ext_resource type="Script" path="res://Environments/pipe_destinations.gd" id="7_vwveh"]
 [ext_resource type="Script" path="res://Environments/register_pipe_interaction.gd" id="8_ibuer"]
 [ext_resource type="MeshLibrary" uid="uid://1ho4b857233" path="res://Models/GridMapTest/RailingLibrary.tres" id="8_miuoj"]
@@ -278,6 +280,9 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 2, 1)
 
 [node name="Node3D" type="Node3D" parent="Pipes"]
+script = ExtResource("6_w1awo")
+itemToReplace = 5
+item = ExtResource("7_r0ygu")
 
 [node name="PipeDirectionSupport" type="Node3D" parent="Pipes"]
 script = ExtResource("5_ogs2b")
@@ -288,7 +293,7 @@ metadata/_edit_pinned_properties_ = [&"outlets"]
 mesh_library = ExtResource("6_cxqj3")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(65541, 1, 0, 262133, 2, 0)
+"cells": PackedInt32Array(65541, 1, 0, 262133, 2, 0, 65510, 12, 1441792)
 }
 script = ExtResource("7_vwveh")
 Ends = [{
@@ -297,6 +302,9 @@ Ends = [{
 }, {
 "Direction": Vector3i(0, 0, 1),
 "Position": Vector3i(-11, 3, 2)
+}, {
+"Direction": Vector3i(0, 1, 0),
+"Position": Vector3i(-26, 0, 12)
 }]
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
@@ -721,3 +729,8 @@ max_distance = 5.0
 
 [node name="CollectItem" type="Node" parent="PipeItem"]
 script = SubResource("GDScript_na0u5")
+
+[connection signal="Activated" from="PipeItem/Item/Delivery Box6/Item" to="PipeItem/CollectItem" method="hidetext"]
+[connection signal="Activated" from="PipeItem/Item/Delivery Box6/Item" to="PipeItem/CollectItem" method="collect"]
+[connection signal="Exit" from="PipeItem/Item/Delivery Box6/Item" to="PipeItem/CollectItem" method="hidetext"]
+[connection signal="Hovered" from="PipeItem/Item/Delivery Box6/Item" to="PipeItem/CollectItem" method="showtext"]

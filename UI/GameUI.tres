@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=27 format=3 uid="uid://kuqwnqky71xb"]
+[gd_resource type="Theme" load_steps=32 format=3 uid="uid://kuqwnqky71xb"]
 
 [ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="1_p86mw"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="1_qgfye"]
@@ -143,6 +143,58 @@ texture_margin_bottom = 1.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_77q7c"]
+texture = SubResource("AtlasTexture_211wn")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rgsgg"]
+texture = SubResource("AtlasTexture_gm1ty")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.454524, 0.454524, 0.454524, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ulpcn"]
+texture = SubResource("AtlasTexture_gm1ty")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(0.454524, 0.454524, 0.454524, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1j1py"]
+texture = SubResource("AtlasTexture_211wn")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_36qb7"]
+texture = SubResource("AtlasTexture_sobm2")
+texture_margin_left = 4.0
+texture_margin_top = 4.0
+texture_margin_right = 4.0
+texture_margin_bottom = 4.0
+expand_margin_bottom = 2.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_tc77h"]
 atlas = ExtResource("1_p86mw")
 region = Rect2(64, 144, 16, 16)
@@ -183,6 +235,12 @@ Panel/styles/panel = SubResource("StyleBoxTexture_ouknj")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_7ktxt")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_lnpa7")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_qjkvy")
+ToggleButton/base_type = &"Button"
+ToggleButton/styles/focus = SubResource("StyleBoxTexture_77q7c")
+ToggleButton/styles/hover = SubResource("StyleBoxTexture_rgsgg")
+ToggleButton/styles/hover_pressed = SubResource("StyleBoxTexture_ulpcn")
+ToggleButton/styles/normal = SubResource("StyleBoxTexture_1j1py")
+ToggleButton/styles/pressed = SubResource("StyleBoxTexture_36qb7")
 VBoxContainer/constants/separation = 0
 VScrollBar/styles/grabber = SubResource("StyleBoxTexture_ic5bl")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_ipqq2")

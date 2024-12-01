@@ -11,6 +11,7 @@ extends Node
 @export var mainMenuScreen : Control
 @export var antiDroneBotScene : PackedScene
 @export var intersections : Node2D
+@export var musicStream : AudioStreamPlayer3D
 var capsuleSpawnPoints
 
 @export_category("Delivery Settings")
@@ -40,6 +41,10 @@ var botSpawnRankThreshold := RANKING_MAX * .8
 @export var botSpawnTimeChange := 3.0
 var botSpawnTimeDT := 0.0
 var lastBotSpawnRank : float
+
+@export_category("Audio")
+@export var menuMusic : AudioStreamMP3
+@export var gameMusic : AudioStreamMP3
 
 var computerState : ComputerState = ComputerState.INACTIVE
 var deliveryState : DeliveryState = DeliveryState.SPAWNING
@@ -178,6 +183,8 @@ func computerExited():
 	deliveryInfo.setTextState(DeliveryInfo.TextState.STABLE)
 	capsule.capsuleState = Capsule2D.CapsuleState.IDLE
 	capsule.modulate.a = 0
+	musicStream.stream = menuMusic
+	musicStream.play()
 
 func startGame():
 	computerState = ComputerState.MINIGAME
@@ -186,6 +193,8 @@ func startGame():
 	drone.droneState = Drone.DroneState.NO_PACKAGE
 	capsuleSpawnDT = 0
 	deliveryState = DeliveryState.SPAWNING
+	musicStream.stream = gameMusic
+	musicStream.play()
 	
 func calculateDeliveryPoints():
 	var deliveryTargetTimeSeconds = capsuleDeliveryTargetTime * 60

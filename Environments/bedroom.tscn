@@ -1,8 +1,9 @@
-[gd_scene load_steps=55 format=4 uid="uid://dyhdo0olx8k3j"]
+[gd_scene load_steps=57 format=4 uid="uid://dyhdo0olx8k3j"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_ejgwl"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="1_wqm3m"]
 [ext_resource type="MeshLibrary" uid="uid://ctr3ogqfj1ns5" path="res://Models/GridMapTest/LightLibrary.tres" id="2_pj5rj"]
+[ext_resource type="AudioStream" uid="uid://fnlhc7sunc30" path="res://Audio/LOOP_Race to the Finish.mp3" id="3_dxa7d"]
 [ext_resource type="MeshLibrary" uid="uid://1ho4b857233" path="res://Models/GridMapTest/RailingLibrary.tres" id="3_tdcvi"]
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="4_pikpa"]
 [ext_resource type="Texture2D" uid="uid://cywgekv3lssmr" path="res://Models/Room_GlassTexture.jpg" id="5_u0t00"]
@@ -14,9 +15,10 @@
 [ext_resource type="Script" path="res://Environments/pipe_destinations.gd" id="8_luff5"]
 [ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithInteractive.gd" id="9_6hyn0"]
 [ext_resource type="Texture2D" uid="uid://bq4avvw4s6vtf" path="res://Models/Room_CarpetTexture_4.png" id="9_fa0ys"]
-[ext_resource type="PackedScene" path="res://Models/GridMapTest/tube_with_door.tscn" id="10_sref7"]
+[ext_resource type="PackedScene" uid="uid://b2msttkt05ws4" path="res://Models/GridMapTest/tube_with_door.tscn" id="10_sref7"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="11_fmp3n"]
 [ext_resource type="Script" path="res://Environments/pipe_item.gd" id="14_q2ht7"]
+[ext_resource type="AudioStream" uid="uid://g6vrenw5gfo4" path="res://Audio/LOOP_Check This Out!.mp3" id="18_kp36q"]
 
 [sub_resource type="Environment" id="Environment_76kxn"]
 background_mode = 1
@@ -577,8 +579,11 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Minigame" parent="SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("1_wqm3m")]
+[node name="Minigame" parent="SubViewport" node_paths=PackedStringArray("player", "musicStream") instance=ExtResource("1_wqm3m")]
 player = NodePath("../../Player")
+musicStream = NodePath("../../MusicPlayer")
+menuMusic = ExtResource("18_kp36q")
+gameMusic = ExtResource("3_dxa7d")
 
 [node name="Floors and Ceilings" type="GridMap" parent="."]
 mesh_library = ExtResource("1_ejgwl")
@@ -777,3 +782,13 @@ skeleton = NodePath("")
 
 [node name="Player" parent="." instance=ExtResource("11_fmp3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.547, 1.90822, 0.617681)
+
+[node name="MusicPlayer" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.78987, 2.68964, -5.44047)
+stream = ExtResource("18_kp36q")
+volume_db = -27.427
+autoplay = true
+emission_angle_enabled = true
+emission_angle_degrees = 34.2
+emission_angle_filter_attenuation_db = -36.0
+parameters/looping = true

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgkcniy1vnc7y"]
+[gd_scene load_steps=11 format=3 uid="uid://bgkcniy1vnc7y"]
 
 [ext_resource type="Script" path="res://MiniGame/AntiDroneBot.gd" id="1_qquak"]
 [ext_resource type="Texture2D" uid="uid://058shgun1d1m" path="res://Sprites/AntiDroneVehicle.png" id="1_r31tk"]
+[ext_resource type="PackedScene" uid="uid://dmqpaihg4v0m" path="res://MiniGame/AntiDroneShot.tscn" id="2_d3744"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ukgnu"]
 atlas = ExtResource("1_r31tk")
@@ -39,10 +40,15 @@ size = Vector2(16, 16)
 atlas = ExtResource("1_r31tk")
 region = Rect2(54, 2, 4, 12)
 
-[node name="AntiDroneBot" type="Area2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hbj24"]
+radius = 90.0
+
+[node name="AntiDroneBot" type="Area2D" node_paths=PackedStringArray("canon")]
 z_index = -5
 rotation = 1.5708
 script = ExtResource("1_qquak")
+canon = NodePath("Canon")
+antiDroneShot = ExtResource("2_d3744")
 moveSpeed = 50.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -58,5 +64,11 @@ shape = SubResource("RectangleShape2D_r11o1")
 texture = SubResource("AtlasTexture_1imio")
 offset = Vector2(0, -4)
 
-[node name="RayCast2D" type="RayCast2D" parent="Canon"]
-target_position = Vector2(0, -50)
+[node name="DetectionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_hbj24")
+debug_color = Color(0.969355, 0, 0.461902, 0.42)
+
+[connection signal="body_entered" from="DetectionArea" to="." method="detectionBodyEnter"]
+[connection signal="body_exited" from="DetectionArea" to="." method="detectionBodyExit"]

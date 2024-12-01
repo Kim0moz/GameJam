@@ -1,0 +1,131 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbixfcdvh3vak"]
+
+[ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_ckbcg"]
+[ext_resource type="Script" path="res://UI/EmployeePanel.gd" id="2_pvhre"]
+[ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="2_ts0eu"]
+[ext_resource type="Texture2D" uid="uid://dpmivxhhvrd35" path="res://Sprites/Employees.png" id="3_6k4gx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_34ukf"]
+font = ExtResource("2_ts0eu")
+font_size = 50
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vutb"]
+resource_local_to_scene = true
+atlas = ExtResource("3_6k4gx")
+region = Rect2(0, 0, 16, 16)
+
+[node name="Employee" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 50)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -199.0
+offset_top = -25.0
+offset_right = 200.0
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+theme = ExtResource("1_ckbcg")
+script = ExtResource("2_pvhre")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+clip_contents = true
+layout_mode = 2
+
+[node name="Ranking" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_stretch_ratio = 0.42
+theme = ExtResource("1_ckbcg")
+
+[node name="Ranking" type="Label" parent="HBoxContainer/Ranking"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.25
+text = "1"
+label_settings = SubResource("LabelSettings_34ukf")
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.42
+theme = ExtResource("1_ckbcg")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Panel/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.42
+theme = ExtResource("1_ckbcg")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Panel/HBoxContainer/Panel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.25
+texture = SubResource("AtlasTexture_0vutb")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ID" type="Label" parent="HBoxContainer/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "1234"
+label_settings = SubResource("LabelSettings_34ukf")
+
+[node name="Score" type="Panel" parent="HBoxContainer"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 2
+size_flags_stretch_ratio = 0.42
+theme = ExtResource("1_ckbcg")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Score"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ckbcg")
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Score" type="Label" parent="HBoxContainer/Score/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2000"
+label_settings = SubResource("LabelSettings_34ukf")
+horizontal_alignment = 2

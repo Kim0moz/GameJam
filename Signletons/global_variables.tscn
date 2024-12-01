@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://f5hrgfvjo15g"]
+
+[ext_resource type="Script" path="res://Signletons/global_variables.gd" id="1_1mkw4"]
+
+[node name="GlobalVariables" type="Node"]
+script = ExtResource("1_1mkw4")

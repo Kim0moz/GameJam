@@ -76,8 +76,10 @@ func calculateNextDirection():
 					return
 	#print("Didn't Find Direction")
 	if CurrentDirection == Vector3i.ZERO:
+		$Clang.play()
 		CurrentDirection = ActiveDirections.pick_random()
 	else:
+		$Clang.play()
 		CurrentDirection = CurrentDirection*-1
 
 func moveToGridLocation(location : Vector3i):
@@ -89,6 +91,8 @@ func moveToGridLocation(location : Vector3i):
 	var pipe = pipeDestinations.checkIfExists(location)
 	CurrentDirection  =  ((location-CurrentPos)as Vector3i).clamp(Vector3i(-1,-1,-1),Vector3i(1,1,1))
 	if(not pipe):
+		if $Woosh.playing == false:
+			$Woosh.play()
 		tween.finished.connect(nextPos)
 	else:
 		$Clang.play()

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://c5vxwcp4jb3tg"]
+[gd_scene load_steps=13 format=4 uid="uid://c5vxwcp4jb3tg"]
 
 [ext_resource type="Script" path="res://Environments/pipe_item.gd" id="1_gcgo4"]
 [ext_resource type="Texture2D" uid="uid://cywgekv3lssmr" path="res://Models/Room_GlassTexture.jpg" id="2_4b347"]
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="3_0moeb"]
 [ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="4_gxj80"]
 [ext_resource type="AudioStream" uid="uid://6lv0pru086jl" path="res://Audio/Clang.mp3" id="5_i8vsc"]
+[ext_resource type="AudioStream" uid="uid://cf4mk274xbo6p" path="res://Audio/Woosh.mp3" id="6_dprjs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1u5cy"]
 resource_name = "Pipe"
@@ -127,4 +128,8 @@ script = SubResource("GDScript_4m78a")
 
 [node name="Clang" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_i8vsc")
+max_distance = 100.0
+
+[node name="Woosh" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("6_dprjs")
 max_distance = 100.0

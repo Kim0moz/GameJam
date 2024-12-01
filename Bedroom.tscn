@@ -94,13 +94,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yb740"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_c1su4"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m14t"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_yb740")
+albedo_texture = SubResource("ViewportTexture_c1su4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -775,6 +775,13 @@ skeleton = NodePath("")
 
 [node name="Player" parent="." instance=ExtResource("11_fmp3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.547, 1.90822, 0.617681)
+cameraOffsetY = null
+mouseMoveMaxSpeed = null
+mouseSensitivity = null
+cameraVertRotationLimit = null
+computerAngleOffset = null
+computerExitPosOffset = null
+computerTransTweenLen = null
 
 [connection signal="Activated" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="hide"]
 [connection signal="Exit" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="hide"]

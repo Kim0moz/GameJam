@@ -26,13 +26,13 @@
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jfg4h"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xno5r"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nog0i"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l4bea"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_jfg4h")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_xno5r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -99,7 +99,6 @@ zoom = Vector2(3, 3)
 position_smoothing_speed = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="BasicPanel" parent="CanvasLayer" instance=ExtResource("4_a5dh6")]
 anchors_preset = 2
@@ -145,7 +144,7 @@ offset_top = 0.0
 offset_bottom = 33.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_nog0i")
+material = SubResource("ShaderMaterial_l4bea")
 mouse_filter = 2
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
@@ -247,7 +246,6 @@ position = Vector2(0, -432)
 [node name="AntiDroneBot" parent="." node_paths=PackedStringArray("intersectionsNode") instance=ExtResource("22_yy5lh")]
 position = Vector2(-331, 117)
 intersectionsNode = NodePath("../Intersections")
-moveSpeed = 0.4
 
 [node name="Intersections" type="Node2D" parent="."]
 

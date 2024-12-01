@@ -54,7 +54,7 @@ func pickNextIntersection():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	global_position += moveVector
-	if (global_position - targetIntersection.global_position).length() < .125:
+	global_position += moveVector * delta
+	if (global_position - targetIntersection.global_position).length() < .5:
 		global_position = targetIntersection.global_position
 		pickNextIntersection()

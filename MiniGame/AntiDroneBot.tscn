@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://bgkcniy1vnc7y"]
 
-[ext_resource type="Script" path="res://MiniGame/AntiDroneBote.gd" id="1_qquak"]
+[ext_resource type="Script" path="res://MiniGame/AntiDroneBot.gd" id="1_qquak"]
 [ext_resource type="Texture2D" uid="uid://058shgun1d1m" path="res://Sprites/AntiDroneVehicle.png" id="1_r31tk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ukgnu"]
@@ -43,7 +43,7 @@ region = Rect2(54, 2, 4, 12)
 z_index = -5
 rotation = 1.5708
 script = ExtResource("1_qquak")
-moveSpeed = 0.1
+moveSpeed = 50.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h2ghc")

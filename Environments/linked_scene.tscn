@@ -194,6 +194,8 @@ light_color = Color(0.683078, 0.400972, 0.300582, 1)
 shadow_enabled = true
 
 [editable path="Bedroom"]
+[editable path="Bedroom/Player"]
+[editable path="Bedroom/Player/CameraController/CameraTarget/WorldSpaceCam"]
 [editable path="DeliveryRoom"]
 [editable path="HR"]
 [editable path="Hallway"]

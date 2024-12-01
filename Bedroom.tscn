@@ -580,8 +580,9 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
-[node name="Minigame" parent="SubViewport" node_paths=PackedStringArray("player") instance=ExtResource("1_wqm3m")]
+[node name="Minigame" parent="SubViewport" node_paths=PackedStringArray("player", "musicStream") instance=ExtResource("1_wqm3m")]
 player = NodePath("../../Player")
+musicStream = NodePath("../../Monitor/AudioStreamPlayer3D")
 
 [node name="Floors and Ceilings" type="GridMap" parent="."]
 mesh_library = ExtResource("1_ejgwl")
@@ -672,6 +673,8 @@ subViewport = NodePath("../../SubViewport")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Monitor/MainMonitor"]
 shape = SubResource("BoxShape3D_omqab")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Monitor"]
 
 [node name="PipeItem" type="Node3D" parent="." node_paths=PackedStringArray("Grid", "pipeDirection", "pipeDestinations")]
 transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999998, 3, 4, 6)
@@ -781,3 +784,6 @@ skeleton = NodePath("")
 
 [node name="Player" parent="." instance=ExtResource("11_fmp3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.547, 1.90822, 0.617681)
+
+[editable path="Player"]
+[editable path="Player/CameraController/CameraTarget/WorldSpaceCam"]

@@ -30,10 +30,10 @@ interactive = Array[Vector3i]([Vector3i(-1, 0, 1), Vector3i(30, 0, -28)])
 itemToReplace = 9
 item = ExtResource("3_tmnig")
 
-[node name="Bedroom" parent="Walls and Vents/Replace Vents" instance=ExtResource("3_tmnig")]
+[node name="HallwayBedroom" parent="Walls and Vents/Replace Vents" instance=ExtResource("3_tmnig")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -1, 1.98447, -12)
 
-[node name="HRoom" parent="Walls and Vents/Replace Vents" instance=ExtResource("3_tmnig")]
+[node name="HallwayHr" parent="Walls and Vents/Replace Vents" instance=ExtResource("3_tmnig")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, 1.98447, -70)
 
 [node name="LightFixtures" type="GridMap" parent="."]

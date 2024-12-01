@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://cqevxh2h77pty"]
+[gd_scene load_steps=32 format=4 uid="uid://cqevxh2h77pty"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_7a176"]
 [ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="2_i3dqh"]
@@ -13,8 +13,21 @@
 [ext_resource type="Texture2D" uid="uid://b5ynry7aqklh7" path="res://Models/ButtonBoard/ButtonBoard_MetalTexture.jpg" id="11_8iqs8"]
 [ext_resource type="Animation" uid="uid://5d0gs6s2pv0a" path="res://Models/ButtonBoard/ButtonBoardAnimations/Press.res" id="12_0d8kq"]
 [ext_resource type="Script" path="res://Objects/ToggleableItems/ToggleableItem.gd" id="13_2ysdo"]
+[ext_resource type="AudioStream" uid="uid://c3qfwvyhbaikv" path="res://Audio/Click.wav" id="14_42kfj"]
 [ext_resource type="PackedScene" uid="uid://3iksdjbb3rdb" path="res://Models/ButtonBoard/button.tscn" id="15_sw8i7"]
 [ext_resource type="PackedScene" uid="uid://c5vxwcp4jb3tg" path="res://Objects/pipe_item.tscn" id="17_8tpoq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_6r72r"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_cc05r"]
+sky_material = SubResource("ProceduralSkyMaterial_6r72r")
+
+[sub_resource type="Environment" id="Environment_lhl73"]
+background_mode = 2
+sky = SubResource("Sky_cc05r")
+tonemap_mode = 2
 
 [sub_resource type="GDScript" id="GDScript_gp4jd"]
 script/source = "extends Node3D
@@ -26,6 +39,7 @@ func _ready() -> void:
 	lever.Activated.connect(Toggle)
 
 func Toggle():
+	$Click.play()
 	item.Fire = true
 "
 
@@ -161,6 +175,9 @@ func updateLights(val):
 
 [node name="DeliveryRoom02" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lhl73")
+
 [node name="Floors and Ceilings" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
 mesh_library = ExtResource("1_7a176")
@@ -183,16 +200,16 @@ interactive = Array[Vector3i]([Vector3i(2, 0, -1), Vector3i(-6, 0, -1), Vector3i
 itemToReplace = 9
 item = ExtResource("3_v8xsq")
 
-[node name="Entrance" parent="WallsandVents/Replace Vents" instance=ExtResource("3_v8xsq")]
+[node name="Delivery Room HR" parent="WallsandVents/Replace Vents" instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 5, 1.98447, -16)
 
-[node name="r2-r1" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("ExitPoint") instance=ExtResource("3_v8xsq")]
+[node name="Room 2" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("ExitPoint") instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -11, 1.98447, -16)
-ExitPoint = NodePath("../r1-r2")
+ExitPoint = NodePath("../Room 1")
 
-[node name="r1-r2" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("ExitPoint") instance=ExtResource("3_v8xsq")]
+[node name="Room 1" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("ExitPoint") instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -7, 1.98447, -16)
-ExitPoint = NodePath("../r2-r1")
+ExitPoint = NodePath("../Room 2")
 
 [node name="(-9, 0, 5)" parent="WallsandVents/Replace Vents" instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -17, 1.98447, -4)
@@ -504,6 +521,10 @@ animations = Array[Animation]([ExtResource("12_0d8kq")])
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00246228, 0.00302123)
 shape = SubResource("BoxShape3D_tr51k")
 
+[node name="Click" type="AudioStreamPlayer3D" parent="ButtonFire"]
+stream = ExtResource("14_42kfj")
+max_distance = 10.0
+
 [node name="ButtonFire2" type="Node3D" parent="." node_paths=PackedStringArray("item")]
 transform = Transform3D(-1.06283, 0, -9.29158e-08, 0, 1.06283, 0, 9.29158e-08, 0, -1.06283, -12.0233, 3.05833, 1.25277)
 script = SubResource("GDScript_gp4jd")
@@ -531,6 +552,10 @@ animations = Array[Animation]([ExtResource("12_0d8kq")])
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ButtonFire2/Lever"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00246228, 0.00302123)
 shape = SubResource("BoxShape3D_tr51k")
+
+[node name="Click" type="AudioStreamPlayer3D" parent="ButtonFire2"]
+stream = ExtResource("14_42kfj")
+max_distance = 10.0
 
 [node name="R1" parent="." node_paths=PackedStringArray("pI", "Lights") instance=ExtResource("15_sw8i7")]
 transform = Transform3D(-6.66393e-08, 0, 1.52453, 0, 1.52453, 0, -1.52453, 0, -6.66393e-08, 0.995743, 2.12186, -0.133855)
@@ -635,6 +660,6 @@ pipeDirection = NodePath("../Pipes/PipeDirectionSupport")
 pipeDestinations = NodePath("../Pipes/PipeDestinations")
 
 [node name="Item" parent="PipeItem" index="0"]
-transform = Transform3D(0, 1, 0, -4.37114e-08, 0, -1, -1, 0, 4.37115e-08, 0.49999, 0.499983, -0.5)
+transform = Transform3D(0, 1, 0, -4.37114e-08, 0, -1, -1, 0, 4.37114e-08, 0.499983, 0.499972, -0.5)
 
 [editable path="PipeItem"]

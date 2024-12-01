@@ -78,7 +78,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_cpyhp"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_weiyg"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ass5"]
@@ -86,7 +86,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_cpyhp")
+albedo_texture = SubResource("ViewportTexture_weiyg")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_843ex"]
 resource_name = "Metal2"
@@ -95,7 +95,7 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_cbkyc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2fcoi"]
 viewport_path = NodePath("Desks/Lower Desks")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8c3u"]
@@ -103,7 +103,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_cbkyc")
+albedo_texture = SubResource("ViewportTexture_2fcoi")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -178,7 +178,7 @@ resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_cbkyc")
+albedo_texture = SubResource("ViewportTexture_2fcoi")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qbcog"]
 _surfaces = [{
@@ -239,7 +239,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qbcog")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_kmyuq"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_sirh6"]
 viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81wjt"]
@@ -247,7 +247,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_kmyuq")
+albedo_texture = SubResource("ViewportTexture_sirh6")
 roughness = 0.5
 
 [sub_resource type="Environment" id="Environment_vx3dc"]
@@ -272,21 +272,20 @@ adjustment_enabled = true
 
 [node name="Bedroom" parent="." instance=ExtResource("1_l74bv")]
 
+[node name="Bedroom" parent="Bedroom/Walls and Vents/Replace Vents" index="0" node_paths=PackedStringArray("ExitPoint")]
+ExitPoint = NodePath("../../../../Hallway/Walls and Vents/Replace Vents/HallwayBedroom")
+metadata/_edit_pinned_properties_ = [&"ExitPoint"]
+
 [node name="Monitor" parent="Bedroom" index="6"]
 mesh = SubResource("ArrayMesh_leoao")
 surface_material_override/1 = SubResource("StandardMaterial3D_5ass5")
 
-[node name="Player" parent="Bedroom" index="9"]
-cameraOffsetY = null
-mouseMoveMaxSpeed = null
-mouseSensitivity = null
-cameraVertRotationLimit = null
-computerAngleOffset = null
-computerExitPosOffset = null
-computerTransTweenLen = null
-
 [node name="DeliveryRoom" parent="." instance=ExtResource("2_0l34u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.808578, 1.71374, 79.2997)
+
+[node name="Delivery Room HR" parent="DeliveryRoom/WallsandVents/Replace Vents" index="0" node_paths=PackedStringArray("ExitPoint")]
+ExitPoint = NodePath("../../../../HR/Walls and Vents/Replace Vents/HR Delivery Room")
+metadata/_edit_pinned_properties_ = [&"ExitPoint"]
 
 [node name="Cube_002" parent="DeliveryRoom/ButtonFire/Button" index="0"]
 surface_material_override/0 = null
@@ -300,8 +299,13 @@ surface_material_override/0 = null
 [node name="HR" parent="." instance=ExtResource("3_ymr14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.9637, 0, 54.569)
 
-[node name="To Delivery Room" parent="HR/Walls and Vents/Replace Vents" index="2" node_paths=PackedStringArray("ExitPoint")]
-ExitPoint = NodePath("../../../../DeliveryRoom/WallsandVents/Replace Vents/Entrance")
+[node name="HR Hallway" parent="HR/Walls and Vents/Replace Vents" index="1" node_paths=PackedStringArray("ExitPoint")]
+ExitPoint = NodePath("../../../../Hallway/Walls and Vents/Replace Vents/HallwayHr")
+metadata/_edit_pinned_properties_ = [&"ExitPoint"]
+
+[node name="HR Delivery Room" parent="HR/Walls and Vents/Replace Vents" index="2" node_paths=PackedStringArray("ExitPoint")]
+ExitPoint = NodePath("../../../../DeliveryRoom/WallsandVents/Replace Vents/Delivery Room HR")
+metadata/_edit_pinned_properties_ = [&"ExitPoint"]
 
 [node name="DeliveryScreen" parent="HR" index="6"]
 mesh = SubResource("ArrayMesh_qbkv2")
@@ -323,17 +327,16 @@ surface_material_override/1 = SubResource("StandardMaterial3D_cr8wr")
 mesh = SubResource("ArrayMesh_jd2rb")
 surface_material_override/1 = SubResource("StandardMaterial3D_cr8wr")
 
-[node name="Minigame" parent="HR/Desks/Lower Desks" index="0"]
-playsAudio = false
-
 [node name="Hallway" parent="." instance=ExtResource("5_cn4p4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.9886, 0, -12.6956)
 
-[node name="Bedroom" parent="Hallway/Walls and Vents/Replace Vents" index="0" node_paths=PackedStringArray("ExitPoint")]
-ExitPoint = NodePath("../../../../Bedroom/Walls and Vents/Replace Vents/Exit")
+[node name="HallwayBedroom" parent="Hallway/Walls and Vents/Replace Vents" index="0" node_paths=PackedStringArray("ExitPoint")]
+ExitPoint = NodePath("../../../../Bedroom/Walls and Vents/Replace Vents/Bedroom")
+metadata/_edit_pinned_properties_ = [&"ExitPoint"]
 
-[node name="HRoom" parent="Hallway/Walls and Vents/Replace Vents" index="1" node_paths=PackedStringArray("ExitPoint")]
-ExitPoint = NodePath("../../../../HR/Walls and Vents/Replace Vents/Entrance")
+[node name="HallwayHr" parent="Hallway/Walls and Vents/Replace Vents" index="1" node_paths=PackedStringArray("ExitPoint")]
+ExitPoint = NodePath("../../../../HR/Walls and Vents/Replace Vents/HR Hallway")
+metadata/_edit_pinned_properties_ = [&"ExitPoint"]
 
 [node name="Lights + Environment" type="Node" parent="."]
 

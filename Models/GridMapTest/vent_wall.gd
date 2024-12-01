@@ -7,6 +7,7 @@ var player : Node3D
 func _ready() -> void:
 	await GlobalVariables.playerReady
 	player = GlobalVariables.player
+	GlobalVariables.screwDriverGet.connect(unlock)
 
 func move():
 	if ExitPoint and locked == false:
@@ -24,3 +25,9 @@ func displayText():
 
 func hidePopUp():
 	InfoPopUp.HideText()
+	
+func unlock(val):
+	if val == true:
+		locked = false
+	else:
+		locked = true

@@ -128,8 +128,8 @@ script = SubResource("GDScript_4m78a")
 
 [node name="Clang" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("5_i8vsc")
-max_distance = 100.0
+max_distance = 10.0
 
 [node name="Woosh" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("6_dprjs")
-max_distance = 100.0
+max_distance = 5.0

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmqpaihg4v0m"]
+
+[ext_resource type="Texture2D" uid="uid://058shgun1d1m" path="res://Sprites/AntiDroneVehicle.png" id="1_y4k57"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27nd2"]
+atlas = ExtResource("1_y4k57")
+region = Rect2(70, 5, 4, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b4j3u"]
+size = Vector2(4, 5)
+
+[node name="AntiDroneShot" type="Area2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_27nd2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_b4j3u")

@@ -1,12 +1,16 @@
 extends InteractableItem
 
-@export var player : Node3D
+var player : Node3D
 @export var ExitPoint : Node3D
 @export var locked : bool = false
 
+func _ready() -> void:
+	await GlobalVariables.playerReady
+	player = GlobalVariables.player
 
 func move():
 	if ExitPoint and locked == false:
+		player = GlobalVariables.player
 		player.basis = ExitPoint.basis
 		player.global_position = ExitPoint.global_position
 		print("Moving from, ", self, "Moving to, ", ExitPoint)

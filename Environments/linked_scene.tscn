@@ -1,8 +1,7 @@
-[gd_scene load_steps=25 format=4 uid="uid://cwn604esw1h06"]
+[gd_scene load_steps=24 format=4 uid="uid://cwn604esw1h06"]
 
-[ext_resource type="PackedScene" uid="uid://dyhdo0olx8k3j" path="res://Environments/bedroom.tscn" id="1_l74bv"]
+[ext_resource type="PackedScene" uid="uid://dyhdo0olx8k3j" path="res://Bedroom.tscn" id="1_l74bv"]
 [ext_resource type="PackedScene" uid="uid://cqevxh2h77pty" path="res://Environments/delivery_room_02.tscn" id="2_0l34u"]
-[ext_resource type="Script" path="res://Environments/MonitorHelperScript.gd" id="3_aw8rt"]
 [ext_resource type="PackedScene" uid="uid://170qrjfvaifw" path="res://Environments/HRRoom.tscn" id="3_ymr14"]
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="4_frok4"]
 [ext_resource type="PackedScene" uid="uid://cp46rue3qkb0o" path="res://Environments/Hallway.tscn" id="5_cn4p4"]
@@ -79,7 +78,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0mxv5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_o0pd8"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ass5"]
@@ -87,7 +86,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_0mxv5")
+albedo_texture = SubResource("ViewportTexture_o0pd8")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_843ex"]
 resource_name = "Metal2"
@@ -96,7 +95,7 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_oahct"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_pfgox"]
 viewport_path = NodePath("Desks/Lower Desks")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8c3u"]
@@ -104,7 +103,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_oahct")
+albedo_texture = SubResource("ViewportTexture_pfgox")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -179,7 +178,7 @@ resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_oahct")
+albedo_texture = SubResource("ViewportTexture_pfgox")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qbcog"]
 _surfaces = [{
@@ -240,7 +239,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qbcog")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_c40nj"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2urtt"]
 viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81wjt"]
@@ -248,7 +247,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_c40nj")
+albedo_texture = SubResource("ViewportTexture_2urtt")
 roughness = 0.5
 
 [sub_resource type="Environment" id="Environment_vx3dc"]
@@ -276,18 +275,12 @@ adjustment_enabled = true
 [node name="Minigame" parent="Bedroom/SubViewport" index="0"]
 playsAudio = true
 
-[node name="Monitor" parent="Bedroom" index="7" node_paths=PackedStringArray("VP")]
+[node name="Monitor" parent="Bedroom" index="6"]
 mesh = SubResource("ArrayMesh_leoao")
 surface_material_override/1 = SubResource("StandardMaterial3D_5ass5")
-script = ExtResource("3_aw8rt")
-VP = NodePath("../SubViewport")
 
-[node name="Player" parent="Bedroom" index="10" node_paths=PackedStringArray("minigame")]
+[node name="Player" parent="Bedroom" index="9" node_paths=PackedStringArray("minigame")]
 minigame = NodePath("../SubViewport/Minigame")
-cameraOffsetY = null
-mouseMoveMaxSpeed = null
-mouseSensitivity = null
-cameraVertRotationLimit = null
 
 [node name="DeliveryRoom" parent="." instance=ExtResource("2_0l34u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.808578, 1.71374, 79.2997)
@@ -303,9 +296,6 @@ surface_material_override/0 = null
 
 [node name="HR" parent="." instance=ExtResource("3_ymr14")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.9637, 0, 54.569)
-
-[node name="To Delivery Room" parent="HR/Walls and Vents/Replace Vents" index="2" node_paths=PackedStringArray("ExitPoint")]
-ExitPoint = NodePath("../../../../DeliveryRoom/WallsandVents/Replace Vents/Entrance")
 
 [node name="DeliveryScreen" parent="HR" index="6"]
 mesh = SubResource("ArrayMesh_qbkv2")
@@ -330,9 +320,6 @@ surface_material_override/1 = SubResource("StandardMaterial3D_cr8wr")
 [node name="Hallway" parent="." instance=ExtResource("5_cn4p4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.9886, 0, -12.6956)
 
-[node name="HRoom" parent="Hallway/Walls and Vents/Replace Vents" index="1" node_paths=PackedStringArray("ExitPoint")]
-ExitPoint = NodePath("../../../../HR/Walls and Vents/Replace Vents/Entrance")
-
 [node name="Lights + Environment" type="Node" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Lights + Environment"]
@@ -344,6 +331,7 @@ light_color = Color(0.683078, 0.400972, 0.300582, 1)
 shadow_enabled = true
 
 [editable path="Bedroom"]
+[editable path="Bedroom/PipeItem"]
 [editable path="Bedroom/Player"]
 [editable path="Bedroom/Player/CameraController/CameraTarget/WorldSpaceCam"]
 [editable path="DeliveryRoom"]

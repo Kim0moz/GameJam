@@ -26,6 +26,7 @@ var currentCell
 
 
 func _ready() -> void:
+	await get_tree().root.ready
 	moveToGridLocation(CurrentPos)
 
 func nextPos():
@@ -40,9 +41,10 @@ func updatePipeDetails():
 	
 func checkIfNextIsPossible(direction):
 	var nextCell = Grid.get_cell_item(CurrentPos+direction)
+	var pipe = pipeDestinations.checkIfExists(CurrentPos+direction)
 	var nextDirections : Array = pipeDirection.activeDirections(nextCell,Grid.get_cell_item_orientation(CurrentPos+direction))
 	#print(nextDirections)
-	if nextDirections.has(direction*-1) and nextCell != -1:
+	if (nextDirections.has(direction*-1) and nextCell != -1)or(pipe):
 		#print("Can Move")
 		return true
 	else:
@@ -83,11 +85,12 @@ func moveToGridLocation(location : Vector3i):
 		return
 	var tween = get_tree().create_tween()
 	tween.set_trans(tween.TRANS_LINEAR)
-	tween.tween_property(self,"global_position",Grid.local_to_map(location) as Vector3,.1)
+	tween.tween_property(self,"global_position",(Grid.local_to_map(location) as Vector3) + Grid.global_position,.1)
 	var pipe = pipeDestinations.checkIfExists(location)
 	CurrentDirection  =  ((location-CurrentPos)as Vector3i).clamp(Vector3i(-1,-1,-1),Vector3i(1,1,1))
 	if(not pipe):
 		tween.finished.connect(nextPos)
 	else:
+		$Clang.play()
 		CurrentDirection = pipe
 	pipeMesh.global_basis =  Grid.get_cell_item_basis(location)

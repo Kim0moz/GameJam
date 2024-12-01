@@ -100,3 +100,5 @@ mesh = SubResource("ArrayMesh_paeew")
 skeleton = NodePath("")
 
 [connection signal="Activated" from="Vent" to="." method="move"]
+[connection signal="Exit" from="Vent" to="." method="hidePopUp"]
+[connection signal="Hovered" from="Vent" to="." method="displayText"]

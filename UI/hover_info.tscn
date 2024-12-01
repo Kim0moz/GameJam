@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://fp3700wpddt4"]
+
+[ext_resource type="Script" path="res://UI/hover_info.gd" id="1_hwo5s"]
+
+[node name="HoverInfo" type="Node"]
+script = ExtResource("1_hwo5s")

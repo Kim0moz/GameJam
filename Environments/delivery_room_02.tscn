@@ -1,8 +1,9 @@
-[gd_scene load_steps=42 format=4 uid="uid://cqevxh2h77pty"]
+[gd_scene load_steps=41 format=4 uid="uid://cqevxh2h77pty"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_7a176"]
 [ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="2_i3dqh"]
 [ext_resource type="PackedScene" uid="uid://cf0yipunib2xa" path="res://Models/GridMapTest/vent_wall.tscn" id="3_v8xsq"]
+[ext_resource type="Script" path="res://Models/GridMapTest/vent_wall.gd" id="4_6k2o2"]
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="4_qiw78"]
 [ext_resource type="Script" path="res://Environments/pipe_direction_support.gd" id="5_ogs2b"]
 [ext_resource type="MeshLibrary" uid="uid://do1cnjjq3ppjp" path="res://Models/GridMapTest/GridSelectionIcon.tres" id="6_cxqj3"]
@@ -129,44 +130,6 @@ _data = {
 [sub_resource type="BoxShape3D" id="BoxShape3D_tr51k"]
 size = Vector3(0.113037, 0.233429, 0.220764)
 
-[sub_resource type="GDScript" id="GDScript_1xgg6"]
-script/source = "extends Node
-
-@export var button : InteractableItem
-signal flagUpdated(value)
-
-func _ready() -> void:
-	pass
-	#FlagManager.createFlag(\"TestFlag\",false,flagUpdated)
-	#button.Activated.connect(toggleFlag);
-	#flagUpdated.connect(updated)
-
-func toggleFlag():
-	var currentFlagValue = FlagManager.getFlagValue(\"TestFlag\")
-	FlagManager.setFlag(\"TestFlag\",(!currentFlagValue))
-
-func updated(val):
-	print(val)
-"
-
-[sub_resource type="GDScript" id="GDScript_h08hd"]
-script/source = "extends Node
-
-@export var room1Lights : Node
-
-func _ready() -> void:
-	await  FlagManager.flagAdded == FlagManager.getFlag(\"TestFlag\")
-	FlagManager.getFlag(\"TestFlag\").Signal.connect(updateLights)
-
-func updateLights(val):
-	if val == false:
-		for lt in room1Lights.get_children():
-			(lt as OmniLight3D).light_color = Color(1, 0, 0, 1)
-	else:
-		for lt in room1Lights.get_children():
-			(lt as OmniLight3D).light_color = Color(1, 1, 1, 1)
-"
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1u5cy"]
 resource_name = "Pipe"
 transparency = 4
@@ -275,14 +238,14 @@ metadata/_editor_floor_ = Vector3(0, 1, 0)
 [node name="WallsandVents" type="GridMap" parent="."]
 mesh_library = ExtResource("1_7a176")
 data = {
-"cells": PackedInt32Array(65532, 0, 1, 65535, 0, 0, 65534, 0, 0, 65533, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 1048577, 2, 65533, 655361, 1, 65533, 655364, 0, 65533, 655360, 65535, 65533, 655364, 65534, 65533, 655360, 65533, 65533, 655364, 2, 65534, 1048581, 65532, 65534, 1441797, 196604, 65533, 1441799, 131074, 65533, 655367, 131074, 65535, 1048583, 196604, 65535, 7, 131073, 65535, 6, 131072, 65535, 6, 196607, 65535, 6, 196606, 65535, 6, 196605, 65535, 6, 131074, 65534, 1048582, 196604, 65534, 1441798, 196605, 65533, 655366, 196606, 65533, 655366, 196607, 65533, 655366, 131072, 65533, 655366, 131073, 65533, 655366, 65527, 65533, 1441793, 65530, 65534, 1048581, 65531, 65535, 655360, -6, 1, 655360, -5, 1, 655361, 131067, 1, 655367, -7, 1, 1048582, 65527, 65534, 1441792, 65527, 65535, 1441792, 65527, 0, 1441792, -5, 2, 1048576, 131067, 2, 1048582, 131067, 3, 1048582, -5, 3, 1048576, -5, 8, 1048577, -10, 7, 1441793, -10, 8, 1, -9, 8, 0, -8, 8, 0, -7, 8, 0, -6, 8, 0, -5, 7, 1048576, -5, 6, 1048576, -5, 5, 1048576, -5, 4, 1048576, -7, 4, 1048582, -7, 3, 1048582, -7, 2, 1048582, -7, 6, 1048583, -8, 6, 6, -9, 6, 6, -7, 5, 1048582, 65527, 6, 1441792, 65527, 1, 1441792, 65527, 2, 1441792, 65527, 3, 1441792, 65527, 4, 1441797, 131062, 7, 1441799, 131062, 8, 7, 131063, 8, 6, 131064, 8, 6, 131065, 8, 6, 131066, 8, 6, 131067, 7, 1048582, 131067, 6, 1048582, 131067, 5, 1048582, 131067, 4, 1048582, 131067, 8, 1048583, 196599, 6, 1441798, 196599, 5, 1441798, 196599, 4, 1441798, 196599, 3, 1441798, 196599, 2, 1441798, 196599, 1, 1441798, 196599, 0, 1441798, 196599, 65535, 1441798, 196599, 65534, 1441798, 196600, 65533, 655366, 196601, 65533, 655366, 196602, 65534, 1048582, 196602, 65533, 655367, 196599, 65533, 1441799, 196602, 65535, 1048583, 196602, 0, 1441798, 196602, 1, 1441798, 196602, 2, 1441798, 196602, 3, 1441798, 196602, 4, 1441798, 196602, 5, 1441798, 196602, 6, 1441798, 196601, 7, 655366, 196600, 7, 655366, 196599, 7, 655366, 131066, 1, 655366, 65532, 65533, 1441793, 65530, 65533, 655361, 65529, 65533, 655364, 65528, 65533, 655364, 65530, 0, 1441793, -11, 6, 1048577, -11, 2, 655361, -11, 3, 1048585, -11, 4, 1048581, -11, 5, 1048576, -12, 6, 0, -13, 6, 0, -14, 6, 0, -12, 2, 655360, -13, 2, 655360, -14, 2, 655360, -16, 6, 1, -16, 2, 1441793, -15, 6, 0, -16, 5, 1441792, -16, 4, 1441792, -16, 3, 1441792, -15, 2, 655360)
+"cells": PackedInt32Array(65532, 0, 1, 65535, 0, 0, 65534, 0, 0, 65533, 0, 0, 0, 0, 0, 1, 0, 0, 2, 0, 1048577, 2, 65533, 655361, 1, 65533, 655364, 0, 65533, 655360, 65535, 65533, 655364, 65534, 65533, 655360, 65533, 65533, 655364, 2, 65534, 1048581, 65532, 65534, 1441797, 196604, 65533, 1441799, 131074, 65533, 655367, 131074, 65535, 1048583, 196604, 65535, 7, 131073, 65535, 6, 131072, 65535, 6, 196607, 65535, 6, 196606, 65535, 6, 196605, 65535, 6, 131074, 65534, 1048582, 196604, 65534, 1441798, 196605, 65533, 655366, 196606, 65533, 655366, 196607, 65533, 655366, 131072, 65533, 655366, 131073, 65533, 655366, 65527, 65533, 1441793, 65530, 65534, 1048581, 65531, 65535, 655360, -6, 1, 655360, -5, 1, 655361, 131067, 1, 655367, -7, 1, 1048582, 65527, 65534, 1441792, 65527, 65535, 1441792, 65527, 0, 1441792, -5, 2, 1048576, 131067, 2, 1048582, 131067, 3, 1048582, -5, 3, 1048576, -5, 8, 1048577, -10, 7, 1441793, -10, 8, 1, -9, 8, 0, -8, 8, 0, -7, 8, 0, -6, 8, 0, -5, 7, 1048576, -5, 6, 1048576, -5, 5, 1048576, -5, 4, 1048576, -7, 4, 1048582, -7, 3, 1048582, -7, 2, 1048582, -7, 6, 1048583, -8, 6, 6, -9, 6, 6, -7, 5, 1048582, 65527, 6, 1441792, 65527, 1, 1441792, 65527, 2, 1441792, 65527, 3, 1441792, 65527, 4, 1441797, 131062, 7, 1441799, 131062, 8, 7, 131063, 8, 6, 131064, 8, 6, 131065, 8, 6, 131066, 8, 6, 131067, 7, 1048582, 131067, 6, 1048582, 131067, 5, 1048582, 131067, 4, 1048582, 131067, 8, 1048583, 196599, 6, 1441798, 196599, 5, 1441798, 196599, 4, 1441798, 196599, 3, 1441798, 196599, 2, 1441798, 196599, 1, 1441798, 196599, 0, 1441798, 196599, 65535, 1441798, 196599, 65534, 1441798, 196600, 65533, 655366, 196601, 65533, 655366, 196602, 65534, 1048582, 196602, 65533, 655367, 196599, 65533, 1441799, 196602, 65535, 1048583, 196602, 0, 1441798, 196602, 1, 1441798, 196602, 2, 1441798, 196602, 3, 1441798, 196602, 4, 1441798, 196602, 5, 1441798, 196602, 6, 1441798, 196601, 7, 655366, 196600, 7, 655366, 196599, 7, 655366, 131066, 1, 655366, 65532, 65533, 1441793, 65530, 65533, 655361, 65529, 65533, 655364, 65528, 65533, 655364, 65530, 0, 1441793, -11, 6, 1048577, -11, 2, 655361, -11, 4, 1048581, -11, 5, 1048576, -12, 6, 0, -13, 6, 0, -14, 6, 0, -12, 2, 655360, -13, 2, 655360, -14, 2, 655360, -16, 6, 1, -16, 2, 1441793, -15, 6, 0, -16, 5, 1441792, -16, 4, 1441792, -16, 3, 1441792, -15, 2, 655360)
 }
 metadata/_editor_floor_ = Vector3(0, -1, 1)
 
 [node name="Replace Vents" type="Node3D" parent="WallsandVents"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.98447, 15)
 script = ExtResource("2_i3dqh")
-interactive = Array[Vector3i]([Vector3i(2, 0, -1), Vector3i(-6, 0, -1), Vector3i(-4, 0, -1), Vector3i(-9, 0, 5)])
+interactive = Array[Vector3i]([Vector3i(-11, -1, 3)])
 itemToReplace = 9
 item = ExtResource("3_v8xsq")
 
@@ -297,8 +260,14 @@ ExitPoint = NodePath("../Room 1")
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -7, 1.98447, -16)
 ExitPoint = NodePath("../Room 2")
 
-[node name="(-9, 0, 5)" parent="WallsandVents/Replace Vents" instance=ExtResource("3_v8xsq")]
+[node name="(-9, 0, 5)" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("ExitPoint") instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -17, 1.98447, -4)
+ExitPoint = NodePath("../(-11, -1, 3)")
+
+[node name="(-11, -1, 3)" type="Node3D" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("ExitPoint") instance=ExtResource("3_v8xsq")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -21, -0.01553, -8)
+script = ExtResource("4_6k2o2")
+ExitPoint = NodePath("../(-9, 0, 5)")
 
 [node name="Pipes" type="GridMap" parent="."]
 mesh_library = ExtResource("4_qiw78")
@@ -319,7 +288,7 @@ metadata/_edit_pinned_properties_ = [&"outlets"]
 mesh_library = ExtResource("6_cxqj3")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(65541, 1, 0, 262133, 2, 0, 65510, 12, 0)
+"cells": PackedInt32Array(65541, 1, 0, 262133, 2, 0)
 }
 script = ExtResource("7_vwveh")
 Ends = [{
@@ -704,39 +673,6 @@ light_energy = 84.89
 light_specular = 16.0
 omni_range = 0.637764
 omni_attenuation = -0.325
-
-[node name="FlagTest" type="Node3D" parent="." node_paths=PackedStringArray("button")]
-script = SubResource("GDScript_1xgg6")
-button = NodePath("Flag Test/Lever")
-
-[node name="Flag Test" type="Node3D" parent="FlagTest"]
-transform = Transform3D(-1.06283, 0, -9.29158e-08, 0, 1.06283, 0, 9.29158e-08, 0, -1.06283, -12.0233, 2.13726, 1.25277)
-
-[node name="Button" type="MeshInstance3D" parent="FlagTest/Flag Test"]
-mesh = SubResource("ArrayMesh_fp86u")
-skeleton = NodePath("")
-
-[node name="Cube_002" type="MeshInstance3D" parent="FlagTest/Flag Test/Button"]
-mesh = SubResource("ArrayMesh_ntm10")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_jh8br")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="FlagTest/Flag Test"]
-libraries = {
-"": SubResource("AnimationLibrary_bgulk")
-}
-
-[node name="Lever" type="StaticBody3D" parent="FlagTest/Flag Test" node_paths=PackedStringArray("anim")]
-script = ExtResource("13_2ysdo")
-anim = NodePath("../AnimationPlayer")
-animations = Array[Animation]([ExtResource("12_0d8kq")])
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="FlagTest/Flag Test/Lever"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00246228, 0.00302123)
-shape = SubResource("BoxShape3D_tr51k")
-
-[node name="ChangeLights" type="Node3D" parent="FlagTest"]
-script = SubResource("GDScript_h08hd")
 
 [node name="PipeItem" type="Node3D" parent="." node_paths=PackedStringArray("Grid", "pipeDirection", "pipeDestinations")]
 transform = Transform3D(0.999999, 0, 0, 0, -4.37113e-08, -0.999998, 0, 0.999999, -4.37113e-08, 5, 1, 1)

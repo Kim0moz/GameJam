@@ -14,6 +14,7 @@ func activate(mousePos = Vector2.ZERO):
 		return
 	#super(mousePos)
 	active = true
+	print("Clicked")
 	GlobalVariables.player.startComputerState(global_position)
 
 func deactivate():

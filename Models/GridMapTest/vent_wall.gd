@@ -18,10 +18,11 @@ func move():
 		player.position.y += 1
 		
 func displayText():
-	if locked==true:
-		InfoPopUp.Text = "Locked"
-	else:
-		InfoPopUp.Text = ExitPoint.name
+	if ExitPoint:
+		if locked==true:
+			InfoPopUp.Text = "Locked"
+		else:
+			InfoPopUp.Text = ExitPoint.name
 
 func hidePopUp():
 	InfoPopUp.HideText()

@@ -21,6 +21,7 @@ func Hover():
 	var interface = pI.Interfaces[pI.CurrentInterface]
 	var ltIndx = 0
 	for pipes in interface:
+		lightChildren[ltIndx].visible = true
 		lightChildren[ltIndx].global_position = pI.grid.map_to_local(pipes.Position)
 		ltIndx+=1
 	pass

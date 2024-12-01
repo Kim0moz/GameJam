@@ -95,13 +95,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ta23e"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_bivcc"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m14t"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_ta23e")
+albedo_texture = SubResource("ViewportTexture_bivcc")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -627,7 +627,6 @@ item = ExtResource("4_lr1si")
 
 [node name="Bedroom" parent="Walls and Vents/Replace Vents" instance=ExtResource("4_lr1si")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 3, 1.98447, -14)
-locked = true
 
 [node name="LightFixtures" type="GridMap" parent="."]
 mesh_library = ExtResource("2_pj5rj")

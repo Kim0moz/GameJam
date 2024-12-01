@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://170qrjfvaifw"]
+[gd_scene load_steps=32 format=4 uid="uid://170qrjfvaifw"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_nptwq"]
 [ext_resource type="MeshLibrary" uid="uid://ctr3ogqfj1ns5" path="res://Models/GridMapTest/LightLibrary.tres" id="2_ecsgv"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://c6tel0arkyu0s" path="res://Sprites/DeliveryRoomScreen.tscn" id="9_ejr3p"]
 [ext_resource type="Script" path="res://Objects/InteractableItems/Monitor.gd" id="9_tjb8j"]
 [ext_resource type="PackedScene" uid="uid://bhn0nqv0mibyq" path="res://UI/high_scores.tscn" id="9_xj7nx"]
-[ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="14_bvx1t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_843ex"]
 resource_name = "Metal2"
@@ -22,7 +21,7 @@ albedo_texture = ExtResource("5_npu6q")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_owhtu"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_5mdgi"]
 viewport_path = NodePath("Desks/Lower Desks")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cnj4"]
@@ -30,7 +29,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_owhtu")
+albedo_texture = SubResource("ViewportTexture_5mdgi")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -92,7 +91,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_l6kbr")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_0artq"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_yn2ns"]
 viewport_path = NodePath("DeliveryScreen/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uil8o"]
@@ -101,7 +100,7 @@ resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_0artq")
+albedo_texture = SubResource("ViewportTexture_yn2ns")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfywj"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -238,7 +237,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_a0hmo")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_lwff5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_008ti"]
 viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfk8i"]
@@ -246,7 +245,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_lwff5")
+albedo_texture = SubResource("ViewportTexture_008ti")
 roughness = 0.5
 
 [node name="HRRoom" type="Node3D"]
@@ -547,8 +546,5 @@ size = Vector2i(1184, 652)
 botSpawnTime = 40.0
 botSpawnTimeChangeRank = 150
 botSpawnTimeChange = 3.0
-
-[node name="Player" parent="." instance=ExtResource("14_bvx1t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65206, 0, 2.1931)
 
 [connection signal="Activated" from="Desks/Desk3/Monitor/MainMonitor" to="Desks/Desk3/Monitor" method="active"]

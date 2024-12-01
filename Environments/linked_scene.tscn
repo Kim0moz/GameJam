@@ -785,6 +785,16 @@ adjustment_enabled = true
 
 [node name="Bedroom" type="Node3D" parent="."]
 
+[node name="MinigameMusicStream" type="AudioStreamPlayer3D" parent="Bedroom"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.72286, 3.09608, -5.49873)
+stream = ExtResource("2_o6sl8")
+volume_db = -30.418
+autoplay = true
+emission_angle_enabled = true
+emission_angle_degrees = 27.0
+emission_angle_filter_attenuation_db = -28.2
+parameters/looping = true
+
 [node name="SubViewport" type="SubViewport" parent="Bedroom"]
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
@@ -793,7 +803,7 @@ render_target_update_mode = 4
 
 [node name="Minigame" parent="Bedroom/SubViewport" node_paths=PackedStringArray("player", "musicStream") instance=ExtResource("1_kjik6")]
 player = NodePath("../../Player")
-musicStream = NodePath("../../Monitor/AudioStreamPlayer3D")
+musicStream = NodePath("../../MinigameMusicStream")
 botSpawnTime = 40.0
 botSpawnTimeChangeRank = 150
 botSpawnTimeChange = 3.0
@@ -895,6 +905,7 @@ subViewport = NodePath("../../SubViewport")
 shape = SubResource("BoxShape3D_omqab")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Bedroom/Monitor"]
+volume_db = 6.0
 
 [node name="HoverInfo" parent="Bedroom/Monitor" instance=ExtResource("18_rlcsv")]
 HoverText = "Click : Go to work..."

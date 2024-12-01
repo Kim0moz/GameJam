@@ -153,6 +153,7 @@ func capsuleDelivered():
 		delivConfText.z_index = 100
 		add_child(delivConfText)
 		delivConfText.setCustomMessage("ERROR")
+		musicStream.stop()
 		GlobalVariables.sendScrewDriver = true
 	else:
 		delivConfText.global_position = pointer.target.global_position + Vector2(-delivConfText.size.x/2, -(delivConfText.size.y + 10))
@@ -184,7 +185,8 @@ func glitchActivated():
 		deliveryInfo.DeliverStatusLabel.text = randomString("Delivery Status".length())
 		deliveryInfo.RankingLabel.text = "rank: " + randomString(4, true)
 		deliveryInfo.TileSelected = (int(deliveryInfo.TileSelected) + 1) % deliveryInfo.Tiles.size()
-		pointer.target.queue_free()
+		if pointer.target != null:
+			pointer.target.queue_free()
 		pointer.target = dropOffGenerator.generateDropOffPoint()
 		await get_tree().create_timer(.08).timeout
 	pointer.target.queue_free()

@@ -677,17 +677,17 @@ subViewport = NodePath("../../SubViewport")
 shape = SubResource("BoxShape3D_omqab")
 
 [node name="PipeItem" type="Node3D" parent="." node_paths=PackedStringArray("Grid", "pipeDirection", "pipeDestinations")]
-transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999998, 3, 2, 3)
+transform = Transform3D(0.999999, 0, 0, 0, 0.999999, 0, 0, 0, 0.999998, 3, 4, 6)
 script = ExtResource("14_q2ht7")
-ActiveDirections = [Vector3i(0, 1, 0), Vector3i(0, -1, 0)]
-CurrentPos = Vector3i(3, 2, 3)
-CurrentDirection = Vector3i(0, 1, 0)
+ActiveDirections = [Vector3i(0, 0, 1), Vector3i(0, 0, -1)]
+CurrentPos = Vector3i(3, 4, 6)
+CurrentDirection = Vector3i(0, 0, -1)
 Grid = NodePath("../Pipes")
 pipeDirection = NodePath("../Pipes/PipeDirectionSupport")
 pipeDestinations = NodePath("../Pipes/PipeDestinations")
 
 [node name="Item" type="Node3D" parent="PipeItem"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+transform = Transform3D(0, 0, 1, -1, 0, 0, 0, -1, 0, 0, 0.5, 0)
 
 [node name="Delivery Box6" type="MeshInstance3D" parent="PipeItem/Item"]
 transform = Transform3D(-0.999999, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)

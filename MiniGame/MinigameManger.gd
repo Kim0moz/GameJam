@@ -43,6 +43,7 @@ var botSpawnTimeDT := 0.0
 var lastBotSpawnRank : float
 
 @export_category("Audio")
+@export var playsAudio := true
 @export var menuMusic : AudioStreamMP3
 @export var gameMusic : AudioStreamMP3
 
@@ -183,8 +184,9 @@ func computerExited():
 	deliveryInfo.setTextState(DeliveryInfo.TextState.STABLE)
 	capsule.capsuleState = Capsule2D.CapsuleState.IDLE
 	capsule.modulate.a = 0
-	musicStream.stream = menuMusic
-	musicStream.play()
+	if playsAudio:
+		musicStream.stream = menuMusic
+		musicStream.play()
 
 func startGame():
 	computerState = ComputerState.MINIGAME
@@ -193,8 +195,9 @@ func startGame():
 	drone.droneState = Drone.DroneState.NO_PACKAGE
 	capsuleSpawnDT = 0
 	deliveryState = DeliveryState.SPAWNING
-	musicStream.stream = gameMusic
-	musicStream.play()
+	if playsAudio:
+		musicStream.stream = gameMusic
+		musicStream.play()
 	
 func calculateDeliveryPoints():
 	var deliveryTargetTimeSeconds = capsuleDeliveryTargetTime * 60

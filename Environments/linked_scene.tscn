@@ -6,17 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="4_frok4"]
 [ext_resource type="PackedScene" uid="uid://cp46rue3qkb0o" path="res://Environments/Hallway.tscn" id="5_cn4p4"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xwe64"]
-resource_local_to_scene = false
+[sub_resource type="ViewportTexture" id="ViewportTexture_1okpb"]
 viewport_path = NodePath("Bedroom/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grm3b"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
+shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_xwe64")
-roughness = 0.5
+albedo_texture = SubResource("ViewportTexture_1okpb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkccg"]
 resource_name = "Metal2"
@@ -128,10 +127,6 @@ adjustment_enabled = true
 
 [node name="Bedroom" parent="." instance=ExtResource("1_l74bv")]
 
-[node name="Exit" parent="Bedroom/Walls and Vents/Replace Vents" index="0" node_paths=PackedStringArray("ExitPoint")]
-ExitPoint = NodePath("../../../../Hallway/Walls and Vents/Replace Vents/Bedroom")
-locked = false
-
 [node name="Monitor" parent="Bedroom" index="6"]
 surface_material_override/1 = SubResource("StandardMaterial3D_grm3b")
 
@@ -169,11 +164,11 @@ surface_material_override/1 = SubResource("StandardMaterial3D_cr8wr")
 mesh = SubResource("ArrayMesh_jd2rb")
 surface_material_override/1 = SubResource("StandardMaterial3D_cr8wr")
 
+[node name="Minigame" parent="HR/Desks/Lower Desks" index="0"]
+playsAudio = false
+
 [node name="Hallway" parent="." instance=ExtResource("5_cn4p4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.9886, 0, -12.6956)
-
-[node name="Bedroom" parent="Hallway/Walls and Vents/Replace Vents" index="0" node_paths=PackedStringArray("ExitPoint")]
-ExitPoint = NodePath("../../../../Bedroom/Walls and Vents/Replace Vents/Exit")
 
 [node name="HRoom" parent="Hallway/Walls and Vents/Replace Vents" index="1" node_paths=PackedStringArray("ExitPoint")]
 ExitPoint = NodePath("../../../../HR/Walls and Vents/Replace Vents/Entrance")

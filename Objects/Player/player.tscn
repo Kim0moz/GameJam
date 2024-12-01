@@ -29,6 +29,7 @@ script = ExtResource("1_1wn3t")
 camera = NodePath("CameraController/CameraTarget/WorldSpaceCam")
 cameraController = NodePath("CameraController")
 cameraTarget = NodePath("CameraController/CameraTarget")
+computerPosOffset = Vector3(0, -0.5, 0.8)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_0me4c")

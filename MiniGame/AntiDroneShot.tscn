@@ -1,18 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://dmqpaihg4v0m"]
+[gd_scene load_steps=5 format=3 uid="uid://dmqpaihg4v0m"]
 
+[ext_resource type="Script" path="res://MiniGame/AntiDroneShot.gd" id="1_msujy"]
 [ext_resource type="Texture2D" uid="uid://058shgun1d1m" path="res://Sprites/AntiDroneVehicle.png" id="1_y4k57"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27nd2"]
 atlas = ExtResource("1_y4k57")
-region = Rect2(70, 5, 4, 5)
+region = Rect2(70, 5, 4, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b4j3u"]
-size = Vector2(4, 5)
+size = Vector2(4, 7.25)
 
 [node name="AntiDroneShot" type="Area2D"]
+script = ExtResource("1_msujy")
+moveSpeed = 200.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_27nd2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_b4j3u")
+
+[connection signal="body_entered" from="." to="." method="onBodyEnter"]

@@ -3,6 +3,7 @@ class_name  AntiDroneBot
 
 @export var intersectionsNode : Node2D
 @export var canon : Sprite2D
+@export var antiDroneShot : PackedScene
 @export var moveSpeed := 5.0
 @export var canonCooldownTime := 2.0
 var canonCooldownDT = 0
@@ -83,7 +84,10 @@ func updateCanonShot(delta):
 	canonCooldownDT += delta
 	if canonCooldownDT >= canonCooldownTime:
 		canonCooldownDT = 0
-		print("Shooting")
+		var antiDroneSh = antiDroneShot.instantiate() as AntiDroneShot
+		antiDroneSh.initialize(canon.global_rotation)
+		antiDroneSh.global_position = global_position + Vector2(10, 0).rotated(canon.global_rotation-PI/2)
+		get_node("../").add_child(antiDroneSh)
 
 func detectionBodyEnter(body : Node2D):
 	var drone = body as Drone

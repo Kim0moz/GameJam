@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://cwn604esw1h06"]
+[gd_scene load_steps=25 format=4 uid="uid://cwn604esw1h06"]
 
 [ext_resource type="PackedScene" uid="uid://dyhdo0olx8k3j" path="res://Bedroom.tscn" id="1_l74bv"]
 [ext_resource type="PackedScene" uid="uid://cqevxh2h77pty" path="res://Environments/delivery_room_02.tscn" id="2_0l34u"]
@@ -78,7 +78,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_85hrf"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_shh3v"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ass5"]
@@ -86,7 +86,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_85hrf")
+albedo_texture = SubResource("ViewportTexture_shh3v")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_843ex"]
 resource_name = "Metal2"
@@ -95,15 +95,15 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_bmc4g"]
-viewport_path = NodePath("Desks/Lower Desks")
+[sub_resource type="ViewportTexture" id="ViewportTexture_1jbpp"]
+viewport_path = NodePath("DeliveryScreen/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8c3u"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_bmc4g")
+albedo_texture = SubResource("ViewportTexture_1jbpp")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -172,13 +172,16 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_0m6mg"]
+viewport_path = NodePath("Desks/Lower Desks")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr8wr"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_bmc4g")
+albedo_texture = SubResource("ViewportTexture_0m6mg")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qbcog"]
 _surfaces = [{
@@ -239,7 +242,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qbcog")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_b1hpk"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ae8x5"]
 viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81wjt"]
@@ -247,7 +250,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_b1hpk")
+albedo_texture = SubResource("ViewportTexture_ae8x5")
 roughness = 0.5
 
 [sub_resource type="Environment" id="Environment_vx3dc"]
@@ -363,6 +366,5 @@ shadow_enabled = true
 [editable path="Bedroom/Player"]
 [editable path="Bedroom/Player/CameraController/CameraTarget/WorldSpaceCam"]
 [editable path="DeliveryRoom"]
-[editable path="DeliveryRoom/PipeItem"]
 [editable path="HR"]
 [editable path="Hallway"]

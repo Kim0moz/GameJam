@@ -15,10 +15,17 @@ var hasScrewDriver = false:
 	set(val):
 		hasScrewDriver = true
 		screwDriverGet.emit(val)
+		
+var hasKeyCard = false:
+	set(val):
+		hasScrewDriver = true
+		keyCardGet.emit(val)
 
 signal playerReady
 signal screwDriver(val:bool)
 signal screwDriverGet(val:bool)
+signal keyCardGet(val:bool)
+signal endScene
 
 func _ready() -> void:
 	generateHighscores()

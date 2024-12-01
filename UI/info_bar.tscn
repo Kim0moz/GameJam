@@ -1,41 +1,32 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbxe8qvpobek2"]
+[gd_scene load_steps=13 format=3 uid="uid://cbxe8qvpobek2"]
 
 [ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_a4oey"]
 [ext_resource type="Script" path="res://Sprites/DeliveryInfo.gd" id="2_0oa3n"]
-[ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="3_qsn4b"]
+[ext_resource type="Texture2D" uid="uid://wgehcnlh4epc" path="res://Sprites/TileMaps/NewTileMap - Copy.png" id="3_viobx"]
 [ext_resource type="PackedScene" uid="uid://bv8gf15agiob8" path="res://UI/basic_panel.tscn" id="4_ts03n"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="5_s4owj"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_erm1m"]
-load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c162.ctex"
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_262bv"]
-atlas = SubResource("CompressedTexture2D_erm1m")
+atlas = ExtResource("3_viobx")
 region = Rect2(48, 144, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ht6l3"]
-atlas = ExtResource("3_qsn4b")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kdev1"]
+load_path = "res://.godot/imported/NewTileMap - Copy.png-0fa1d173540828e6df9732ce5aa3e23b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3wpqh"]
+atlas = SubResource("CompressedTexture2D_kdev1")
 region = Rect2(80, 96, 16, 16)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xg260"]
-load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c162.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jmtbp"]
-atlas = SubResource("CompressedTexture2D_xg260")
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfqmt"]
+atlas = SubResource("CompressedTexture2D_kdev1")
 region = Rect2(80, 112, 16, 16)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ebghe"]
-load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c162.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0crig"]
-atlas = SubResource("CompressedTexture2D_ebghe")
+[sub_resource type="AtlasTexture" id="AtlasTexture_h6ltx"]
+atlas = SubResource("CompressedTexture2D_kdev1")
 region = Rect2(80, 128, 16, 16)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3cn7y"]
-load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c162.ctex"
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5tq60"]
-atlas = SubResource("CompressedTexture2D_3cn7y")
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rr57"]
+atlas = SubResource("CompressedTexture2D_kdev1")
 region = Rect2(80, 144, 16, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uvctu"]
@@ -48,7 +39,7 @@ offset_right = 418.0
 offset_bottom = 40.0
 theme = ExtResource("1_a4oey")
 script = ExtResource("2_0oa3n")
-Tiles = Array[Texture2D]([SubResource("AtlasTexture_262bv"), SubResource("AtlasTexture_ht6l3"), SubResource("AtlasTexture_jmtbp"), SubResource("AtlasTexture_0crig"), SubResource("AtlasTexture_5tq60")])
+Tiles = Array[Texture2D]([SubResource("AtlasTexture_262bv"), SubResource("AtlasTexture_3wpqh"), SubResource("AtlasTexture_nfqmt"), SubResource("AtlasTexture_h6ltx"), SubResource("AtlasTexture_4rr57")])
 
 [node name="Icon" parent="." instance=ExtResource("4_ts03n")]
 custom_minimum_size = Vector2(40, 0)

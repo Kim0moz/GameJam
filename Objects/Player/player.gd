@@ -43,6 +43,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	GlobalVariables.player = self
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	camera.make_current()
 
 func _physics_process(delta):
 	match playerState:

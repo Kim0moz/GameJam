@@ -18,8 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 FlagManager="*res://Signletons/flag_manager.gd"
-GlobalVariables="*res://Signletons/global_variables.gd"
 InfoPopUp="*res://UI/info_pop_up.tscn"
+GlobalVariables="*res://Signletons/global_variables.tscn"
 
 [file_customization]
 

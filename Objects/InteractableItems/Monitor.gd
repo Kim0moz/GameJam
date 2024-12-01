@@ -2,6 +2,7 @@ extends InteractableItem
 class_name Monitor
 
 var active : bool = false
+@export var subViewport :  SubViewport
 
 func _ready():
 	GlobalVariables.player.connect("computer_exit", Callable(self, "deactivate"))
@@ -16,3 +17,7 @@ func activate(mousePos = Vector2.ZERO):
 
 func deactivate():
 	active = false
+	
+func _input(event: InputEvent) -> void:
+	if subViewport and active:
+		subViewport.push_input(event,true)

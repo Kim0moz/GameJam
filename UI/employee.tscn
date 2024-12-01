@@ -35,11 +35,13 @@ script = ExtResource("2_pvhre")
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 clip_contents = true
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Ranking" type="Panel" parent="HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_stretch_ratio = 0.42
+mouse_filter = 2
 theme = ExtResource("1_ckbcg")
 
 [node name="Ranking" type="Label" parent="HBoxContainer/Ranking"]
@@ -62,6 +64,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.42
+mouse_filter = 2
 theme = ExtResource("1_ckbcg")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Panel"]
@@ -71,6 +74,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="HBoxContainer/Panel/HBoxContainer"]
 clip_contents = true
@@ -78,6 +82,7 @@ custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.42
+mouse_filter = 2
 theme = ExtResource("1_ckbcg")
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/Panel/HBoxContainer/Panel"]
@@ -91,6 +96,7 @@ grow_vertical = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.25
+mouse_filter = 2
 texture = SubResource("AtlasTexture_0vutb")
 expand_mode = 2
 stretch_mode = 5
@@ -107,6 +113,7 @@ label_settings = SubResource("LabelSettings_34ukf")
 custom_minimum_size = Vector2(150, 50)
 layout_mode = 2
 size_flags_stretch_ratio = 0.42
+mouse_filter = 2
 theme = ExtResource("1_ckbcg")
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Score"]
@@ -116,6 +123,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_ckbcg")
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5

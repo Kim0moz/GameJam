@@ -128,7 +128,7 @@ func startComputerState(monitorPosition : Vector3):
 	var rotationTween3 = create_tween()
 	rotationTween3.tween_property(cameraTarget, "rotation", Vector3(deg_to_rad(computerAngleOffset), 0, 0), computerTransTweenLen).set_trans(Tween.TRANS_SINE)
 	camera.Reticle.hide()
-	# Input.mouse_mode = Input.MOUSE_MODE_CONFINED
+	Input.mouse_mode = Input.MOUSE_MODE_CONFINED_HIDDEN
 
 func computerStateStarted():
 	setPlayerState(PlayerState.COMPUTER)
@@ -146,7 +146,7 @@ func computerExited():
 	playerState = PlayerState.NORMAL
 	camera.Reticle.show()
 	# camera.Reticle.position = Vector2(560, 308)
-	# Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	computer_exit.emit()
 	
 func setPlayerState(pState : PlayerState):

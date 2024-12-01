@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://kuqwnqky71xb"]
+[gd_resource type="Theme" load_steps=27 format=3 uid="uid://kuqwnqky71xb"]
 
 [ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="1_p86mw"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="1_qgfye"]
@@ -152,6 +152,18 @@ texture = SubResource("AtlasTexture_tc77h")
 texture_margin_left = 1.0
 region_rect = Rect2(3, 5, 9, 7)
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ipqq2"]
+texture = SubResource("AtlasTexture_tc77h")
+texture_margin_left = 1.0
+region_rect = Rect2(3, 5, 9, 7)
+modulate_color = Color(0.164149, 0.317795, 1, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gh1xo"]
+texture = SubResource("AtlasTexture_tc77h")
+texture_margin_left = 1.0
+region_rect = Rect2(3, 5, 9, 7)
+modulate_color = Color(0.322108, 0.364404, 0.47454, 1)
+
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
 Button/colors/font_focus_color = Color(0, 0, 0, 1)
@@ -173,3 +185,5 @@ ProgressBar/styles/background = SubResource("StyleBoxTexture_lnpa7")
 ProgressBar/styles/fill = SubResource("StyleBoxTexture_qjkvy")
 VBoxContainer/constants/separation = 0
 VScrollBar/styles/grabber = SubResource("StyleBoxTexture_ic5bl")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_ipqq2")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_gh1xo")

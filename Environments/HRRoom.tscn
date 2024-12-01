@@ -445,8 +445,9 @@ render_target_update_mode = 4
 [node name="HighScores" parent="Desks/Desk3/Monitor/HighScores" node_paths=PackedStringArray("monitor") instance=ExtResource("9_xj7nx")]
 monitor = NodePath("../../MainMonitor")
 
-[node name="MainMonitor" type="StaticBody3D" parent="Desks/Desk3/Monitor"]
+[node name="MainMonitor" type="StaticBody3D" parent="Desks/Desk3/Monitor" node_paths=PackedStringArray("subViewport")]
 script = ExtResource("9_tjb8j")
+subViewport = NodePath("../HighScores")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Desks/Desk3/Monitor/MainMonitor"]
 shape = SubResource("BoxShape3D_kfywj")
@@ -535,6 +536,7 @@ mesh = SubResource("ArrayMesh_yh04x")
 skeleton = NodePath("")
 
 [node name="Lower Desks" type="SubViewport" parent="Desks"]
+canvas_item_default_texture_filter = 0
 size = Vector2i(1184, 652)
 
 [node name="Minigame" parent="Desks/Lower Desks" instance=ExtResource("8_r7kv1")]

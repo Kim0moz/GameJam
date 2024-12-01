@@ -1,12 +1,15 @@
-[gd_scene load_steps=28 format=4 uid="uid://bvlgg8n0vjyw0"]
+[gd_scene load_steps=36 format=4 uid="uid://bvlgg8n0vjyw0"]
 
 [ext_resource type="TileSet" uid="uid://dw5km62ab2x3i" path="res://MiniGame/MiniGameTileSet.tres" id="1_pwln6"]
 [ext_resource type="Script" path="res://MiniGame/MinigameManger.gd" id="2_0irbu"]
 [ext_resource type="PackedScene" uid="uid://ccffthclyl1hu" path="res://MiniGame/DeliveryConfirmationText.tscn" id="2_fgfl8"]
 [ext_resource type="TileSet" uid="uid://bmn3fynq8ni83" path="res://Sprites/TileMaps/NewTileMap.tres" id="2_s271b"]
 [ext_resource type="PackedScene" uid="uid://bv8gf15agiob8" path="res://UI/basic_panel.tscn" id="4_a5dh6"]
+[ext_resource type="PackedScene" uid="uid://bs1gsxf1jhg1k" path="res://MiniGame/Shaders/screen_ripple.tscn" id="4_jrj8k"]
 [ext_resource type="PackedScene" uid="uid://d024ojmxc20yy" path="res://MiniGame/Drone.tscn" id="4_lpyc7"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="5_gdjrj"]
+[ext_resource type="Shader" uid="uid://du4m0bwcsw16m" path="res://MiniGame/Shaders/Offset.tres" id="5_nu4ep"]
+[ext_resource type="Shader" uid="uid://b52d2iikaotyc" path="res://MiniGame/Shaders/RippleMask.tres" id="6_shpec"]
 [ext_resource type="PackedScene" uid="uid://qlojdtaadr5s" path="res://MiniGame/Shaders/chromatic_aberation.tscn" id="7_h6wv1"]
 [ext_resource type="Shader" uid="uid://cibbwmx5esnsj" path="res://MiniGame/Shaders/FishEye.tres" id="8_7e2r7"]
 [ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="8_ppbfk"]
@@ -24,13 +27,13 @@
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mxycq"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_l05td"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aenqi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3xb30"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_mxycq")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_l05td")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -86,6 +89,7 @@ capsuleDeliveryTargetTime = 0.5
 botSpawnTime = 20.0
 botSpawnTimeChangeRank = 100
 botSpawnTimeChange = 2.0
+playsAudio = false
 
 [node name="Drone" parent="." node_paths=PackedStringArray("pointer") instance=ExtResource("4_lpyc7")]
 z_index = 2
@@ -147,7 +151,7 @@ offset_top = 0.0
 offset_bottom = 33.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_aenqi")
+material = SubResource("ShaderMaterial_3xb30")
 mouse_filter = 2
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
@@ -601,3 +605,4 @@ parameters/looping = true
 [editable path="Drone"]
 [editable path="CanvasLayer/DeliveryStatus"]
 [editable path="CanvasLayer/MinigameMenu"]
+[editable path="CanvasLayer/ScreenRipple"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cqevxh2h77pty"]
+[gd_scene load_steps=29 format=4 uid="uid://cqevxh2h77pty"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_7a176"]
 [ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="2_i3dqh"]
@@ -9,19 +9,12 @@
 [ext_resource type="Script" path="res://Environments/pipe_destinations.gd" id="7_vwveh"]
 [ext_resource type="Script" path="res://Environments/register_pipe_interaction.gd" id="8_ibuer"]
 [ext_resource type="MeshLibrary" uid="uid://1ho4b857233" path="res://Models/GridMapTest/RailingLibrary.tres" id="8_miuoj"]
-[ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="8_y1m6d"]
 [ext_resource type="MeshLibrary" uid="uid://ctr3ogqfj1ns5" path="res://Models/GridMapTest/LightLibrary.tres" id="10_yqcrj"]
 [ext_resource type="Texture2D" uid="uid://b5ynry7aqklh7" path="res://Models/ButtonBoard/ButtonBoard_MetalTexture.jpg" id="11_8iqs8"]
 [ext_resource type="Animation" uid="uid://5d0gs6s2pv0a" path="res://Models/ButtonBoard/ButtonBoardAnimations/Press.res" id="12_0d8kq"]
 [ext_resource type="Script" path="res://Objects/ToggleableItems/ToggleableItem.gd" id="13_2ysdo"]
 [ext_resource type="Script" path="res://Environments/pipe_item.gd" id="14_s7m22"]
 [ext_resource type="PackedScene" uid="uid://3iksdjbb3rdb" path="res://Models/ButtonBoard/button.tscn" id="15_sw8i7"]
-
-[sub_resource type="Environment" id="Environment_0p7a5"]
-background_mode = 1
-background_color = Color(0.566334, 0.516593, 0.590005, 1)
-ambient_light_source = 2
-ambient_light_color = Color(0.565093, 0.677072, 0.669991, 1)
 
 [sub_resource type="GDScript" id="GDScript_gp4jd"]
 script/source = "extends Node3D
@@ -141,9 +134,10 @@ script/source = "extends Node
 signal flagUpdated(value)
 
 func _ready() -> void:
-	FlagManager.createFlag(\"TestFlag\",false,flagUpdated)
-	button.Activated.connect(toggleFlag);
-	flagUpdated.connect(updated)
+	pass
+	#FlagManager.createFlag(\"TestFlag\",false,flagUpdated)
+	#button.Activated.connect(toggleFlag);
+	#flagUpdated.connect(updated)
 
 func toggleFlag():
 	var currentFlagValue = FlagManager.getFlagValue(\"TestFlag\")
@@ -188,32 +182,26 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 1)
 
-[node name="Replace Vents" type="Node3D" parent="WallsandVents" node_paths=PackedStringArray("player")]
+[node name="Replace Vents" type="Node3D" parent="WallsandVents"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.98447, 15)
-top_level = true
 script = ExtResource("2_i3dqh")
 interactive = Array[Vector3i]([Vector3i(2, 0, -1), Vector3i(-6, 0, -1), Vector3i(-4, 0, -1), Vector3i(-9, 0, 5)])
-player = NodePath("../../Player")
 itemToReplace = 9
 item = ExtResource("3_v8xsq")
 
-[node name="Entrance" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player") instance=ExtResource("3_v8xsq")]
+[node name="Entrance" parent="WallsandVents/Replace Vents" instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 5, 1.98447, -16)
-player = NodePath("../../../Player")
 
-[node name="r2-r1" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player", "ExitPoint") instance=ExtResource("3_v8xsq")]
+[node name="r2-r1" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("ExitPoint") instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -11, 1.98447, -16)
-player = NodePath("../../../Player")
 ExitPoint = NodePath("../r1-r2")
 
-[node name="r1-r2" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player", "ExitPoint") instance=ExtResource("3_v8xsq")]
+[node name="r1-r2" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("ExitPoint") instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -7, 1.98447, -16)
-player = NodePath("../../../Player")
 ExitPoint = NodePath("../r2-r1")
 
-[node name="(-9, 0, 5)" parent="WallsandVents/Replace Vents" node_paths=PackedStringArray("player") instance=ExtResource("3_v8xsq")]
+[node name="(-9, 0, 5)" parent="WallsandVents/Replace Vents" instance=ExtResource("3_v8xsq")]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -17, 1.98447, -4)
-player = NodePath("../../../Player")
 
 [node name="Pipes" type="GridMap" parent="."]
 mesh_library = ExtResource("4_qiw78")
@@ -331,7 +319,7 @@ Interfaces = {
 }
 metadata/_editor_floor_ = Vector3(0, -1, 1)
 
-[node name="Room2" type="Node" parent="Pipes"]
+[node name="Room2" type="Node3D" parent="Pipes"]
 
 [node name="1" type="GridMap" parent="Pipes/Room2" node_paths=PackedStringArray("grid")]
 visible = false
@@ -421,9 +409,6 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 1, 0)
 
-[node name="Player" parent="." instance=ExtResource("8_y1m6d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.16851, 2.77133, -2.94644)
-
 [node name="Lights" type="GridMap" parent="."]
 mesh_library = ExtResource("10_yqcrj")
 data = {
@@ -431,17 +416,9 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 3, 0)
 
-[node name="Lights + Environment" type="Node" parent="."]
+[node name="Lights + Environment" type="Node3D" parent="."]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Lights + Environment"]
-environment = SubResource("Environment_0p7a5")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lights + Environment"]
-transform = Transform3D(-0.783687, 0.118268, 0.609793, 0.40712, 0.839244, 0.360449, -0.469135, 0.530738, -0.705854, 0.712618, 1.16872, 5.62129)
-light_color = Color(0.683078, 0.400972, 0.300582, 1)
-shadow_enabled = true
-
-[node name="R1" type="Node" parent="Lights + Environment"]
+[node name="R1" type="Node3D" parent="Lights + Environment"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights + Environment/R1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.04512, 6.74234, -2.89886)
@@ -473,7 +450,7 @@ distance_fade_enabled = true
 omni_range = 5.896
 omni_attenuation = 2.056
 
-[node name="R2" type="Node" parent="Lights + Environment"]
+[node name="R2" type="Node3D" parent="Lights + Environment"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Lights + Environment/R2"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11.2117, 6.65429, -3.06454)
@@ -637,7 +614,7 @@ light_specular = 16.0
 omni_range = 0.637764
 omni_attenuation = -0.325
 
-[node name="FlagTest" type="Node" parent="." node_paths=PackedStringArray("button")]
+[node name="FlagTest" type="Node3D" parent="." node_paths=PackedStringArray("button")]
 script = SubResource("GDScript_1xgg6")
 button = NodePath("Flag Test/Lever")
 
@@ -667,6 +644,5 @@ animations = Array[Animation]([ExtResource("12_0d8kq")])
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.00246228, 0.00302123)
 shape = SubResource("BoxShape3D_tr51k")
 
-[node name="ChangeLights" type="Node" parent="FlagTest" node_paths=PackedStringArray("room1Lights")]
+[node name="ChangeLights" type="Node3D" parent="FlagTest"]
 script = SubResource("GDScript_h08hd")
-room1Lights = NodePath("../../Lights + Environment/R2")

@@ -2,7 +2,7 @@
 extends "res://Models/GridMapTest/ReplaceWithInteractive.gd"
 
 @export var interactive : Array[Vector3i]
-@export var player : Node3D
+var player : Node3D
 @export var replaceVents : bool:
 	set(val):
 		updateVents()
@@ -11,6 +11,8 @@ extends "res://Models/GridMapTest/ReplaceWithInteractive.gd"
 		getInteractive()
 
 func _ready() -> void:
+	await GlobalVariables.playerReady
+	player = GlobalVariables.player
 	pass
 		
 func getInteractive():

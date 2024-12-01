@@ -87,10 +87,12 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 
 [node name="CSGBox3D" type="CSGBox3D" parent="ExitPoint"]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -2.84124e-08, 0, 0.55)
+visible = false
 size = Vector3(0.2, 0.2, 1)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="ExitPoint"]
 transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, -1.07093e-07, 0, 1)
+visible = false
 size = Vector3(0.6, 0.2, 0.5)
 
 [node name="Wall_003" type="MeshInstance3D" parent="."]

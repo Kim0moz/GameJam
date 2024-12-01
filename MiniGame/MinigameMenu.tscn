@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://c65j3fq4gl3md"]
+[gd_scene load_steps=28 format=3 uid="uid://c65j3fq4gl3md"]
 
 [ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_l7k3d"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="2_v7q6f"]
@@ -49,27 +49,33 @@ font = ExtResource("2_v7q6f")
 font_size = 38
 shadow_color = Color(0.6, 0.898039, 0.313726, 1)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_erm1m"]
-load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c162.ctex"
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ar6kh"]
+load_path = "res://.godot/imported/NewTileMap - Copy.png-0fa1d173540828e6df9732ce5aa3e23b.ctex"
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dfeie"]
-atlas = SubResource("CompressedTexture2D_erm1m")
+[sub_resource type="AtlasTexture" id="AtlasTexture_qwy5t"]
+atlas = SubResource("CompressedTexture2D_ar6kh")
 region = Rect2(48, 144, 16, 15)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_dbbnm"]
-atlas = SubResource("CompressedTexture2D_erm1m")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_l8ljf"]
+load_path = "res://.godot/imported/NewTileMap - Copy.png-0fa1d173540828e6df9732ce5aa3e23b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f3buq"]
+atlas = SubResource("CompressedTexture2D_l8ljf")
 region = Rect2(80, 96, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7lkdx"]
-atlas = SubResource("CompressedTexture2D_erm1m")
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0o1dc"]
+load_path = "res://.godot/imported/NewTileMap - Copy.png-0fa1d173540828e6df9732ce5aa3e23b.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xjoe"]
+atlas = SubResource("CompressedTexture2D_0o1dc")
 region = Rect2(80, 112, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5rt5l"]
-atlas = SubResource("CompressedTexture2D_erm1m")
+[sub_resource type="AtlasTexture" id="AtlasTexture_yw88x"]
+atlas = SubResource("CompressedTexture2D_0o1dc")
 region = Rect2(80, 128, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ap43e"]
-atlas = SubResource("CompressedTexture2D_erm1m")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnmn7"]
+atlas = SubResource("CompressedTexture2D_0o1dc")
 region = Rect2(80, 144, 16, 16)
 
 [sub_resource type="Theme" id="Theme_v834k"]
@@ -359,7 +365,7 @@ offset_right = 18.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_dfeie")
+texture = SubResource("AtlasTexture_qwy5t")
 
 [node name="Text" parent="DeliveryStatusKey/CapsuleReady" instance=ExtResource("3_8o8li")]
 layout_mode = 2
@@ -406,7 +412,7 @@ offset_right = 18.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_dbbnm")
+texture = SubResource("AtlasTexture_f3buq")
 
 [node name="Text" parent="DeliveryStatusKey/GreatTime" instance=ExtResource("3_8o8li")]
 layout_mode = 2
@@ -453,7 +459,7 @@ offset_right = 18.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_7lkdx")
+texture = SubResource("AtlasTexture_1xjoe")
 
 [node name="Text" parent="DeliveryStatusKey/GoodTime" instance=ExtResource("3_8o8li")]
 layout_mode = 2
@@ -500,7 +506,7 @@ offset_right = 18.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_5rt5l")
+texture = SubResource("AtlasTexture_yw88x")
 
 [node name="Text" parent="DeliveryStatusKey/OkTime" instance=ExtResource("3_8o8li")]
 layout_mode = 2
@@ -547,7 +553,7 @@ offset_right = 18.0
 offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("AtlasTexture_ap43e")
+texture = SubResource("AtlasTexture_lnmn7")
 
 [node name="Text" parent="DeliveryStatusKey/BadTime" instance=ExtResource("3_8o8li")]
 layout_mode = 2

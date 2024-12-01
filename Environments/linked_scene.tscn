@@ -100,7 +100,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_rodle"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_pgasy"]
 viewport_path = NodePath("Bedroom/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ass5"]
@@ -108,7 +108,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_rodle")
+albedo_texture = SubResource("ViewportTexture_pgasy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -608,7 +608,7 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ug47d"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_ahhik"]
 viewport_path = NodePath("Desks/Lower Desks")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8c3u"]
@@ -616,7 +616,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_ug47d")
+albedo_texture = SubResource("ViewportTexture_ahhik")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -691,7 +691,7 @@ resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_ug47d")
+albedo_texture = SubResource("ViewportTexture_ahhik")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qbcog"]
 _surfaces = [{
@@ -752,7 +752,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qbcog")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_jndvl"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_y6s7b"]
 viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81wjt"]
@@ -760,7 +760,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_jndvl")
+albedo_texture = SubResource("ViewportTexture_y6s7b")
 roughness = 0.5
 
 [sub_resource type="Environment" id="Environment_vx3dc"]
@@ -788,7 +788,7 @@ adjustment_enabled = true
 [node name="MinigameMusicStream" type="AudioStreamPlayer3D" parent="Bedroom"]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.72286, 3.09608, -5.49873)
 stream = ExtResource("2_o6sl8")
-volume_db = -30.418
+volume_db = -33.46
 autoplay = true
 emission_angle_enabled = true
 emission_angle_degrees = 27.0
@@ -905,7 +905,7 @@ subViewport = NodePath("../../SubViewport")
 shape = SubResource("BoxShape3D_omqab")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Bedroom/Monitor"]
-volume_db = 6.0
+volume_db = 10.0
 
 [node name="HoverInfo" parent="Bedroom/Monitor" instance=ExtResource("18_rlcsv")]
 HoverText = "Click : Go to work..."

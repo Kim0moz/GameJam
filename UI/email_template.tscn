@@ -2,6 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_ppkyl"]
 [ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="2_jc0oh"]
+[ext_resource type="Script" path="res://UI/email_template.gd" id="2_mi0ar"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="3_dj55d"]
 [ext_resource type="Script" path="res://UI/ScrollingContainer.tres.gd" id="4_m8jdo"]
 
@@ -16,14 +17,12 @@ region = Rect2(80, 112, 16, 16)
 font = ExtResource("3_dj55d")
 font_size = 50
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6emlj"]
-blend_mode = 1
-
 [sub_resource type="GDScript" id="GDScript_xm834"]
 script/source = "extends PanelContainer
 
 func _on_email_template_toggled(toggled_on: bool) -> void:
 	self.visible = toggled_on
+	self.grab_focus()
 	get_parent().release_focus()
 "
 
@@ -31,24 +30,38 @@ func _on_email_template_toggled(toggled_on: bool) -> void:
 base_font = ExtResource("3_dj55d")
 spacing_top = -11
 
-[node name="EmailTemplate" type="Button"]
-custom_minimum_size = Vector2(0, 90.975)
+[node name="EmailTemplate" type="VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 120.0
+grow_horizontal = 2
 size_flags_horizontal = 3
-size_flags_vertical = 2
+size_flags_vertical = 3
+theme = ExtResource("1_ppkyl")
+script = ExtResource("2_mi0ar")
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(500, 90)
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("1_ppkyl")
 theme_type_variation = &"ToggleButton"
 toggle_mode = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="Button"]
 material = SubResource("CanvasItemMaterial_cr5tf")
-layout_mode = 2
-offset_left = 11.0
-offset_top = 19.0
-offset_right = 868.0
-offset_bottom = 79.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="Notifcation" type="TextureRect" parent="HBoxContainer"]
+[node name="Notifcation" type="TextureRect" parent="Button/HBoxContainer"]
 material = SubResource("CanvasItemMaterial_cr5tf")
 custom_minimum_size = Vector2(35, 35)
 layout_mode = 2
@@ -57,25 +70,7 @@ size_flags_vertical = 4
 mouse_filter = 2
 texture = SubResource("AtlasTexture_3i27l")
 
-[node name="From" type="PanelContainer" parent="HBoxContainer"]
-material = SubResource("CanvasItemMaterial_cr5tf")
-custom_minimum_size = Vector2(150, 35)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
-mouse_filter = 2
-theme = ExtResource("1_ppkyl")
-
-[node name="Ranking" type="Label" parent="HBoxContainer/From"]
-material = SubResource("CanvasItemMaterial_cr5tf")
-layout_mode = 2
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.25
-text = "Name"
-label_settings = SubResource("LabelSettings_40u6a")
-horizontal_alignment = 1
-
-[node name="Subject" type="PanelContainer" parent="HBoxContainer"]
+[node name="Subject" type="PanelContainer" parent="Button/HBoxContainer"]
 material = SubResource("CanvasItemMaterial_cr5tf")
 custom_minimum_size = Vector2(150, 35)
 layout_mode = 2
@@ -84,7 +79,7 @@ size_flags_stretch_ratio = 0.75
 mouse_filter = 2
 theme = ExtResource("1_ppkyl")
 
-[node name="Ranking" type="Label" parent="HBoxContainer/Subject"]
+[node name="Subject" type="Label" parent="Button/HBoxContainer/Subject"]
 material = SubResource("CanvasItemMaterial_cr5tf")
 layout_mode = 2
 size_flags_vertical = 1
@@ -93,27 +88,42 @@ text = "Subject"
 label_settings = SubResource("LabelSettings_40u6a")
 horizontal_alignment = 1
 
+[node name="From" type="PanelContainer" parent="Button/HBoxContainer"]
+material = SubResource("CanvasItemMaterial_cr5tf")
+custom_minimum_size = Vector2(150, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+mouse_filter = 2
+theme = ExtResource("1_ppkyl")
+
+[node name="From" type="Label" parent="Button/HBoxContainer/From"]
+material = SubResource("CanvasItemMaterial_cr5tf")
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.25
+text = "Name"
+label_settings = SubResource("LabelSettings_40u6a")
+horizontal_alignment = 1
+
 [node name="EmailBody" type="PanelContainer" parent="."]
 visible = false
-material = SubResource("CanvasItemMaterial_6emlj")
+z_index = 1
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
-anchor_top = 0.978291
-anchor_right = 1.0
-anchor_bottom = 5.14196
-offset_bottom = 3.05176e-05
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 2
-mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = SubResource("GDScript_xm834")
 metadata/_edit_use_anchors_ = true
 
 [node name="ScrollContainer" type="ScrollContainer" parent="EmailBody"]
+z_index = 1
 layout_mode = 2
 mouse_filter = 0
 script = ExtResource("4_m8jdo")
 
 [node name="DeliverySoftText" type="RichTextLabel" parent="EmailBody/ScrollContainer"]
+z_index = 1
 clip_contents = false
 custom_minimum_size = Vector2(208.56, 27.245)
 layout_mode = 2
@@ -134,4 +144,4 @@ Duis fringilla, ante eu volutpat accumsan, libero elit ultrices lorem, eu congue
 fit_content = true
 scroll_active = false
 
-[connection signal="toggled" from="." to="EmailBody" method="_on_email_template_toggled"]
+[connection signal="toggled" from="Button" to="EmailBody" method="_on_email_template_toggled"]

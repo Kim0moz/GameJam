@@ -31,7 +31,7 @@ var ptsSinceLastRank = 0
 
 @export_category("AntiDroneBot Spawning")
 ## When bots start spawning
-var botSpawnRankThreshold := RANKING_MAX * .75
+var botSpawnRankThreshold := RANKING_MAX * .8
 ## How often to spawn bots 
 @export var botSpawnTime := 40.0
 ## How many ranks before changing 

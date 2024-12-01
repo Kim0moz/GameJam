@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://c65j3fq4gl3md"]
+[gd_scene load_steps=26 format=3 uid="uid://c65j3fq4gl3md"]
 
 [ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_l7k3d"]
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="2_v7q6f"]
 [ext_resource type="PackedScene" uid="uid://bv8gf15agiob8" path="res://UI/basic_panel.tscn" id="3_8o8li"]
+[ext_resource type="Texture2D" uid="uid://058shgun1d1m" path="res://Sprites/AntiDroneVehicle.png" id="3_fcg2y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mques"]
 bg_color = Color(0, 0, 0, 1)
@@ -29,6 +30,19 @@ load_path = "res://.godot/imported/ArrowKey.png-3714b28f9b8d80900ea75e0c87dcf3fd
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ev47"]
 atlas = SubResource("CompressedTexture2D_nthid")
 region = Rect2(17, 0, 17, 17)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rfpen"]
+font = ExtResource("2_v7q6f")
+font_size = 50
+shadow_color = Color(1, 0.703629, 0.760345, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b021r"]
+atlas = ExtResource("3_fcg2y")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jl1wi"]
+atlas = ExtResource("3_fcg2y")
+region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="LabelSettings" id="LabelSettings_uvctu"]
 font = ExtResource("2_v7q6f")
@@ -248,12 +262,50 @@ offset_bottom = 40.0
 pivot_offset = Vector2(20, 20)
 texture = SubResource("AtlasTexture_2ev47")
 
+[node name="AntiDronePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 124.0
+offset_top = 190.0
+offset_right = 324.0
+offset_bottom = 350.0
+pivot_offset = Vector2(100, 100)
+theme = ExtResource("1_l7k3d")
+
+[node name="BewareText" type="Label" parent="AntiDronePanel"]
+layout_mode = 0
+offset_right = 200.0
+offset_bottom = 38.0
+text = "Beware!"
+label_settings = SubResource("LabelSettings_rfpen")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BotBody" type="TextureRect" parent="AntiDronePanel"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 88.0
+offset_right = 119.0
+offset_bottom = 128.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_b021r")
+
+[node name="Canon" type="TextureRect" parent="AntiDronePanel"]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 60.0
+offset_right = 119.0
+offset_bottom = 100.0
+scale = Vector2(2, 2)
+pivot_offset = Vector2(20, 20)
+texture = SubResource("AtlasTexture_jl1wi")
+
 [node name="DeliveryStatusKey" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 870.0
-offset_top = 326.0
-offset_right = 1070.0
-offset_bottom = 576.0
+offset_left = 844.0
+offset_top = 230.0
+offset_right = 1044.0
+offset_bottom = 480.0
 theme = ExtResource("1_l7k3d")
 
 [node name="DeliveryStatusKeyText" type="HBoxContainer" parent="DeliveryStatusKey"]

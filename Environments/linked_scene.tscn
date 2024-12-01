@@ -110,6 +110,18 @@ background_mode = 1
 background_color = Color(0.566334, 0.516593, 0.590005, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.565093, 0.677072, 0.669991, 1)
+tonemap_mode = 3
+tonemap_white = 6.62
+glow_enabled = true
+glow_bloom = 0.06
+glow_hdr_threshold = 0.94
+glow_hdr_scale = 1.58
+fog_enabled = true
+fog_light_color = Color(0.725097, 0.484593, 0.36205, 1)
+fog_density = 0.0068
+fog_depth_curve = 0.5
+fog_depth_end = 250.5
+adjustment_enabled = true
 
 [node name="LinkedScene" type="Node3D"]
 

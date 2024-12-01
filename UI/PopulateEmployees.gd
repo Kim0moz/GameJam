@@ -8,7 +8,7 @@ func _ready() -> void:
 	for i in range(children.size()):
 		var item = children[i]
 		var hsi = hs[i]
-		(item as EmployeePanel).updatePanel(hsi.Score,hsi.Employee,hsi.Icon,str(int(item.name)+1))
+		(item as EmployeePanel).updatePanel(hsi.Score,hsi.Employee,hsi.Icon,str(i+1))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

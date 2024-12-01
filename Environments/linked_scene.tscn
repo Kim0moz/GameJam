@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=4 uid="uid://cwn604esw1h06"]
 
-[ext_resource type="PackedScene" uid="uid://dyhdo0olx8k3j" path="res://Bedroom.tscn" id="1_l74bv"]
+[ext_resource type="PackedScene" uid="uid://dyhdo0olx8k3j" path="res://Environments/bedroom.tscn" id="1_l74bv"]
 [ext_resource type="PackedScene" uid="uid://cqevxh2h77pty" path="res://Environments/delivery_room_02.tscn" id="2_0l34u"]
 [ext_resource type="PackedScene" uid="uid://170qrjfvaifw" path="res://Environments/HRRoom.tscn" id="3_ymr14"]
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="4_frok4"]
@@ -127,10 +127,10 @@ adjustment_enabled = true
 
 [node name="Bedroom" parent="." instance=ExtResource("1_l74bv")]
 
-[node name="Monitor" parent="Bedroom" index="6"]
+[node name="Monitor" parent="Bedroom" index="7"]
 surface_material_override/1 = SubResource("StandardMaterial3D_grm3b")
 
-[node name="Player" parent="Bedroom" index="9" node_paths=PackedStringArray("minigame")]
+[node name="Player" parent="Bedroom" index="10" node_paths=PackedStringArray("minigame")]
 minigame = NodePath("../SubViewport/Minigame")
 
 [node name="DeliveryRoom" parent="." instance=ExtResource("2_0l34u")]

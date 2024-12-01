@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=4 uid="uid://cwn604esw1h06"]
+[gd_scene load_steps=80 format=4 uid="uid://cwn604esw1h06"]
 
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="1_kjik6"]
 [ext_resource type="PackedScene" uid="uid://cqevxh2h77pty" path="res://Environments/delivery_room_02.tscn" id="2_0l34u"]
@@ -100,7 +100,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_pgasy"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_lrg4e"]
 viewport_path = NodePath("Bedroom/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ass5"]
@@ -108,7 +108,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_pgasy")
+albedo_texture = SubResource("ViewportTexture_lrg4e")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -608,15 +608,15 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ahhik"]
-viewport_path = NodePath("Desks/Lower Desks")
+[sub_resource type="ViewportTexture" id="ViewportTexture_hxm2b"]
+viewport_path = NodePath("DeliveryScreen/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8c3u"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_ahhik")
+albedo_texture = SubResource("ViewportTexture_hxm2b")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -685,13 +685,16 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_mt3p5"]
+viewport_path = NodePath("Desks/Lower Desks")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr8wr"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_ahhik")
+albedo_texture = SubResource("ViewportTexture_mt3p5")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qbcog"]
 _surfaces = [{
@@ -752,7 +755,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qbcog")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_y6s7b"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_82tvj"]
 viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81wjt"]
@@ -760,7 +763,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_y6s7b")
+albedo_texture = SubResource("ViewportTexture_82tvj")
 roughness = 0.5
 
 [sub_resource type="Environment" id="Environment_vx3dc"]
@@ -802,7 +805,7 @@ size = Vector2i(1152, 648)
 render_target_update_mode = 4
 
 [node name="Minigame" parent="Bedroom/SubViewport" node_paths=PackedStringArray("player", "musicStream") instance=ExtResource("1_kjik6")]
-player = NodePath("../../Player")
+player = NodePath("../../../Player")
 musicStream = NodePath("../../MinigameMusicStream")
 botSpawnTime = 40.0
 botSpawnTimeChangeRank = 150
@@ -1010,14 +1013,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 3.55271e-15, 0, 0, 1, 1.66271, 1.12137, -
 mesh = SubResource("ArrayMesh_hkmps")
 skeleton = NodePath("")
 
-[node name="Player" parent="Bedroom" node_paths=PackedStringArray("minigame") instance=ExtResource("24_vof0p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.547, 1.90822, 0.617681)
-minigame = NodePath("../SubViewport/Minigame")
-cameraOffsetY = null
-mouseMoveMaxSpeed = null
-mouseSensitivity = null
-cameraVertRotationLimit = null
-
 [node name="DeliveryRoom" parent="." instance=ExtResource("2_0l34u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.808578, 1.71374, 79.2997)
 
@@ -1090,6 +1085,10 @@ transform = Transform3D(0.343895, 0.857105, -0.383545, 0.80674, -0.0606591, 0.58
 light_color = Color(0.683078, 0.400972, 0.300582, 1)
 shadow_enabled = true
 
+[node name="Player" parent="." node_paths=PackedStringArray("minigame") instance=ExtResource("24_vof0p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.302, 0)
+minigame = NodePath("../Bedroom/SubViewport/Minigame")
+
 [connection signal="Activated" from="Bedroom/Monitor/MainMonitor" to="Bedroom/Monitor/HoverInfo" method="hide"]
 [connection signal="Exit" from="Bedroom/Monitor/MainMonitor" to="Bedroom/Monitor/HoverInfo" method="hide"]
 [connection signal="Hovered" from="Bedroom/Monitor/MainMonitor" to="Bedroom/Monitor/HoverInfo" method="display"]
@@ -1098,9 +1097,6 @@ shadow_enabled = true
 [connection signal="Hovered" from="Bedroom/PipeItem/Item/Delivery Box6/Item" to="Bedroom/PipeItem/Item/CollectItem" method="showtext"]
 
 [editable path="Bedroom/PipeItem"]
-[editable path="Bedroom/Player"]
-[editable path="Bedroom/Player/CameraController/CameraTarget/WorldSpaceCam"]
 [editable path="DeliveryRoom"]
-[editable path="DeliveryRoom/PipeItem"]
 [editable path="HR"]
 [editable path="Hallway"]

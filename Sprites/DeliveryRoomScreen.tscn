@@ -1,7 +1,156 @@
-[gd_scene format=3 uid="uid://c6tel0arkyu0s"]
+[gd_scene load_steps=14 format=3 uid="uid://c6tel0arkyu0s"]
+
+[ext_resource type="Theme" uid="uid://kuqwnqky71xb" path="res://UI/GameUI.tres" id="1_vmf4e"]
+[ext_resource type="Texture2D" uid="uid://dh6moveelumj2" path="res://Sprites/TileMap.png" id="2_vgkv5"]
+[ext_resource type="PackedScene" uid="uid://d4dtns0pfwt1p" path="res://MiniGame/Shaders/Fisheye_Shader.tscn" id="4_gwtgp"]
+[ext_resource type="Shader" uid="uid://cibbwmx5esnsj" path="res://MiniGame/Shaders/FishEye.tres" id="5_7f7md"]
+[ext_resource type="PackedScene" uid="uid://qlojdtaadr5s" path="res://MiniGame/Shaders/chromatic_aberation.tscn" id="6_ju3fq"]
+[ext_resource type="Shader" uid="uid://ckxbbm7ne3sax" path="res://MiniGame/Shaders/ChromaticAberration.tres" id="7_cfv7d"]
+
+[sub_resource type="GDScript" id="GDScript_uctl8"]
+script/source = "extends Control
+
+
+func _ready() -> void:
+	GlobalVariables.keyCardGet.connect(updateText)
+	updateText()
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func updateText(val=false):
+	if GlobalVariables.hasKeyCard == true:
+		$CanvasLayer/Computer/Panel/Label.text = \"Clearance Granted\"
+		$CanvasLayer/Computer/Panel/Button.disabled = false
+	else:
+		$CanvasLayer/Computer/Panel/Label.text = \"Insufficent Privledges: Present ID\"
+		$CanvasLayer/Computer/Panel/Button.disabled = true
+		
+func startEndScene():
+	if GlobalVariables.hasKeyCard == true:
+		print(\"Starting\")
+		GlobalVariables.endScene.emit()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8wno"]
+atlas = ExtResource("2_vgkv5")
+region = Rect2(96, 16, 16, 16)
+
+[sub_resource type="GDScript" id="GDScript_ruh8n"]
+script/source = "extends Sprite2D
+
+@onready var cam = $\"../../../Camera2D\"
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	var pos = cam.get_viewport().get_mouse_position()
+	position = pos
+	pass
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_33j7x"]
+resource_local_to_scene = true
+shader = ExtResource("5_7f7md")
+shader_parameter/Amount = 0.9
+
+[sub_resource type="Gradient" id="Gradient_tdhm6"]
+offsets = PackedFloat32Array(0.276398, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wxhre"]
+gradient = SubResource("Gradient_tdhm6")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ufxn"]
+resource_local_to_scene = true
+shader = ExtResource("7_cfv7d")
+shader_parameter/Amount = 3.56
+shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_wxhre")
 
 [node name="Control" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = SubResource("GDScript_uctl8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Computer" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Computer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vmf4e")
+
+[node name="Button" type="Button" parent="CanvasLayer/Computer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -54.0
+offset_right = 110.5
+offset_bottom = 54.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vmf4e")
+theme_override_font_sizes/font_size = 136
+text = "Release"
+
+[node name="Label" type="Label" parent="CanvasLayer/Computer/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -457.0
+offset_top = -176.0
+offset_right = 457.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_vmf4e")
+theme_override_font_sizes/font_size = 106
+text = "Insufficent Privledges: Present ID"
+
+[node name="ComputerMonitorSprite" type="Sprite2D" parent="CanvasLayer/Computer"]
+z_index = 2
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = SubResource("AtlasTexture_c8wno")
+script = SubResource("GDScript_ruh8n")
+metadata/_edit_lock_ = true
+
+[node name="Fish Eye" parent="CanvasLayer/Computer" instance=ExtResource("4_gwtgp")]
+z_index = 20
+material = SubResource("ShaderMaterial_33j7x")
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Chromatic Aberation" parent="CanvasLayer/Computer" instance=ExtResource("6_ju3fq")]
+z_index = 20
+material = SubResource("ShaderMaterial_3ufxn")
+layout_mode = 1
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="CanvasLayer/Computer/Panel/Button" to="." method="startEndScene"]
+[connection signal="pressed" from="CanvasLayer/Computer/Panel/Button" to="." method="updateText"]

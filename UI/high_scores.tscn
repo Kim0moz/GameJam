@@ -45,7 +45,7 @@ shader_parameter/Amount = 0.9
 [sub_resource type="Gradient" id="Gradient_4qrvm"]
 offsets = PackedFloat32Array(0.276398, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_wxhre"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dti66"]
 gradient = SubResource("Gradient_4qrvm")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -54,7 +54,7 @@ fill_from = Vector2(0.5, 0.5)
 resource_local_to_scene = true
 shader = ExtResource("4_7fg8i")
 shader_parameter/Amount = 3.56
-shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_wxhre")
+shader_parameter/Texture2DParameter = SubResource("GradientTexture2D_dti66")
 
 [node name="HighScores" type="Control"]
 layout_mode = 3

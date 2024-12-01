@@ -246,6 +246,7 @@ Button/styles/hover_pressed = SubResource("StyleBoxTexture_imflp")
 Button/styles/normal = SubResource("StyleBoxTexture_m27ou")
 Button/styles/pressed = SubResource("StyleBoxTexture_6objk")
 HBoxContainer/constants/separation = 0
+Label/fonts/font = ExtResource("1_qgfye")
 Panel/styles/panel = SubResource("StyleBoxTexture_ouknj")
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_7ktxt")
 ProgressBar/styles/background = SubResource("StyleBoxTexture_lnpa7")

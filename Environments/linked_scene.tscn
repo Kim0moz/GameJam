@@ -1,10 +1,21 @@
-[gd_scene load_steps=14 format=4 uid="uid://cwn604esw1h06"]
+[gd_scene load_steps=16 format=4 uid="uid://cwn604esw1h06"]
 
 [ext_resource type="PackedScene" uid="uid://dyhdo0olx8k3j" path="res://Bedroom.tscn" id="1_l74bv"]
 [ext_resource type="PackedScene" uid="uid://cqevxh2h77pty" path="res://Environments/delivery_room_02.tscn" id="2_0l34u"]
 [ext_resource type="PackedScene" uid="uid://170qrjfvaifw" path="res://Environments/HRRoom.tscn" id="3_ymr14"]
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="4_frok4"]
 [ext_resource type="PackedScene" uid="uid://cp46rue3qkb0o" path="res://Environments/Hallway.tscn" id="5_cn4p4"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xwe64"]
+viewport_path = NodePath("Bedroom/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grm3b"]
+resource_local_to_scene = true
+resource_name = "Screen"
+cull_mode = 2
+albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
+albedo_texture = SubResource("ViewportTexture_xwe64")
+roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkccg"]
 resource_name = "Metal2"
@@ -14,15 +25,15 @@ metallic = 0.552727
 roughness = 0.209091
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ablfp"]
-viewport_path = NodePath("Desks/Lower Desks")
+viewport_path = NodePath("HR/Desks/Lower Desks")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr8wr"]
 resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
+shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
 albedo_texture = SubResource("ViewportTexture_ablfp")
-roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
 _surfaces = [{
@@ -84,7 +95,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_l6kbr")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_g8107"]
-viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
+viewport_path = NodePath("HR/Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8wde"]
 resource_local_to_scene = true
@@ -109,7 +120,7 @@ ExitPoint = NodePath("../../../../Hallway/Walls and Vents/Replace Vents/Bedroom"
 locked = false
 
 [node name="Monitor" parent="Bedroom" index="6"]
-surface_material_override/1 = null
+surface_material_override/1 = SubResource("StandardMaterial3D_grm3b")
 
 [node name="DeliveryRoom" parent="." instance=ExtResource("2_0l34u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.808578, 1.71374, 79.2997)

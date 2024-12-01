@@ -59,6 +59,7 @@ func _ready():
 		computerState = ComputerState.MAIN_MENU
 	lastBotSpawnRank = botSpawnRankThreshold
 	botSpawnTimeDT = botSpawnTime
+	deliveryInfo.RankingLabel.text = "Rank: %d" % ranking
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

@@ -50,6 +50,7 @@ script = ExtResource("1_qquak")
 canon = NodePath("Canon")
 antiDroneShot = ExtResource("2_d3744")
 moveSpeed = 60.0
+canonCooldownTime = 1.25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_h2ghc")

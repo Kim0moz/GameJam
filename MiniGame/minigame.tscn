@@ -26,13 +26,13 @@
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_2klo6"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_nfubu"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ht07x"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_suget"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_2klo6")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_nfubu")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -85,7 +85,8 @@ mainMenuScreen = NodePath("CanvasLayer/MinigameMenu")
 antiDroneBotScene = ExtResource("22_yy5lh")
 intersections = NodePath("Intersections")
 capsuleDeliveryTargetTime = 0.5
-botSpawnTime = 30.0
+botSpawnTime = 25.0
+botSpawnTimeChangeRank = 100
 
 [node name="Drone" parent="." node_paths=PackedStringArray("pointer") instance=ExtResource("4_lpyc7")]
 z_index = 2
@@ -147,7 +148,7 @@ offset_top = 0.0
 offset_bottom = 33.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_ht07x")
+material = SubResource("ShaderMaterial_suget")
 mouse_filter = 2
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")

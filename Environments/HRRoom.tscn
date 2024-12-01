@@ -343,7 +343,7 @@ light_color = Color(0.683078, 0.400972, 0.300582, 1)
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("7_nfeep")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72197, 0.296401, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32307, -1.10821, -0.614755)
 
 [node name="Vents" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.809588, 0.347906, -0.135459)
@@ -439,8 +439,8 @@ surface_material_override/1 = SubResource("StandardMaterial3D_bfk8i")
 
 [node name="HighScores" type="SubViewport" parent="Desks/Desk3/Monitor"]
 handle_input_locally = false
-size = Vector2i(687, 332)
-render_target_update_mode = 3
+size = Vector2i(602, 332)
+render_target_update_mode = 4
 
 [node name="HighScores" parent="Desks/Desk3/Monitor/HighScores" node_paths=PackedStringArray("monitor") instance=ExtResource("9_xj7nx")]
 monitor = NodePath("../../MainMonitor")

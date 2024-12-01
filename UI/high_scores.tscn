@@ -15,14 +15,18 @@ script/source = "extends Control
 @onready var scroll = $\"MarginContainer/VBoxContainer/Panel/ScrollContainer\"
 @export var monitor : Monitor
 
+var scrollV = 0.0
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	scroll.scroll_vertical += scrollV
+	scrollV*=0.8
 	if monitor.active == false:
 		return
 	if Input.is_action_just_released(\"scroll_up\"):
-		scroll.scroll_vertical-=5
+		scrollV-=15
 	elif Input.is_action_just_released(\"scroll_down\"):
-		scroll.scroll_vertical+=5
+		scrollV+=15
 "
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bpgbo"]
@@ -132,6 +136,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_pxlj1")
 
 [node name="MainScreen" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer"]
 layout_mode = 2
@@ -140,62 +145,102 @@ size_flags_vertical = 2
 theme = ExtResource("1_pxlj1")
 script = ExtResource("3_yepfe")
 
-[node name="Employee" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="0" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Employee2" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="1" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Employee3" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="2" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Employee4" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="3" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Employee5" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="4" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Employee6" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="5" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Employee7" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="6" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Employee8" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="7" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Employee9" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="8" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Employee10" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="9" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Employee11" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="10" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Employee12" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+[node name="11" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="12" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="13" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="14" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="15" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="16" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="17" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="18" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="19" parent="MarginContainer/VBoxContainer/Panel/ScrollContainer/MainScreen" instance=ExtResource("3_eeki1")]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 size_flags_horizontal = 4

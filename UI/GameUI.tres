@@ -4,7 +4,6 @@
 [ext_resource type="FontFile" uid="uid://buldmqhegia3a" path="res://UI/Pixels.ttf" id="1_qgfye"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8thxk"]
-load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c162.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kr3x2"]
 atlas = SubResource("CompressedTexture2D_8thxk")
@@ -21,7 +20,6 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pad5y"]
-load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c162.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gm1ty"]
 atlas = SubResource("CompressedTexture2D_pad5y")
@@ -64,7 +62,6 @@ axis_stretch_vertical = 1
 modulate_color = Color(0.454524, 0.454524, 0.454524, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6w8pm"]
-load_path = "res://.godot/imported/NewTileMap.png-2aec1f6d1513d26200307dd14dc7c162.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sobm2"]
 atlas = SubResource("CompressedTexture2D_6w8pm")

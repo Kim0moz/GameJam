@@ -26,13 +26,13 @@
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_50187"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2klo6"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_viytm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ht07x"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_50187")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_2klo6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -147,7 +147,7 @@ offset_top = 0.0
 offset_bottom = 33.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_viytm")
+material = SubResource("ShaderMaterial_ht07x")
 mouse_filter = 2
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=4 uid="uid://dyhdo0olx8k3j"]
+[gd_scene load_steps=55 format=4 uid="uid://dyhdo0olx8k3j"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_ejgwl"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="1_wqm3m"]
@@ -34,7 +34,6 @@ roughness = 0.209091
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cnj4"]
 resource_name = "Screen"
 cull_mode = 2
-albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ofm6f"]
@@ -98,17 +97,11 @@ shadow_mesh = SubResource("ArrayMesh_ofm6f")
 [sub_resource type="ViewportTexture" id="ViewportTexture_44ljc"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_nhm87"]
-viewport_path = NodePath("SubViewport")
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m14t"]
 resource_local_to_scene = true
+shading_mode = 0
+albedo_color = Color(0.920995, 0.920995, 0.920995, 1)
 albedo_texture = SubResource("ViewportTexture_44ljc")
-metallic = 1.0
-roughness = 0.0
-emission_enabled = true
-emission_energy_multiplier = 0.67
-emission_texture = SubResource("ViewportTexture_nhm87")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)

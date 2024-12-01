@@ -121,6 +121,15 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 theme_override_constants/separation = 0
 
+[node name="MainMenu" type="Button" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(51.81, 29.825)
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_pxlj1")
+theme_override_font_sizes/font_size = 41
+text = "Back"
+
 [node name="Spacer" type="Panel" parent="CanvasLayer/Computer/Top performing Employees/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(0, 7.135)
@@ -298,27 +307,14 @@ theme_override_constants/margin_bottom = 50
 [node name="Panel" type="Panel" parent="CanvasLayer/Computer/Emails"]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Computer/Emails/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="PanelContainer" type="Panel" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer"]
-custom_minimum_size = Vector2(223.22, 0)
-layout_mode = 2
-theme = ExtResource("1_pxlj1")
-
-[node name="DeliverySoftText" type="RichTextLabel" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer/PanelContainer"]
+[node name="DeliverySoftText" type="RichTextLabel" parent="CanvasLayer/Computer/Emails/Panel"]
 clip_contents = false
 custom_minimum_size = Vector2(208.56, 27.245)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 13.0
-offset_bottom = 40.245
+offset_top = -23.0
+offset_bottom = 4.245
 grow_horizontal = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -329,22 +325,33 @@ bbcode_enabled = true
 text = "[font_size=40pt][center][wave amp=50.0 freq=4 connected=1]DeliverySoft v12.2[/wave][/center]"
 scroll_active = false
 
-[node name="MainMenu" type="Button" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer/PanelContainer"]
+[node name="MainMenu" type="Button" parent="CanvasLayer/Computer/Emails/Panel"]
 texture_filter = 1
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -105.61
-offset_top = 54.0
-offset_right = -36.61
-offset_bottom = 74.0
-grow_horizontal = 2
-scale = Vector2(2.95849, 2.99315)
+offset_left = 3.0
+offset_top = -35.0
+offset_right = 72.0
+offset_bottom = -15.0
+scale = Vector2(1.5, 1.518)
 theme = ExtResource("1_pxlj1")
 text = "Main Menu"
 
-[node name="Emails" type="Panel" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Computer/Emails/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Computer/Emails/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Emails" type="Panel" parent="CanvasLayer/Computer/Emails/Panel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(223.22, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -382,7 +389,7 @@ Emails = Array[Dictionary]([{
 EmailTemplate = ExtResource("7_605uc")
 metadata/_edit_pinned_properties_ = [&"Emails"]
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer/Emails"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Computer/Emails/Panel/MarginContainer/HBoxContainer/Emails"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -391,12 +398,12 @@ grow_horizontal = 2
 grow_vertical = 2
 follow_focus = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer/Emails/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Computer/Emails/Panel/MarginContainer/HBoxContainer/Emails/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="EmailTemplate" parent="CanvasLayer/Computer/Emails/Panel/HBoxContainer/Emails/ScrollContainer/VBoxContainer" instance=ExtResource("7_605uc")]
+[node name="EmailTemplate" parent="CanvasLayer/Computer/Emails/Panel/MarginContainer/HBoxContainer/Emails/ScrollContainer/VBoxContainer" instance=ExtResource("7_605uc")]
 layout_mode = 2
 
 [node name="MainMenu" type="MarginContainer" parent="CanvasLayer/Computer"]
@@ -436,6 +443,7 @@ scroll_active = false
 
 [node name="Mail" type="Button" parent="CanvasLayer/Computer/MainMenu/Panel"]
 texture_filter = 1
+texture_repeat = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -444,7 +452,7 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -67.0
 offset_top = -112.0
-offset_right = -42.0
+offset_right = -44.0
 offset_bottom = -92.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -491,6 +499,7 @@ layout_mode = 1
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[connection signal="pressed" from="CanvasLayer/Computer/Emails/Panel/HBoxContainer/PanelContainer/MainMenu" to="CanvasLayer/Computer" method="OpenMainMenu"]
+[connection signal="pressed" from="CanvasLayer/Computer/Top performing Employees/VBoxContainer/MainMenu" to="CanvasLayer/Computer" method="OpenMainMenu"]
+[connection signal="pressed" from="CanvasLayer/Computer/Emails/Panel/MainMenu" to="CanvasLayer/Computer" method="OpenMainMenu"]
 [connection signal="pressed" from="CanvasLayer/Computer/MainMenu/Panel/Mail" to="CanvasLayer/Computer" method="OpenEmails"]
 [connection signal="pressed" from="CanvasLayer/Computer/MainMenu/Panel/Scores" to="CanvasLayer/Computer" method="OpenScores"]

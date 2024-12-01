@@ -33,16 +33,17 @@ theme = ExtResource("1_ckbcg")
 script = ExtResource("2_pvhre")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-clip_contents = true
 layout_mode = 2
 mouse_filter = 2
 
 [node name="Ranking" type="Panel" parent="HBoxContainer"]
+texture_filter = 1
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 size_flags_stretch_ratio = 0.42
 mouse_filter = 2
 theme = ExtResource("1_ckbcg")
+theme_type_variation = &"SolidPanel"
 
 [node name="Ranking" type="Label" parent="HBoxContainer/Ranking"]
 custom_minimum_size = Vector2(50, 50)
@@ -66,6 +67,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.42
 mouse_filter = 2
 theme = ExtResource("1_ckbcg")
+theme_type_variation = &"SolidPanel"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Panel"]
 layout_mode = 1
@@ -84,6 +86,7 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.42
 mouse_filter = 2
 theme = ExtResource("1_ckbcg")
+theme_type_variation = &"SolidPanel"
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/Panel/HBoxContainer/Panel"]
 texture_filter = 1
@@ -91,8 +94,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 5.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.8, 0.8)
 size_flags_horizontal = 6
 size_flags_vertical = 4
 size_flags_stretch_ratio = 0.25
@@ -115,6 +123,7 @@ layout_mode = 2
 size_flags_stretch_ratio = 0.42
 mouse_filter = 2
 theme = ExtResource("1_ckbcg")
+theme_type_variation = &"SolidPanel"
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Score"]
 layout_mode = 1

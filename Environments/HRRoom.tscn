@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=4 uid="uid://170qrjfvaifw"]
+[gd_scene load_steps=27 format=4 uid="uid://170qrjfvaifw"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_nptwq"]
 [ext_resource type="MeshLibrary" uid="uid://ctr3ogqfj1ns5" path="res://Models/GridMapTest/LightLibrary.tres" id="2_ecsgv"]
@@ -6,7 +6,6 @@
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="4_gt0uy"]
 [ext_resource type="Texture2D" uid="uid://4k2golb5w4d2" path="res://Models/Room_MetalTexture.jpg" id="5_npu6q"]
 [ext_resource type="MeshLibrary" uid="uid://ciqyom63o400x" path="res://Models/GridMapTest/Vents.tres" id="6_odimp"]
-[ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="7_nfeep"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="8_r7kv1"]
 [ext_resource type="Script" path="res://Objects/InteractableItems/Monitor.gd" id="9_tjb8j"]
 [ext_resource type="PackedScene" uid="uid://bhn0nqv0mibyq" path="res://UI/high_scores.tscn" id="9_xj7nx"]
@@ -331,9 +330,6 @@ transform = Transform3D(-0.783687, 0.118268, 0.609793, 0.40712, 0.839244, 0.3604
 light_color = Color(0.683078, 0.400972, 0.300582, 1)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("7_nfeep")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.32307, -1.10821, -0.614755)
-
 [node name="Vents" type="GridMap" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.809588, 0.347906, -0.135459)
 mesh_library = ExtResource("6_odimp")
@@ -394,7 +390,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_bfk8i")
 
 [node name="HighScores" type="SubViewport" parent="Desks/Desk3/Monitor"]
 handle_input_locally = false
-size = Vector2i(1200, 600)
+size = Vector2i(1200, 675)
 render_target_update_mode = 4
 
 [node name="HighScores" parent="Desks/Desk3/Monitor/HighScores" instance=ExtResource("9_xj7nx")]

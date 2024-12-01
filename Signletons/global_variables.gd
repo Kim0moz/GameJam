@@ -14,9 +14,9 @@ func generateHighscores():
 		while id == 4904:
 			id = randi_range(0,5000)
 		var idString = ("%04d" % id) 
-		var icon = id%4
-		var scoreMod = (20-i)*60
-		var highEnd = (20-i-1)*60
+		var icon = randi_range(0,3)
+		var scoreMod = 600+((20-i)*30)
+		var highEnd = 600+((20-i-1)*30)
 		var score = randi_range(scoreMod,highEnd)
 		
 		highScores.append({"Employee": idString, "Score": str(score), "Icon" : icon})

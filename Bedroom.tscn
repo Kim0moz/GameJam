@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://dyhdo0olx8k3j"]
+[gd_scene load_steps=63 format=4 uid="uid://dyhdo0olx8k3j"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_ejgwl"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="1_wqm3m"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://Environments/pipe_item.gd" id="14_q2ht7"]
 [ext_resource type="Script" path="res://Environments/MonitorHelperScript.gd" id="16_4v6xu"]
 [ext_resource type="PackedScene" uid="uid://fp3700wpddt4" path="res://UI/hover_info.tscn" id="18_8bhly"]
+[ext_resource type="Texture2D" uid="uid://b3b61vmw4035u" path="res://Sprites/TileMaps/NewTileMap.png" id="21_65sdv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkccg"]
 resource_name = "Metal2"
@@ -170,6 +171,10 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_esoxy")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfrjn"]
+atlas = ExtResource("21_65sdv")
+region = Rect2(160, 192, 16, 16)
 
 [sub_resource type="GDScript" id="GDScript_4m78a"]
 script/source = "extends Node
@@ -710,6 +715,13 @@ transform = Transform3D(0, 0, 1, -1, 0, 0, 0, -1, 0, 0, 0.5, 0)
 transform = Transform3D(-0.999999, -8.74227e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 0, 0)
 mesh = SubResource("ArrayMesh_705qp")
 skeleton = NodePath("")
+
+[node name="Sprite3D" type="Sprite3D" parent="PipeItem/Item/Delivery Box6"]
+transform = Transform3D(2.83908, 0, 0, 2.84217e-14, 2.83908, 0, 0, 0, 2.83908, 0, 0, 0)
+billboard = 1
+shaded = true
+texture_filter = 0
+texture = SubResource("AtlasTexture_hfrjn")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="PipeItem/Item"]
 light_color = Color(0.449756, 0.720504, 1, 1)

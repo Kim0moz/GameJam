@@ -334,35 +334,36 @@ size_flags_horizontal = 3
 theme = ExtResource("1_pxlj1")
 script = ExtResource("6_v8gh6")
 Emails = Array[Dictionary]([{
-"Body": "[p]Dear Alma,[/p][p] [/p][p]I hope you’re doing well. I wanted to touch base with you about something that’s been on my mind. Lately, I’ve been concerned that our team might not feel as entertained or engaged as they need to be. Given the pressures they’re under—both the demands of their roles and the unique challenges of our environment—I worry this could lead to complications if we don’t address it soon.[/p][p] [/p][p]As the assistant director of employee happiness, your role is pivotal in keeping our workforce motivated and satisfied. I’d love for us to explore new ways to enhance their experience, especially during downtime. Whether it’s interactive games, storytelling activities, or something entirely different, I think we need to ensure our employees feel valued and have opportunities to unwind and recharge.[/p][p] [/p][p]You’re incredibly insightful when it comes to understanding the team’s needs, and I’m confident you’ll have some great ideas. Let’s discuss this further and see how we can make a real impact on their day-to-day experience.[/p][p] [/p][p]Looking forward to hearing your thoughts.[/p][p] [/p][p]Best regards,[/p][p] [/p][p]Greta[/p][p]Director of Employee Happiness[/p]",
-"From": "Greta Buck",
-"Subject": "Subject: Enhancing Employee Engagement and Morale"
+"Body": "[p]Hey Alma,[/p][p] [/p][p] [/p][p]Could you send me the notes from the last meeting when you get a chance? I need to catch up on a few things.[/p][p] [/p][p]Thanks![/p][p] [/p][p]Oliwia[/p]",
+"From": "Oliwia Ford",
+"Subject": "Subject: Meeting Notes"
 }, {
-"Body": "[p]Hey Alma,[/p][p] [/p][p]I just had to say—have you noticed how gorgeous the weather has been lately? It’s like the universe is giving us a little break from all the chaos. The skies have been so clear, and there’s this perfect breeze in the air. It’s almost too good to be true![/p][p] [/p][p]Hope you’ve been able to sneak outside and soak it up, even if just for a moment. Sometimes a little sunshine is all we need to reset.[/p][p] [/p][p]Catch up soon![/p][p] [/p][p] [/p][p]Best,[/p][p]Chanel[/p]",
-"From": "Chanel Le",
-"Subject": "Subject: Enjoying the Weather"
+"Body": "[p]Hey Alma,[/p][p] [/p][p] [/p][p]I hope you're doing well! So, I’ve been taking my dog to the park recently—he’s a real handful, always getting into trouble. Anyway, I was thinking it might be fun if we went together sometime. I’m sure our dogs would get along, and it’s always nice to get out of the office for a bit, right?[/p][p] [/p][p] [/p][p]No pressure at all, but if you’re up for it, it could be a good way to unwind and enjoy some fresh air. Maybe we could grab a coffee after or just let the dogs run around for a bit. Let me know what you think![/p][p] [/p][p] [/p][p]Looking forward to hearing from you,Johnathan[/p]",
+"From": "Johnathan Lindsay",
+"Subject": "Subject: Dog Park Outing?"
+}, {
+"Body": "[p]Good Morning Team,[/p][p] [/p][p] [/p][p]Here’s your daily dose of humor to kick off the day![/p][p] [/p][p]Why don’t skeletons fight each other? Because they don’t have the guts![/p][p] [/p][p] [/p][p]Hope that gave you a good laugh! Stay tuned for more jokes coming your way tomorrow![/p][p] [/p][p]Keep smiling,[/p][p] [/p][p]Barney Hickman[/p]",
+"From": "Barney Hickman",
+"Subject": "Subject: Daily Dad Joke"
 }, {
 "Body": "[p]Hey Alma,[/p][p] [/p][p] [/p][p] [/p][p] [/p][p]Your new security key’s in the delivery bay. Pick it up when you get a chance.[/p][p] [/p][p] [/p][p] [/p][p] [/p][p]– Frazer[/p]",
 "From": "Frazer Reese",
 "Subject": "Subject: Security Key"
 }, {
-"Body": "Body",
-"From": "Johnathan Lindsay",
-"Subject": "Subject"
+"Body": "[p]Dear Alma,[/p][p] [/p][p]I hope you’re doing well. I wanted to touch base with you about something that’s been on my mind. Lately, I’ve been concerned that our team might not feel as entertained or engaged as they need to be. Given the pressures they’re under—both the demands of their roles and the unique challenges of our environment—I worry this could lead to complications if we don’t address it soon.[/p][p] [/p][p]As the assistant director of employee happiness, your role is pivotal in keeping our workforce motivated and satisfied. I’d love for us to explore new ways to enhance their experience, especially during downtime. Whether it’s interactive games, storytelling activities, or something entirely different, I think we need to ensure our employees feel valued and have opportunities to unwind and recharge.[/p][p] [/p][p]You’re incredibly insightful when it comes to understanding the team’s needs, and I’m confident you’ll have some great ideas. Let’s discuss this further and see how we can make a real impact on their day-to-day experience.[/p][p] [/p][p]Looking forward to hearing your thoughts.[/p][p] [/p][p]Best regards,[/p][p] [/p][p]Greta[/p][p]Director of Employee Happiness[/p]",
+"From": "Greta Buck",
+"Subject": "Subject: Enhancing Employee Engagement and Morale"
 }, {
-"Body": "Body",
-"From": "Oliwia Ford",
-"Subject": "Subject"
-}, {
-"Body": "Body",
+"Body": "[p]Dear Alma,[/p][p] [/p][p] [/p][p]I trust this message finds you well. I am writing to inform you of the continued success we’ve had in maintaining employee compliance regarding the critical narrative we’ve established—that the world beyond our operational boundaries is, indeed, inhabitable. Through strategic communication and calculated reinforcement, we’ve managed to ensure that all employees remain aligned with this fabricated understanding of the external environment. This is, of course, vital to our operational integrity and the preservation of focus within our workforce.[/p][p] [/p][p] [/p][p]To sustain this facade, it is paramount that we continue to present our employees with carefully curated information and maintain an unwavering stance on the realities we have constructed. I recommend that we periodically reinforce this narrative through controlled discussions and subtle reminders in both formal and informal settings, so as not to disrupt the carefully balanced perception of the external world. Additionally, employing methods of positive reinforcement for those who remain steadfast in their belief will be crucial in ensuring the long-term success of this initiative.[/p][p] [/p][p] [/p][p]I look forward to discussing further steps to ensure the continued success of this strategy. Your input will, as always, be invaluable in fortifying our collective efforts.[/p][p] [/p][p] [/p][p]Best regards,[/p][p] [/p][p]Kenny Browning[/p]",
 "From": "Kenny Browning",
-"Subject": "Subject"
+"Subject": "Subject: Maintaining Employee Compliance...."
 }, {
-"Body": "Body",
-"From": "Barney Hickman",
-"Subject": "Subject"
+"Body": "[p]Hey Alma,[/p][p] [/p][p]I just had to say—have you noticed how gorgeous the weather has been lately? It’s like the universe is giving us a little break from all the chaos. The skies have been so clear, and there’s this perfect breeze in the air. It’s almost too good to be true![/p][p] [/p][p]Hope you’ve been able to sneak outside and soak it up, even if just for a moment. Sometimes a little sunshine is all we need to reset.[/p][p] [/p][p]Catch up soon![/p][p] [/p][p] [/p][p]Best,[/p][p]Chanel[/p]",
+"From": "Chanel Le",
+"Subject": "Subject: Enjoying the Weather"
 }])
 EmailTemplate = ExtResource("7_605uc")
+metadata/_edit_pinned_properties_ = [&"Emails"]
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer/Emails"]
 layout_mode = 1
@@ -371,6 +372,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Emails/Panel/HBoxContainer/Emails/ScrollContainer"]
 layout_mode = 2

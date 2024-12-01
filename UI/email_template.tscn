@@ -22,6 +22,7 @@ script/source = "extends PanelContainer
 
 func _on_email_template_toggled(toggled_on: bool) -> void:
 	self.visible = toggled_on
+	self.grab_focus()
 	get_parent().release_focus()
 "
 
@@ -69,24 +70,6 @@ size_flags_vertical = 4
 mouse_filter = 2
 texture = SubResource("AtlasTexture_3i27l")
 
-[node name="From" type="PanelContainer" parent="Button/HBoxContainer"]
-material = SubResource("CanvasItemMaterial_cr5tf")
-custom_minimum_size = Vector2(150, 35)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_stretch_ratio = 0.5
-mouse_filter = 2
-theme = ExtResource("1_ppkyl")
-
-[node name="From" type="Label" parent="Button/HBoxContainer/From"]
-material = SubResource("CanvasItemMaterial_cr5tf")
-layout_mode = 2
-size_flags_vertical = 1
-size_flags_stretch_ratio = 0.25
-text = "Name"
-label_settings = SubResource("LabelSettings_40u6a")
-horizontal_alignment = 1
-
 [node name="Subject" type="PanelContainer" parent="Button/HBoxContainer"]
 material = SubResource("CanvasItemMaterial_cr5tf")
 custom_minimum_size = Vector2(150, 35)
@@ -102,6 +85,24 @@ layout_mode = 2
 size_flags_vertical = 1
 size_flags_stretch_ratio = 0.25
 text = "Subject"
+label_settings = SubResource("LabelSettings_40u6a")
+horizontal_alignment = 1
+
+[node name="From" type="PanelContainer" parent="Button/HBoxContainer"]
+material = SubResource("CanvasItemMaterial_cr5tf")
+custom_minimum_size = Vector2(150, 35)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+mouse_filter = 2
+theme = ExtResource("1_ppkyl")
+
+[node name="From" type="Label" parent="Button/HBoxContainer/From"]
+material = SubResource("CanvasItemMaterial_cr5tf")
+layout_mode = 2
+size_flags_vertical = 1
+size_flags_stretch_ratio = 0.25
+text = "Name"
 label_settings = SubResource("LabelSettings_40u6a")
 horizontal_alignment = 1
 

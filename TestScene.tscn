@@ -49,20 +49,20 @@ region = Rect2(96, 16, 16, 16)
 atlas = ExtResource("3_atby7")
 region = Rect2(112, 16, 16, 16)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_44ljc"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_l7ojn"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_nhm87"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_s5xl6"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bpjmu"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_44ljc")
+albedo_texture = SubResource("ViewportTexture_l7ojn")
 metallic = 1.0
 roughness = 0.0
 emission_enabled = true
 emission_energy_multiplier = 0.67
-emission_texture = SubResource("ViewportTexture_nhm87")
+emission_texture = SubResource("ViewportTexture_s5xl6")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_abjuc"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -152,6 +152,9 @@ texture = SubResource("AtlasTexture_fflej")
 
 [node name="Room" parent="." instance=ExtResource("3_br0us")]
 transform = Transform3D(0.741066, 0, 0, 0, 0.741066, 2.13492e-08, 0, 0, 0.741066, -4.77429, 3.57628e-07, 0.212632)
+
+[node name="Cube_002" parent="Room" index="21"]
+transform = Transform3D(1, 0, 0, 0, 1, 3.55271e-15, 0, 0, 1, -4.79981, 1.80296, -3.88986)
 
 [node name="Door" parent="Room" index="25"]
 transform = Transform3D(0.342915, 0, -0.939367, 0, 1, 0, 0.939367, 0, 0.342915, 0.187394, 1.31039, 4.31414)

@@ -1,8 +1,13 @@
 extends Node
 
-var player : Player
+var player : Player :
+	set(val):
+		player = val
+		playerReady.emit()
 
 var highScores : Array[Dictionary] = [{"Employee": "ID", "Score": 0, "Icon" : 0}]
+
+signal playerReady
 
 func _ready() -> void:
 	generateHighscores()

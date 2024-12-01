@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://b2msttkt05ws4"]
+[gd_scene load_steps=14 format=4 uid="uid://b2msttkt05ws4"]
 
 [ext_resource type="Texture2D" uid="uid://h621xlfereva" path="res://Models/GridMapTest/GridAtlas_MetalTexture.jpg" id="1_j55vs"]
 [ext_resource type="Texture2D" uid="uid://dongh02jr5ahv" path="res://Models/GridMapTest/GridAtlas_GlassTexture.jpg" id="2_qma5g"]
 [ext_resource type="Script" path="res://Objects/ToggleableItems/ToggleableItem.gd" id="3_qf7l3"]
 [ext_resource type="Animation" uid="uid://batklhujj33gy" path="res://Models/GridMapTest/Animation/TubeClose.res" id="4_3w5he"]
 [ext_resource type="Animation" uid="uid://bvsv8k32a57jy" path="res://Models/GridMapTest/Animation/TubeOpen.res" id="5_akhun"]
+[ext_resource type="Script" path="res://Models/GridMapTest/HideCollider.gd" id="6_rcgiv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_31dy7"]
 resource_name = "Metal1"
@@ -67,9 +68,12 @@ bind/1/name = &"Handle"
 bind/1/bone = -1
 bind/1/pose = Transform3D(0.999131, 0, -0.0416853, -0.0416853, 0, -0.999131, 0, 1, 0, -9.51258, -0.103555, -0.5)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_uwwr4"]
-height = 1.0
-radius = 0.4
+[sub_resource type="BoxShape3D" id="BoxShape3D_dld7k"]
+size = Vector3(0.342285, 1, 0.1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vd467"]
+radius = 0.0433836
+height = 0.433836
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rj8qf"]
 _data = {
@@ -105,13 +109,44 @@ skin = SubResource("Skin_xlbwm")
 [node name="Tube" type="StaticBody3D" parent="Tube_Door/Skeleton3D/Tube_StraightDoor" node_paths=PackedStringArray("anim")]
 script = ExtResource("3_qf7l3")
 anim = NodePath("../../../Animation")
-animations = Array[Animation]([ExtResource("4_3w5he"), ExtResource("5_akhun")])
+animations = Array[Animation]([ExtResource("5_akhun"), ExtResource("4_3w5he")])
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube"]
-shape = SubResource("CylinderShape3D_uwwr4")
+[node name="Right" type="CollisionShape3D" parent="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube"]
+transform = Transform3D(0.613307, 0, 0.789845, 0, 1, 0, -0.789845, 0, 0.613307, -0.283115, 0, -0.274586)
+shape = SubResource("BoxShape3D_dld7k")
+disabled = true
+script = ExtResource("6_rcgiv")
+
+[node name="Center" type="CollisionShape3D" parent="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.420614)
+shape = SubResource("BoxShape3D_dld7k")
+disabled = true
+script = ExtResource("6_rcgiv")
+
+[node name="Left" type="CollisionShape3D" parent="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube"]
+transform = Transform3D(0.772723, 0, -0.634744, 0, 1, 0, 0.634744, 0, 0.772723, 0.275838, 0, -0.266301)
+shape = SubResource("BoxShape3D_dld7k")
+script = ExtResource("6_rcgiv")
+
+[node name="PhysicalBoneSimulator3D" type="PhysicalBoneSimulator3D" parent="Tube_Door/Skeleton3D"]
+
+[node name="Physical Bone Root" type="PhysicalBone3D" parent="Tube_Door/Skeleton3D/PhysicalBoneSimulator3D"]
+transform = Transform3D(0.999131, 0.0416853, -1.71588e-07, -1.71737e-07, 0, -1, -0.0416853, 0.999131, 7.15892e-09, 3.72205e-08, -0.216918, -1.5529e-09)
+joint_offset = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42109e-14, -3.33067e-16, 0.216918)
+body_offset = Transform3D(1, 0, -1.71737e-07, -1.71737e-07, 0, -1, 0, 1, 0, 3.72529e-08, 0.216918, 3.33067e-16)
+bone_name = "Root"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Tube_Door/Skeleton3D/PhysicalBoneSimulator3D/Physical Bone Root"]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_vd467")
 
 [node name="Animation" type="AnimationPlayer" parent="Tube_Door"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_rj8qf")
 }
+
+[connection signal="Activated" from="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube" to="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube" method="open"]
+[connection signal="Activated" from="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube" to="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube/Right" method="hideCollider"]
+[connection signal="Activated" from="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube" to="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube/Left" method="hideCollider"]
+[connection signal="Activated" from="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube" to="Tube_Door/Skeleton3D/Tube_StraightDoor/Tube/Center" method="hideCollider"]

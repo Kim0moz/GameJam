@@ -101,7 +101,6 @@ zoom = Vector2(3, 3)
 position_smoothing_speed = 10.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="BasicPanel" parent="CanvasLayer" instance=ExtResource("4_a5dh6")]
 anchors_preset = 2

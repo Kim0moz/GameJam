@@ -14,7 +14,7 @@
 [ext_resource type="Script" path="res://Environments/pipe_destinations.gd" id="8_luff5"]
 [ext_resource type="Script" path="res://Models/GridMapTest/ReplaceWithInteractive.gd" id="9_6hyn0"]
 [ext_resource type="Texture2D" uid="uid://bq4avvw4s6vtf" path="res://Models/Room_CarpetTexture_4.png" id="9_fa0ys"]
-[ext_resource type="PackedScene" uid="uid://b2msttkt05ws4" path="res://Models/GridMapTest/tube_with_door.tscn" id="10_sref7"]
+[ext_resource type="PackedScene" path="res://Models/GridMapTest/tube_with_door.tscn" id="10_sref7"]
 [ext_resource type="PackedScene" uid="uid://doeosjyp664sa" path="res://Objects/Player/player.tscn" id="11_fmp3n"]
 [ext_resource type="Script" path="res://Environments/pipe_item.gd" id="14_q2ht7"]
 
@@ -636,7 +636,7 @@ metadata/_edit_pinned_properties_ = [&"outlets"]
 mesh_library = ExtResource("7_xrxsd")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(131075, 3, 0, 262147, 6, 786432)
+"cells": PackedInt32Array(131075, 3, 0, 262147, 6, 0)
 }
 script = ExtResource("8_luff5")
 Ends = [{
@@ -784,3 +784,4 @@ skeleton = NodePath("")
 
 [node name="Player" parent="." instance=ExtResource("11_fmp3n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.547, 1.90822, 0.617681)
+computerPosOffset = Vector3(0, -0.5, 0.8)

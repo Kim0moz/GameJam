@@ -14,6 +14,7 @@ func _ready() -> void:
 
 func Toggle():
 	print("Activated")
+	$Click.play()
 	pI.CurrentInterface = (pI.CurrentInterface + 1)%(pI.Interfaces.size())
 
 func Hover():

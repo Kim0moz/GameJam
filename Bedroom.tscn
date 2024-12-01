@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://dyhdo0olx8k3j"]
+[gd_scene load_steps=63 format=4 uid="uid://dyhdo0olx8k3j"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_ejgwl"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="1_wqm3m"]
@@ -23,6 +23,7 @@
 [ext_resource type="Script" path="res://Environments/MonitorHelperScript.gd" id="16_4v6xu"]
 [ext_resource type="PackedScene" uid="uid://fp3700wpddt4" path="res://UI/hover_info.tscn" id="18_8bhly"]
 [ext_resource type="PackedScene" uid="uid://c5vxwcp4jb3tg" path="res://Objects/pipe_item.tscn" id="19_hs50p"]
+[ext_resource type="Script" path="res://Objects/InteractacbleItem.gd" id="20_c13b8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkccg"]
 resource_name = "Metal2"
@@ -94,16 +95,34 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_c1su4"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_p5lwl"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m14t"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_c1su4")
+albedo_texture = SubResource("ViewportTexture_p5lwl")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fm3su"]
+radius = 0.590153
+
+[sub_resource type="GDScript" id="GDScript_rv4yt"]
+script/source = "extends Node
+
+
+func showtext():
+	InfoPopUp.Text = \"collect\"
+	
+func hidetext():
+	InfoPopUp.HideText()
+
+func collect():
+	GlobalVariables.hasScrewDriver = true
+	get_parent().get_parent().visible = false
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j2wus"]
 resource_name = "Metal1"
@@ -606,7 +625,7 @@ interactive = Array[Vector3i]([Vector3i(1, 0, 0)])
 itemToReplace = 9
 item = ExtResource("4_lr1si")
 
-[node name="Exit" parent="Walls and Vents/Replace Vents" instance=ExtResource("4_lr1si")]
+[node name="Bedroom" parent="Walls and Vents/Replace Vents" instance=ExtResource("4_lr1si")]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 3, 1.98447, -14)
 locked = true
 
@@ -690,6 +709,15 @@ pipeDestinations = NodePath("../Pipes/PipeDestinations")
 
 [node name="Item" parent="PipeItem" index="0"]
 transform = Transform3D(0, 0, 1, 4.37114e-08, -1, 0, 1, 4.37115e-08, 0, 0.5, 0.5, -0.500001)
+
+[node name="Item" type="StaticBody3D" parent="PipeItem/Item/Delivery Box6" index="1"]
+script = ExtResource("20_c13b8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PipeItem/Item/Delivery Box6/Item"]
+shape = SubResource("SphereShape3D_fm3su")
+
+[node name="CollectItem" type="Node" parent="PipeItem/Item" index="2"]
+script = SubResource("GDScript_rv4yt")
 
 [node name="Decorations" type="Node3D" parent="."]
 
@@ -786,6 +814,9 @@ computerTransTweenLen = null
 [connection signal="Activated" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="hide"]
 [connection signal="Exit" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="hide"]
 [connection signal="Hovered" from="Monitor/MainMonitor" to="Monitor/HoverInfo" method="display"]
+[connection signal="Activated" from="PipeItem/Item/Delivery Box6/Item" to="PipeItem/Item/CollectItem" method="collect"]
+[connection signal="Exit" from="PipeItem/Item/Delivery Box6/Item" to="PipeItem/Item/CollectItem" method="hidetext"]
+[connection signal="Hovered" from="PipeItem/Item/Delivery Box6/Item" to="PipeItem/Item/CollectItem" method="showtext"]
 
 [editable path="PipeItem"]
 [editable path="Player"]

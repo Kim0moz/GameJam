@@ -11,9 +11,14 @@ var sendScrewDriver : bool = false:
 	set(val):
 		sendScrewDriver = val
 		screwDriver.emit(val)
+var hasScrewDriver = false:
+	set(val):
+		hasScrewDriver = true
+		screwDriverGet.emit(val)
 
 signal playerReady
 signal screwDriver(val:bool)
+signal screwDriverGet(val:bool)
 
 func _ready() -> void:
 	generateHighscores()

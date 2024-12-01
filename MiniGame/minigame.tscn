@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://bvlgg8n0vjyw0"]
+[gd_scene load_steps=36 format=4 uid="uid://bvlgg8n0vjyw0"]
 
 [ext_resource type="TileSet" uid="uid://dw5km62ab2x3i" path="res://MiniGame/MiniGameTileSet.tres" id="1_pwln6"]
 [ext_resource type="Script" path="res://MiniGame/MinigameManger.gd" id="2_0irbu"]
@@ -22,17 +22,18 @@
 [ext_resource type="PackedScene" uid="uid://c65j3fq4gl3md" path="res://MiniGame/MinigameMenu.tscn" id="13_2517h"]
 [ext_resource type="PackedScene" uid="uid://cr6gn3mgm7wav" path="res://MiniGame/DeliveryTarget.tscn" id="13_kv6sc"]
 [ext_resource type="PackedScene" uid="uid://bgkcniy1vnc7y" path="res://MiniGame/AntiDroneBot.tscn" id="22_yy5lh"]
+[ext_resource type="AudioStream" uid="uid://fnlhc7sunc30" path="res://Audio/LOOP_Race to the Finish.mp3" id="23_ndcur"]
 
 [sub_resource type="FontVariation" id="FontVariation_cdp16"]
 base_font = ExtResource("5_gdjrj")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_d3hvd"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_7veai"]
 viewport_path = NodePath("CanvasLayer/Control/ScreenRipple/SubViewport")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bns4e"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ok2d8"]
 resource_local_to_scene = true
 shader = ExtResource("5_nu4ep")
-shader_parameter/Texture2DParameter = SubResource("ViewportTexture_d3hvd")
+shader_parameter/Texture2DParameter = SubResource("ViewportTexture_7veai")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cmfte"]
 resource_local_to_scene = true
@@ -149,7 +150,7 @@ offset_top = 0.0
 offset_bottom = 33.0
 
 [node name="ScreenRipple" parent="CanvasLayer" node_paths=PackedStringArray("cam", "source") instance=ExtResource("4_jrj8k")]
-material = SubResource("ShaderMaterial_bns4e")
+material = SubResource("ShaderMaterial_ok2d8")
 mouse_filter = 2
 cam = NodePath("../../Drone/Camera2D")
 source = NodePath("../../Drone")
@@ -595,6 +596,10 @@ position = Vector2(336, 360)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Intersections/Intersection_15"]
 scale = Vector2(0.375, 0.375)
 shape = SubResource("RectangleShape2D_5rgnm")
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_ndcur")
+parameters/looping = true
 
 [editable path="Drone"]
 [editable path="CanvasLayer/DeliveryStatus"]

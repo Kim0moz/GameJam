@@ -500,5 +500,8 @@ canvas_item_default_texture_filter = 0
 size = Vector2i(1184, 652)
 
 [node name="Minigame" parent="Desks/Lower Desks" instance=ExtResource("8_r7kv1")]
+botSpawnTime = 40.0
+botSpawnTimeChangeRank = 150
+botSpawnTimeChange = 3.0
 
 [connection signal="Activated" from="Desks/Desk3/Monitor/MainMonitor" to="Desks/Desk3/Monitor" method="active"]

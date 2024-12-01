@@ -1,10 +1,12 @@
-[gd_scene load_steps=57 format=4 uid="uid://dyhdo0olx8k3j"]
+[gd_scene load_steps=59 format=4 uid="uid://dyhdo0olx8k3j"]
 
 [ext_resource type="MeshLibrary" uid="uid://q0dy6e5opori" path="res://Models/GridMapTest/MeshLibrary.tres" id="1_ejgwl"]
 [ext_resource type="PackedScene" uid="uid://bvlgg8n0vjyw0" path="res://MiniGame/minigame.tscn" id="1_wqm3m"]
+[ext_resource type="AudioStream" uid="uid://g6vrenw5gfo4" path="res://Audio/LOOP_Check This Out!.mp3" id="2_pdocd"]
 [ext_resource type="MeshLibrary" uid="uid://ctr3ogqfj1ns5" path="res://Models/GridMapTest/LightLibrary.tres" id="2_pj5rj"]
 [ext_resource type="Script" path="res://Models/GridMapTest/replace_vents.gd" id="3_tcvsi"]
 [ext_resource type="MeshLibrary" uid="uid://1ho4b857233" path="res://Models/GridMapTest/RailingLibrary.tres" id="3_tdcvi"]
+[ext_resource type="AudioStream" uid="uid://fnlhc7sunc30" path="res://Audio/LOOP_Race to the Finish.mp3" id="3_xjwtc"]
 [ext_resource type="PackedScene" uid="uid://cf0yipunib2xa" path="res://Models/GridMapTest/vent_wall.tscn" id="4_lr1si"]
 [ext_resource type="MeshLibrary" uid="uid://22ca7wl6qkdt" path="res://Models/GridMapTest/Pipes.tres" id="4_pikpa"]
 [ext_resource type="Texture2D" uid="uid://cywgekv3lssmr" path="res://Models/Room_GlassTexture.jpg" id="5_u0t00"]
@@ -583,6 +585,11 @@ render_target_update_mode = 4
 [node name="Minigame" parent="SubViewport" node_paths=PackedStringArray("player", "musicStream") instance=ExtResource("1_wqm3m")]
 player = NodePath("../../Player")
 musicStream = NodePath("../../Monitor/AudioStreamPlayer3D")
+botSpawnTime = 40.0
+botSpawnTimeChangeRank = 150
+botSpawnTimeChange = 3.0
+menuMusic = ExtResource("2_pdocd")
+gameMusic = ExtResource("3_xjwtc")
 
 [node name="Floors and Ceilings" type="GridMap" parent="."]
 mesh_library = ExtResource("1_ejgwl")

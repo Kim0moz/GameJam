@@ -319,7 +319,7 @@ metadata/_edit_pinned_properties_ = [&"outlets"]
 mesh_library = ExtResource("6_cxqj3")
 cell_size = Vector3(1, 1, 1)
 data = {
-"cells": PackedInt32Array(65541, 1, 0, 262133, 2, 0, 65510, 12, 0)
+"cells": PackedInt32Array(65541, 1, 0, 262133, 2, 0)
 }
 script = ExtResource("7_vwveh")
 Ends = [{
@@ -332,6 +332,7 @@ Ends = [{
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Room1" type="GridMap" parent="Pipes" node_paths=PackedStringArray("grid")]
+visible = false
 mesh_library = ExtResource("6_cxqj3")
 cell_size = Vector3(1, 1, 1)
 data = {

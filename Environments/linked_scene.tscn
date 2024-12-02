@@ -100,7 +100,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_lrg4e"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_iwunn"]
 viewport_path = NodePath("Bedroom/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ass5"]
@@ -108,7 +108,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_lrg4e")
+albedo_texture = SubResource("ViewportTexture_iwunn")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -608,7 +608,7 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_hxm2b"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_vivud"]
 viewport_path = NodePath("DeliveryScreen/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m8c3u"]
@@ -616,7 +616,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_hxm2b")
+albedo_texture = SubResource("ViewportTexture_vivud")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -685,7 +685,7 @@ albedo_texture = ExtResource("4_frok4")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_mt3p5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_30moh"]
 viewport_path = NodePath("Desks/Lower Desks")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr8wr"]
@@ -694,7 +694,7 @@ resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_mt3p5")
+albedo_texture = SubResource("ViewportTexture_30moh")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qbcog"]
 _surfaces = [{
@@ -755,7 +755,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_qbcog")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_82tvj"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_usvh1"]
 viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_81wjt"]
@@ -763,7 +763,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_82tvj")
+albedo_texture = SubResource("ViewportTexture_usvh1")
 roughness = 0.5
 
 [sub_resource type="Environment" id="Environment_vx3dc"]
@@ -1019,11 +1019,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.808578, 1.71374, 79.2997)
 [node name="Delivery Room HR" parent="DeliveryRoom/WallsandVents/Replace Vents" index="0" node_paths=PackedStringArray("ExitPoint")]
 ExitPoint = NodePath("../../../../HR/Walls and Vents/Replace Vents/HR Delivery Room")
 metadata/_edit_pinned_properties_ = [&"ExitPoint"]
-
-[node name="PipeDestinations" parent="DeliveryRoom/Pipes" index="2"]
-data = {
-"cells": PackedInt32Array(65541, 1, 0, 262133, 2, 0)
-}
 
 [node name="Cube_002" parent="DeliveryRoom/ButtonFire/Button" index="0"]
 surface_material_override/0 = null

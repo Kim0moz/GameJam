@@ -21,7 +21,7 @@ albedo_texture = ExtResource("5_npu6q")
 metallic = 0.552727
 roughness = 0.209091
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_5mdgi"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_035dy"]
 viewport_path = NodePath("Desks/Lower Desks")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0cnj4"]
@@ -29,7 +29,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_5mdgi")
+albedo_texture = SubResource("ViewportTexture_035dy")
 roughness = 0.5
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_l6kbr"]
@@ -91,7 +91,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_l6kbr")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_yn2ns"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_2engv"]
 viewport_path = NodePath("DeliveryScreen/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uil8o"]
@@ -100,7 +100,7 @@ resource_name = "Screen"
 cull_mode = 2
 shading_mode = 0
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_yn2ns")
+albedo_texture = SubResource("ViewportTexture_2engv")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kfywj"]
 size = Vector3(2.25, 1.4, 0.175)
@@ -237,7 +237,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_a0hmo")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_008ti"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_eioyc"]
 viewport_path = NodePath("Desks/Desk3/Monitor/HighScores")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bfk8i"]
@@ -245,7 +245,7 @@ resource_local_to_scene = true
 resource_name = "Screen"
 cull_mode = 2
 albedo_color = Color(0.906332, 0.906332, 0.906332, 1)
-albedo_texture = SubResource("ViewportTexture_008ti")
+albedo_texture = SubResource("ViewportTexture_eioyc")
 roughness = 0.5
 
 [node name="HRRoom" type="Node3D"]

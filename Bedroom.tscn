@@ -95,13 +95,13 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_ofm6f")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ta23e"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_imxlq"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3m14t"]
 resource_local_to_scene = true
 shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_ta23e")
+albedo_texture = SubResource("ViewportTexture_imxlq")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_omqab"]
 size = Vector3(2.25, 1.4, 0.175)
